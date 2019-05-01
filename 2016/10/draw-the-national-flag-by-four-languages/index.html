@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="国庆假期，闲来无事，用HTML、C、Java、Python四种语言画国旗  HTML1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374&amp;lt;html&amp;gt;&amp;lt;hea">
+<meta name="keywords" content="C,编程,HTML,Java,Python,国旗">
+<meta property="og:type" content="article">
+<meta property="og:title" content="四种语言画国旗">
+<meta property="og:url" content="https://pcninja.cn/2016/10/draw-the-national-flag-by-four-languages/index.html">
+<meta property="og:site_name" content="薯片忍者的小站">
+<meta property="og:description" content="国庆假期，闲来无事，用HTML、C、Java、Python四种语言画国旗  HTML1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374&amp;lt;html&amp;gt;&amp;lt;hea">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-03T11:24:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="四种语言画国旗">
+<meta name="twitter:description" content="国庆假期，闲来无事，用HTML、C、Java、Python四种语言画国旗  HTML1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374&amp;lt;html&amp;gt;&amp;lt;hea">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="薯片忍者的小站" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://pcninja.cn/2016/10/draw-the-national-flag-by-four-languages/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>四种语言画国旗 | 薯片忍者的小站</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">薯片忍者的小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">今天的故事 是明天的回忆</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://pcninja.cn/2016/10/draw-the-national-flag-by-four-languages/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="薯片忍者">
+      <meta itemprop="description" content="想起那些时光<br />总觉得自己像个傻瓜">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薯片忍者的小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">四种语言画国旗
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-10-06 08:45:25" itemprop="dateCreated datePublished" datetime="2016-10-06T08:45:25+08:00">2016-10-06</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程/" itemprop="url" rel="index"><span itemprop="name">编程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2016/10/draw-the-national-flag-by-four-languages/" class="leancloud_visitors" data-flag-title="四种语言画国旗">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>国庆假期，闲来无事，用<strong>HTML、C、Java、Python</strong>四种语言画<strong>国旗</strong></p>
+<ul>
+<li><h4 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> col=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">"red"</span>,<span class="string">"brown"</span>);</span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> ticker=<span class="number">0</span>;</span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> step=<span class="number">0</span>;</span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">drawBackground</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">var</span> g=<span class="built_in">document</span>.getElementById(<span class="string">"background"</span>).getContext(<span class="string">"2d"</span>);</span></span><br><span class="line"><span class="javascript">		<span class="keyword">var</span> grd=g.createLinearGradient(<span class="number">-560</span>+ticker, <span class="number">0</span>, <span class="number">1400</span>+ticker,<span class="number">0</span>);</span></span><br><span class="line"><span class="javascript">		<span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++)</span></span><br><span class="line"><span class="undefined">			grd.addColorStop(i/10,col[(i + step)%col.length]);</span></span><br><span class="line"><span class="undefined">		ticker=ticker+10;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">if</span> (ticker&gt;=<span class="number">196</span>)&#123;</span></span><br><span class="line"><span class="undefined">			ticker=0;</span></span><br><span class="line"><span class="undefined">			step++;</span></span><br><span class="line"><span class="undefined">		&#125;</span></span><br><span class="line"><span class="undefined">		g.fillStyle=grd;</span></span><br><span class="line"><span class="undefined">		g.fillRect(0,0,1600,700);</span></span><br><span class="line"><span class="undefined">	&#125;</span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">preperation</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">		setInterval(<span class="string">'drawBackground()'</span>,<span class="number">100</span>);</span></span><br><span class="line"><span class="undefined">	&#125;</span></span><br><span class="line"><span class="undefined">	</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">	#myCanvas&#123;</span></span><br><span class="line"><span class="undefined">	 z-index:2;	</span></span><br><span class="line"><span class="undefined">	 position:absolute; left:0px; top:-5px;</span></span><br><span class="line"><span class="undefined">	&#125;</span></span><br><span class="line"><span class="undefined">	#background&#123;</span></span><br><span class="line"><span class="undefined">		z-index:1;</span></span><br><span class="line"><span class="undefined">		position:absolute;</span></span><br><span class="line"><span class="undefined">		left:0px;</span></span><br><span class="line"><span class="undefined">		top:0px;</span></span><br><span class="line"><span class="undefined">	&#125;</span></span><br><span class="line"><span class="undefined">	</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onLoad</span>=<span class="string">"preperation()"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"myCanvas"</span> <span class="attr">width</span>=<span class="string">"900"</span> <span class="attr">height</span>=<span class="string">"600"</span> &gt;</span></span><br><span class="line">		Your browser does not support the HTML5 canvas tag.</span><br><span class="line">	<span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"background"</span> <span class="attr">width</span>=<span class="string">"1600"</span> <span class="attr">height</span>=<span class="string">"700"</span> &gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> x=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">0</span>,<span class="number">12</span>,<span class="number">54</span>,<span class="number">18</span>,<span class="number">28</span>,<span class="number">0</span>,<span class="number">-28</span>,<span class="number">-18</span>,<span class="number">-54</span>,<span class="number">-12</span>,<span class="number">0</span>);    <span class="comment">//五角星样品坐标xx数组</span></span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> y=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">-53</span>,<span class="number">-17</span>,<span class="number">-17</span>,<span class="number">1</span>,<span class="number">45</span>,<span class="number">19</span>,<span class="number">45</span>,<span class="number">1</span>,<span class="number">-17</span>,<span class="number">-17</span>,<span class="number">-53</span>); <span class="comment">//五角星样品坐标y数组</span></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> c=<span class="built_in">document</span>.getElementById(<span class="string">"myCanvas"</span>);</span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> ctx=c.getContext(<span class="string">"2d"</span>); <span class="comment">//获得画笔</span></span></span><br><span class="line"><span class="javascript">	<span class="comment">//样品数组x轴坐标 a , 和y轴坐标 b</span></span></span><br><span class="line"><span class="javascript">	<span class="comment">//指定位置[locationX,locationY]</span></span></span><br><span class="line"><span class="javascript">	<span class="comment">//真实五角星的大小，与样品五角星尺寸之比 f</span></span></span><br><span class="line"><span class="javascript">	<span class="comment">//五角星画完后，旋转的角度 rotation</span></span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">star</span>(<span class="params">a,b,locationX,locationY,f,rotation</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">		ctx.save();<span class="comment">//记录画图（画笔）的初始环境</span></span></span><br><span class="line"><span class="undefined">		ctx.translate(locationX,locationY);</span></span><br><span class="line"><span class="javascript">		ctx.rotate(rotation*<span class="built_in">Math</span>.PI/<span class="number">180.0</span>);</span></span><br><span class="line"><span class="undefined">		ctx.beginPath();</span></span><br><span class="line"><span class="javascript">		ctx.moveTo(<span class="built_in">Math</span>.round(a[<span class="number">0</span>]*f),<span class="built_in">Math</span>.round(b[<span class="number">0</span>]*f));</span></span><br><span class="line"><span class="javascript">		<span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">1</span>;i&lt;a.length;i++)</span></span><br><span class="line"><span class="javascript">		ctx.lineTo(<span class="built_in">Math</span>.round(a[i]*f),<span class="built_in">Math</span>.round(b[i]*f));</span></span><br><span class="line"><span class="undefined">		ctx.closePath();</span></span><br><span class="line"><span class="javascript">		ctx.fillStyle=<span class="string">"yellow"</span>;</span></span><br><span class="line"><span class="undefined">		ctx.fill();</span></span><br><span class="line"><span class="javascript">		ctx.restore();<span class="comment">//还原画图（画笔）的初始环境</span></span></span><br><span class="line"><span class="undefined">	&#125;</span></span><br><span class="line"><span class="javascript">	star(x,y,<span class="number">165</span>,<span class="number">165</span>,<span class="number">1.4</span>,<span class="number">0</span>);<span class="comment">//画大五角星</span></span></span><br><span class="line"><span class="javascript">	star(x,y,<span class="number">301</span>,<span class="number">65</span>,<span class="number">0.5</span>,<span class="number">30</span>);<span class="comment">//画小五角星</span></span></span><br><span class="line"><span class="javascript">	star(x,y,<span class="number">362</span>,<span class="number">126</span>,<span class="number">0.5</span>,<span class="number">-30</span>);<span class="comment">//画小五角星</span></span></span><br><span class="line"><span class="javascript">	star(x,y,<span class="number">359</span>,<span class="number">216</span>,<span class="number">0.5</span>,<span class="number">0</span>);<span class="comment">//画小五角星</span></span></span><br><span class="line"><span class="javascript">	star(x,y,<span class="number">301</span>,<span class="number">273</span>,<span class="number">0.5</span>,<span class="number">30</span>);<span class="comment">//画小五角星</span></span></span><br><span class="line"><span class="undefined">	</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li><h4 id="C"><a href="#C" class="headerlink" title="C"></a>C</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*  Declare Windows procedure  */</span></span><br><span class="line"><span class="function">LRESULT CALLBACK <span class="title">WindowProcedure</span> <span class="params">(HWND, UINT, WPARAM, LPARAM)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DrawFiveStarFlag</span><span class="params">(HDC hdc, <span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> w)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DrawFivePointedStar</span><span class="params">(HDC hdc, <span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> r, <span class="keyword">float</span> d)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Current app instance */</span></span><br><span class="line">HINSTANCE hInst;</span><br><span class="line"><span class="comment">/*  Make the class name into a global variable  */</span></span><br><span class="line">TCHAR szClassName[] = TEXT(<span class="string">"WindowsApp"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> WINAPI</span><br><span class="line">WinMain (HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszArgument, <span class="keyword">int</span> nFunsterStil)</span><br><span class="line">&#123;</span><br><span class="line">	HWND hwnd;			   <span class="comment">/* This is the handle for our window */</span></span><br><span class="line">	MSG messages;			<span class="comment">/* Here messages to the application are saved */</span></span><br><span class="line">	WNDCLASSEX wincl;		<span class="comment">/* Data structure for the windowclass */</span></span><br><span class="line"></span><br><span class="line">				<span class="comment">/* Save this instance */</span></span><br><span class="line">				hInst = hThisInstance;</span><br><span class="line">		</span><br><span class="line">	<span class="comment">/* The Window structure */</span></span><br><span class="line">	wincl.hInstance = hThisInstance;</span><br><span class="line">	wincl.lpszClassName = szClassName;</span><br><span class="line">	wincl.lpfnWndProc = WindowProcedure;	  <span class="comment">/* This function is called by windows */</span></span><br><span class="line">	wincl.style = CS_DBLCLKS;				 <span class="comment">/* Catch double-clicks */</span></span><br><span class="line">	wincl.cbSize = <span class="keyword">sizeof</span> (WNDCLASSEX);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Use default icon and mouse-pointer */</span></span><br><span class="line">	wincl.hIcon = LoadIcon (<span class="literal">NULL</span>, IDI_APPLICATION);</span><br><span class="line">	wincl.hIconSm = LoadIcon (<span class="literal">NULL</span>, IDI_APPLICATION);</span><br><span class="line">	wincl.hCursor = LoadCursor (<span class="literal">NULL</span>, IDC_ARROW);</span><br><span class="line">	wincl.lpszMenuName = <span class="literal">NULL</span>;</span><br><span class="line">	wincl.cbClsExtra = <span class="number">0</span>;					  <span class="comment">/* No extra bytes after the window class */</span></span><br><span class="line">	wincl.cbWndExtra = <span class="number">0</span>;					  <span class="comment">/* structure or the window instance */</span></span><br><span class="line">	<span class="comment">/* Use Windows's default color as the background of the window */</span></span><br><span class="line">	wincl.hbrBackground = (HBRUSH)(COLOR_WINDOW+<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Register the window class, and if it fails quit the program */</span></span><br><span class="line">	<span class="keyword">if</span> (!RegisterClassEx (&amp;wincl))</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* The class is registered, let's create the program*/</span></span><br><span class="line">	hwnd = CreateWindowEx (</span><br><span class="line">		   <span class="number">0</span>,				   <span class="comment">/* Extended possibilites for variation */</span></span><br><span class="line">		   szClassName,		 <span class="comment">/* Classname */</span></span><br><span class="line">		   TEXT(<span class="string">"TestPie"</span>),				 <span class="comment">/* Title Text */</span></span><br><span class="line">		   WS_OVERLAPPEDWINDOW, <span class="comment">/* default window */</span></span><br><span class="line">		   CW_USEDEFAULT,	   <span class="comment">/* Windows decides the position */</span></span><br><span class="line">		   <span class="number">0</span>,													   <span class="comment">/* where the window ends up on the screen */</span></span><br><span class="line">		   CW_USEDEFAULT,	   <span class="comment">/* The programs width */</span></span><br><span class="line">		   <span class="number">0</span>,						 <span class="comment">/* and height in pixels */</span></span><br><span class="line">		   HWND_DESKTOP,		<span class="comment">/* The window is a child-window to desktop */</span></span><br><span class="line">		   <span class="literal">NULL</span>,				<span class="comment">/* No menu */</span></span><br><span class="line">		   hThisInstance,	   <span class="comment">/* Program Instance handler */</span></span><br><span class="line">		   <span class="literal">NULL</span>				 <span class="comment">/* No Window Creation data */</span></span><br><span class="line">		   );</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Make the window visible on the screen */</span></span><br><span class="line">	ShowWindow (hwnd, nFunsterStil);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Run the message loop. It will run until GetMessage() returns 0 */</span></span><br><span class="line">	<span class="keyword">while</span> (GetMessage (&amp;messages, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">/* Translate virtual-key messages into character messages */</span></span><br><span class="line">		TranslateMessage(&amp;messages);</span><br><span class="line">		<span class="comment">/* Send message to WindowProcedure */</span></span><br><span class="line">		DispatchMessage(&amp;messages);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* The program return-value is 0 - The value that PostQuitMessage() gave */</span></span><br><span class="line">	<span class="keyword">return</span> messages.wParam;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*  This function is called by the Windows function DispatchMessage()  */</span></span><br><span class="line"></span><br><span class="line">LRESULT CALLBACK</span><br><span class="line">WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)</span><br><span class="line">&#123;</span><br><span class="line">		PAINTSTRUCT ps;</span><br><span class="line">		HDC hdc;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">switch</span> (message)				  <span class="comment">/* handle the messages */</span></span><br><span class="line">	&#123;</span><br><span class="line">			<span class="keyword">case</span> WM_PAINT:</span><br><span class="line">						hdc = BeginPaint(hwnd, &amp;ps);</span><br><span class="line">						<span class="comment">/* <span class="doctag">TODO:</span> Add any drawing code here... */</span></span><br><span class="line">						DrawFiveStarFlag(hdc, <span class="number">50</span>, <span class="number">50</span>, <span class="number">300</span>);</span><br><span class="line">						EndPaint(hwnd, &amp;ps);</span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> WM_DESTROY:</span><br><span class="line">			PostQuitMessage (<span class="number">0</span>);	   <span class="comment">/* send a WM_QUIT to the message queue */</span></span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">default</span>:					  <span class="comment">/* for messages that we don't deal with */</span></span><br><span class="line">			<span class="keyword">return</span> DefWindowProc (hwnd, message, wParam, lParam);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 画五角星</span></span><br><span class="line"><span class="comment"> * 参数：hdc画图句柄，xy中心点坐标，r外圆半径，d偏斜角度（逆时针）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DrawFivePointedStar</span><span class="params">(HDC hdc, <span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> r, <span class="keyword">float</span> d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">float</span> r0 = <span class="number">0.381966</span>*r;				<span class="comment">//内圆半径：r*sin(0.1*M_PI)/sin(0.7*M_PI)</span></span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	POINT p[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line">	<span class="comment">//计算10个顶点的坐标（72度为实心五角星，144为空心五角星） </span></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;<span class="number">5</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		p[<span class="number">2</span>*i].x = x + r*<span class="built_in">cos</span>((i*<span class="number">72</span><span class="number">-18</span>+d)*M_PI/<span class="number">180</span>);</span><br><span class="line">		p[<span class="number">2</span>*i].y = y + r*<span class="built_in">sin</span>((i*<span class="number">72</span><span class="number">-18</span>+d)*M_PI/<span class="number">180</span>);</span><br><span class="line"></span><br><span class="line">		p[<span class="number">2</span>*i+<span class="number">1</span>].x = x + r0*<span class="built_in">cos</span>((i*<span class="number">72</span>+<span class="number">18</span>+d)*M_PI/<span class="number">180</span>);</span><br><span class="line">		p[<span class="number">2</span>*i+<span class="number">1</span>].y = y + r0*<span class="built_in">sin</span>((i*<span class="number">72</span>+<span class="number">18</span>+d)*M_PI/<span class="number">180</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//画五角星</span></span><br><span class="line">	Polygon(hdc, p, <span class="number">10</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 画五星红旗</span></span><br><span class="line"><span class="comment"> * 参数：hdc画图句柄，xy旗左上角坐标，w旗宽</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DrawFiveStarFlag</span><span class="params">(HDC hdc, <span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> w)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	COLORREF RED = RGB(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>), YELLOW = RGB(<span class="number">255</span>, <span class="number">255</span>, <span class="number">0</span>);</span><br><span class="line">	HPEN hPen1 = CreatePen(PS_SOLID, <span class="number">1</span>, RED), hPen2 = CreatePen(PS_SOLID, <span class="number">1</span>, YELLOW);</span><br><span class="line">	HBRUSH hBrush1 = CreateSolidBrush(RED), hBrush2 = CreateSolidBrush(YELLOW);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//画旗面</span></span><br><span class="line">	SelectObject(hdc, hPen1);</span><br><span class="line">	SelectObject(hdc, hBrush1);</span><br><span class="line">	Rectangle(hdc, x, y, x+w, y+<span class="number">2</span>*w/<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//画5星 </span></span><br><span class="line">	SelectObject(hdc, hPen2);</span><br><span class="line">	SelectObject(hdc, hBrush2);</span><br><span class="line">	DrawFivePointedStar(hdc, x+w/<span class="number">6</span>,   y+w/<span class="number">6</span>,	w/<span class="number">10</span>, <span class="number">0</span>);				<span class="comment">//大星</span></span><br><span class="line">	DrawFivePointedStar(hdc, x+w/<span class="number">3</span>,   y+w/<span class="number">15</span>,   w/<span class="number">30</span>, <span class="number">18</span>);				<span class="comment">//4个小星，倾斜角度都是估的</span></span><br><span class="line">	DrawFivePointedStar(hdc, x+<span class="number">2</span>*w/<span class="number">5</span>, y+<span class="number">2</span>*w/<span class="number">15</span>, w/<span class="number">30</span>, <span class="number">45</span>);</span><br><span class="line">	DrawFivePointedStar(hdc, x+<span class="number">2</span>*w/<span class="number">5</span>, y+<span class="number">7</span>*w/<span class="number">30</span>, w/<span class="number">30</span>, <span class="number">9</span>);</span><br><span class="line">	DrawFivePointedStar(hdc, x+w/<span class="number">3</span>,   y+<span class="number">3</span>*w/<span class="number">10</span>, w/<span class="number">30</span>, <span class="number">27</span>);</span><br><span class="line"></span><br><span class="line">	DeleteObject(hPen1);</span><br><span class="line">	DeleteObject(hPen2);</span><br><span class="line">	DeleteObject(hBrush1);</span><br><span class="line">	DeleteObject(hBrush2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.awt.RenderingHints;</span><br><span class="line"><span class="keyword">import</span> java.awt.geom.AffineTransform;</span><br><span class="line"><span class="keyword">import</span> java.awt.geom.GeneralPath;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> javax.swing.JFrame;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NationalFlag</span> <span class="keyword">extends</span> <span class="title">JFrame</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> width = <span class="number">288</span>,height = width/<span class="number">3</span>*<span class="number">2</span>;  </span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">double</span> maxR = <span class="number">0.15</span>, minR = <span class="number">0.05</span>;  </span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">double</span> maxX = <span class="number">0.50</span>, maxY = <span class="number">0.50</span>;  </span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">double</span>[] minX = &#123;<span class="number">0.75</span>, <span class="number">0.85</span>, <span class="number">0.85</span>, <span class="number">0.75</span>&#125;;  </span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">double</span>[] minY = &#123;<span class="number">0.35</span>, <span class="number">0.45</span>, <span class="number">0.60</span>, <span class="number">0.70</span>&#125;;  </span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">NationalFlag</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		setTitle(<span class="string">"国旗  - by PotatoChipsNinja"</span>);</span><br><span class="line">		setDefaultCloseOperation(EXIT_ON_CLOSE);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">paint</span><span class="params">(java.awt.Graphics graphics)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>.paint(graphics);</span><br><span class="line">		java.awt.Graphics2D g = (java.awt.Graphics2D)graphics;</span><br><span class="line">		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);</span><br><span class="line">		 </span><br><span class="line">		<span class="comment">//棋面</span></span><br><span class="line">		g.setColor(java.awt.Color.red);</span><br><span class="line">		g.fillRect(<span class="number">50</span>, <span class="number">50</span>, width, height);</span><br><span class="line"> </span><br><span class="line">		g.setColor(java.awt.Color.yellow);</span><br><span class="line">		<span class="comment">//画大星星</span></span><br><span class="line">		<span class="keyword">double</span> ox = height*maxX, oy = height*maxY;</span><br><span class="line">		g.fill(createPentacle(ox,oy,height*maxR,-Math.PI/<span class="number">2</span>));  </span><br><span class="line">		 </span><br><span class="line">		<span class="comment">//画小星星</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> idx =<span class="number">0</span>;idx &lt; <span class="number">4</span>;idx ++)&#123;  </span><br><span class="line">			<span class="keyword">double</span> sx = minX[idx]*height, sy = minY[idx]*height;  </span><br><span class="line">			<span class="keyword">double</span> theta = Math.atan2(oy-sy,ox-sx);  </span><br><span class="line">			g.fill(createPentacle(sx,sy,height*minR,theta));  </span><br><span class="line">		&#125;  </span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 创建一个五角星形状. 该五角星的中心坐标为(sx,sy),中心到顶点的距离为radius,其中某个顶点与中心的连线的偏移角度为theta(弧度)</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span> pentacle 一个☆</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> java.awt.<span class="function">Shape <span class="title">createPentacle</span><span class="params">(<span class="keyword">double</span> sx, <span class="keyword">double</span> sy, <span class="keyword">double</span> radius,<span class="keyword">double</span> theta)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">final</span> <span class="keyword">double</span> arc = Math.PI / <span class="number">5</span>;</span><br><span class="line">		<span class="keyword">final</span> <span class="keyword">double</span> rad = Math.sin(Math.PI / <span class="number">10</span>) / Math.sin(<span class="number">3</span> * Math.PI / <span class="number">10</span>);</span><br><span class="line">		GeneralPath path = <span class="keyword">new</span> GeneralPath();</span><br><span class="line">		path.moveTo(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> idx = <span class="number">0</span>; idx &lt; <span class="number">5</span>; idx++) &#123;</span><br><span class="line">			path.lineTo(rad * Math.cos((<span class="number">1</span> + <span class="number">2</span> * idx) * arc),rad * Math.sin((<span class="number">1</span> + <span class="number">2</span> * idx) * arc));</span><br><span class="line">			path.lineTo(Math.cos(<span class="number">2</span> * (idx + <span class="number">1</span>) * arc),Math.sin(<span class="number">2</span> * (idx + <span class="number">1</span>) * arc));</span><br><span class="line">		&#125;</span><br><span class="line">		path.closePath();</span><br><span class="line">		AffineTransform atf = AffineTransform.getScaleInstance(radius, radius);</span><br><span class="line">		atf.translate(sx / radius, sy / radius);</span><br><span class="line">		atf.rotate(theta);</span><br><span class="line">		<span class="keyword">return</span> atf.createTransformedShape(path);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		NationalFlag flag = <span class="keyword">new</span> NationalFlag();</span><br><span class="line">		flag.setBounds(<span class="number">100</span>, <span class="number">100</span>, <span class="number">400</span>, <span class="number">400</span>);</span><br><span class="line">		flag.setVisible(<span class="keyword">true</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> turtle</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">draw_polygon</span><span class="params">(aTurtle, size=<span class="number">50</span>, n=<span class="number">3</span>)</span>:</span></span><br><span class="line">	<span class="string">''' 绘制正多边形</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">	args:</span></span><br><span class="line"><span class="string">		aTurtle: turtle对象实例</span></span><br><span class="line"><span class="string">		size: int类型，正多边形的边长</span></span><br><span class="line"><span class="string">		n: int类型，是几边形		</span></span><br><span class="line"><span class="string">	'''</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> xrange(n):</span><br><span class="line">		aTurtle.forward(size)</span><br><span class="line">		aTurtle.left(<span class="number">360.0</span>/n)</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">draw_n_angle</span><span class="params">(aTurtle, size=<span class="number">50</span>, num=<span class="number">5</span>, color=None)</span>:</span></span><br><span class="line">	<span class="string">''' 绘制正n角形，默认为黄色</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">	args:</span></span><br><span class="line"><span class="string">		aTurtle: turtle对象实例</span></span><br><span class="line"><span class="string">		size: int类型，正多角形的边长</span></span><br><span class="line"><span class="string">		n: int类型，是几角形	</span></span><br><span class="line"><span class="string">		color: str， 图形颜色，默认不填色</span></span><br><span class="line"><span class="string">	'''</span></span><br><span class="line">	<span class="keyword">if</span> color:</span><br><span class="line">		aTurtle.begin_fill()</span><br><span class="line">		aTurtle.fillcolor(color)</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> xrange(num):</span><br><span class="line">		aTurtle.forward(size)</span><br><span class="line">		aTurtle.left(<span class="number">360.0</span>/num)</span><br><span class="line">		aTurtle.forward(size)</span><br><span class="line">		aTurtle.right(<span class="number">2</span>*<span class="number">360.0</span>/num)</span><br><span class="line">	<span class="keyword">if</span> color:</span><br><span class="line">		aTurtle.end_fill()</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">draw_5_angle</span><span class="params">(aTurtle=None, start_pos=<span class="params">(<span class="number">0</span>,<span class="number">0</span>)</span>, end_pos=<span class="params">(<span class="number">0</span>,<span class="number">10</span>)</span>, radius=<span class="number">100</span>, color=None)</span>:</span></span><br><span class="line">	<span class="string">''' 根据起始位置、结束位置和外接圆半径画五角星</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">	args:</span></span><br><span class="line"><span class="string">		aTurtle: turtle对象实例</span></span><br><span class="line"><span class="string">		start_pos: int的二元tuple，要画的五角星的外接圆圆心</span></span><br><span class="line"><span class="string">		end_pos: int的二元tuple，圆心指向的位置坐标点</span></span><br><span class="line"><span class="string">		radius: 五角星外接圆半径</span></span><br><span class="line"><span class="string">		color: str， 图形颜色，默认不填色	</span></span><br><span class="line"><span class="string">	'''</span></span><br><span class="line">	aTurtle = aTurtle <span class="keyword">or</span> turtle.Turtle()</span><br><span class="line">	size = radius * math.sin(math.pi/<span class="number">5</span>)/math.sin(math.pi*<span class="number">2</span>/<span class="number">5</span>)</span><br><span class="line">	aTurtle.left(math.degrees(math.atan2(end_pos[<span class="number">1</span>]-start_pos[<span class="number">1</span>], end_pos[<span class="number">0</span>]-start_pos[<span class="number">0</span>])))</span><br><span class="line">	aTurtle.penup()</span><br><span class="line">	aTurtle.goto(start_pos)</span><br><span class="line">	aTurtle.fd(radius)</span><br><span class="line">	aTurtle.pendown()</span><br><span class="line">	aTurtle.right(math.degrees(math.pi*<span class="number">9</span>/<span class="number">10</span>))</span><br><span class="line">	draw_n_angle(aTurtle, size, <span class="number">5</span>, color)</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">draw_5_star_flag</span><span class="params">(times=<span class="number">20.0</span>)</span>:</span></span><br><span class="line">	<span class="string">''' 绘制五星红旗</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">	args:</span></span><br><span class="line"><span class="string">		times: 五星红旗的规格为30*20， times为倍数，默认大小为10倍， 即300*200</span></span><br><span class="line"><span class="string">	'''</span></span><br><span class="line">	width, height = <span class="number">30</span>*times, <span class="number">20</span>*times</span><br><span class="line">	<span class="comment"># 初始化屏幕和海龟</span></span><br><span class="line">	window = turtle.Screen()</span><br><span class="line">	aTurtle = turtle.Turtle()</span><br><span class="line">	aTurtle.hideturtle()</span><br><span class="line">	aTurtle.speed(<span class="number">10</span>)</span><br><span class="line">	<span class="comment"># 画红旗</span></span><br><span class="line">	aTurtle.penup()</span><br><span class="line">	aTurtle.goto(-width/<span class="number">2</span>, height/<span class="number">2</span>)</span><br><span class="line">	aTurtle.pendown()</span><br><span class="line">	aTurtle.begin_fill()</span><br><span class="line">	aTurtle.fillcolor(<span class="string">'red'</span>)</span><br><span class="line">	aTurtle.fd(width)</span><br><span class="line">	aTurtle.right(<span class="number">90</span>)</span><br><span class="line">	aTurtle.fd(height)</span><br><span class="line">	aTurtle.right(<span class="number">90</span>)</span><br><span class="line">	aTurtle.fd(width)</span><br><span class="line">	aTurtle.right(<span class="number">90</span>)</span><br><span class="line">	aTurtle.fd(height)</span><br><span class="line">	aTurtle.right(<span class="number">90</span>)	</span><br><span class="line">	aTurtle.end_fill()</span><br><span class="line">	<span class="comment"># 画大星星</span></span><br><span class="line">	draw_5_angle(aTurtle, start_pos=(<span class="number">-10</span>*times, <span class="number">5</span>*times), end_pos=(<span class="number">-10</span>*times, <span class="number">8</span>*times), radius=<span class="number">3</span>*times, color=<span class="string">'yellow'</span>)  </span><br><span class="line">	<span class="comment"># 画四个小星星</span></span><br><span class="line">	stars_start_pos = [(<span class="number">-5</span>, <span class="number">8</span>), (<span class="number">-3</span>, <span class="number">6</span>), (<span class="number">-3</span>, <span class="number">3</span>), (<span class="number">-5</span>, <span class="number">1</span>)]</span><br><span class="line">	<span class="keyword">for</span> pos <span class="keyword">in</span> stars_start_pos:</span><br><span class="line">		draw_5_angle(aTurtle, start_pos=(pos[<span class="number">0</span>]*times, pos[<span class="number">1</span>]*times), end_pos=(<span class="number">-10</span>*times, <span class="number">5</span>*times), radius=<span class="number">1</span>*times, color=<span class="string">'yellow'</span>)  </span><br><span class="line">	<span class="comment"># 点击关闭窗口</span></span><br><span class="line">	window.exitonclick()</span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">	draw_5_star_flag()</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C</a>
+          
+            <a href="/tags/编程/" rel="tag"># 编程</a>
+          
+            <a href="/tags/HTML/" rel="tag"># HTML</a>
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/国旗/" rel="tag"># 国旗</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/sense-of-reading-A-Dream-in-Red-Mansions/" rel="next" title="月盈则亏，水满则溢——读《红楼梦》有感">
+                <i class="fa fa-chevron-left"></i> 月盈则亏，水满则溢——读《红楼梦》有感
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/" rel="prev" title="浅谈对公网、路由器、内网关系的理解">
+                浅谈对公网、路由器、内网关系的理解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="薯片忍者">
+            
+              <p class="site-author-name" itemprop="name">薯片忍者</p>
+              <div class="site-description motion-element" itemprop="description">想起那些时光<br>总觉得自己像个傻瓜</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">60</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/PotatoChipsNinja" title="GitHub &rarr; https://github.com/PotatoChipsNinja" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:shiyuhui2000@126.com" title="E-Mail &rarr; mailto:shiyuhui2000@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/potatochipsninja" title="Weibo &rarr; https://weibo.com/potatochipsninja" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/shiyuhui2000" title="Twitter &rarr; https://twitter.com/shiyuhui2000" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML"><span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C"><span class="nav-text">C</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java"><span class="nav-text">Java</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Python"><span class="nav-text">Python</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">薯片忍者</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom">Hosted by <a href="https://pages.coding.me" class="theme-link" rel="noopener" target="_blank">Coding Pages</a></div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + '1mI4NKzqzFzGbKHi3ekGu3TN-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': '1mI4NKzqzFzGbKHi3ekGu3TN-gzGzoHsz',
+                'X-LC-Key': 'H0Gm2vfbbrENtDWJWEC7xoeG',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
