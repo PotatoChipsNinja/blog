@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[博客装修小记]]></title>
     <url>%2F2019%2F05%2Fblog-decoration-notes%2F</url>
-    <content type="text"><![CDATA[&emsp;&emsp;五一小长假，身边的小伙伴大都奔赴各地领略大好河山，朋友圈里的各种照片看得我眼花缭乱。我赋闲在家，做自己喜欢做的事，放松之余也捯饬捯饬自己的小站。 小站概况自2016年建站以来，先后经历了多次更换托管主机（Hostinger → GitHub Pages → Coding Pages）与域名（potatochipsninja.tk → pcninja.tk → pcninja.cn），也从动态网站（WordPress）转型成了静态网站（Hexo），可谓风雨飘摇、命途多舛。尽管如此，小站的建设确确实实让我学习了许多前端方面的知识，同时也带给我不小的成就感。 主要改动博客继续采用 Hexo 搭配 Next 主题，风格从原来的 Pisces 更换成了更具现代感的 Gemini，阴影的加入使得页面区块化更加显著。加入了 Valine 评论系统，支持 Markdown 语法，与原有的文章阅读量统计整合在一块，一并存储在 LeanCloud。 改动一览 字体：全局字体采用 Noto Serif SC，网站标题字体采用 ZCOOL XiaoWei，均来自 Google 字体库。为了优化访问速度，使用了 CDN（fonts.loli.net）。如果字体没有生效，请清除缓存后刷新网页 侧边栏头像改为圆形，鼠标移入有旋转动画效果，点击可跳至主页 侧边栏社交链接改为仅有图标的简约风格 侧边栏加入知识共享许可协议 BY-NC-SA 声明图标，取消了文章底部的文字声明 返回页面顶部按钮由页面右下角移动到侧边栏底部，并显示阅读百分比 文章阅读量统计与 Valine 评论系统进行合并 页脚跳动的红色爱心（）改为静止的灰色爱心（），期待它的重新跳动 页脚总访客量与总访问量显示风格改为数值居中，图标分列两侧]]></content>
+    <content type="text"><![CDATA[&emsp;&emsp;五一小长假，身边的小伙伴大都奔赴各地领略大好河山，朋友圈里的各种照片看得我眼花缭乱。我赋闲在家，做自己喜欢做的事，放松之余也捯饬捯饬自己的小站。 小站概况自2016年建站以来，先后经历了多次更换托管主机（Hostinger → GitHub Pages → Coding Pages）与域名（potatochipsninja.tk → pcninja.tk → pcninja.cn），也从动态网站转型成了静态网站（WordPress → Hexo），可谓风雨飘摇、命途多舛。尽管如此，小站的建设确确实实让我学习了许多前端方面的知识，同时也带给我不小的成就感。 主要改动博客继续采用 Hexo 搭配 Next 主题，风格从原来的 Pisces 更换成了更具现代感的 Gemini，阴影的加入使得页面区块化更加显著。加入了 Valine 评论系统，支持 Markdown 语法，与原有的文章阅读量统计整合在一块，一并存储在 LeanCloud。 改动一览 字体：全局字体采用 Noto Serif SC，网站标题字体采用 ZCOOL XiaoWei，均来自 Google 字体库。为了优化访问速度，使用了 CDN（fonts.loli.net）。如果字体没有生效，请清除缓存后刷新网页 侧边栏头像改为圆形，鼠标移入有旋转动画效果，点击可跳至主页 侧边栏社交链接改为仅有图标的简约风格 侧边栏加入知识共享许可协议 BY-NC-SA 声明图标，取消了文章底部的文字声明 返回页面顶部按钮由页面右下角移动到侧边栏底部，并显示阅读百分比 文章阅读量统计与 Valine 评论系统进行合并 页脚跳动的红色爱心（）改为静止的灰色爱心（），期待它的重新跳动 页脚总访客量与总访问量显示风格改为数值居中，图标分列两侧TODO 有精力的时候从零写一个 Hexo 主题，尝试用 PHP 等编写动态博客程序（可能会是暑假） 扩充自己的技术栈，积极更新技术类博文 丰富博客内容，多读书，多记录生活，努力提升自身文学素养]]></content>
       <categories>
         <category>网络</category>
       </categories>
@@ -65,8 +65,8 @@
         <category>网络</category>
       </categories>
       <tags>
-        <tag>网络</tag>
         <tag>编程</tag>
+        <tag>网络</tag>
         <tag>SSL</tag>
         <tag>HTTPS</tag>
         <tag>Node.js</tag>
@@ -82,8 +82,8 @@
       </categories>
       <tags>
         <tag>Linux</tag>
-        <tag>网络</tag>
         <tag>编程</tag>
+        <tag>网络</tag>
         <tag>Node.js</tag>
         <tag>Express</tag>
         <tag>MongoDB</tag>
@@ -316,10 +316,10 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>游记</tag>
+        <tag>高中</tag>
         <tag>回忆</tag>
         <tag>江苏</tag>
-        <tag>高中</tag>
+        <tag>游记</tag>
       </tags>
   </entry>
   <entry>
@@ -346,11 +346,11 @@
       <tags>
         <tag>C</tag>
         <tag>编程</tag>
-        <tag>高中</tag>
         <tag>探究</tag>
         <tag>数学</tag>
         <tag>汉诺塔</tag>
         <tag>论文</tag>
+        <tag>高中</tag>
       </tags>
   </entry>
   <entry>
