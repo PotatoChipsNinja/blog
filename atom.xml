@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pcninja.cn/"/>
-  <updated>2019-04-22T11:37:57.264Z</updated>
+  <updated>2019-05-02T11:30:25.788Z</updated>
   <id>https://pcninja.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>博客装修小记</title>
+    <link href="https://pcninja.cn/2019/05/blog-decoration-notes/"/>
+    <id>https://pcninja.cn/2019/05/blog-decoration-notes/</id>
+    <published>2019-05-02T09:33:01.000Z</published>
+    <updated>2019-05-02T11:30:25.788Z</updated>
+    
+    <content type="html"><![CDATA[<p>&emsp;&emsp;五一小长假，身边的小伙伴大都奔赴各地领略大好河山，朋友圈里的各种照片看得我眼花缭乱。我赋闲在家，做自己喜欢做的事，放松之余也捯饬捯饬自己的小站。<br><a id="more"></a></p><h3 id="小站概况"><a href="#小站概况" class="headerlink" title="小站概况"></a>小站概况</h3><p>自2016年建站以来，先后经历了多次更换托管主机（Hostinger → GitHub Pages → Coding Pages）与域名（potatochipsninja.tk → pcninja.tk → pcninja.cn），也从动态网站（WordPress）转型成了静态网站（Hexo），可谓风雨飘摇、命途多舛。尽管如此，小站的建设确确实实让我学习了许多前端方面的知识，同时也带给我不小的成就感。</p><h3 id="主要改动"><a href="#主要改动" class="headerlink" title="主要改动"></a>主要改动</h3><p>博客继续采用 Hexo 搭配 Next 主题，风格从原来的 <code>Pisces</code> 更换成了更具现代感的 <code>Gemini</code>，阴影的加入使得页面区块化更加显著。<br>加入了 Valine 评论系统，支持 <code>Markdown</code> 语法，与原有的文章阅读量统计整合在一块，一并存储在 LeanCloud。</p><h3 id="改动一览"><a href="#改动一览" class="headerlink" title="改动一览"></a>改动一览</h3><ul><li>字体：全局字体采用 <code>Noto Serif SC</code>，网站标题字体采用 <code>ZCOOL XiaoWei</code>，均来自 Google 字体库。为了优化访问速度，使用了 CDN（fonts.loli.net）。如果字体没有生效，请清除缓存后刷新网页</li><li>侧边栏头像改为圆形，鼠标移入有旋转动画效果，点击可跳至主页</li><li>侧边栏社交链接改为仅有图标的简约风格</li><li>侧边栏加入知识共享许可协议 <code>BY-NC-SA</code> 声明图标，取消了文章底部的文字声明</li><li>返回页面顶部按钮由页面右下角移动到侧边栏底部，并显示阅读百分比</li><li>文章阅读量统计与 Valine 评论系统进行合并</li><li>页脚跳动的红色爱心（<span style="display: inline-block; margin: 0 5px; animation: iconAnimate 1.33s ease-in-out infinite;"><i class="fa fa-heart" style="color: #ff0000;"></i></span>）改为静止的灰色爱心（<span><i class="fa fa-heart" style="color: #808080;"></i></span>），期待它的重新跳动</li><li>页脚总访客量与总访问量显示风格改为数值居中，图标分列两侧</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&amp;emsp;&amp;emsp;五一小长假，身边的小伙伴大都奔赴各地领略大好河山，朋友圈里的各种照片看得我眼花缭乱。我赋闲在家，做自己喜欢做的事，放松之余也捯饬捯饬自己的小站。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="网络" scheme="https://pcninja.cn/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+      <category term="生活" scheme="https://pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+      <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>数据结构作业——地铁一日游</title>
@@ -37,13 +63,13 @@
     
       <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
+      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
+    
       <category term="数据结构" scheme="https://pcninja.cn/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
       <category term="算法" scheme="https://pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
     
       <category term="作业" scheme="https://pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
-    
-      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
   </entry>
   
@@ -68,13 +94,13 @@
     
       <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
+      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
+    
       <category term="数据结构" scheme="https://pcninja.cn/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
       <category term="算法" scheme="https://pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
     
       <category term="作业" scheme="https://pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
-    
-      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
   </entry>
   
@@ -83,7 +109,7 @@
     <link href="https://pcninja.cn/2019/04/i-am-tired/"/>
     <id>https://pcninja.cn/2019/04/i-am-tired/</id>
     <published>2019-04-17T13:54:13.000Z</published>
-    <updated>2019-04-23T06:25:36.390Z</updated>
+    <updated>2019-05-02T09:34:13.510Z</updated>
     
     <content type="html"><![CDATA[<p>&emsp;&emsp;距离上次更新博客已经过去足足五个月了，尽管时常想起自己还有这么个博客，但总会因为种种原因而被搁置。难得今天有兴致记录一下生活，就大概写写这小半年发生的大小事吧。<br><a id="more"></a><br>&emsp;&emsp;一九年初，正当人们沉浸在新年来临的喜悦之际，我遭受到了迄今为止最大的挫折——我丢了我最重要的东西，这是无疑是一次难以承受的挫折。巨大的冲击让我陷入恍惚与错乱，我想用万念俱灰来形容那时的我再合适不过了。就这样，我陷入了无尽的回忆之中，神魂颠倒地挨过了这个寒冬。<br>&emsp;&emsp;大概历经两个多月，我才渐渐恢复意识，开始重新认识自己、认识世界、认识眼前的一草一木。我意识到不应再踯躅，也不需要不停地回忆。我们只要在恰当的时候，回首眺望似水年华，这便是回忆的全部作用。为了最初的理想，也为了另外一个更重要的原因，我踏上了新的征程。<br>&emsp;&emsp;新学期，新的班级，新的同学，一切都不再熟悉。但是没时间让我熟悉这些，因为学业上的压力明显要高过以往。迫不得已，我把更多的时间分给课业。尽管跟别的同学比，我玩的时间绝对算是最多的之一，但是要知道在中学时期我从来没有花过这么多时间在学习上，所以无论是身体还是精神都需要适应适应。我发现，在实验班，需要的不仅是智力，还需要有足够的精力来处理各种报告、集会、比赛以及各种各样的琐事。今天之所以写博客来小小地抱怨一下就是因为光一个电子电路实验报告就占去了我溜溜三个多小时，这让我不太能接受。</p><p><div class="image-size-30"><img src="/2019/04/i-am-tired/image.jpg" title="这都什么鬼"></div><br>&emsp;&emsp;但我其实并不是想抱怨什么，只是我有点累了。我相信，此时此刻，把自己的疲倦写下来，就是最好的缓解。<br>&emsp;&emsp;明天，太阳照常升起，我知道那时我会充好能量，开始新的一天。所以现在，就让我结束这篇语无伦次的博文，然后，睡个好觉。<br>&emsp;&emsp;祝我晚安，也祝你晚安。</p>]]></content>
     
@@ -96,11 +122,13 @@
       <category term="生活" scheme="https://pcninja.cn/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
-    
       <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
     
+      <category term="生活" scheme="https://pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
+    
       <category term="随笔" scheme="https://pcninja.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
   </entry>
   
@@ -123,13 +151,13 @@
       <category term="网络" scheme="https://pcninja.cn/categories/%E7%BD%91%E7%BB%9C/"/>
     
     
+      <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
+    
       <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
       <category term="SSL" scheme="https://pcninja.cn/tags/SSL/"/>
     
       <category term="HTTPS" scheme="https://pcninja.cn/tags/HTTPS/"/>
-    
-      <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
     
       <category term="Node.js" scheme="https://pcninja.cn/tags/Node-js/"/>
     
@@ -162,9 +190,9 @@
     
       <category term="Linux" scheme="https://pcninja.cn/tags/Linux/"/>
     
-      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
-    
       <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
       <category term="Node.js" scheme="https://pcninja.cn/tags/Node-js/"/>
     
@@ -281,11 +309,11 @@
     
       <category term="杂谈" scheme="https://pcninja.cn/tags/%E6%9D%82%E8%B0%88/"/>
     
+      <category term="生活" scheme="https://pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
+    
       <category term="转载" scheme="https://pcninja.cn/tags/%E8%BD%AC%E8%BD%BD/"/>
     
       <category term="人生" scheme="https://pcninja.cn/tags/%E4%BA%BA%E7%94%9F/"/>
-    
-      <category term="生活" scheme="https://pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   
@@ -347,9 +375,9 @@
       <category term="文学" scheme="https://pcninja.cn/categories/%E6%96%87%E5%AD%A6/"/>
     
     
-      <category term="写作" scheme="https://pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
-    
       <category term="主播" scheme="https://pcninja.cn/tags/%E4%B8%BB%E6%92%AD/"/>
+    
+      <category term="写作" scheme="https://pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
     
       <category term="杂谈" scheme="https://pcninja.cn/tags/%E6%9D%82%E8%B0%88/"/>
     
@@ -600,33 +628,6 @@
       <category term="读后感" scheme="https://pcninja.cn/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/"/>
     
       <category term="平凡的世界" scheme="https://pcninja.cn/tags/%E5%B9%B3%E5%87%A1%E7%9A%84%E4%B8%96%E7%95%8C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>薯片忍者的Wiki上线了！</title>
-    <link href="https://pcninja.cn/2016/08/my-wiki-launched/"/>
-    <id>https://pcninja.cn/2016/08/my-wiki-launched/</id>
-    <published>2016-08-02T13:49:23.000Z</published>
-    <updated>2017-09-24T00:43:08.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>2016年8月2日，我的个人知识网络系统——“薯片忍者的Wiki”正式上线，地址为<a href="http://wiki.potatochipsninja.tk/" target="_blank" rel="noopener">http://wiki.potatochipsninja.tk/</a>，希望大家光临。</p><p>此站采用开源的wiki引擎程序<a href="http://www.dokuwiki.org/" target="_blank" rel="noopener">DokuWiki</a>搭建，站内全部内容除另有声明外，均在<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">署名-非商业性使用-相同方式共享 4.0 国际协议</a>下发布。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;2016年8月2日，我的个人知识网络系统——“薯片忍者的Wiki”正式上线，地址为&lt;a href=&quot;http://wiki.potatochipsninja.tk/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://wiki.potatochip
-      
-    
-    </summary>
-    
-      <category term="公告" scheme="https://pcninja.cn/categories/%E5%85%AC%E5%91%8A/"/>
-    
-    
-      <category term="公告" scheme="https://pcninja.cn/tags/%E5%85%AC%E5%91%8A/"/>
-    
-      <category term="发布" scheme="https://pcninja.cn/tags/%E5%8F%91%E5%B8%83/"/>
     
   </entry>
   
