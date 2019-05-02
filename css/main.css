@@ -1769,7 +1769,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #e4147f;
+  background: #57627a;
 }
 .feed-link,
 .chat {
@@ -2999,4 +2999,7 @@ ul.breadcrumb li+li:last-child {
 }
 .posts-expand .post-title {
   font-size: 1.4em;
+}
+.power {
+  display: none;
 }
