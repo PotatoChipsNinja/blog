@@ -112,7 +112,7 @@
 
 
   <meta name="description" content="&amp;emsp;&amp;emsp;2016年6月11日，我与同学们在星期六的黄昏踏上了难忘的京外社会实践活动之旅。此次实践活动中，我们的目的地是南方城市江苏省，等待我们的是为期一周的京外学习生活。&amp;emsp;&amp;emsp;当天晚九时许，我们登上了Z29次列车，正式开启了此次江苏之行。当晚，在火车上的自习让我感到了与在家中不一样的学习氛围与感受。次日早晨，我们抵达扬州，随即在雨中漫步瘦西湖。在瘦西湖，我有了对江">
-<meta name="keywords" content="写作,高中,回忆,江苏,游记">
+<meta name="keywords" content="写作,高中,游记,回忆,江苏">
 <meta property="og:type" content="article">
 <meta property="og:title" content="南方之学，得其菁华——江苏之行有感">
 <meta property="og:url" content="https://pcninja.cn/2016/06/feeling-after-the-trip-to-Jiangsu/index.html">
@@ -463,6 +463,19 @@
           
             
             
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2016/06/feeling-after-the-trip-to-Jiangsu/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2016/06/feeling-after-the-trip-to-Jiangsu/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -526,11 +539,11 @@
           
             <a href="/tags/高中/" rel="tag"># 高中</a>
           
+            <a href="/tags/游记/" rel="tag"># 游记</a>
+          
             <a href="/tags/回忆/" rel="tag"># 回忆</a>
           
             <a href="/tags/江苏/" rel="tag"># 江苏</a>
-          
-            <a href="/tags/游记/" rel="tag"># 游记</a>
           
         </div>
       
@@ -576,6 +589,10 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
 
   
 
@@ -1047,6 +1064,36 @@
   
 
   
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '1mI4NKzqzFzGbKHi3ekGu3TN-gzGzoHsz',
+    appKey: 'H0Gm2vfbbrENtDWJWEC7xoeG',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn'
+  });
+</script>
+
+
 
 
   
@@ -1378,71 +1425,6 @@
 
 
   
-  
-  <script>
-    
-    function addCount(Counter) {
-      var $visitors = $('.leancloud_visitors');
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-
-      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
-        .done(function({ results }) {
-          if (results.length > 0) {
-            var counter = results[0];
-            
-            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
-            
-              .done(function() {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.time + 1);
-              })
-            
-              .fail(function ({ responseJSON }) {
-                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
-              })
-          } else {
-            
-              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
-                .done(function() {
-                  var $element = $(document.getElementById(url));
-                  $element.find('.leancloud-visitors-count').text(1);
-                })
-                .fail(function() {
-                  console.log('Failed to create');
-                });
-            
-          }
-        })
-        .fail(function ({ responseJSON }) {
-          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
-        });
-    }
-    
-
-    $(function() {
-      $.get('https://app-router.leancloud.cn/2/route?appId=' + '1mI4NKzqzFzGbKHi3ekGu3TN-gzGzoHsz')
-        .done(function({ api_server }) {
-          var Counter = function(method, url, data) {
-            return $.ajax({
-              method: method,
-              url: 'https://' + api_server + '/1.1' + url,
-              headers: {
-                'X-LC-Id': '1mI4NKzqzFzGbKHi3ekGu3TN-gzGzoHsz',
-                'X-LC-Key': 'H0Gm2vfbbrENtDWJWEC7xoeG',
-                'Content-Type': 'application/json',
-              },
-              data: data
-            });
-          };
-          
-            addCount(Counter);
-          
-        });
-    });
-  </script>
-
-
 
   
 

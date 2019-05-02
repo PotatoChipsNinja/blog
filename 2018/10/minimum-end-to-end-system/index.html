@@ -112,7 +112,7 @@
 
 
   <meta name="description" content="服务端搭建 一、环境准备1.操作系统与网络本文以Arch Linux为例，在VirtualBox虚拟机下运行，通过SSH与宿主机连接。由于虚拟机通过NAT联网，要想访问在虚拟机中部署的Web服务需要进行端口转发：  打开VirtualBox管理器，进入Arch虚拟机的设置页，在网络选项卡中点击高级 点击端口转发，我们新建一个端口转发规则。协议为TCP；主机IP填写VirtualBox虚拟网卡的地址">
-<meta name="keywords" content="Linux,编程,网络,Node.js,Express,MongoDB">
+<meta name="keywords" content="编程,Linux,网络,Node.js,Express,MongoDB">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Express+MongoDB后端与微信小程序前端建构最小端到端系统">
 <meta property="og:url" content="https://pcninja.cn/2018/10/minimum-end-to-end-system/index.html">
@@ -471,6 +471,19 @@
           
             
             
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2018/10/minimum-end-to-end-system/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/minimum-end-to-end-system/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -689,9 +702,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
-          
             <a href="/tags/编程/" rel="tag"># 编程</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
           
             <a href="/tags/网络/" rel="tag"># 网络</a>
           
@@ -745,6 +758,10 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
 
   
 
@@ -1242,6 +1259,36 @@
   
 
   
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '1mI4NKzqzFzGbKHi3ekGu3TN-gzGzoHsz',
+    appKey: 'H0Gm2vfbbrENtDWJWEC7xoeG',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn'
+  });
+</script>
+
+
 
 
   
@@ -1573,71 +1620,6 @@
 
 
   
-  
-  <script>
-    
-    function addCount(Counter) {
-      var $visitors = $('.leancloud_visitors');
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-
-      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
-        .done(function({ results }) {
-          if (results.length > 0) {
-            var counter = results[0];
-            
-            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
-            
-              .done(function() {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.time + 1);
-              })
-            
-              .fail(function ({ responseJSON }) {
-                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
-              })
-          } else {
-            
-              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
-                .done(function() {
-                  var $element = $(document.getElementById(url));
-                  $element.find('.leancloud-visitors-count').text(1);
-                })
-                .fail(function() {
-                  console.log('Failed to create');
-                });
-            
-          }
-        })
-        .fail(function ({ responseJSON }) {
-          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
-        });
-    }
-    
-
-    $(function() {
-      $.get('https://app-router.leancloud.cn/2/route?appId=' + '1mI4NKzqzFzGbKHi3ekGu3TN-gzGzoHsz')
-        .done(function({ api_server }) {
-          var Counter = function(method, url, data) {
-            return $.ajax({
-              method: method,
-              url: 'https://' + api_server + '/1.1' + url,
-              headers: {
-                'X-LC-Id': '1mI4NKzqzFzGbKHi3ekGu3TN-gzGzoHsz',
-                'X-LC-Key': 'H0Gm2vfbbrENtDWJWEC7xoeG',
-                'Content-Type': 'application/json',
-              },
-              data: data
-            });
-          };
-          
-            addCount(Counter);
-          
-        });
-    });
-  </script>
-
-
 
   
 
