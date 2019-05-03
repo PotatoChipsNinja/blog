@@ -1769,7 +1769,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #0ee3ff;
+  background: #658257;
 }
 .feed-link,
 .chat {
@@ -3003,9 +3003,29 @@ ul.breadcrumb li+li:last-child {
 .power.txt-right {
   display: none;
 }
+.site-meta {
+  background-color: #200040;
+}
+.post-button .btn:hover {
+  border-color: #200040;
+  background: #200040;
+}
 body {
   color: #000;
 }
+.container {
+  background-color: rgba(0,0,0,0.15);
+}
 .footer-inner {
   padding-left: 0px;
+}
+.footer {
+  margin-top: 8px;
+  line-height: 1.8;
+  background-color: rgba(255,255,255,0.75);
+  color: #808080;
+  border-top-width: 3px;
+  border-top-style: solid;
+  border-top-color: #a166ab;
+  box-shadow: 0px -10px 10px 0px rgba(0,0,0,0.15);
 }

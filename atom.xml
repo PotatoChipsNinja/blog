@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pcninja.cn/"/>
-  <updated>2019-05-02T12:32:26.784Z</updated>
+  <updated>2019-05-03T03:22:09.855Z</updated>
   <id>https://pcninja.cn/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://pcninja.cn/2019/05/blog-decoration-notes/"/>
     <id>https://pcninja.cn/2019/05/blog-decoration-notes/</id>
     <published>2019-05-02T09:33:01.000Z</published>
-    <updated>2019-05-02T12:32:26.784Z</updated>
+    <updated>2019-05-03T03:22:09.855Z</updated>
     
-    <content type="html"><![CDATA[<p>&emsp;&emsp;五一小长假，身边的小伙伴大都奔赴各地领略大好河山，朋友圈里的各种照片看得我眼花缭乱。我赋闲在家，做自己喜欢做的事，放松之余也捯饬捯饬自己的小站。<br><a id="more"></a></p><h3 id="小站概况"><a href="#小站概况" class="headerlink" title="小站概况"></a>小站概况</h3><p>自2016年建站以来，先后经历了多次更换托管主机<small>（Hostinger → GitHub Pages → Coding Pages）</small>与域名<small>（potatochipsninja.tk → pcninja.tk → pcninja.cn）</small>，也从动态网站转型成了静态网站<small>（WordPress → Hexo）</small>，可谓风雨飘摇、命途多舛。尽管如此，小站的建设确确实实让我学习了许多前端方面的知识，同时也带给我不小的成就感。</p><h3 id="主要改动"><a href="#主要改动" class="headerlink" title="主要改动"></a>主要改动</h3><p>博客继续采用 Hexo 搭配 Next 主题，风格从原来的 <code>Pisces</code> 更换成了更具现代感的 <code>Gemini</code>，阴影的加入使得页面区块化更加显著。<br>加入了 Valine 评论系统，支持 <code>Markdown</code> 语法，与原有的文章阅读量统计整合在一块，一并存储在 LeanCloud。</p><h3 id="改动一览"><a href="#改动一览" class="headerlink" title="改动一览"></a>改动一览</h3><ul><li>字体：全局字体采用 <code>Noto Serif SC</code>，网站标题字体采用 <code>ZCOOL XiaoWei</code>，均来自 Google 字体库。为了优化访问速度，使用了 CDN（fonts.loli.net）。如果字体没有生效，请清除缓存后刷新网页</li><li>侧边栏头像改为圆形，鼠标移入有旋转动画效果，点击可跳至主页</li><li>侧边栏社交链接改为仅有图标的简约风格</li><li>侧边栏加入知识共享许可协议 <code>BY-NC-SA</code> 声明图标，取消了文章底部的文字声明</li><li>返回页面顶部按钮由页面右下角移动到侧边栏底部，并显示阅读百分比</li><li>文章阅读量统计与 Valine 评论系统进行合并</li><li>页脚跳动的红色爱心（<span style="display: inline-block; margin: 0 5px; animation: iconAnimate 1.33s ease-in-out infinite;"><i class="fa fa-heart" style="color: #ff0000;"></i></span>）改为静止的灰色爱心（<span><i class="fa fa-heart" style="color: #808080;"></i></span>），<del>期待它的重新跳动</del></li><li>页脚总访客量与总访问量显示风格改为数值居中，图标分列两侧<h3 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h3></li><li>有精力的时候从零写一个 Hexo 主题，尝试用 <code>PHP</code> 等编写动态博客程序（<strong>可能</strong>会是暑假）</li><li>扩充自己的技术栈，积极更新技术类博文</li><li>丰富博客内容，多读书，多记录生活，努力提升自身文学素养</li></ul><div class="image-size-50"><img src="/2019/05/blog-decoration-notes/image.png" title="2019继续加油"></div>]]></content>
+    <content type="html"><![CDATA[<p>&emsp;&emsp;五一小长假，身边的小伙伴大都奔赴各地领略大好河山，朋友圈里的各种照片看得我眼花缭乱。我赋闲在家，做自己喜欢做的事，放松之余也捯饬捯饬自己的小站。<br><a id="more"></a></p><h3 id="小站概况"><a href="#小站概况" class="headerlink" title="小站概况"></a>小站概况</h3><p>自2016年建站以来，先后经历了多次更换托管主机<small>（Hostinger → GitHub Pages → Coding Pages）</small>与域名<small>（potatochipsninja.tk → pcninja.tk → pcninja.cn）</small>，也从动态网站转型成了静态网站<small>（WordPress → Hexo）</small>，可谓风雨飘摇、命途多舛。尽管如此，小站的建设确确实实让我学习了许多前端方面的知识，同时也带给我不小的成就感。</p><h3 id="主要改动"><a href="#主要改动" class="headerlink" title="主要改动"></a>主要改动</h3><p>博客继续采用 Hexo 搭配 Next 主题，风格从原来的 <code>Pisces</code> 更换成了更具现代感的 <code>Gemini</code>，阴影的加入使得页面区块化更加显著。<br>加入了 Valine 评论系统，支持 <code>Markdown</code> 语法，与原有的文章阅读量统计整合在一块，一并存储在 LeanCloud。</p><h3 id="改动一览"><a href="#改动一览" class="headerlink" title="改动一览"></a>改动一览</h3><ul><li>字体：全局字体采用 <code>Noto Serif SC</code>，网站标题字体采用 <code>ZCOOL XiaoWei</code>，均来自 Google 字体库。为了优化访问速度，使用了 CDN（fonts.loli.net）。如果字体没有生效，请清除缓存后刷新网页</li><li>增加背景图片及背景不透明度</li><li>网站标题框及“阅读全文”按钮配色更改</li><li>侧边栏头像改为圆形，鼠标移入有旋转动画效果，点击可跳至主页</li><li>侧边栏社交链接改为仅有图标的简约风格</li><li>侧边栏加入知识共享许可协议 <code>BY-NC-SA</code> 声明图标，取消了文章底部的文字声明</li><li>返回页面顶部按钮由页面右下角移动到侧边栏底部，并显示阅读百分比</li><li>文章阅读量统计与 Valine 评论系统进行合并</li><li>页脚背景样式美化</li><li>页脚跳动的红色爱心（<span style="display: inline-block; margin: 0 5px; animation: iconAnimate 1.33s ease-in-out infinite;"><i class="fa fa-heart" style="color: #ff0000;"></i></span>）改为静止的灰色爱心（<span><i class="fa fa-heart" style="color: #808080;"></i></span>）<del>，期待它的重新跳动</del></li><li>页脚总访客量与总访问量显示风格改为数值居中，图标分列两侧<h3 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h3></li><li>有精力的时候从零写一个 Hexo 主题，尝试用 <code>PHP</code> 等编写动态博客程序（<strong>可能</strong>会是暑假）</li><li>扩充自己的技术栈，积极更新技术类博文</li><li>丰富博客内容，多读书，多记录生活，努力提升自身文学素养</li></ul><div class="image-size-50"><img src="/2019/05/blog-decoration-notes/image.png" title="2019继续加油"></div>]]></content>
     
     <summary type="html">
     
@@ -63,13 +63,13 @@
     
       <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
-      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
-    
       <category term="数据结构" scheme="https://pcninja.cn/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
       <category term="算法" scheme="https://pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
     
       <category term="作业" scheme="https://pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
+    
+      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
   </entry>
   
@@ -94,13 +94,13 @@
     
       <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
-      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
-    
       <category term="数据结构" scheme="https://pcninja.cn/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
       <category term="算法" scheme="https://pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
     
       <category term="作业" scheme="https://pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
+    
+      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
   </entry>
   
@@ -126,9 +126,9 @@
     
       <category term="生活" scheme="https://pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
     
-      <category term="随笔" scheme="https://pcninja.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
       <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
+    
+      <category term="随笔" scheme="https://pcninja.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -188,9 +188,9 @@
       <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="Linux" scheme="https://pcninja.cn/tags/Linux/"/>
-    
       <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="Linux" scheme="https://pcninja.cn/tags/Linux/"/>
     
       <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
     
@@ -375,9 +375,9 @@
       <category term="文学" scheme="https://pcninja.cn/categories/%E6%96%87%E5%AD%A6/"/>
     
     
-      <category term="主播" scheme="https://pcninja.cn/tags/%E4%B8%BB%E6%92%AD/"/>
-    
       <category term="写作" scheme="https://pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
+    
+      <category term="主播" scheme="https://pcninja.cn/tags/%E4%B8%BB%E6%92%AD/"/>
     
       <category term="杂谈" scheme="https://pcninja.cn/tags/%E6%9D%82%E8%B0%88/"/>
     
