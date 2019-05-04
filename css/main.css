@@ -728,14 +728,6 @@ pre .javascript .function {
 .post .group-picture-column {
   float: left;
 }
-.page-post-detail .post-body .group-picture-column {
-  float: none;
-  margin-top: 10px;
-  width: auto !important;
-}
-.page-post-detail .post-body .group-picture-column img {
-  margin: 0 auto;
-}
 .page-archive .group-picture-container {
   overflow: hidden;
 }
@@ -1769,7 +1761,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #658257;
+  background: #a7ffe2;
 }
 .feed-link,
 .chat {

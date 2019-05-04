@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pcninja.cn/"/>
-  <updated>2019-05-03T03:22:09.855Z</updated>
+  <updated>2019-05-04T02:16:59.558Z</updated>
   <id>https://pcninja.cn/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>今天，致敬青春</title>
+    <link href="https://pcninja.cn/2019/05/tribute-to-youth/"/>
+    <id>https://pcninja.cn/2019/05/tribute-to-youth/</id>
+    <published>2019-05-04T01:00:06.000Z</published>
+    <updated>2019-05-04T02:16:59.558Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>转自 新浪微博 @人民日报</p></blockquote><p>&emsp;&emsp;青春，是一场场考试，是宽大的校服，是同桌的你和上铺的兄弟；更是青春追梦，成长担当，哪怕万人阻挡，也不曾投降的勇气和力量。青春不是年华，而是心境。它属于年轻人，更属于奋斗者。每一个为梦想拼尽全力的人，都有着青春的光芒。今天，五四青年节，追梦吧，青春！</p><center class="noBr"><br>  <div class="myGroup"><br>    <div class="group-picture"><div class="group-picture-container"><div class="group-picture-row"><div class="group-picture-column" style="width: 33.333333333333336%;"><img src="/2019/05/tribute-to-youth/1.jpg"></div><div class="group-picture-column" style="width: 33.333333333333336%;"><img src="/2019/05/tribute-to-youth/2.jpg"></div><div class="group-picture-column" style="width: 33.333333333333336%;"><img src="/2019/05/tribute-to-youth/3.jpg"></div></div><div class="group-picture-row"><div class="group-picture-column" style="width: 33.333333333333336%;"><img src="/2019/05/tribute-to-youth/4.jpg"></div><div class="group-picture-column" style="width: 33.333333333333336%;"><img src="/2019/05/tribute-to-youth/5.jpg"></div><div class="group-picture-column" style="width: 33.333333333333336%;"><img src="/2019/05/tribute-to-youth/6.jpg"></div></div><div class="group-picture-row"><div class="group-picture-column" style="width: 33.333333333333336%;"><img src="/2019/05/tribute-to-youth/7.jpg"></div><div class="group-picture-column" style="width: 33.333333333333336%;"><img src="/2019/05/tribute-to-youth/8.jpg"></div><div class="group-picture-column" style="width: 33.333333333333336%;"><img src="/2019/05/tribute-to-youth/9.jpg"></div></div></div></div><br>  </div><br></center><style type="text/css">  .noBr {    font-size: 0px;  }  .myGroup {    width: 70%;  }  .myGroup img {    margin-top: 0px !important;    margin-bottom: 0px !important;  }</style>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;转自 新浪微博 @人民日报&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&amp;emsp;&amp;emsp;青春，是一场场考试，是宽大的校服，是同桌的你和上铺的兄弟；更是青春追梦，成长担当，哪怕万人阻挡，也不曾投降的勇气和力量。青春不是年华，而是心境。它属于年轻
+      
+    
+    </summary>
+    
+      <category term="生活" scheme="https://pcninja.cn/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
+    
+      <category term="转载" scheme="https://pcninja.cn/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+      <category term="青春" scheme="https://pcninja.cn/tags/%E9%9D%92%E6%98%A5/"/>
+    
+      <category term="五四运动一百周年" scheme="https://pcninja.cn/tags/%E4%BA%94%E5%9B%9B%E8%BF%90%E5%8A%A8%E4%B8%80%E7%99%BE%E5%91%A8%E5%B9%B4/"/>
+    
+  </entry>
   
   <entry>
     <title>博客装修小记</title>
@@ -188,9 +222,9 @@
       <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
-    
       <category term="Linux" scheme="https://pcninja.cn/tags/Linux/"/>
+    
+      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
       <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
     
@@ -375,9 +409,9 @@
       <category term="文学" scheme="https://pcninja.cn/categories/%E6%96%87%E5%AD%A6/"/>
     
     
-      <category term="写作" scheme="https://pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
-    
       <category term="主播" scheme="https://pcninja.cn/tags/%E4%B8%BB%E6%92%AD/"/>
+    
+      <category term="写作" scheme="https://pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
     
       <category term="杂谈" scheme="https://pcninja.cn/tags/%E6%9D%82%E8%B0%88/"/>
     
@@ -597,37 +631,6 @@
       <category term="读后感" scheme="https://pcninja.cn/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/"/>
     
       <category term="唐·吉诃德" scheme="https://pcninja.cn/tags/%E5%94%90%C2%B7%E5%90%89%E8%AF%83%E5%BE%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>生活不能等待别人来安排——读《平凡的世界》有感</title>
-    <link href="https://pcninja.cn/2016/08/sense-of-reading-the-Ordinary-World/"/>
-    <id>https://pcninja.cn/2016/08/sense-of-reading-the-Ordinary-World/</id>
-    <published>2016-08-24T12:13:39.000Z</published>
-    <updated>2017-09-24T00:48:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>&emsp;&emsp;读了这部讴歌劳动者的伟大作品《平凡的世界》，我感触颇多。起初，我不明白此书为何名叫“平凡的世界”，通篇读完后，我觉得真正平凡的人一定不平凡。<br>&emsp;&emsp;何为平凡？我认为平凡不仅仅是无特色或无区别，更是一种为人处世的良好心态，这与儒家的中庸思想不谋而合。主人公孙少安、孙少平尽管生活历尽艰辛、苦苦挣扎，但他们从未言弃，积极与命运作斗争,追求自己的幸福。他们自强不息的精神带给苦难中的劳动者希望与动力，我想这也是路遥先生作此小说的目的。<br>&emsp;&emsp;不同于其他现实主义小说作家，路遥的《平凡的世界》主旨并不在突出表现劳动者的苦难或是抨击社会的压抑，而是把这种苦难转化为继续努力的精神食粮，给人以希望。我认为，在现实生活中，我们也应该如此，因为活着不是为了苦恼生活的不如意，而是要努力活得更好。“在这个世界上，不是所有合理的和美好的都能按照自己的愿望存在或实现。”正因如此，才有了中华民族千百年来“自强不息，厚德载物”的美德。<br>&emsp;&emsp;小说中在讲述劳动者生产生活的艰辛之余，还有不少美好的情感令人动容，给人温暖。这里既有邻里之情、同学之情、同事之情，还有美好又令人惋惜的爱情。作者之所以加入这些情感故事，为的是弘扬人性之光，带给劳动人民温暖，《平凡的世界》给无数劳动人民心灵上的慰藉。<br>&emsp;&emsp;处在不同时代的人都有不同的命运，也许我们无法切身感受到那个年代劳动人民的艰辛，但从《平凡的世界》中，我发现了身边的幸福，平凡也是幸福的，但要想平凡就一定要有不平凡的理想与抱负，即使最平凡的人也要为他生活的那个世界而奋斗。有一句话说得好：“命是弱者的借口，运是强者的谦辞。”尽管我们不能完全左右自身的命运，但“生活不能等待别人来安排，要自己去争取和奋斗；而不论其结果是喜是悲，但可以慰藉的是，你总不枉在这世上活了一场。有了这样的认识，你就会珍重生活，而不会玩世不恭；同时，也会给人自身注入一种强大的内在力量。”</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&amp;emsp;&amp;emsp;读了这部讴歌劳动者的伟大作品《平凡的世界》，我感触颇多。起初，我不明白此书为何名叫“平凡的世界”，通篇读完后，我觉得真正平凡的人一定不平凡。&lt;br&gt;&amp;emsp;&amp;emsp;何为平凡？我认为平凡不仅仅是无特色或无区别，更是一种为人处世的良好心态，这与儒
-      
-    
-    </summary>
-    
-      <category term="文学" scheme="https://pcninja.cn/categories/%E6%96%87%E5%AD%A6/"/>
-    
-    
-      <category term="写作" scheme="https://pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
-    
-      <category term="评析" scheme="https://pcninja.cn/tags/%E8%AF%84%E6%9E%90/"/>
-    
-      <category term="读后感" scheme="https://pcninja.cn/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/"/>
-    
-      <category term="平凡的世界" scheme="https://pcninja.cn/tags/%E5%B9%B3%E5%87%A1%E7%9A%84%E4%B8%96%E7%95%8C/"/>
     
   </entry>
   
