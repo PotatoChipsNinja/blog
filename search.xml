@@ -79,8 +79,8 @@
         <category>网络</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>网络</tag>
+        <tag>编程</tag>
         <tag>SSL</tag>
         <tag>HTTPS</tag>
         <tag>Node.js</tag>
@@ -96,8 +96,8 @@
       </categories>
       <tags>
         <tag>Linux</tag>
-        <tag>编程</tag>
         <tag>网络</tag>
+        <tag>编程</tag>
         <tag>Node.js</tag>
         <tag>Express</tag>
         <tag>MongoDB</tag>
@@ -149,8 +149,8 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>杂谈</tag>
         <tag>生活</tag>
+        <tag>杂谈</tag>
         <tag>转载</tag>
         <tag>人生</tag>
       </tags>
@@ -180,8 +180,8 @@
         <category>文学</category>
       </categories>
       <tags>
-        <tag>主播</tag>
         <tag>写作</tag>
+        <tag>主播</tag>
         <tag>杂谈</tag>
         <tag>职业</tag>
       </tags>
@@ -330,10 +330,10 @@
       </categories>
       <tags>
         <tag>写作</tag>
+        <tag>高中</tag>
         <tag>回忆</tag>
         <tag>江苏</tag>
         <tag>游记</tag>
-        <tag>高中</tag>
       </tags>
   </entry>
   <entry>
@@ -360,11 +360,11 @@
       <tags>
         <tag>C</tag>
         <tag>编程</tag>
-        <tag>高中</tag>
         <tag>探究</tag>
         <tag>数学</tag>
         <tag>汉诺塔</tag>
         <tag>论文</tag>
+        <tag>高中</tag>
       </tags>
   </entry>
   <entry>
