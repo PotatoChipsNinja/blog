@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pcninja.cn/"/>
-  <updated>2019-05-06T07:36:00.200Z</updated>
+  <updated>2019-05-15T01:38:05.762Z</updated>
   <id>https://pcninja.cn/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数据结构作业——游戏分组</title>
+    <link href="https://pcninja.cn/2019/05/game-grouping/"/>
+    <id>https://pcninja.cn/2019/05/game-grouping/</id>
+    <published>2019-05-15T01:29:33.000Z</published>
+    <updated>2019-05-15T01:38:05.762Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>游戏分组</strong><br>时间限制: 1000 ms<br>内存限制: 128 MB</p><p>为了活跃蒜厂的工作气氛，促进彼此间的友谊，蒜头君决定挑个阳光明媚的周末，带领同学们一起玩游戏。一共有 <code>n</code> 位同学要参加，编号为 <code>0</code> 到 <code>n - 1</code>。蒜头君要对这些同学进行分组，而且蒜头君已经知道哪两个同学之间是好友关系。为了让同学们都玩得开心，蒜头君决定最终的分组方案要将所有好友组合都被分在一组。<br>蒜头君现在知道有 <code>m</code> 对好友关系，需要注意的是，有可能一个同学有很多个好友，也有可能一个同学没有好友。为了让游戏更有趣，蒜头君希望最后分出的组数尽可能多。你能帮蒜头君算出来最多可以分成多少组么？<br><a id="more"></a><br><strong>输入格式：</strong><br>第一行输入两个数 <code>n</code> 和 <code>m</code>，1 ≤ <code>n</code>, <code>m</code> ≤ 1000000。<br>接下来输入 <code>m</code> 行，每行输入两个数 <code>a</code> 和 <code>b</code>，表示编号 <code>a</code> 和编号 <code>b</code> 的同学是好友关系，0 ≤ a, b ≤ <code>n</code> - 1。</p><p><strong>输出格式：</strong><br>输出为一行，表示最多可以分成多少组。</p><p><strong>输入样例:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">5 2</span><br><span class="line">0 2</span><br><span class="line">2 3</span><br></pre></td></tr></table></figure></p><p><strong>输出样例:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure></p><p><strong>代码</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> *father, *rank;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(father[n] != n)</span><br><span class="line">        father[n] = find(father[n]);</span><br><span class="line">    <span class="keyword">return</span> father[n];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> roota = find(a), rootb = find(b);</span><br><span class="line">    <span class="keyword">if</span>(roota == rootb)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(rank[roota] &gt; rank[rootb])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> temp = roota;</span><br><span class="line">        roota = rootb;</span><br><span class="line">        rootb = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    father[roota] = rootb;</span><br><span class="line">    rank[rootb] = (rank[roota] + <span class="number">1</span>) &gt; rank[rootb] ? (rank[roota] + <span class="number">1</span>) : rank[rootb];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, m, a, b, num;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</span><br><span class="line">    father = (<span class="keyword">int</span> *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>) * n);</span><br><span class="line">    rank = (<span class="keyword">int</span> *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>) * n);</span><br><span class="line">    num = n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        father[i] = i;</span><br><span class="line">        rank[i] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(m--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;a, &amp;b);</span><br><span class="line">        <span class="keyword">if</span>(merge(a, b))</span><br><span class="line">            num--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, num);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;游戏分组&lt;/strong&gt;&lt;br&gt;时间限制: 1000 ms&lt;br&gt;内存限制: 128 MB&lt;/p&gt;
+&lt;p&gt;为了活跃蒜厂的工作气氛，促进彼此间的友谊，蒜头君决定挑个阳光明媚的周末，带领同学们一起玩游戏。一共有 &lt;code&gt;n&lt;/code&gt; 位同学要参加，编号为 &lt;code&gt;0&lt;/code&gt; 到 &lt;code&gt;n - 1&lt;/code&gt;。蒜头君要对这些同学进行分组，而且蒜头君已经知道哪两个同学之间是好友关系。为了让同学们都玩得开心，蒜头君决定最终的分组方案要将所有好友组合都被分在一组。&lt;br&gt;蒜头君现在知道有 &lt;code&gt;m&lt;/code&gt; 对好友关系，需要注意的是，有可能一个同学有很多个好友，也有可能一个同学没有好友。为了让游戏更有趣，蒜头君希望最后分出的组数尽可能多。你能帮蒜头君算出来最多可以分成多少组么？&lt;br&gt;
+    
+    </summary>
+    
+      <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="数据结构" scheme="https://pcninja.cn/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="算法" scheme="https://pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="作业" scheme="https://pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
+    
+      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
+    
+  </entry>
   
   <entry>
     <title>今天，致敬青春</title>
@@ -182,9 +213,9 @@
       <category term="网络" scheme="https://pcninja.cn/categories/%E7%BD%91%E7%BB%9C/"/>
     
     
-      <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
-    
       <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
     
       <category term="SSL" scheme="https://pcninja.cn/tags/SSL/"/>
     
@@ -219,11 +250,11 @@
       <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
+      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
+    
       <category term="Linux" scheme="https://pcninja.cn/tags/Linux/"/>
     
       <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
-    
-      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
       <category term="Node.js" scheme="https://pcninja.cn/tags/Node-js/"/>
     
@@ -338,9 +369,9 @@
       <category term="生活" scheme="https://pcninja.cn/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="生活" scheme="https://pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
-    
       <category term="杂谈" scheme="https://pcninja.cn/tags/%E6%9D%82%E8%B0%88/"/>
+    
+      <category term="生活" scheme="https://pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
     
       <category term="转载" scheme="https://pcninja.cn/tags/%E8%BD%AC%E8%BD%BD/"/>
     
@@ -406,9 +437,9 @@
       <category term="文学" scheme="https://pcninja.cn/categories/%E6%96%87%E5%AD%A6/"/>
     
     
-      <category term="写作" scheme="https://pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
-    
       <category term="主播" scheme="https://pcninja.cn/tags/%E4%B8%BB%E6%92%AD/"/>
+    
+      <category term="写作" scheme="https://pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
     
       <category term="杂谈" scheme="https://pcninja.cn/tags/%E6%9D%82%E8%B0%88/"/>
     
@@ -597,37 +628,6 @@
       <category term="读后感" scheme="https://pcninja.cn/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/"/>
     
       <category term="红楼梦" scheme="https://pcninja.cn/tags/%E7%BA%A2%E6%A5%BC%E6%A2%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>跟随时代的脚步——读《唐•吉诃德》有感</title>
-    <link href="https://pcninja.cn/2016/08/sense-of-reading-Don-Quixote/"/>
-    <id>https://pcninja.cn/2016/08/sense-of-reading-Don-Quixote/</id>
-    <published>2016-08-25T11:54:04.000Z</published>
-    <updated>2017-09-24T00:51:46.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>&emsp;&emsp;读了《唐·吉诃德》这部反骑士小说，我对理想与现实的区别有所感悟，但此书给我最大的启示是：要紧跟时代的脚步。<br>&emsp;&emsp;很多人说唐·吉诃德没能实现理想是因为他的理想和现实之间存在矛盾。而我认为唐·吉诃德之所以失败，并不是因为他思想的错误，而是由于时代的变迁。鲁迅先生在把此书引入中国时就曾有过解读：“以此书为刺，揭示人以旧思想之难行于新时代也”。<br>&emsp;&emsp;这部小说终结了骑士文学，书中主人公阿隆索·吉哈诺一切荒诞的行为看似匪夷所思，但如果在骑士没有绝迹的年代，他的行为就不会令人感到奇怪。因此，我们不能说唐·吉诃德的做法是错误的，只能说这并不为当今时代所接受。<br>&emsp;&emsp;人类永远不会停止发展的脚步，优胜劣汰是大自然永恒的法则。仔细想想骑士为何会被淘汰，是因为人们发明了枪炮，自然就不会有人再去当骑士。而主人公看了无数骑士小说并深受其感染，他把已被时代淘汰的事物当作自己的理想，这在一开始就注定了他的失败。<br>&emsp;&emsp;但这并不意味着旧事物、旧思想不重要。若没有地基哪会有参天大楼？从原始人类开始，人们一代一代地繁衍，每一代人都是站在前一代搭建好的平台上继续搭建，这使得人类文明发展到了如今的水平。既然如此，我们只需在前人努力的基础上继续发展，为何还要记录已经被淘汰的历史呢？这就好比一个公式，你使用时只需记住结论，但了解其推倒过程会让你有更深刻的认识。我想我们铭记历史是为了今后更好地发展，不要再走重复的路。<br>&emsp;&emsp;理想能激励我们向前，但理想的确立要站在现实的基础之上，若与现实背道而驰，那充其量算是梦想，永远不可能实现。比如书中的唐·吉诃德，他的理想建立在已被淘汰的时代，而时代容不得倒退，他的理想就不可能在当时他所处的时代实现。当然把理想建立得离现实太过遥远也是荒诞的。仰望星空，脚踏实地，理想要建立在现实之上，不能总想一步登天，也不要走重复的路，我想这是作者塞万提斯想借讽刺唐·吉诃德警示人们的。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&amp;emsp;&amp;emsp;读了《唐·吉诃德》这部反骑士小说，我对理想与现实的区别有所感悟，但此书给我最大的启示是：要紧跟时代的脚步。&lt;br&gt;&amp;emsp;&amp;emsp;很多人说唐·吉诃德没能实现理想是因为他的理想和现实之间存在矛盾。而我认为唐·吉诃德之所以失败，并不是因为他思想的
-      
-    
-    </summary>
-    
-      <category term="文学" scheme="https://pcninja.cn/categories/%E6%96%87%E5%AD%A6/"/>
-    
-    
-      <category term="写作" scheme="https://pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
-    
-      <category term="评析" scheme="https://pcninja.cn/tags/%E8%AF%84%E6%9E%90/"/>
-    
-      <category term="读后感" scheme="https://pcninja.cn/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/"/>
-    
-      <category term="唐·吉诃德" scheme="https://pcninja.cn/tags/%E5%94%90%C2%B7%E5%90%89%E8%AF%83%E5%BE%B7/"/>
     
   </entry>
   
