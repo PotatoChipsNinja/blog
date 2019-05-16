@@ -551,14 +551,14 @@
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
 <p>&emsp;&emsp;为了更安全地传输，我们往往需要建立HTTPS连接。我们可以利用OpenSSL创建自签名的证书，但创建自己的CA机构并不安全也不被各大浏览器承认。目前有不少免费SSL证书提供商，其中最流行的便是Let’s Encrypt（<a href="https://letsencrypt.org/" target="_blank" rel="noopener">官网</a>），下面是关于如何申请Let’s Encrypt免费SSL证书并用Node.js建立一个HTTPS服务器。<br><a id="more"></a></p>
-</blockquote>
 <h2 id="申请Let’s-Encrypt免费SSL证书"><a href="#申请Let’s-Encrypt免费SSL证书" class="headerlink" title="申请Let’s Encrypt免费SSL证书"></a>申请Let’s Encrypt免费SSL证书</h2><p>Let’s Encrypt官方推荐使用<a href="https://certbot.eff.org/" target="_blank" rel="noopener">Certbot</a> ACME客户端。它可以自动执行证书颁发和安装，无需停机且易于使用。</p>
 <ul>
-<li><p>首先安装<code>certbot</code><br>通过SSH连接到你的VPS或云服务器，确保已经安装了Python及Git。本文以CentOS为例，其他发行版大同小异。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo yum install certbot</span><br></pre></td></tr></table></figure>
+<li>首先安装<code>certbot</code><br>通过SSH连接到你的VPS或云服务器，确保已经安装了Python及Git。本文以CentOS为例，其他发行版大同小异。<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo yum install certbot</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>获取证书<br>首先停止你服务器上的服务，保证80端口没有被占用并且你的域名被正确解析到你的服务器，否则在证书获取过程中会出现错误。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo certbot certonly --standalone -d diunar.tk -d www.diunar.tk    #把diunar.tk换成你的域名</span><br></pre></td></tr></table></figure>
+</ul>
+</blockquote>
+<ul>
+<li>获取证书<br>首先停止你服务器上的服务，保证80端口没有被占用并且你的域名被正确解析到你的服务器，否则在证书获取过程中会出现错误。<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo certbot certonly --standalone -d diunar.tk -d www.diunar.tk    #把diunar.tk换成你的域名</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>当看到“Congratulations”字样时，代表你已经成功申请到Let’s Encrypt的免费SSL证书，证书有效期是90天，后面会讲如何<del>&nbsp;续命&nbsp;</del>延期。<br>证书文件被保存到了<code>/etc/letsencrypt/live/你的域名/</code>，其中的<code>fullchain.pem</code>和<code>privkey.pem</code>是我们接下来需要用到的完整证书链及私钥</p>
@@ -716,7 +716,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -894,7 +894,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">65</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">67</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1547,6 +1551,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 

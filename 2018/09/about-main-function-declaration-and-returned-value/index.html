@@ -545,8 +545,8 @@
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
 <p>&emsp;&emsp;在C/C++程序中有时会见到采用诸如<code>void main()</code>等方式来声明主函数，很多人在主函数返回值的问题上也略显随意。经过查阅多版本的C、C++标准文档与相关书籍，我将我的结论与认识总结于此。不可避免地，其中可能包含我错误的认识，欢迎大家指正。<br><a id="more"></a></p>
-</blockquote>
 <h2 id="main-函数的函数类型"><a href="#main-函数的函数类型" class="headerlink" title="main()函数的函数类型"></a>main()函数的函数类型</h2><p>关于<code>main()</code>的原型，C89/99/11以及C++98/03/11/14等标准给出的说法略有出入，尤其在早期标准中差异更为显著。然而，共同的，在任何一个版本的标准中，均未承认<code>void main()</code>这种声明方式。首先可以得出结论：<code>void main()</code>为错误写法，所有编译器都没有理由支持该种写法。</p>
+</blockquote>
 <p>在K&amp;R C与C89里，若函数没有显式声明返回类型，则默认是<code>int</code>，因此在早期C程序中经常出现这样的主函数：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">main()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 函数体</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这种写法在早期标准中是被认可的，<code>main()</code>等价于<code>int main()</code>。但是，C99标准不再支持函数的<code>int</code>类型的默认设置，因此该写法被废止，新的编译器不再允许此类main函数。</p>
 <p>在C99/11标准中，明确定义了对于标准的main函数的两个原型：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br></pre></td></tr></table></figure></p>
@@ -711,7 +711,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -889,7 +889,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">65</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">67</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1542,6 +1546,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 
