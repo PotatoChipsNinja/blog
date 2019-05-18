@@ -18,7 +18,7 @@
   <entry>
     <title><![CDATA[数据结构作业——游戏分组]]></title>
     <url>%2F2019%2F05%2Fgame-grouping%2F</url>
-    <content type="text"><![CDATA[游戏分组时间限制: 1000 ms内存限制: 128 MB 为了活跃蒜厂的工作气氛，促进彼此间的友谊，蒜头君决定挑个阳光明媚的周末，带领同学们一起玩游戏。一共有 n 位同学要参加，编号为 0 到 n - 1。蒜头君要对这些同学进行分组，而且蒜头君已经知道哪两个同学之间是好友关系。为了让同学们都玩得开心，蒜头君决定最终的分组方案要将所有好友组合都被分在一组。蒜头君现在知道有 m 对好友关系，需要注意的是，有可能一个同学有很多个好友，也有可能一个同学没有好友。为了让游戏更有趣，蒜头君希望最后分出的组数尽可能多。你能帮蒜头君算出来最多可以分成多少组么？输入格式：第一行输入两个数 n 和 m，1 ≤ n, m ≤ 1000000。接下来输入 m 行，每行输入两个数 a 和 b，表示编号 a 和编号 b 的同学是好友关系，0 ≤ a, b ≤ n - 1。 输出格式：输出为一行，表示最多可以分成多少组。 输入样例:1235 20 22 3 输出样例:13 代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;int *father, *rank;int find(int n)&#123; if(father[n] != n) father[n] = find(father[n]); return father[n];&#125;int merge(int a, int b)&#123; int roota = find(a), rootb = find(b); if(roota == rootb) return 0; if(rank[roota] &gt; rank[rootb]) &#123; int temp = roota; roota = rootb; rootb = temp; &#125; father[roota] = rootb; rank[rootb] = (rank[roota] + 1) &gt; rank[rootb] ? (rank[roota] + 1) : rank[rootb]; return 1;&#125;int main()&#123; int n, m, a, b, num; scanf("%d%d", &amp;n, &amp;m); father = (int *)malloc(sizeof(int) * n); rank = (int *)malloc(sizeof(int) * n); num = n; for(int i = 0; i &lt; n; ++i) &#123; father[i] = i; rank[i] = 0; &#125; while(m--) &#123; scanf("%d%d", &amp;a, &amp;b); if(merge(a, b)) num--; &#125; printf("%d", num); return 0;&#125;]]></content>
+    <content type="text"><![CDATA[游戏分组时间限制: 1000 ms内存限制: 128 MB 为了活跃蒜厂的工作气氛，促进彼此间的友谊，蒜头君决定挑个阳光明媚的周末，带领同学们一起玩游戏。一共有 n 位同学要参加，编号为 0 到 n - 1。蒜头君要对这些同学进行分组，而且蒜头君已经知道哪两个同学之间是好友关系。为了让同学们都玩得开心，蒜头君决定最终的分组方案要将所有好友组合都被分在一组。蒜头君现在知道有 m 对好友关系，需要注意的是，有可能一个同学有很多个好友，也有可能一个同学没有好友。为了让游戏更有趣，蒜头君希望最后分出的组数尽可能多。你能帮蒜头君算出来最多可以分成多少组么？输入格式：第一行输入两个数 n 和 m，1 ≤ n, m ≤ 1000000。接下来输入 m 行，每行输入两个数 a 和 b，表示编号 a 和编号 b 的同学是好友关系，0 ≤ a, b ≤ n - 1。 输出格式：输出为一行，表示最多可以分成多少组。 输入样例:1235 20 22 3 输出样例:13 代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;int *father, *size;int find(int n)&#123; if(father[n] != n) father[n] = find(father[n]); //路径压缩 return father[n];&#125;int merge(int a, int b)&#123; int roota = find(a), rootb = find(b); if(roota == rootb) return 0; if(size[roota] &gt; size[rootb]) &#123; int temp = roota; roota = rootb; rootb = temp; &#125; father[roota] = rootb; //启发式合并（按集合大小） size[rootb] += size[roota]; return 1;&#125;void init(int n)&#123; father = (int *)malloc(sizeof(int) * n); size = (int *)malloc(sizeof(int) * n); for(int i = 0; i &lt; n; ++i) &#123; father[i] = i; size[i] = 1; &#125;&#125;int main()&#123; int n, m, a, b, num; scanf("%d%d", &amp;n, &amp;m); init(n); num = n; while(m--) &#123; scanf("%d%d", &amp;a, &amp;b); if(merge(a, b)) num--; &#125; printf("%d", num); return 0;&#125;]]></content>
       <categories>
         <category>编程</category>
       </categories>
@@ -128,8 +128,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>编程</tag>
+        <tag>Linux</tag>
         <tag>网络</tag>
         <tag>Node.js</tag>
         <tag>Express</tag>
@@ -182,8 +182,8 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>生活</tag>
         <tag>杂谈</tag>
+        <tag>生活</tag>
         <tag>转载</tag>
         <tag>人生</tag>
       </tags>
@@ -297,9 +297,9 @@
       </categories>
       <tags>
         <tag>写作</tag>
+        <tag>红楼梦</tag>
         <tag>评析</tag>
         <tag>读后感</tag>
-        <tag>红楼梦</tag>
       </tags>
   </entry>
   <entry>
@@ -363,10 +363,10 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>高中</tag>
         <tag>回忆</tag>
         <tag>江苏</tag>
         <tag>游记</tag>
+        <tag>高中</tag>
       </tags>
   </entry>
   <entry>
@@ -378,9 +378,9 @@
       </categories>
       <tags>
         <tag>写作</tag>
+        <tag>红楼梦</tag>
         <tag>评析</tag>
         <tag>读后感</tag>
-        <tag>红楼梦</tag>
       </tags>
   </entry>
   <entry>
@@ -393,11 +393,11 @@
       <tags>
         <tag>C</tag>
         <tag>编程</tag>
+        <tag>高中</tag>
         <tag>探究</tag>
         <tag>数学</tag>
         <tag>汉诺塔</tag>
         <tag>论文</tag>
-        <tag>高中</tag>
       </tags>
   </entry>
   <entry>
@@ -439,9 +439,9 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>毛泽东</tag>
         <tag>评析</tag>
         <tag>读后感</tag>
+        <tag>毛泽东</tag>
       </tags>
   </entry>
   <entry>
