@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pcninja.cn/"/>
-  <updated>2019-05-18T04:06:54.618Z</updated>
+  <updated>2019-05-20T13:32:37.503Z</updated>
   <id>https://pcninja.cn/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>记一个精巧的算法与一段感伤的话</title>
+    <link href="https://pcninja.cn/2019/05/record-a-clever-algorithm-and-a-sentimental-remark/"/>
+    <id>https://pcninja.cn/2019/05/record-a-clever-algorithm-and-a-sentimental-remark/</id>
+    <published>2019-05-20T12:46:50.000Z</published>
+    <updated>2019-05-20T13:32:37.503Z</updated>
+    
+    <content type="html"><![CDATA[<p>&emsp;&emsp;5月20号，中午吃饭，看见一道很有意思的题，题面很简单：</p><blockquote><p>&emsp;&emsp;给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。</p></blockquote><p>这道题解法颇多，但如果要求时间复杂度为O(n)，空间复杂度为O(1)，问题就似乎变得有挑战性了。<br><a id="more"></a><br>&emsp;&emsp;此题的正解非常简单也极其巧妙：将所有元素做异或运算，即a[1] ⊕ a[2] ⊕ a[3] ⊕ … ⊕ a[n]，所得的结果就是那个只出现一次的数字。<br>&emsp;&emsp;原理很好理解：出现2次（可推广为偶数次）的元素经过按位异或后全部变为0，而出现1次（可推广为奇数次）的元素与0进行异或后会被保留。因此所有元素依次异或后得到的结果即为所求。<br>代码如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// LeetCode No.136</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="keyword">int</span> *nums, <span class="keyword">int</span> numsSize)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numsSize; ++i)</span><br><span class="line">        ans ^= nums[i];</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>&emsp;&emsp;晚上打完球回到宿舍，看到下面这段话，有所触动，一种难以言状的思绪在心中徘徊。在此把这段话摘录下来：</p><blockquote><p>年轻时<br>你做了一个决定<br>要把生命献给爱情</p><p>后来<br>万箭穿心的时候<br>你没事<br>因为青春替你抵了命</p><p>青春死了<br>但你还活着<br>可你却再也不会心动了</p><p>每个人都要熬过一段<br>付出很多却没有结果的爱情<br>才会一夜之间突然长大</p><p>所以不要笑话一个人面无表情<br>你只是没看到过<br>他汹涌的内心</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&amp;emsp;&amp;emsp;5月20号，中午吃饭，看见一道很有意思的题，题面很简单：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;emsp;&amp;emsp;给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这道题解法颇多，但如果要求时间复杂度为O(n)，空间复杂度为O(1)，问题就似乎变得有挑战性了。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+      <category term="算法" scheme="https://pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="随笔" scheme="https://pcninja.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="情感" scheme="https://pcninja.cn/tags/%E6%83%85%E6%84%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>数据结构作业——绳子与重物</title>
@@ -288,9 +322,9 @@
       <category term="网络" scheme="https://pcninja.cn/categories/%E7%BD%91%E7%BB%9C/"/>
     
     
-      <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
-    
       <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
     
       <category term="SSL" scheme="https://pcninja.cn/tags/SSL/"/>
     
@@ -326,11 +360,11 @@
       <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="Linux" scheme="https://pcninja.cn/tags/Linux/"/>
+      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
       <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
     
-      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
+      <category term="Linux" scheme="https://pcninja.cn/tags/Linux/"/>
     
       <category term="Node.js" scheme="https://pcninja.cn/tags/Node-js/"/>
     
@@ -445,9 +479,9 @@
       <category term="生活" scheme="https://pcninja.cn/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="生活" scheme="https://pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
-    
       <category term="杂谈" scheme="https://pcninja.cn/tags/%E6%9D%82%E8%B0%88/"/>
+    
+      <category term="生活" scheme="https://pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
     
       <category term="转载" scheme="https://pcninja.cn/tags/%E8%BD%AC%E8%BD%BD/"/>
     
@@ -607,36 +641,6 @@
       <category term="评析" scheme="https://pcninja.cn/tags/%E8%AF%84%E6%9E%90/"/>
     
       <category term="航天精神" scheme="https://pcninja.cn/tags/%E8%88%AA%E5%A4%A9%E7%B2%BE%E7%A5%9E/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>浅谈对公网、路由器、内网关系的理解</title>
-    <link href="https://pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/"/>
-    <id>https://pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/</id>
-    <published>2016-10-15T09:54:51.000Z</published>
-    <updated>2018-03-03T11:19:50.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>&emsp;&emsp;怎样才能让别人直接访问我的本地网站，这个问题困扰了我很久，原因在于本机IP为类似于192.168.1.xxx的内网IP，显然在公网（全域网）别人是访问不到这里的。今天我对这三者有了更加深刻、透彻的理解。<br>&emsp;&emsp;最简单的，在同一局域网（如同一WIFI下）的设备可以通过这个本地IP（本文以192.168.1.106为例）访问本机。首先在本机上跑一个WEB服务器软件，这里使用的是Nginx，原因是轻小方便，当然Apache等Web服务器也是可以的。<br><img src="/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_1.png" title="Nginx"><br>&emsp;&emsp;此时，用浏览器访问Localhost（即<a href="http://127.0.0.1）即可看到服务器的index.html。" target="_blank" rel="noopener">http://127.0.0.1）即可看到服务器的index.html。</a><br><img src="/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_2.png" title="本地的Web服务器"><br>&emsp;&emsp;当然，在同一局域网内的其他设备也可以通过你的局域网IP（Windows下可以用ipconfig命令查看IPv4地址）访问此站。顺便一提IPv4指的就是有四个字段的IP地址（xx.xx.xx.xx），而现在逐渐流行的IPv6，顾名思义就是有六个字段的IP地址（xx.xx.xx.xx.xx.xx）。<a id="more"></a><br><img src="/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_3.png" title="查看本机局域网IP"><br><img src="/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_4.png" title="局域网内访问服务器"><br>&emsp;&emsp;此时我们已经实现了让同一局域网的设备访问自己的Web服务器。但如何让不在局域网的设备访问呢？这就需要路由器的功能及其原理。<br>&emsp;&emsp;在我们的家中，若是接入了互联网，便可以通过网线让自己的设备接入互联网。但如何让所有的设备都能接入网络呢？路由器的存在主要就是为了解决这个问题。<br>&emsp;&emsp;在路由器的管理界面（地址通常是192.168.1.1或192.168.0.1），我们可以找到接入的公网IP地址，这也就是互联网服务提供商（ISP）分给我们的IP。<br><img src="/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_5.png" title="查看公网IP"><br>&emsp;&emsp;当其他设备接入这个路由器后，路由器就会建立一个局域网，介入的设备便会被分得内网IP，如我的计算机的局域网IP就是192.168.1.106，它的作用域仅仅是在这个局域网内。此外，路由器本身也是一个系统，它的内网IP一般是192.168.1.1。画一个简图就是这样：<br><img src="/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_6.png" title="局域网"><br>&emsp;&emsp;因此，在一个局域网内的设备可以互访，但外部的访问请求只能发送到180.xxx.xxx.216，也就是路由器，但路由器本身并不是Web服务器，因此无法发送请求的数据。如果Web服务器是局域网内的一台设备，那么就需要通过路由器映射80端口（网页传输的默认端口）。具体步骤是：打开路由器管理界面，进入“转发规则”菜单（不同路由器可能不尽相同，但都大同小异），服务端口号填写80，也可以自己指定任意空闲端口，IP地址填写Web服务器的局域网IP（192.168.1.106），协议选择TCP，常用服务端口号选择HTTP。生效后任何接入互联网的设备就都可以通过你路由器的公网IP访问你的Web服务器了。<br><img src="/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_7.png" title="路由器设置转发"><br><img src="/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_8.png" title="通过广域网访问服务器"><br>&emsp;&emsp;总结一下，所谓“转发”就是路由器把外来请求下放到局域网中指定的Web服务器，简图如下：<br><img src="/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_9.png" title="终端与服务器的连接"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&amp;emsp;&amp;emsp;怎样才能让别人直接访问我的本地网站，这个问题困扰了我很久，原因在于本机IP为类似于192.168.1.xxx的内网IP，显然在公网（全域网）别人是访问不到这里的。今天我对这三者有了更加深刻、透彻的理解。&lt;br&gt;&amp;emsp;&amp;emsp;最简单的，在同一局域网（如同一WIFI下）的设备可以通过这个本地IP（本文以192.168.1.106为例）访问本机。首先在本机上跑一个WEB服务器软件，这里使用的是Nginx，原因是轻小方便，当然Apache等Web服务器也是可以的。&lt;br&gt;&lt;img src=&quot;/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_1.png&quot; title=&quot;Nginx&quot;&gt;&lt;br&gt;&amp;emsp;&amp;emsp;此时，用浏览器访问Localhost（即&lt;a href=&quot;http://127.0.0.1）即可看到服务器的index.html。&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://127.0.0.1）即可看到服务器的index.html。&lt;/a&gt;&lt;br&gt;&lt;img src=&quot;/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_2.png&quot; title=&quot;本地的Web服务器&quot;&gt;&lt;br&gt;&amp;emsp;&amp;emsp;当然，在同一局域网内的其他设备也可以通过你的局域网IP（Windows下可以用ipconfig命令查看IPv4地址）访问此站。顺便一提IPv4指的就是有四个字段的IP地址（xx.xx.xx.xx），而现在逐渐流行的IPv6，顾名思义就是有六个字段的IP地址（xx.xx.xx.xx.xx.xx）。
-    
-    </summary>
-    
-      <category term="IT" scheme="https://pcninja.cn/categories/IT/"/>
-    
-    
-      <category term="写作" scheme="https://pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
-    
-      <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
-    
-      <category term="Web服务器" scheme="https://pcninja.cn/tags/Web%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-      <category term="局域网" scheme="https://pcninja.cn/tags/%E5%B1%80%E5%9F%9F%E7%BD%91/"/>
-    
-      <category term="路由器" scheme="https://pcninja.cn/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/"/>
     
   </entry>
   
