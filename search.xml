@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[数据结构作业——最大数]]></title>
+    <url>%2F2019%2F05%2Fmaxnumber%2F</url>
+    <content type="text"><![CDATA[最大数时间限制: 1000 ms内存限制: 128 MB 现在请求你维护一个数列，要求提供以下两种操作：1、 查询操作。语法：Q L功能：查询当前数列中末尾L个数中的最大的数，并输出这个数的值。限制：L不超过当前数列的长度。(L &gt; 0)2、 插入操作。语法：A n功能：将n加上t，其中t是最近一次查询操作的答案（如果还未执行过查询操作，则t = 0)，并将所得结果对一个固定的常数D取模，将所得答案插入到数列的末尾。限制：n是整数（可能为负数）并且在长整范围内。 注意：初始时数列是空的，没有一个数。输入格式：第一行两个整数，M和D，其中MM表示操作的个数(M ≤ 200,000)，D如上文中所述，满足(0 &lt; D &lt; 2,000,000,000)接下来的M行，每行一个字符串，描述一个具体的操作。语法如上文所述。 输出格式：对于每一个查询操作，你应该按照顺序依次输出结果，每个结果占一行。 输入样例:1234565 100A 96Q 1A 97Q 1Q 2 输出样例:123969396 代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#include &lt;stdio.h&gt;struct node&#123; int val, pos;&#125; stack[200005];int cnt = 0, top = -1;void push(int val) //压栈，维护单调递减&#123; while(top &gt;= 0 &amp;&amp; stack[top].val &lt;= val) top--; stack[++top].val = val; stack[top].pos = cnt++;&#125;int query(int len) //二分查找&#123; int ans, mid, l = 0, r = top; while(l &lt;= r) &#123; mid = (l + r) / 2; if(stack[mid].pos &gt;= cnt - len) &#123; r = mid - 1; ans = stack[mid].val; &#125; else l = mid + 1; &#125; return ans;&#125;int main()&#123; int m, d, t = 0; long long val; char cmd[2]; scanf("%d%d", &amp;m, &amp;d); while(m--) &#123; scanf("%s%lld", cmd, &amp;val); if(cmd[0] == 'A') push((val + t) % d); else printf("%d\n", t = query(val)); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
+        <tag>数据结构</tag>
+        <tag>算法</tag>
+        <tag>作业</tag>
+        <tag>大学</tag>
+        <tag>单调栈</tag>
+        <tag>二分查找</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[记一个精巧的算法与一段感伤的话]]></title>
     <url>%2F2019%2F05%2Frecord-a-clever-algorithm-and-a-sentimental-remark%2F</url>
     <content type="text"><![CDATA[&emsp;&emsp;5月20号，中午吃饭，看见一道很有意思的题，题面很简单： &emsp;&emsp;给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。 这道题解法颇多，但如果要求时间复杂度为O(n)，空间复杂度为O(1)，问题就似乎变得有挑战性了。&emsp;&emsp;此题的正解非常简单也极其巧妙：将所有元素做异或运算，即a[1] ⊕ a[2] ⊕ a[3] ⊕ … ⊕ a[n]，所得的结果就是那个只出现一次的数字。&emsp;&emsp;原理很好理解：出现2次（可推广为偶数次）的元素经过按位异或后全部变为0，而出现1次（可推广为奇数次）的元素与0进行异或后会被保留。因此所有元素依次异或后得到的结果即为所求。代码如下：12345678// LeetCode No.136int singleNumber(int *nums, int numsSize)&#123; int ans = 0; for(int i = 0; i &lt; numsSize; ++i) ans ^= nums[i]; return ans;&#125; &emsp;&emsp;晚上打完球回到宿舍，看到下面这段话，有所触动，一种难以言状的思绪在心中徘徊。在此把这段话摘录下来： 年轻时你做了一个决定要把生命献给爱情 后来万箭穿心的时候你没事因为青春替你抵了命 青春死了但你还活着可你却再也不会心动了 每个人都要熬过一段付出很多却没有结果的爱情才会一夜之间突然长大 所以不要笑话一个人面无表情你只是没看到过他汹涌的内心]]></content>
@@ -8,8 +25,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>日记</tag>
+        <tag>编程</tag>
         <tag>算法</tag>
         <tag>随笔</tag>
         <tag>情感</tag>
@@ -18,7 +35,7 @@
   <entry>
     <title><![CDATA[数据结构作业——绳子与重物]]></title>
     <url>%2F2019%2F05%2Fropes-and-weights%2F</url>
-    <content type="text"><![CDATA[绳子与重物时间限制: 400 ms内存限制: 64 MB代码长度限制: 16 KB 有N条绳子编号 0 至 N - 1，每条绳子后面栓了一个重物重量为Wi，绳子的最大负重为Ci。每条绳子或挂在别的绳子下或直接挂在钩子上（编号-1）。如果绳子下所有重物的重量大于绳子的最大负重就会断掉（等于不会断）。依次给出每条绳子的负重Ci、重物的重量Wi以及绳子会挂在之前的哪条绳子的下面，问最多挂多少个绳子而不会出现绳子断掉的情况。例如下图： 5, 2, -13, 3, 06, 1, -13, 1, 03, 2, 3 挂到第4个时会有绳子断掉，所以输出3。 输入格式：第1行：1个数N，表示绳子的数量(1 &lt;= N &lt;= 50000)。第2 - N+1行：每行3个数，Ci, Wi, Pi。Ci表示最大负重，Wi表示重物的重量，Pi表示挂在哪个绳子上，如果直接挂在钩子上则Pi = -1（1 &lt;= Ci &lt;= 10^9，1 &lt;= Wi &lt;= 10^9，-1 &lt;= Pi &lt;= N - 2)。 输出格式：输出1个数，最多挂到第几个绳子，不会出现绳子断掉的情况。 输入样例:12345655 2 -13 3 06 1 -13 1 03 2 3 输出样例:13 代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;struct node&#123; int c, w, p, fa; long long sum;&#125;;struct node *a;/* 路径压缩的递归实现，大规模数据可能造成栈溢出int find(int n)&#123; if(a[n].fa != n) a[n].fa = find(a[n].fa); return a[n].fa;&#125;*/// 路径压缩的非递归实现int find(int n)&#123; int root = n, curr = n, temp; while(a[root].fa != root) root = a[root].fa; while(curr != root) &#123; temp = a[curr].fa; a[curr].fa = root; curr = temp; &#125; return root;&#125;int main()&#123; int n, ans; scanf("%d", &amp;n); a = (struct node *)malloc(sizeof(struct node) * n); for(int i = 0; i &lt; n; ++i) &#123; scanf("%d%d%d", &amp;a[i].c, &amp;a[i].w, &amp;a[i].p); a[i].fa = i; a[i].sum = a[i].w; &#125; ans = n-1; for(int i = n-1; i &gt;= 0; --i) &#123; while(a[i].sum &gt; a[i].c) &#123; a[find(ans)].sum -= a[ans].w; ans--; &#125; a[a[i].p].sum += a[i].sum; if(a[i].p &gt; -1) a[i].fa = a[i].p; &#125; printf("%d", ans+1); return 0;&#125;]]></content>
+    <content type="text"><![CDATA[绳子与重物时间限制: 400 ms内存限制: 64 MB 有N条绳子编号 0 至 N - 1，每条绳子后面栓了一个重物重量为Wi，绳子的最大负重为Ci。每条绳子或挂在别的绳子下或直接挂在钩子上（编号-1）。如果绳子下所有重物的重量大于绳子的最大负重就会断掉（等于不会断）。依次给出每条绳子的负重Ci、重物的重量Wi以及绳子会挂在之前的哪条绳子的下面，问最多挂多少个绳子而不会出现绳子断掉的情况。例如下图： 5, 2, -13, 3, 06, 1, -13, 1, 03, 2, 3 挂到第4个时会有绳子断掉，所以输出3。 输入格式：第1行：1个数N，表示绳子的数量(1 &lt;= N &lt;= 50000)。第2 - N+1行：每行3个数，Ci, Wi, Pi。Ci表示最大负重，Wi表示重物的重量，Pi表示挂在哪个绳子上，如果直接挂在钩子上则Pi = -1（1 &lt;= Ci &lt;= 10^9，1 &lt;= Wi &lt;= 10^9，-1 &lt;= Pi &lt;= N - 2)。 输出格式：输出1个数，最多挂到第几个绳子，不会出现绳子断掉的情况。 输入样例:12345655 2 -13 3 06 1 -13 1 03 2 3 输出样例:13 代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;struct node&#123; int c, w, p, fa; long long sum;&#125;;struct node *a;/* 路径压缩的递归实现，大规模数据可能造成栈溢出int find(int n)&#123; if(a[n].fa != n) a[n].fa = find(a[n].fa); return a[n].fa;&#125;*/// 路径压缩的非递归实现int find(int n)&#123; int root = n, curr = n, temp; while(a[root].fa != root) root = a[root].fa; while(curr != root) &#123; temp = a[curr].fa; a[curr].fa = root; curr = temp; &#125; return root;&#125;int main()&#123; int n, ans; scanf("%d", &amp;n); a = (struct node *)malloc(sizeof(struct node) * n); for(int i = 0; i &lt; n; ++i) &#123; scanf("%d%d%d", &amp;a[i].c, &amp;a[i].w, &amp;a[i].p); a[i].fa = i; a[i].sum = a[i].w; &#125; ans = n-1; for(int i = n-1; i &gt;= 0; --i) &#123; while(a[i].sum &gt; a[i].c) &#123; a[find(ans)].sum -= a[ans].w; ans--; &#125; a[a[i].p].sum += a[i].sum; if(a[i].p &gt; -1) a[i].fa = a[i].p; &#125; printf("%d", ans+1); return 0;&#125;]]></content>
       <categories>
         <category>编程</category>
       </categories>
@@ -40,9 +57,9 @@
         <category>学科</category>
       </categories>
       <tags>
-        <tag>数学</tag>
         <tag>作业</tag>
         <tag>大学</tag>
+        <tag>数学</tag>
         <tag>离散数学</tag>
         <tag>复杂度</tag>
       </tags>
@@ -95,7 +112,7 @@
   <entry>
     <title><![CDATA[数据结构作业——地铁一日游]]></title>
     <url>%2F2019%2F04%2Fone-day-metro-tour%2F</url>
-    <content type="text"><![CDATA[地铁一日游时间限制: 550 ms内存限制: 64 MB代码长度限制: 16 KB 森森喜欢坐地铁。这个假期，他终于来到了传说中的地铁之城——魔都，打算好好过一把坐地铁的瘾！魔都地铁的计价规则是：起步价 2 元，出发站与到达站的最短距离（即计费距离）每 K 公里增加 1 元车费。例如取 K = 10，动安寺站离魔都绿桥站为 40 公里，则车费为 2 + 4 = 6 元。为了获得最大的满足感，森森决定用以下的方式坐地铁：在某一站上车（不妨设为地铁站 A），则对于所有车费相同的到达站，森森只会在计费距离最远的站或线路末端站点出站，然后用森森美图 App 在站点外拍一张认证照，再按同样的方式前往下一个站点。坐着坐着，森森突然好奇起来：在给定出发站的情况下（在出发时森森也会拍一张照），他的整个旅程中能够留下哪些站点的认证照？地铁是铁路运输的一种形式，指在地下运行为主的城市轨道交通系统。一般来说，地铁由若干个站点组成，并有多条不同的线路双向行驶，可类比公交车，当两条或更多条线路经过同一个站点时，可进行换乘，更换自己所乘坐的线路。举例来说，魔都 1 号线和 2 号线都经过人民广场站，则乘坐 1 号线到达人民广场时就可以换乘到 2 号线前往 2 号线的各个站点。换乘不需出站（也拍不到认证照），因此森森乘坐地铁时换乘不受限制。输入格式：输入第一行是三个正整数 N、M 和 K，表示魔都地铁有 N 个车站 (1 ≤ N ≤ 200)，M 条线路 (1 ≤ M ≤ 1500)，最短距离每超过 K 公里 (1 ≤ K ≤ 10^6)，加 1 元车费。接下来 M 行，每行由以下格式组成：&lt;站点1&gt;&lt;空格&gt;&lt;距离&gt;&lt;空格&gt;&lt;站点2&gt;&lt;空格&gt;&lt;距离&gt;&lt;空格&gt;&lt;站点3&gt; … &lt;站点X-1&gt;&lt;空格&gt;&lt;距离&gt;&lt;空格&gt;&lt;站点X&gt;其中站点是一个 1 到 N 的编号；两个站点编号之间的距离指两个站在该线路上的距离。两站之间距离是一个不大于 10^6 的正整数。一条线路上的站点互不相同。注意：两个站之间可能有多条直接连接的线路，且距离不一定相等。再接下来有一个正整数 Q (1 ≤ Q ≤ 200)，表示森森尝试从 Q 个站点出发。最后有 Q 行，每行一个正整数 Xi，表示森森尝试从编号为 Xi 的站点出发。 输出格式：对于森森每个尝试的站点，输出一行若干个整数，表示能够到达的站点编号。站点编号从小到大排序。 输入样例:123456786 2 61 6 2 4 3 1 45 6 2 6 642345 输出样例:12341 2 4 5 61 2 3 4 5 61 2 4 5 61 2 4 5 6 代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109#include &lt;stdio.h&gt;int main(void)&#123; int n, m, k, i, j, a; scanf("%d %d %d", &amp;n, &amp;m, &amp;k); //Init D int D[n][n]; for(i = 0; i &lt; n; ++i) for(j = 0; j &lt; n; ++j) D[i][j] = (i == j ? 0 : -1); //Get D int s1, s2, len, terminal[m*2]; char ch; for(i = 0; i &lt; m; ++i) &#123; scanf("%d", &amp;s1); s1--; terminal[i*2] = s1; ch = getchar(); while(ch != '\n') &#123; scanf("%d %d", &amp;len, &amp;s2); s2--; if(D[s1][s2] == -1 || D[s1][s2] &gt; len) &#123; D[s1][s2] = len; D[s2][s1] = D[s1][s2]; &#125; s1 = s2; ch = getchar(); &#125; terminal[i*2 + 1] = s1; &#125; //Floyd for(a = 0; a &lt; n; ++a) for(i = 0; i &lt; n; ++i) for(j = 0; j &lt; n; ++j) if(D[i][a] != -1 &amp;&amp; D[a][j] != -1) if(D[i][j] == -1 || D[i][a] + D[a][j] &lt; D[i][j]) D[i][j] = D[i][a] + D[a][j]; //Preprocess int canArr[n][n]; for(i = 0; i &lt; n; ++i) for(j = 0; j &lt; n; ++j) canArr[i][j] = 0; for(i = 0; i &lt; n; ++i) &#123; for(j = 0; j &lt; m*2; ++j) if(D[i][terminal[j]] != -1) canArr[i][terminal[j]] = 1; for(j = 0; j &lt; n; ++j) &#123; if(j != i) &#123; if(D[i][j] == -1) continue; for(a = 0; a &lt; n; ++a) if(a != i &amp;&amp; a != j) if(D[i][a] != -1 &amp;&amp; D[i][a] / k == D[i][j] / k &amp;&amp; D[i][a] &gt; D[i][j]) break; if(a == n) canArr[i][j] = 1; &#125; &#125; &#125; //Solve Problem int q, start, arr[n], queue[n], head, tail, flag; scanf("%d", &amp;q); for(i = 0; i &lt; q; ++i) &#123; for(j = 0; j &lt; n; ++j) arr[j] = 0; scanf("%d", &amp;start); arr[--start] = 1; head = 0, tail = 0; queue[0] = start; while(head &lt;= tail) &#123; for(j = 0; j &lt; n; ++j) if(!arr[j] &amp;&amp; canArr[queue[head]][j]) &#123; queue[++tail] = j; arr[j] = 1; &#125; head++; &#125; flag = 0; for(j = 0; j &lt; n; ++j) if(arr[j]) &#123; if(flag) printf(" "); else flag = 1; printf("%d", j+1); &#125; printf("\n"); &#125; return 0;&#125;]]></content>
+    <content type="text"><![CDATA[地铁一日游时间限制: 550 ms内存限制: 64 MB 森森喜欢坐地铁。这个假期，他终于来到了传说中的地铁之城——魔都，打算好好过一把坐地铁的瘾！魔都地铁的计价规则是：起步价 2 元，出发站与到达站的最短距离（即计费距离）每 K 公里增加 1 元车费。例如取 K = 10，动安寺站离魔都绿桥站为 40 公里，则车费为 2 + 4 = 6 元。为了获得最大的满足感，森森决定用以下的方式坐地铁：在某一站上车（不妨设为地铁站 A），则对于所有车费相同的到达站，森森只会在计费距离最远的站或线路末端站点出站，然后用森森美图 App 在站点外拍一张认证照，再按同样的方式前往下一个站点。坐着坐着，森森突然好奇起来：在给定出发站的情况下（在出发时森森也会拍一张照），他的整个旅程中能够留下哪些站点的认证照？地铁是铁路运输的一种形式，指在地下运行为主的城市轨道交通系统。一般来说，地铁由若干个站点组成，并有多条不同的线路双向行驶，可类比公交车，当两条或更多条线路经过同一个站点时，可进行换乘，更换自己所乘坐的线路。举例来说，魔都 1 号线和 2 号线都经过人民广场站，则乘坐 1 号线到达人民广场时就可以换乘到 2 号线前往 2 号线的各个站点。换乘不需出站（也拍不到认证照），因此森森乘坐地铁时换乘不受限制。输入格式：输入第一行是三个正整数 N、M 和 K，表示魔都地铁有 N 个车站 (1 ≤ N ≤ 200)，M 条线路 (1 ≤ M ≤ 1500)，最短距离每超过 K 公里 (1 ≤ K ≤ 10^6)，加 1 元车费。接下来 M 行，每行由以下格式组成：&lt;站点1&gt;&lt;空格&gt;&lt;距离&gt;&lt;空格&gt;&lt;站点2&gt;&lt;空格&gt;&lt;距离&gt;&lt;空格&gt;&lt;站点3&gt; … &lt;站点X-1&gt;&lt;空格&gt;&lt;距离&gt;&lt;空格&gt;&lt;站点X&gt;其中站点是一个 1 到 N 的编号；两个站点编号之间的距离指两个站在该线路上的距离。两站之间距离是一个不大于 10^6 的正整数。一条线路上的站点互不相同。注意：两个站之间可能有多条直接连接的线路，且距离不一定相等。再接下来有一个正整数 Q (1 ≤ Q ≤ 200)，表示森森尝试从 Q 个站点出发。最后有 Q 行，每行一个正整数 Xi，表示森森尝试从编号为 Xi 的站点出发。 输出格式：对于森森每个尝试的站点，输出一行若干个整数，表示能够到达的站点编号。站点编号从小到大排序。 输入样例:123456786 2 61 6 2 4 3 1 45 6 2 6 642345 输出样例:12341 2 4 5 61 2 3 4 5 61 2 4 5 61 2 4 5 6 代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109#include &lt;stdio.h&gt;int main(void)&#123; int n, m, k, i, j, a; scanf("%d %d %d", &amp;n, &amp;m, &amp;k); //Init D int D[n][n]; for(i = 0; i &lt; n; ++i) for(j = 0; j &lt; n; ++j) D[i][j] = (i == j ? 0 : -1); //Get D int s1, s2, len, terminal[m*2]; char ch; for(i = 0; i &lt; m; ++i) &#123; scanf("%d", &amp;s1); s1--; terminal[i*2] = s1; ch = getchar(); while(ch != '\n') &#123; scanf("%d %d", &amp;len, &amp;s2); s2--; if(D[s1][s2] == -1 || D[s1][s2] &gt; len) &#123; D[s1][s2] = len; D[s2][s1] = D[s1][s2]; &#125; s1 = s2; ch = getchar(); &#125; terminal[i*2 + 1] = s1; &#125; //Floyd for(a = 0; a &lt; n; ++a) for(i = 0; i &lt; n; ++i) for(j = 0; j &lt; n; ++j) if(D[i][a] != -1 &amp;&amp; D[a][j] != -1) if(D[i][j] == -1 || D[i][a] + D[a][j] &lt; D[i][j]) D[i][j] = D[i][a] + D[a][j]; //Preprocess int canArr[n][n]; for(i = 0; i &lt; n; ++i) for(j = 0; j &lt; n; ++j) canArr[i][j] = 0; for(i = 0; i &lt; n; ++i) &#123; for(j = 0; j &lt; m*2; ++j) if(D[i][terminal[j]] != -1) canArr[i][terminal[j]] = 1; for(j = 0; j &lt; n; ++j) &#123; if(j != i) &#123; if(D[i][j] == -1) continue; for(a = 0; a &lt; n; ++a) if(a != i &amp;&amp; a != j) if(D[i][a] != -1 &amp;&amp; D[i][a] / k == D[i][j] / k &amp;&amp; D[i][a] &gt; D[i][j]) break; if(a == n) canArr[i][j] = 1; &#125; &#125; &#125; //Solve Problem int q, start, arr[n], queue[n], head, tail, flag; scanf("%d", &amp;q); for(i = 0; i &lt; q; ++i) &#123; for(j = 0; j &lt; n; ++j) arr[j] = 0; scanf("%d", &amp;start); arr[--start] = 1; head = 0, tail = 0; queue[0] = start; while(head &lt;= tail) &#123; for(j = 0; j &lt; n; ++j) if(!arr[j] &amp;&amp; canArr[queue[head]][j]) &#123; queue[++tail] = j; arr[j] = 1; &#125; head++; &#125; flag = 0; for(j = 0; j &lt; n; ++j) if(arr[j]) &#123; if(flag) printf(" "); else flag = 1; printf("%d", j+1); &#125; printf("\n"); &#125; return 0;&#125;]]></content>
       <categories>
         <category>编程</category>
       </categories>
@@ -111,7 +128,7 @@
   <entry>
     <title><![CDATA[数据结构作业——天梯地图]]></title>
     <url>%2F2019%2F04%2Fhigh-ladder-map%2F</url>
-    <content type="text"><![CDATA[天梯地图时间限制: 300 ms内存限制: 64 MB代码长度限制: 16 KB 本题要求你实现一个天梯赛专属在线地图，队员输入自己学校所在地和赛场地点后，该地图应该推荐两条路线：一条是最快到达路线；一条是最短距离的路线。题目保证对任意的查询请求，地图上都至少存在一条可达路线。输入格式：输入在第一行给出两个正整数N（2 ≤ N ≤ 500）和M，分别为地图中所有标记地点的个数和连接地点的道路条数。随后M行，每行按如下格式给出一条道路的信息：1V1 V2 one-way length time 其中V1和V2是道路的两个端点的编号（从0到N-1）；如果该道路是从V1到V2的单行线，则one-way为1，否则为0；length是道路的长度；time是通过该路所需要的时间。最后给出一对起点和终点的编号。 输出格式：首先按下列格式输出最快到达的时间T和用节点编号表示的路线：1Time = T: 起点 =&gt; 节点1 =&gt; ... =&gt; 终点 然后在下一行按下列格式输出最短距离D和用节点编号表示的路线：1Distance = D: 起点 =&gt; 节点1 =&gt; ... =&gt; 终点 如果最快到达路线不唯一，则输出几条最快路线中最短的那条，题目保证这条路线是唯一的。而如果最短距离的路线不唯一，则输出途径节点数最少的那条，题目保证这条路线是唯一的。 如果这两条路线是完全一样的，则按下列格式输出：1Time = T; Distance = D: 起点 =&gt; 节点1 =&gt; ... =&gt; 终点 输入样例1：123456789101112131415161710 150 1 0 1 18 0 0 1 14 8 1 1 15 4 0 2 35 9 1 1 40 6 0 1 17 3 1 1 28 3 1 1 22 5 0 2 22 1 1 1 11 5 0 1 31 4 0 1 19 7 1 1 33 1 0 2 56 3 1 2 15 3 输出样例1：12Time = 6: 5 =&gt; 4 =&gt; 8 =&gt; 3Distance = 3: 5 =&gt; 1 =&gt; 3 输入样例2：12345678910117 90 4 1 1 11 6 1 3 12 6 1 1 12 5 1 2 23 0 0 1 13 1 1 3 13 2 1 2 14 5 0 2 26 5 1 2 13 5 输出样例2：1Time = 3; Distance = 4: 3 =&gt; 2 =&gt; 5 代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176177178179180181182183184185186187188189190191192193194195196197198199200201202203204#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;struct Edge&#123; int Target; int Length; int Time; struct Edge *NextEdge;&#125;;struct Vertex&#123; struct Edge *Head; int Known; int Dist; int PathDist; int Time; int PathTime; int VertexNums;&#125;;void ReadGraph(struct Vertex *G, int n, int m)&#123; int begin, target, oneWay, length, time; struct Edge *p; for(int i = 0; i &lt; n; ++i) G[i].Head = NULL; for(int i = 0; i &lt; m; ++i) &#123; scanf("%d %d %d %d %d", &amp;begin, &amp;target, &amp;oneWay, &amp;length, &amp;time); p = G[begin].Head; G[begin].Head = (struct Edge *)malloc(sizeof(struct Edge)); G[begin].Head-&gt;Target = target; G[begin].Head-&gt;Length = length; G[begin].Head-&gt;Time = time; G[begin].Head-&gt;NextEdge = p; if(!oneWay) &#123; p = G[target].Head; G[target].Head = (struct Edge *)malloc(sizeof(struct Edge)); G[target].Head-&gt;Target = begin; G[target].Head-&gt;Length = length; G[target].Head-&gt;Time = time; G[target].Head-&gt;NextEdge = p; &#125; &#125;&#125;void Dijkstra(struct Vertex *G, int n, int begin)&#123; int v, vDist, vTime, vNums; for(int i = 0; i &lt; n; ++i) &#123; G[i].Known = 0; G[i].Dist = G[i].Time = G[i].PathDist = G[i].PathTime = G[i].VertexNums = -1; &#125; G[begin].Dist = G[begin].Time = G[begin].VertexNums = 0; while(1) &#123; v = vTime = -1; for(int i = 0; i &lt; n; ++i) if(!G[i].Known &amp;&amp; G[i].Time != -1) &#123; if(v == -1 || G[i].Time &lt; vTime) &#123; vTime = G[i].Time; vDist = G[i].Dist; v = i; &#125; else if(G[i].Time == vTime &amp;&amp; G[i].Dist &lt; vDist) &#123; vDist = G[i].Dist; v = i; &#125; &#125; if(v == -1) break; G[v].Known = 1; for(struct Edge *p = G[v].Head; p; p = p-&gt;NextEdge) &#123; if(!G[p-&gt;Target].Known) &#123; if(G[p-&gt;Target].Time == -1 || G[v].Time + p-&gt;Time &lt; G[p-&gt;Target].Time) &#123; G[p-&gt;Target].Time = G[v].Time + p-&gt;Time; G[p-&gt;Target].Dist = G[v].Dist + p-&gt;Length; G[p-&gt;Target].PathTime = v; &#125; else if((G[v].Time + p-&gt;Time == G[p-&gt;Target].Time) &amp;&amp; (G[v].Dist + p-&gt;Length &lt; G[p-&gt;Target].Dist)) &#123; G[p-&gt;Target].Dist = G[v].Dist + p-&gt;Length; G[p-&gt;Target].PathTime = v; &#125; &#125; &#125; &#125; for(int i = 0; i &lt; n; ++i) &#123; G[i].Known = 0; G[i].Dist = -1; &#125; G[begin].Dist = 0; while(1) &#123; v = vDist = -1; for(int i = 0; i &lt; n; ++i) if(!G[i].Known &amp;&amp; G[i].Dist != -1) &#123; if(v == -1 || G[i].Dist &lt; vDist) &#123; vDist = G[i].Dist; vNums = G[i].VertexNums; v = i; &#125; else if(G[i].Dist == vDist &amp;&amp; G[i].VertexNums &lt; vNums) &#123; vNums = G[i].VertexNums; v = i; &#125; &#125; if(v == -1) break; G[v].Known = 1; for(struct Edge *p = G[v].Head; p; p = p-&gt;NextEdge) &#123; if(!G[p-&gt;Target].Known) &#123; if(G[p-&gt;Target].Dist == -1 || G[v].Dist + p-&gt;Length &lt; G[p-&gt;Target].Dist) &#123; G[p-&gt;Target].Dist = G[v].Dist + p-&gt;Length; G[p-&gt;Target].VertexNums = G[v].VertexNums + 1; G[p-&gt;Target].PathDist = v; &#125; else if((G[v].Dist + p-&gt;Length == G[p-&gt;Target].Dist) &amp;&amp; (G[v].VertexNums + 1 &lt; G[p-&gt;Target].VertexNums)) &#123; G[p-&gt;Target].VertexNums = G[v].VertexNums + 1; G[p-&gt;Target].PathDist = v; &#125; &#125; &#125; &#125;&#125;void PrintPath(struct Vertex *G, int end, int type)&#123; if(type) &#123; if(G[end].PathDist != -1) &#123; PrintPath(G, G[end].PathDist, 1); printf(" =&gt; %d", end); &#125; &#125; else &#123; if(G[end].PathTime != -1) &#123; PrintPath(G, G[end].PathTime, 0); printf(" =&gt; %d", end); &#125; &#125;&#125;void Output(struct Vertex *G, int begin, int end)&#123; int i = end; while(i != begin) &#123; if(G[i].PathDist != G[i].PathTime) break; i = G[i].PathDist; &#125; if(i == begin) &#123; printf("Time = %d; Distance = %d: %d", G[end].Time, G[end].Dist, begin); PrintPath(G, end, 0); &#125; else &#123; printf("Time = %d: %d", G[end].Time, begin); PrintPath(G, end, 0); printf("\nDistance = %d: %d", G[end].Dist, begin); PrintPath(G, end, 1); &#125;&#125;int main(void)&#123; int n, m, begin, end; scanf("%d %d", &amp;n, &amp;m); struct Vertex G[n]; ReadGraph(G, n, m); scanf("%d %d", &amp;begin, &amp;end); Dijkstra(G, n, begin); Output(G, begin, end); return 0;&#125;]]></content>
+    <content type="text"><![CDATA[天梯地图时间限制: 300 ms内存限制: 64 MB 本题要求你实现一个天梯赛专属在线地图，队员输入自己学校所在地和赛场地点后，该地图应该推荐两条路线：一条是最快到达路线；一条是最短距离的路线。题目保证对任意的查询请求，地图上都至少存在一条可达路线。输入格式：输入在第一行给出两个正整数N（2 ≤ N ≤ 500）和M，分别为地图中所有标记地点的个数和连接地点的道路条数。随后M行，每行按如下格式给出一条道路的信息：1V1 V2 one-way length time 其中V1和V2是道路的两个端点的编号（从0到N-1）；如果该道路是从V1到V2的单行线，则one-way为1，否则为0；length是道路的长度；time是通过该路所需要的时间。最后给出一对起点和终点的编号。 输出格式：首先按下列格式输出最快到达的时间T和用节点编号表示的路线：1Time = T: 起点 =&gt; 节点1 =&gt; ... =&gt; 终点 然后在下一行按下列格式输出最短距离D和用节点编号表示的路线：1Distance = D: 起点 =&gt; 节点1 =&gt; ... =&gt; 终点 如果最快到达路线不唯一，则输出几条最快路线中最短的那条，题目保证这条路线是唯一的。而如果最短距离的路线不唯一，则输出途径节点数最少的那条，题目保证这条路线是唯一的。 如果这两条路线是完全一样的，则按下列格式输出：1Time = T; Distance = D: 起点 =&gt; 节点1 =&gt; ... =&gt; 终点 输入样例1：123456789101112131415161710 150 1 0 1 18 0 0 1 14 8 1 1 15 4 0 2 35 9 1 1 40 6 0 1 17 3 1 1 28 3 1 1 22 5 0 2 22 1 1 1 11 5 0 1 31 4 0 1 19 7 1 1 33 1 0 2 56 3 1 2 15 3 输出样例1：12Time = 6: 5 =&gt; 4 =&gt; 8 =&gt; 3Distance = 3: 5 =&gt; 1 =&gt; 3 输入样例2：12345678910117 90 4 1 1 11 6 1 3 12 6 1 1 12 5 1 2 23 0 0 1 13 1 1 3 13 2 1 2 14 5 0 2 26 5 1 2 13 5 输出样例2：1Time = 3; Distance = 4: 3 =&gt; 2 =&gt; 5 代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176177178179180181182183184185186187188189190191192193194195196197198199200201202203204#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;struct Edge&#123; int Target; int Length; int Time; struct Edge *NextEdge;&#125;;struct Vertex&#123; struct Edge *Head; int Known; int Dist; int PathDist; int Time; int PathTime; int VertexNums;&#125;;void ReadGraph(struct Vertex *G, int n, int m)&#123; int begin, target, oneWay, length, time; struct Edge *p; for(int i = 0; i &lt; n; ++i) G[i].Head = NULL; for(int i = 0; i &lt; m; ++i) &#123; scanf("%d %d %d %d %d", &amp;begin, &amp;target, &amp;oneWay, &amp;length, &amp;time); p = G[begin].Head; G[begin].Head = (struct Edge *)malloc(sizeof(struct Edge)); G[begin].Head-&gt;Target = target; G[begin].Head-&gt;Length = length; G[begin].Head-&gt;Time = time; G[begin].Head-&gt;NextEdge = p; if(!oneWay) &#123; p = G[target].Head; G[target].Head = (struct Edge *)malloc(sizeof(struct Edge)); G[target].Head-&gt;Target = begin; G[target].Head-&gt;Length = length; G[target].Head-&gt;Time = time; G[target].Head-&gt;NextEdge = p; &#125; &#125;&#125;void Dijkstra(struct Vertex *G, int n, int begin)&#123; int v, vDist, vTime, vNums; for(int i = 0; i &lt; n; ++i) &#123; G[i].Known = 0; G[i].Dist = G[i].Time = G[i].PathDist = G[i].PathTime = G[i].VertexNums = -1; &#125; G[begin].Dist = G[begin].Time = G[begin].VertexNums = 0; while(1) &#123; v = vTime = -1; for(int i = 0; i &lt; n; ++i) if(!G[i].Known &amp;&amp; G[i].Time != -1) &#123; if(v == -1 || G[i].Time &lt; vTime) &#123; vTime = G[i].Time; vDist = G[i].Dist; v = i; &#125; else if(G[i].Time == vTime &amp;&amp; G[i].Dist &lt; vDist) &#123; vDist = G[i].Dist; v = i; &#125; &#125; if(v == -1) break; G[v].Known = 1; for(struct Edge *p = G[v].Head; p; p = p-&gt;NextEdge) &#123; if(!G[p-&gt;Target].Known) &#123; if(G[p-&gt;Target].Time == -1 || G[v].Time + p-&gt;Time &lt; G[p-&gt;Target].Time) &#123; G[p-&gt;Target].Time = G[v].Time + p-&gt;Time; G[p-&gt;Target].Dist = G[v].Dist + p-&gt;Length; G[p-&gt;Target].PathTime = v; &#125; else if((G[v].Time + p-&gt;Time == G[p-&gt;Target].Time) &amp;&amp; (G[v].Dist + p-&gt;Length &lt; G[p-&gt;Target].Dist)) &#123; G[p-&gt;Target].Dist = G[v].Dist + p-&gt;Length; G[p-&gt;Target].PathTime = v; &#125; &#125; &#125; &#125; for(int i = 0; i &lt; n; ++i) &#123; G[i].Known = 0; G[i].Dist = -1; &#125; G[begin].Dist = 0; while(1) &#123; v = vDist = -1; for(int i = 0; i &lt; n; ++i) if(!G[i].Known &amp;&amp; G[i].Dist != -1) &#123; if(v == -1 || G[i].Dist &lt; vDist) &#123; vDist = G[i].Dist; vNums = G[i].VertexNums; v = i; &#125; else if(G[i].Dist == vDist &amp;&amp; G[i].VertexNums &lt; vNums) &#123; vNums = G[i].VertexNums; v = i; &#125; &#125; if(v == -1) break; G[v].Known = 1; for(struct Edge *p = G[v].Head; p; p = p-&gt;NextEdge) &#123; if(!G[p-&gt;Target].Known) &#123; if(G[p-&gt;Target].Dist == -1 || G[v].Dist + p-&gt;Length &lt; G[p-&gt;Target].Dist) &#123; G[p-&gt;Target].Dist = G[v].Dist + p-&gt;Length; G[p-&gt;Target].VertexNums = G[v].VertexNums + 1; G[p-&gt;Target].PathDist = v; &#125; else if((G[v].Dist + p-&gt;Length == G[p-&gt;Target].Dist) &amp;&amp; (G[v].VertexNums + 1 &lt; G[p-&gt;Target].VertexNums)) &#123; G[p-&gt;Target].VertexNums = G[v].VertexNums + 1; G[p-&gt;Target].PathDist = v; &#125; &#125; &#125; &#125;&#125;void PrintPath(struct Vertex *G, int end, int type)&#123; if(type) &#123; if(G[end].PathDist != -1) &#123; PrintPath(G, G[end].PathDist, 1); printf(" =&gt; %d", end); &#125; &#125; else &#123; if(G[end].PathTime != -1) &#123; PrintPath(G, G[end].PathTime, 0); printf(" =&gt; %d", end); &#125; &#125;&#125;void Output(struct Vertex *G, int begin, int end)&#123; int i = end; while(i != begin) &#123; if(G[i].PathDist != G[i].PathTime) break; i = G[i].PathDist; &#125; if(i == begin) &#123; printf("Time = %d; Distance = %d: %d", G[end].Time, G[end].Dist, begin); PrintPath(G, end, 0); &#125; else &#123; printf("Time = %d: %d", G[end].Time, begin); PrintPath(G, end, 0); printf("\nDistance = %d: %d", G[end].Dist, begin); PrintPath(G, end, 1); &#125;&#125;int main(void)&#123; int n, m, begin, end; scanf("%d %d", &amp;n, &amp;m); struct Vertex G[n]; ReadGraph(G, n, m); scanf("%d %d", &amp;begin, &amp;end); Dijkstra(G, n, begin); Output(G, begin, end); return 0;&#125;]]></content>
       <categories>
         <category>编程</category>
       </categories>
@@ -146,8 +163,8 @@
         <category>网络</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>网络</tag>
+        <tag>编程</tag>
         <tag>SSL</tag>
         <tag>HTTPS</tag>
         <tag>Node.js</tag>
@@ -162,9 +179,9 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>编程</tag>
-        <tag>网络</tag>
         <tag>Linux</tag>
+        <tag>网络</tag>
+        <tag>编程</tag>
         <tag>Node.js</tag>
         <tag>Express</tag>
         <tag>MongoDB</tag>
@@ -331,9 +348,9 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>红楼梦</tag>
         <tag>评析</tag>
         <tag>读后感</tag>
+        <tag>红楼梦</tag>
       </tags>
   </entry>
   <entry>
@@ -398,9 +415,9 @@
       <tags>
         <tag>写作</tag>
         <tag>高中</tag>
+        <tag>游记</tag>
         <tag>回忆</tag>
         <tag>江苏</tag>
-        <tag>游记</tag>
       </tags>
   </entry>
   <entry>
@@ -412,9 +429,9 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>红楼梦</tag>
         <tag>评析</tag>
         <tag>读后感</tag>
+        <tag>红楼梦</tag>
       </tags>
   </entry>
   <entry>
@@ -473,9 +490,9 @@
       </categories>
       <tags>
         <tag>写作</tag>
+        <tag>毛泽东</tag>
         <tag>评析</tag>
         <tag>读后感</tag>
-        <tag>毛泽东</tag>
       </tags>
   </entry>
   <entry>

@@ -143,20 +143,20 @@
 
 
 
-  <meta name="description" content="绳子与重物时间限制: 400 ms内存限制: 64 MB代码长度限制: 16 KB 有N条绳子编号 0 至 N - 1，每条绳子后面栓了一个重物重量为Wi，绳子的最大负重为Ci。每条绳子或挂在别的绳子下或直接挂在钩子上（编号-1）。如果绳子下所有重物的重量大于绳子的最大负重就会断掉（等于不会断）。依次给出每条绳子的负重Ci、重物的重量Wi以及绳子会挂在之前的哪条绳子的下面，问最多挂多少个绳子而不会">
+  <meta name="description" content="绳子与重物时间限制: 400 ms内存限制: 64 MB 有N条绳子编号 0 至 N - 1，每条绳子后面栓了一个重物重量为Wi，绳子的最大负重为Ci。每条绳子或挂在别的绳子下或直接挂在钩子上（编号-1）。如果绳子下所有重物的重量大于绳子的最大负重就会断掉（等于不会断）。依次给出每条绳子的负重Ci、重物的重量Wi以及绳子会挂在之前的哪条绳子的下面，问最多挂多少个绳子而不会出现绳子断掉的情况。">
 <meta name="keywords" content="编程,数据结构,算法,作业,大学,并查集,路径压缩">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构作业——绳子与重物">
 <meta property="og:url" content="https://pcninja.cn/2019/05/ropes-and-weights/index.html">
 <meta property="og:site_name" content="薯片忍者的小站">
-<meta property="og:description" content="绳子与重物时间限制: 400 ms内存限制: 64 MB代码长度限制: 16 KB 有N条绳子编号 0 至 N - 1，每条绳子后面栓了一个重物重量为Wi，绳子的最大负重为Ci。每条绳子或挂在别的绳子下或直接挂在钩子上（编号-1）。如果绳子下所有重物的重量大于绳子的最大负重就会断掉（等于不会断）。依次给出每条绳子的负重Ci、重物的重量Wi以及绳子会挂在之前的哪条绳子的下面，问最多挂多少个绳子而不会">
+<meta property="og:description" content="绳子与重物时间限制: 400 ms内存限制: 64 MB 有N条绳子编号 0 至 N - 1，每条绳子后面栓了一个重物重量为Wi，绳子的最大负重为Ci。每条绳子或挂在别的绳子下或直接挂在钩子上（编号-1）。如果绳子下所有重物的重量大于绳子的最大负重就会断掉（等于不会断）。依次给出每条绳子的负重Ci、重物的重量Wi以及绳子会挂在之前的哪条绳子的下面，问最多挂多少个绳子而不会出现绳子断掉的情况。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://pcninja.cn/2019/05/ropes-and-weights/1.png">
 <meta property="og:image" content="https://pcninja.cn/2019/05/ropes-and-weights/2.png">
-<meta property="og:updated_time" content="2019-05-18T04:06:54.618Z">
+<meta property="og:updated_time" content="2019-05-25T02:10:24.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构作业——绳子与重物">
-<meta name="twitter:description" content="绳子与重物时间限制: 400 ms内存限制: 64 MB代码长度限制: 16 KB 有N条绳子编号 0 至 N - 1，每条绳子后面栓了一个重物重量为Wi，绳子的最大负重为Ci。每条绳子或挂在别的绳子下或直接挂在钩子上（编号-1）。如果绳子下所有重物的重量大于绳子的最大负重就会断掉（等于不会断）。依次给出每条绳子的负重Ci、重物的重量Wi以及绳子会挂在之前的哪条绳子的下面，问最多挂多少个绳子而不会">
+<meta name="twitter:description" content="绳子与重物时间限制: 400 ms内存限制: 64 MB 有N条绳子编号 0 至 N - 1，每条绳子后面栓了一个重物重量为Wi，绳子的最大负重为Ci。每条绳子或挂在别的绳子下或直接挂在钩子上（编号-1）。如果绳子下所有重物的重量大于绳子的最大负重就会断掉（等于不会断）。依次给出每条绳子的负重Ci、重物的重量Wi以及绳子会挂在之前的哪条绳子的下面，问最多挂多少个绳子而不会出现绳子断掉的情况。">
 <meta name="twitter:image" content="https://pcninja.cn/2019/05/ropes-and-weights/1.png">
 
 
@@ -546,7 +546,7 @@
       
 
       
-        <p><strong>绳子与重物</strong><br>时间限制: 400 ms<br>内存限制: 64 MB<br>代码长度限制: 16 KB</p>
+        <p><strong>绳子与重物</strong><br>时间限制: 400 ms<br>内存限制: 64 MB</p>
 <p>有N条绳子编号 0 至 N - 1，每条绳子后面栓了一个重物重量为Wi，绳子的最大负重为Ci。每条绳子或挂在别的绳子下或直接挂在钩子上（编号-1）。如果绳子下所有重物的重量大于绳子的最大负重就会断掉（等于不会断）。依次给出每条绳子的负重Ci、重物的重量Wi以及绳子会挂在之前的哪条绳子的下面，问最多挂多少个绳子而不会出现绳子断掉的情况。<br><a id="more"></a><br>例如下图：</p>
 <p>5, 2, -1<br>3, 3, 0<br>6, 1, -1<br>3, 1, 0<br>3, 2, 3</p>
 <div class="image-size-50"><img src="/2019/05/ropes-and-weights/1.png"></div>
@@ -686,7 +686,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -874,7 +874,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">70</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">72</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

@@ -143,18 +143,18 @@
 
 
 
-  <meta name="description" content="天梯地图时间限制: 300 ms内存限制: 64 MB代码长度限制: 16 KB 本题要求你实现一个天梯赛专属在线地图，队员输入自己学校所在地和赛场地点后，该地图应该推荐两条路线：一条是最快到达路线；一条是最短距离的路线。题目保证对任意的查询请求，地图上都至少存在一条可达路线。">
+  <meta name="description" content="天梯地图时间限制: 300 ms内存限制: 64 MB 本题要求你实现一个天梯赛专属在线地图，队员输入自己学校所在地和赛场地点后，该地图应该推荐两条路线：一条是最快到达路线；一条是最短距离的路线。题目保证对任意的查询请求，地图上都至少存在一条可达路线。">
 <meta name="keywords" content="编程,数据结构,算法,作业,大学,Dijkstra">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构作业——天梯地图">
 <meta property="og:url" content="https://pcninja.cn/2019/04/high-ladder-map/index.html">
 <meta property="og:site_name" content="薯片忍者的小站">
-<meta property="og:description" content="天梯地图时间限制: 300 ms内存限制: 64 MB代码长度限制: 16 KB 本题要求你实现一个天梯赛专属在线地图，队员输入自己学校所在地和赛场地点后，该地图应该推荐两条路线：一条是最快到达路线；一条是最短距离的路线。题目保证对任意的查询请求，地图上都至少存在一条可达路线。">
+<meta property="og:description" content="天梯地图时间限制: 300 ms内存限制: 64 MB 本题要求你实现一个天梯赛专属在线地图，队员输入自己学校所在地和赛场地点后，该地图应该推荐两条路线：一条是最快到达路线；一条是最短距离的路线。题目保证对任意的查询请求，地图上都至少存在一条可达路线。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-15T01:46:28.584Z">
+<meta property="og:updated_time" content="2019-05-25T02:10:06.398Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构作业——天梯地图">
-<meta name="twitter:description" content="天梯地图时间限制: 300 ms内存限制: 64 MB代码长度限制: 16 KB 本题要求你实现一个天梯赛专属在线地图，队员输入自己学校所在地和赛场地点后，该地图应该推荐两条路线：一条是最快到达路线；一条是最短距离的路线。题目保证对任意的查询请求，地图上都至少存在一条可达路线。">
+<meta name="twitter:description" content="天梯地图时间限制: 300 ms内存限制: 64 MB 本题要求你实现一个天梯赛专属在线地图，队员输入自己学校所在地和赛场地点后，该地图应该推荐两条路线：一条是最快到达路线；一条是最短距离的路线。题目保证对任意的查询请求，地图上都至少存在一条可达路线。">
 
 
 
@@ -543,7 +543,7 @@
       
 
       
-        <p><strong>天梯地图</strong><br>时间限制: 300 ms<br>内存限制: 64 MB<br>代码长度限制: 16 KB</p>
+        <p><strong>天梯地图</strong><br>时间限制: 300 ms<br>内存限制: 64 MB</p>
 <p>本题要求你实现一个天梯赛专属在线地图，队员输入自己学校所在地和赛场地点后，该地图应该推荐两条路线：一条是最快到达路线；一条是最短距离的路线。题目保证对任意的查询请求，地图上都至少存在一条可达路线。<br><a id="more"></a><br><strong>输入格式：</strong><br>输入在第一行给出两个正整数<code>N</code>（2 ≤ <code>N</code> ≤ 500）和<code>M</code>，分别为地图中所有标记地点的个数和连接地点的道路条数。随后<code>M</code>行，每行按如下格式给出一条道路的信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">V1 V2 one-way length time</span><br></pre></td></tr></table></figure></p>
 <p>其中<code>V1</code>和<code>V2</code>是道路的两个端点的编号（从0到<code>N</code>-1）；如果该道路是从<code>V1</code>到<code>V2</code>的单行线，则<code>one-way</code>为1，否则为0；<code>length</code>是道路的长度；<code>time</code>是通过该路所需要的时间。最后给出一对起点和终点的编号。</p>
 <p><strong>输出格式：</strong><br>首先按下列格式输出最快到达的时间<code>T</code>和用节点编号表示的路线：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Time = T: 起点 =&gt; 节点1 =&gt; ... =&gt; 终点</span><br></pre></td></tr></table></figure></p>
@@ -681,7 +681,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -869,7 +869,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">70</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">72</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
