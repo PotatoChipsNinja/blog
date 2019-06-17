@@ -92,9 +92,9 @@
         <category>学科</category>
       </categories>
       <tags>
+        <tag>数学</tag>
         <tag>作业</tag>
         <tag>大学</tag>
-        <tag>数学</tag>
         <tag>离散数学</tag>
         <tag>复杂度</tag>
       </tags>
@@ -193,7 +193,7 @@
   <entry>
     <title><![CDATA[申请Let's Encrypt免费SSL证书并在Node.js建立HTTPS服务]]></title>
     <url>%2F2018%2F11%2Fletsencrypt-certificates-and-https-in-nodejs%2F</url>
-    <content type="text"><![CDATA[前言 &emsp;&emsp;为了更安全地传输，我们往往需要建立HTTPS连接。我们可以利用OpenSSL创建自签名的证书，但创建自己的CA机构并不安全也不被各大浏览器承认。目前有不少免费SSL证书提供商，其中最流行的便是Let’s Encrypt（官网），下面是关于如何申请Let’s Encrypt免费SSL证书并用Node.js建立一个HTTPS服务器。 申请Let’s Encrypt免费SSL证书Let’s Encrypt官方推荐使用Certbot ACME客户端。它可以自动执行证书颁发和安装，无需停机且易于使用。 首先安装certbot通过SSH连接到你的VPS或云服务器，确保已经安装了Python及Git。本文以CentOS为例，其他发行版大同小异。1$ sudo yum install certbot 获取证书首先停止你服务器上的服务，保证80端口没有被占用并且你的域名被正确解析到你的服务器，否则在证书获取过程中会出现错误。1$ sudo certbot certonly --standalone -d diunar.tk -d www.diunar.tk #把diunar.tk换成你的域名 当看到“Congratulations”字样时，代表你已经成功申请到Let’s Encrypt的免费SSL证书，证书有效期是90天，后面会讲如何&nbsp;续命&nbsp;延期。证书文件被保存到了/etc/letsencrypt/live/你的域名/，其中的fullchain.pem和privkey.pem是我们接下来需要用到的完整证书链及私钥 如果你希望在Nginx或Apache等Web服务器上应用你的SSL请在Certbot的官网上查看方法。下面我们用Node.js编写服务器建立HTTPS服务 通过Node.js建立HTTPS服务 为了方便，我们使用Express框架，因此需要安装Express： 1$ npm install express 创建index.js： 1234567891011121314151617181920212223242526const express = require('express')const fs = require('fs')const http = require('http')const https = require('https')const app = express()const port = 80 //HTTP访问端口号，默认80，可更改为你希望的端口号const SSLport = 443 //HTTPS访问端口号，默认443，可更改为你希望的端口号const options = &#123; key: fs.readFileSync('/etc/letsencrypt/live/diunar.tk/privkey.pem'), //异步读取私钥文件 cert: fs.readFileSync('/etc/letsencrypt/live/diunar.tk/fullchain.pem'), //异步读取证书文件 requestCert: false, //是否请求客户端证书 rejectUnauthorized: false //是否拒绝无信任CA颁发的证书的客户端连接请求&#125;http.createServer(app).listen(port, () =&gt; console.log(`HTTP server is listening on port $&#123;port&#125;`)) //创建http服务监听https.createServer(options, app).listen(SSLport, () =&gt; console.log(`HTTPS server is listening on port $&#123;SSLport&#125;`)) //创建https服务监听app.get('/', function(req, res) &#123; if (req.protocol == 'https') &#123; res.send("This is HTTPS Server") &#125; else &#123; res.send("This is HTTP Server") &#125;&#125;) 如果不需要HTTP服务可以删除http.createServer(app)，只保留HTTPS服务 运行Node.js服务123$ node index.jsHTTP server is listening on port 80HTTPS server is listening on port 443 在浏览器分别通过http://和https://协议访问你的域名，看看有什么区别： 通过浏览器可以看到我们与服务器建立的是密文传输连接： 大功告成之后，别忘了每隔90天通过certbot renew命令进行证书的续订。你也可以设置自动续订，具体方法请见Certbot官网。]]></content>
+    <content type="text"><![CDATA[前言 &emsp;&emsp;为了更安全地传输，我们往往需要建立HTTPS连接。我们可以利用OpenSSL创建自签名的证书，但创建自己的CA机构并不安全也不被各大浏览器承认。目前有不少免费SSL证书提供商，其中最流行的便是Let’s Encrypt（官网），下面是关于如何申请Let’s Encrypt免费SSL证书并用Node.js建立一个HTTPS服务器。 申请Let’s Encrypt免费SSL证书Let’s Encrypt官方推荐使用Certbot ACME客户端。它可以自动执行证书颁发和安装，无需停机且易于使用。 首先安装certbot通过SSH连接到你的VPS或云服务器，确保已经安装了Python及Git。本文以CentOS为例，其他发行版大同小异。 1$ sudo yum install certbot 获取证书首先停止你服务器上的服务，保证80端口没有被占用并且你的域名被正确解析到你的服务器，否则在证书获取过程中会出现错误。 1$ sudo certbot certonly --standalone -d diunar.tk -d www.diunar.tk #把diunar.tk换成你的域名 当看到“Congratulations”字样时，代表你已经成功申请到Let’s Encrypt的免费SSL证书，证书有效期是90天，后面会讲如何&nbsp;续命&nbsp;延期。证书文件被保存到了/etc/letsencrypt/live/你的域名/，其中的fullchain.pem和privkey.pem是我们接下来需要用到的完整证书链及私钥 如果你希望在Nginx或Apache等Web服务器上应用你的SSL请在Certbot的官网上查看方法。下面我们用Node.js编写服务器建立HTTPS服务 通过Node.js建立HTTPS服务 为了方便，我们使用Express框架，因此需要安装Express： 1$ npm install express 创建index.js： 1234567891011121314151617181920212223242526const express = require('express')const fs = require('fs')const http = require('http')const https = require('https')const app = express()const port = 80 //HTTP访问端口号，默认80，可更改为你希望的端口号const SSLport = 443 //HTTPS访问端口号，默认443，可更改为你希望的端口号const options = &#123; key: fs.readFileSync('/etc/letsencrypt/live/diunar.tk/privkey.pem'), //异步读取私钥文件 cert: fs.readFileSync('/etc/letsencrypt/live/diunar.tk/fullchain.pem'), //异步读取证书文件 requestCert: false, //是否请求客户端证书 rejectUnauthorized: false //是否拒绝无信任CA颁发的证书的客户端连接请求&#125;http.createServer(app).listen(port, () =&gt; console.log(`HTTP server is listening on port $&#123;port&#125;`)) //创建http服务监听https.createServer(options, app).listen(SSLport, () =&gt; console.log(`HTTPS server is listening on port $&#123;SSLport&#125;`)) //创建https服务监听app.get('/', function(req, res) &#123; if (req.protocol == 'https') &#123; res.send("This is HTTPS Server") &#125; else &#123; res.send("This is HTTP Server") &#125;&#125;) 如果不需要HTTP服务可以删除http.createServer(app)，只保留HTTPS服务 运行Node.js服务123$ node index.jsHTTP server is listening on port 80HTTPS server is listening on port 443 在浏览器分别通过http://和https://协议访问你的域名，看看有什么区别： 通过浏览器可以看到我们与服务器建立的是密文传输连接： 大功告成之后，别忘了每隔90天通过certbot renew命令进行证书的续订。你也可以设置自动续订，具体方法请见Certbot官网。]]></content>
       <categories>
         <category>网络</category>
       </categories>
@@ -214,8 +214,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>Linux</tag>
+        <tag>编程</tag>
         <tag>网络</tag>
         <tag>Node.js</tag>
         <tag>Express</tag>
@@ -268,8 +268,8 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>杂谈</tag>
         <tag>生活</tag>
+        <tag>杂谈</tag>
         <tag>转载</tag>
         <tag>人生</tag>
       </tags>
@@ -299,8 +299,8 @@
         <category>文学</category>
       </categories>
       <tags>
-        <tag>主播</tag>
         <tag>写作</tag>
+        <tag>主播</tag>
         <tag>杂谈</tag>
         <tag>职业</tag>
       </tags>
@@ -449,10 +449,10 @@
       </categories>
       <tags>
         <tag>写作</tag>
+        <tag>高中</tag>
+        <tag>游记</tag>
         <tag>回忆</tag>
         <tag>江苏</tag>
-        <tag>游记</tag>
-        <tag>高中</tag>
       </tags>
   </entry>
   <entry>
@@ -479,11 +479,11 @@
       <tags>
         <tag>C</tag>
         <tag>编程</tag>
-        <tag>高中</tag>
         <tag>探究</tag>
         <tag>数学</tag>
         <tag>汉诺塔</tag>
         <tag>论文</tag>
+        <tag>高中</tag>
       </tags>
   </entry>
   <entry>
