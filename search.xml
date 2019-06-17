@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[数据结构考试——链表去重]]></title>
+    <url>%2F2019%2F06%2Flinked-list-duplicate-removal%2F</url>
+    <content type="text"><![CDATA[链表去重时间限制: 400 ms内存限制: 64 MB 给定一个带整数键值的链表 L，你需要把其中绝对值重复的键值结点删掉。即对每个键值 K，只有第一个绝对值等于 K 的结点被保留。同时，所有被删除的结点须被保存在另一个链表上。例如给定 L 为 21→-15→-15→-7→15，你需要输出去重后的链表 21→-15→-7，还有被删除的链表 -15→15。输入格式：输入在第一行给出 L 的第一个结点的地址和一个正整数 N（≤10^5，为结点总数）。一个结点的地址是非负的 5 位整数，空地址 NULL 用 -1 来表示。随后 N 行，每行按以下格式描述一个结点：1地址 键值 下一个结点 其中地址是该结点的地址，键值是绝对值不超过10^4的整数，下一个结点是下个结点的地址。 输出格式：首先输出去重后的链表，然后输出被删除的链表。每个结点占一行，按输入的格式输出。 输入样例:12345600100 599999 -7 8765423854 -15 0000087654 15 -100000 -15 9999900100 21 23854 输出样例:1234500100 21 2385423854 -15 9999999999 -7 -100000 -15 8765487654 15 -1 代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;struct node&#123; int val; int next;&#125; ram[100005];int exist[100005] = &#123;0&#125;;int main()&#123; int start, n, addr, val, next; scanf("%d%d", &amp;start, &amp;n); for(int i = 0; i &lt; n; ++i) &#123; scanf("%d%d%d", &amp;addr, &amp;val, &amp;next); ram[addr].val = val; ram[addr].next = next; &#125; int a[n], na = 1, b[n], nb = 0; a[0] = start; exist[abs(ram[start].val)] = 1; for(int i = ram[start].next; i != -1; i = ram[i].next) &#123; if(!exist[abs(ram[i].val)]) &#123; exist[abs(ram[i].val)]++; a[na++] = i; &#125; else b[nb++] = i; &#125; for(int i = 0; i &lt; na; ++i) &#123; printf("%05d %d ", a[i], ram[a[i]].val); if(i == na-1) printf("-1\n"); else printf("%05d\n", a[i+1]); &#125; for(int i = 0; i &lt; nb; ++i) &#123; printf("%05d %d ", b[i], ram[b[i]].val); if(i == nb-1) printf("-1\n"); else printf("%05d\n", b[i+1]); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
+        <tag>数据结构</tag>
+        <tag>算法</tag>
+        <tag>作业</tag>
+        <tag>大学</tag>
+        <tag>链表</tag>
+        <tag>Hash</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[数据结构考试——关于堆的判断]]></title>
+    <url>%2F2019%2F06%2Fjudgment-of-heap%2F</url>
+    <content type="text"><![CDATA[关于堆的判断时间限制: 400 ms内存限制: 64 MB 将一系列给定数字顺序插入一个初始为空的小顶堆H[]。随后判断一系列相关命题是否为真。命题分下列几种： x is the root：x是根结点； x and y are siblings：x和y是兄弟结点； x is the parent of y：x是y的父结点； x is a child of y：x是y的一个子结点。 输入格式：每组测试第1行包含2个正整数N（≤ 1000）和M（≤ 20），分别是插入元素的个数、以及需要判断的命题数。下一行给出区间[−10000,10000]内的N个要被插入一个初始为空的小顶堆的整数。之后M行，每行给出一个命题。题目保证命题中的结点键值都是存在的。 输出格式：对输入的每个命题，如果其为真，则在一行中输出T，否则输出F。 输入样例:1234565 446 23 26 24 1024 is the root26 and 23 are siblings46 is the parent of 2323 is a child of 10 输出样例:1234FTFT 代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879#include &lt;stdio.h&gt;int H[1005], ind[20005];void adj(int start, int end) //向下调整&#123; int rc = H[start]; int s = start; for(int j = start * 2; j &lt;= end; j *= 2) &#123; if(j &lt; end &amp;&amp; H[j+1] &lt; H[j]) j++; if(rc &gt; H[j]) &#123; H[s] = H[j]; s = j; &#125; else break; &#125; H[s] = rc; return;&#125;int main()&#123; int n, m; scanf("%d%d", &amp;n, &amp;m); for(int i = 0; i &lt; n; ++i) &#123; scanf("%d", &amp;H[i+1]); for(int j = (i+1)/2; j &gt; 0; --j) //每次插入后都需要向上调整成小根堆 adj(j, i+1); &#125; //存储索引 for(int i = 0; i &lt; n; ++i) ind[H[i+1] + 10000] = i+1; int a, b, ans = 0; char comm[10]; while(m--) &#123; ans = 0; scanf("%d%s", &amp;a, comm); if(comm[0] == 'a') &#123; scanf("%d%*s%*s", &amp;b); if(ind[a + 10000] / 2 == ind[b + 10000] / 2) ans = 1; &#125; else &#123; scanf("%s", comm); if(comm[0] == 'a') &#123; scanf("%*s%*s%d", &amp;b); if(ind[a + 10000] / 2 == ind[b + 10000]) ans = 1; &#125; else &#123; scanf("%s", comm); if(comm[0] == 'r') &#123; if(ind[a + 10000] == 1) ans = 1; &#125; else &#123; scanf("%*s%d", &amp;b); if(ind[b + 10000] / 2 == ind[a + 10000]) ans = 1; &#125; &#125; &#125; printf("%c\n", ans ? 'T' : 'F'); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
+        <tag>数据结构</tag>
+        <tag>算法</tag>
+        <tag>作业</tag>
+        <tag>大学</tag>
+        <tag>堆</tag>
+        <tag>二叉树</tag>
+        <tag>最小堆</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[数据结构作业——最大数]]></title>
     <url>%2F2019%2F05%2Fmaxnumber%2F</url>
     <content type="text"><![CDATA[最大数时间限制: 1000 ms内存限制: 128 MB 现在请求你维护一个数列，要求提供以下两种操作：1、 查询操作。语法：Q L功能：查询当前数列中末尾L个数中的最大的数，并输出这个数的值。限制：L不超过当前数列的长度。(L &gt; 0)2、 插入操作。语法：A n功能：将n加上t，其中t是最近一次查询操作的答案（如果还未执行过查询操作，则t = 0)，并将所得结果对一个固定的常数D取模，将所得答案插入到数列的末尾。限制：n是整数（可能为负数）并且在长整范围内。 注意：初始时数列是空的，没有一个数。输入格式：第一行两个整数，M和D，其中MM表示操作的个数(M ≤ 200,000)，D如上文中所述，满足(0 &lt; D &lt; 2,000,000,000)接下来的M行，每行一个字符串，描述一个具体的操作。语法如上文所述。 输出格式：对于每一个查询操作，你应该按照顺序依次输出结果，每个结果占一行。 输入样例:1234565 100A 96Q 1A 97Q 1Q 2 输出样例:123969396 代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#include &lt;stdio.h&gt;struct node&#123; int val, pos;&#125; stack[200005];int cnt = 0, top = -1;void push(int val) //压栈，维护单调递减&#123; while(top &gt;= 0 &amp;&amp; stack[top].val &lt;= val) top--; stack[++top].val = val; stack[top].pos = cnt++;&#125;int query(int len) //二分查找&#123; int ans, mid, l = 0, r = top; while(l &lt;= r) &#123; mid = (l + r) / 2; if(stack[mid].pos &gt;= cnt - len) &#123; r = mid - 1; ans = stack[mid].val; &#125; else l = mid + 1; &#125; return ans;&#125;int main()&#123; int m, d, t = 0; long long val; char cmd[2]; scanf("%d%d", &amp;m, &amp;d); while(m--) &#123; scanf("%s%lld", cmd, &amp;val); if(cmd[0] == 'A') push((val + t) % d); else printf("%d\n", t = query(val)); &#125; return 0;&#125;]]></content>
@@ -25,8 +60,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>日记</tag>
         <tag>编程</tag>
+        <tag>日记</tag>
         <tag>算法</tag>
         <tag>随笔</tag>
         <tag>情感</tag>
@@ -163,8 +198,8 @@
         <category>网络</category>
       </categories>
       <tags>
-        <tag>网络</tag>
         <tag>编程</tag>
+        <tag>网络</tag>
         <tag>SSL</tag>
         <tag>HTTPS</tag>
         <tag>Node.js</tag>
@@ -179,9 +214,9 @@
         <category>编程</category>
       </categories>
       <tags>
+        <tag>编程</tag>
         <tag>Linux</tag>
         <tag>网络</tag>
-        <tag>编程</tag>
         <tag>Node.js</tag>
         <tag>Express</tag>
         <tag>MongoDB</tag>
@@ -264,8 +299,8 @@
         <category>文学</category>
       </categories>
       <tags>
-        <tag>写作</tag>
         <tag>主播</tag>
+        <tag>写作</tag>
         <tag>杂谈</tag>
         <tag>职业</tag>
       </tags>
@@ -414,10 +449,10 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>高中</tag>
-        <tag>游记</tag>
         <tag>回忆</tag>
         <tag>江苏</tag>
+        <tag>游记</tag>
+        <tag>高中</tag>
       </tags>
   </entry>
   <entry>
@@ -444,11 +479,11 @@
       <tags>
         <tag>C</tag>
         <tag>编程</tag>
+        <tag>高中</tag>
         <tag>探究</tag>
         <tag>数学</tag>
         <tag>汉诺塔</tag>
         <tag>论文</tag>
-        <tag>高中</tag>
       </tags>
   </entry>
   <entry>
