@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pcninja.cn/"/>
-  <updated>2019-07-07T13:26:12.105Z</updated>
+  <updated>2019-07-15T13:36:14.392Z</updated>
   <id>https://pcninja.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【备忘】 SS代理服务器配置及优化</title>
+    <link href="https://pcninja.cn/2019/07/configuration-and-optimization-of-ss-proxy-server/"/>
+    <id>https://pcninja.cn/2019/07/configuration-and-optimization-of-ss-proxy-server/</id>
+    <published>2019-07-15T12:41:21.000Z</published>
+    <updated>2019-07-15T13:36:14.392Z</updated>
+    
+    <content type="html"><![CDATA[<p>&emsp;&emsp;由于Vultr日本节点大量被墙，所以被迫转投DigitalOcean，最便宜的是5刀一个月，但首充5刀后会送50刀，再加上Github教育礼包里包含的50刀优惠（需要验证教育邮箱、上传学生证照片），所以算下来几乎可以白嫖两年，岂不美滋滋。美中不足是DigitalOcean的系统快照占用的存储空间是要另付费的，所以每次换IP开新机就需要重新配置代理服务器，这里简单记录一下流程和命令，方便以后复制。<br><a id="more"></a></p><blockquote><p>以Ubuntu 18.04搭建SS服务为例，如果今后SS情势不好可能会换用V2Ray</p></blockquote><h2 id="安装及配置"><a href="#安装及配置" class="headerlink" title="安装及配置"></a>安装及配置</h2><p>项目地址：<a href="https://github.com/shadowsocks/shadowsocks/tree/master" target="_blank" rel="noopener">https://github.com/shadowsocks/shadowsocks/tree/master</a><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 从源更新软件列表</span><br><span class="line">apt-get update</span><br><span class="line"><span class="meta">#</span> 安装pip</span><br><span class="line">apt-get install python-pip</span><br><span class="line"><span class="meta">#</span> pip安装SS</span><br><span class="line">pip install git+https://github.com/shadowsocks/shadowsocks.git@master</span><br></pre></td></tr></table></figure></p><p>安装完成后可以建两个脚本<code>start.sh</code>、<code>stop.sh</code>方便控制服务开关（或编写json配置文件，反而麻烦）<br>start.sh：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ssserver -p 端口 -k 密码 -m aes-256-cfb --user nobody -d start</span><br></pre></td></tr></table></figure></p><p>stop.sh：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ssserver -d stop</span><br></pre></td></tr></table></figure></p><p>最后还要给这两个脚本赋予执行权限<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x start.sh stop.sh    # 或直接chmod 777</span><br></pre></td></tr></table></figure></p><p>开启服务之前可以做以下优化，提高带宽利用率</p><h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>首先按照官方Wiki上的教程进行优化，地址：<a href="https://github.com/shadowsocks/shadowsocks/wiki/Optimizing-Shadowsocks" target="_blank" rel="noopener">https://github.com/shadowsocks/shadowsocks/wiki/Optimizing-Shadowsocks</a><br>创建<code>/etc/sysctl.d/local.conf</code>并写入以下配置：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> max open files</span><br><span class="line">fs.file-max = 51200</span><br><span class="line"><span class="meta">#</span> max read buffer</span><br><span class="line">net.core.rmem_max = 67108864</span><br><span class="line"><span class="meta">#</span> max write buffer</span><br><span class="line">net.core.wmem_max = 67108864</span><br><span class="line"><span class="meta">#</span> default read buffer</span><br><span class="line">net.core.rmem_default = 65536</span><br><span class="line"><span class="meta">#</span> default write buffer</span><br><span class="line">net.core.wmem_default = 65536</span><br><span class="line"><span class="meta">#</span> max processor input queue</span><br><span class="line">net.core.netdev_max_backlog = 4096</span><br><span class="line"><span class="meta">#</span> max backlog</span><br><span class="line">net.core.somaxconn = 4096</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> resist SYN flood attacks</span><br><span class="line">net.ipv4.tcp_syncookies = 1</span><br><span class="line"><span class="meta">#</span> reuse timewait sockets when safe</span><br><span class="line">net.ipv4.tcp_tw_reuse = 1</span><br><span class="line"><span class="meta">#</span> turn off fast timewait sockets recycling</span><br><span class="line">net.ipv4.tcp_tw_recycle = 0</span><br><span class="line"><span class="meta">#</span> short FIN timeout</span><br><span class="line">net.ipv4.tcp_fin_timeout = 30</span><br><span class="line"><span class="meta">#</span> short keepalive time</span><br><span class="line">net.ipv4.tcp_keepalive_time = 1200</span><br><span class="line"><span class="meta">#</span> outbound port range</span><br><span class="line">net.ipv4.ip_local_port_range = 10000 65000</span><br><span class="line"><span class="meta">#</span> max SYN backlog</span><br><span class="line">net.ipv4.tcp_max_syn_backlog = 4096</span><br><span class="line"><span class="meta">#</span> max timewait sockets held by system simultaneously</span><br><span class="line">net.ipv4.tcp_max_tw_buckets = 5000</span><br><span class="line"><span class="meta">#</span> turn on TCP Fast Open on both client and server side</span><br><span class="line">net.ipv4.tcp_fastopen = 3</span><br><span class="line"><span class="meta">#</span> TCP receive buffer</span><br><span class="line">net.ipv4.tcp_rmem = 4096 87380 67108864</span><br><span class="line"><span class="meta">#</span> TCP write buffer</span><br><span class="line">net.ipv4.tcp_wmem = 4096 65536 67108864</span><br><span class="line"><span class="meta">#</span> turn on path MTU discovery</span><br><span class="line">net.ipv4.tcp_mtu_probing = 1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> for high-latency network</span><br><span class="line">net.ipv4.tcp_congestion_control = hybla</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> for low-latency network, use cubic instead</span><br><span class="line"><span class="meta">#</span> net.ipv4.tcp_congestion_control = cubic</span><br></pre></td></tr></table></figure></p><p>最后的<code>net.ipv4.tcp_congestion_control</code>选择<code>hybla</code>还是<code>cubic</code>取决于服务器延迟的高低<br>然后加载我们写好的配置文件：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl --system</span><br></pre></td></tr></table></figure></p><p>接下来是启用TCP BBR拥塞控制算法，可以用来取代ServerSpeeder<br>已经有人做好了傻瓜式脚本，我们只需要根据提示操作：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; ./bbr.sh</span><br></pre></td></tr></table></figure></p><p>使用<code>lsmod | grep bbr</code>查看系统模块，若返回<code>tcp_bbr</code>说明BBR已启动</p><p>这时我们就可以运行<code>start.sh</code>，开启代理服务，进行科学上网了</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&amp;emsp;&amp;emsp;由于Vultr日本节点大量被墙，所以被迫转投DigitalOcean，最便宜的是5刀一个月，但首充5刀后会送50刀，再加上Github教育礼包里包含的50刀优惠（需要验证教育邮箱、上传学生证照片），所以算下来几乎可以白嫖两年，岂不美滋滋。美中不足是DigitalOcean的系统快照占用的存储空间是要另付费的，所以每次换IP开新机就需要重新配置代理服务器，这里简单记录一下流程和命令，方便以后复制。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="网络" scheme="https://pcninja.cn/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="Linux" scheme="https://pcninja.cn/tags/Linux/"/>
+    
+      <category term="服务器" scheme="https://pcninja.cn/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="代理" scheme="https://pcninja.cn/tags/%E4%BB%A3%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>写在十八岁的最后一天</title>
@@ -180,11 +206,11 @@
       <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
-    
       <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
       <category term="算法" scheme="https://pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
     
       <category term="随笔" scheme="https://pcninja.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
@@ -245,11 +271,11 @@
       <category term="学科" scheme="https://pcninja.cn/categories/%E5%AD%A6%E7%A7%91/"/>
     
     
-      <category term="数学" scheme="https://pcninja.cn/tags/%E6%95%B0%E5%AD%A6/"/>
-    
       <category term="作业" scheme="https://pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
     
       <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
+    
+      <category term="数学" scheme="https://pcninja.cn/tags/%E6%95%B0%E5%AD%A6/"/>
     
       <category term="离散数学" scheme="https://pcninja.cn/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/"/>
     
@@ -435,11 +461,11 @@
       <category term="生活" scheme="https://pcninja.cn/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
+      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
+    
       <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
     
       <category term="生活" scheme="https://pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
       <category term="随笔" scheme="https://pcninja.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
@@ -465,9 +491,9 @@
       <category term="网络" scheme="https://pcninja.cn/categories/%E7%BD%91%E7%BB%9C/"/>
     
     
-      <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
-    
       <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
     
       <category term="SSL" scheme="https://pcninja.cn/tags/SSL/"/>
     
@@ -503,11 +529,11 @@
       <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
-    
       <category term="Linux" scheme="https://pcninja.cn/tags/Linux/"/>
     
       <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
     
       <category term="Node.js" scheme="https://pcninja.cn/tags/Node-js/"/>
     
@@ -622,50 +648,13 @@
       <category term="生活" scheme="https://pcninja.cn/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="生活" scheme="https://pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
-    
       <category term="杂谈" scheme="https://pcninja.cn/tags/%E6%9D%82%E8%B0%88/"/>
+    
+      <category term="生活" scheme="https://pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
     
       <category term="人生" scheme="https://pcninja.cn/tags/%E4%BA%BA%E7%94%9F/"/>
     
       <category term="转载" scheme="https://pcninja.cn/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>迷信科学与科学迷信</title>
-    <link href="https://pcninja.cn/2017/04/superstitious-science-and-scientific-superstitions/"/>
-    <id>https://pcninja.cn/2017/04/superstitious-science-and-scientific-superstitions/</id>
-    <published>2017-04-11T11:23:06.000Z</published>
-    <updated>2018-07-31T06:40:22.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>&emsp;&emsp;这是我于2017年4月11日进行的简短演讲的演讲稿，文中简单阐述了我对科学以及迷信间关系的理解，在此记录，因为<strong>今天的故事是明天的回忆</strong>。</p><blockquote><p>迷信科学与科学迷信</p><p>&emsp;&emsp;大家好，今天我想谈谈我对迷信科学与科学迷信的理解与看法。<br>&emsp;&emsp;众所周知，科学与迷信是两个相互对立的实践方法。古往今来，人类思维的发展可大致分为三个阶段，即神学、玄学与科学，这是“汉语拼音之父”周有光对人类的认识阶段作出的划分。神学依靠天命，那时的人们相信是神指导着他们的生活、行为、思想以及命运，上帝是不容置疑的。魏晋时期老庄“玄远之学”的起源为迷信增添了推理的成分，《周易》便是玄学的典型代表，它脱离神学，但不可否认，它仍是形而上的。十六世纪，哥白尼的“日心说”，率领人类进入科学的认知阶段。<br>&emsp;&emsp;科学是一个可解释的、有序的知识系统，在广义上还被认为是可靠的代名词；而迷信指盲目的相信、不理解的相信，它象征着愚昧与落后。二者完全对立，但又界限模糊。如今，人们的最大迷信叫做“科学”。生活中，人们大多对科学非常崇拜，往往对科学不假思索地认可。试想：一名村干部在向农民们推广化肥时，他会理直气壮地说：“这是科学！”尽管他可能不懂这其中的化学原理，但他也会底气十足。这恰恰说明科学在大众心中的形象是个神！把自己不懂的东西尊奉到一个至高无上的地位，这种态度正是迷信。<a id="more"></a><br>&emsp;&emsp;在互联网时代，人们在享受便利的同时也不得不接受如潮水般涌来的资讯，其中鱼龙混杂，充斥着大大小小的谣言与骗局。在这些资讯中，最令人难辨真假的大都与科学有关，例如：转基因食物究竟对人体有无害处？碘盐究竟能不能预防辐射？维生素C能治疗感冒吗？这些信息离每个人的生活都非常近，因此即使科学界尚未对此盖棺定论，但只要打着“科学”的旗号，无论依据是否可靠，多数人都会信服，尤其是中老年人。我想，之所以科技类谣言编造成本低，是因为大多科学谣言的论据不为大众所熟悉，国民科学素养的低下导致他们丧失了判断能力，只能盲目地相信，这无异于迷信。<br>&emsp;&emsp;科学只是前人经过实践探究得出的规律性结论，并非绝对意义的真理。哥白尼的“日心说”推翻了广为认可的“地心说”，而后人又指出了哥白尼观点中的瑕疵；开普勒发现了托勒密折射规律的错误但仍没能给出正确的规律，最终由斯涅耳找出了正确的折射定律；牛顿推翻了亚里士多德的观点，而后量子物理的发展又找出了经典力学的局限性。这些发现都引起了人类对宇宙认识的巨大思想变革。由此可见，我们不必迷信科学，要辩证地看待科学，提高自身科学素养，勇于抱着“大胆假设，小心求证”的心态挑战科学。<br>&emsp;&emsp;反观迷信，只要是稍有些学识的人大都会说迷信是值得唾弃的，殊不知迷信无处不在，它也在潜移默化地改变着我们的生活。据调查，美国作为科学教育最为完善的国家之一，有三成以上的国民相信占星术，并乐意按照星座指南上的指示行事。中国的大街小巷上也不乏风水先生与算卦先生，尽管人们知道这是玄学也愿意以此为自己祈求好运。这样的例子在我们身边也不少见，例如社交媒体上，经常出现诸如“转发即可带来好运”之类的信息，这种事情在考试前尤为常见。不少人照做后真的灵验了，你可能会说这只是巧合。但事实上，这不完全是巧合，这种现象在心理学中叫做“心理暗示”，是人们日常生活中最常见的心理现象。这种祈求尽管不一定有根据，但由于主观上已肯定了它的存在，心理上便竭力趋向于这项内容，这便是信念的力量。如果我们能适当的、科学的运用这种心理暗示，那么迷信也不失为一种利于发展的方式。<br>&emsp;&emsp;综合来看，即使是科学也可能被颠覆，而迷信也并非有百害而无一利。杜绝迷信科学，学会科学迷信，才是最佳发展之道。<br>&emsp;&emsp;我的演讲到此结束，感谢各位的倾听！</p><p>2017年4月9日</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&amp;emsp;&amp;emsp;这是我于2017年4月11日进行的简短演讲的演讲稿，文中简单阐述了我对科学以及迷信间关系的理解，在此记录，因为&lt;strong&gt;今天的故事是明天的回忆&lt;/strong&gt;。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;迷信科学与科学迷信&lt;/p&gt;
-&lt;p&gt;&amp;emsp;&amp;emsp;大家好，今天我想谈谈我对迷信科学与科学迷信的理解与看法。&lt;br&gt;&amp;emsp;&amp;emsp;众所周知，科学与迷信是两个相互对立的实践方法。古往今来，人类思维的发展可大致分为三个阶段，即神学、玄学与科学，这是“汉语拼音之父”周有光对人类的认识阶段作出的划分。神学依靠天命，那时的人们相信是神指导着他们的生活、行为、思想以及命运，上帝是不容置疑的。魏晋时期老庄“玄远之学”的起源为迷信增添了推理的成分，《周易》便是玄学的典型代表，它脱离神学，但不可否认，它仍是形而上的。十六世纪，哥白尼的“日心说”，率领人类进入科学的认知阶段。&lt;br&gt;&amp;emsp;&amp;emsp;科学是一个可解释的、有序的知识系统，在广义上还被认为是可靠的代名词；而迷信指盲目的相信、不理解的相信，它象征着愚昧与落后。二者完全对立，但又界限模糊。如今，人们的最大迷信叫做“科学”。生活中，人们大多对科学非常崇拜，往往对科学不假思索地认可。试想：一名村干部在向农民们推广化肥时，他会理直气壮地说：“这是科学！”尽管他可能不懂这其中的化学原理，但他也会底气十足。这恰恰说明科学在大众心中的形象是个神！把自己不懂的东西尊奉到一个至高无上的地位，这种态度正是迷信。
-    
-    </summary>
-    
-      <category term="文学" scheme="https://pcninja.cn/categories/%E6%96%87%E5%AD%A6/"/>
-    
-    
-      <category term="写作" scheme="https://pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
-    
-      <category term="杂谈" scheme="https://pcninja.cn/tags/%E6%9D%82%E8%B0%88/"/>
-    
-      <category term="高中" scheme="https://pcninja.cn/tags/%E9%AB%98%E4%B8%AD/"/>
-    
-      <category term="演讲" scheme="https://pcninja.cn/tags/%E6%BC%94%E8%AE%B2/"/>
-    
-      <category term="玄学" scheme="https://pcninja.cn/tags/%E7%8E%84%E5%AD%A6/"/>
-    
-      <category term="科学" scheme="https://pcninja.cn/tags/%E7%A7%91%E5%AD%A6/"/>
-    
-      <category term="迷信" scheme="https://pcninja.cn/tags/%E8%BF%B7%E4%BF%A1/"/>
     
   </entry>
   

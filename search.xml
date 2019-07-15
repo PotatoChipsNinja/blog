@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[【备忘】 SS代理服务器配置及优化]]></title>
+    <url>%2F2019%2F07%2Fconfiguration-and-optimization-of-ss-proxy-server%2F</url>
+    <content type="text"><![CDATA[&emsp;&emsp;由于Vultr日本节点大量被墙，所以被迫转投DigitalOcean，最便宜的是5刀一个月，但首充5刀后会送50刀，再加上Github教育礼包里包含的50刀优惠（需要验证教育邮箱、上传学生证照片），所以算下来几乎可以白嫖两年，岂不美滋滋。美中不足是DigitalOcean的系统快照占用的存储空间是要另付费的，所以每次换IP开新机就需要重新配置代理服务器，这里简单记录一下流程和命令，方便以后复制。 以Ubuntu 18.04搭建SS服务为例，如果今后SS情势不好可能会换用V2Ray 安装及配置项目地址：https://github.com/shadowsocks/shadowsocks/tree/master123456# 从源更新软件列表apt-get update# 安装pipapt-get install python-pip# pip安装SSpip install git+https://github.com/shadowsocks/shadowsocks.git@master 安装完成后可以建两个脚本start.sh、stop.sh方便控制服务开关（或编写json配置文件，反而麻烦）start.sh：1sudo ssserver -p 端口 -k 密码 -m aes-256-cfb --user nobody -d start stop.sh：1sudo ssserver -d stop 最后还要给这两个脚本赋予执行权限1chmod +x start.sh stop.sh # 或直接chmod 777 开启服务之前可以做以下优化，提高带宽利用率 优化首先按照官方Wiki上的教程进行优化，地址：https://github.com/shadowsocks/shadowsocks/wiki/Optimizing-Shadowsocks创建/etc/sysctl.d/local.conf并写入以下配置：123456789101112131415161718192021222324252627282930313233343536373839404142434445# max open filesfs.file-max = 51200# max read buffernet.core.rmem_max = 67108864# max write buffernet.core.wmem_max = 67108864# default read buffernet.core.rmem_default = 65536# default write buffernet.core.wmem_default = 65536# max processor input queuenet.core.netdev_max_backlog = 4096# max backlognet.core.somaxconn = 4096# resist SYN flood attacksnet.ipv4.tcp_syncookies = 1# reuse timewait sockets when safenet.ipv4.tcp_tw_reuse = 1# turn off fast timewait sockets recyclingnet.ipv4.tcp_tw_recycle = 0# short FIN timeoutnet.ipv4.tcp_fin_timeout = 30# short keepalive timenet.ipv4.tcp_keepalive_time = 1200# outbound port rangenet.ipv4.ip_local_port_range = 10000 65000# max SYN backlognet.ipv4.tcp_max_syn_backlog = 4096# max timewait sockets held by system simultaneouslynet.ipv4.tcp_max_tw_buckets = 5000# turn on TCP Fast Open on both client and server sidenet.ipv4.tcp_fastopen = 3# TCP receive buffernet.ipv4.tcp_rmem = 4096 87380 67108864# TCP write buffernet.ipv4.tcp_wmem = 4096 65536 67108864# turn on path MTU discoverynet.ipv4.tcp_mtu_probing = 1# for high-latency networknet.ipv4.tcp_congestion_control = hybla# for low-latency network, use cubic instead# net.ipv4.tcp_congestion_control = cubic 最后的net.ipv4.tcp_congestion_control选择hybla还是cubic取决于服务器延迟的高低然后加载我们写好的配置文件：1sysctl --system 接下来是启用TCP BBR拥塞控制算法，可以用来取代ServerSpeeder已经有人做好了傻瓜式脚本，我们只需要根据提示操作：1wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; ./bbr.sh 使用lsmod | grep bbr查看系统模块，若返回tcp_bbr说明BBR已启动 这时我们就可以运行start.sh，开启代理服务，进行科学上网了]]></content>
+      <categories>
+        <category>网络</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>服务器</tag>
+        <tag>代理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[写在十八岁的最后一天]]></title>
     <url>%2F2019%2F07%2Fon-my-last-day-of-eighteen%2F</url>
     <content type="text"><![CDATA[&emsp;&emsp;十八岁，过的可真快，转眼就到了最后一天，以至于我还没反应过来。这就好比，在看一场精彩绝伦的足球赛时，往往会觉得上半场怎么这么快就结束了。而我的十八岁，虽称不上精彩，但也足够充实，或者说，只是单纯的忙碌，忙碌到这一年里发生的许多事我都快忘却了，所以我才要在这儿记下那些快要忘却的事，也算是对自己的十八岁做个简要的小结吧。&emsp;&emsp;如果用一个词来总结这一年的话，我想应该是五味杂陈吧，因为这一年里，我哭过，痛过，累过，当然，也笑过。在度过了一个安逸的暑假之后，我开启了大学之旅，第一学期可以说是平淡无奇的四个月——很快我就适应了大学里的生活节奏，接着就是在上课、作业、游戏中轮回，周而复始。除了基本的课业知识，没有任何长进，虽然成绩还不错，但我对那个学期是不满意的，因为我虚度了四个月的时光。&emsp;&emsp;浪费就会受到惩罚，这是颠扑不破的真理。很快，惩罚就降临了。我别无选择，只得默默接受。接下来的寒假对我来说无疑是煎熬的，当然，也有痛定思痛、扪心自问。&emsp;&emsp;在假期临近结束之际，我做出了让我自己为之骄傲的决定，我遵从了自己的内心，提交了转专业申请，向自己的热爱与理想迈出了一大步。这一次，我终于没再辜负你，也没再辜负自己，这就是我为之骄傲的原因。&emsp;&emsp;第二学期，我体验到了从未有过的忙碌与充实，大大小小的事务等待着我去一一处理，一个个抉择与挑战摆在我面前。这个学期，我参加了ACM校赛，见识了那些高水平选手的风采，让我深刻体会到天外有天，人外有人。我正视到自己的差距，意识到此刻开始追赶并不是一个明智的选择，ACM竞赛也并非我所认为的计算机科学的最好体现。正所谓条条大路通罗马，我需要尽早找到自己真正感兴趣的方向，追寻我所憧憬的计算机科学。&emsp;&emsp;这一年，也是我自信心大幅提升的一年。我向自己证明了我的能力：第一学期综合成绩排名18/808，转入计科实验班后排名3/55，进入火花空间创客社团技术组，担任过一次技术沙龙的主讲人，带领宿舍全员设计开发寻物微信小程序……这些成绩告诉我，我不必自卑，无论在哪，我都能够站稳脚跟、发挥自己的作用、实现自己的价值。&emsp;&emsp;人际交往方面，我倒是没有什么变化：不大不小的朋友圈，几个挚友，一个念念不忘的人，没有树敌。偶尔会感到孤独，但孤独是人生的必修课，我想这样就挺好。&emsp;&emsp;这学期有位老师的一段话引发了我的思考：“科学是和人们的生活不相干的东西，而造福人类的是技术”。一开始，我对这种说法嗤之以鼻，心想科学怎么会和人们无关呢，但仔细想想，这种说法其实不无道理，科学与技术相辅相成——科学是技术的前提，而技术是科学的实现，因此科学对生活的影响是间接的，技术是直接的。我认为科学之于技术好比世界观之于方法论：方法论真正左右我们的行为，而决定方法论的却是世界观。&emsp;&emsp;对科学与技术的思考让我对未来感到有些迷茫。如果你在十年前问我未来的职业理想是什么，我也许会给出和大部分孩子一样的答案：科学家，当然，这是一个极其笼统的回答；如果你在三年前问我同样的问题，我会毫不犹豫的回答你：计算机科学家；但如果你现在再来问我，我会犹豫，因为也许技术从业者会为这个社会创造更大的价值。这样的迷茫可能会持续一段时间，在我找到答案之前，我需要不断培养自己的计算思维、扩充自己的技术栈，尽可能做到理论与实践并行。&emsp;&emsp;还有三个小时，我的十八岁就要过去了，竟有些伤感。十八岁，有太多的始料未及，此后，再不会有八月瓢泼大雨里的那种感动，再不会有一月寒风凛冽中的那种悲痛。时间会冲淡一切，现在需要我做的，就是以更好的态度，迎接十九岁的时空旅行。&emsp;&emsp;薯片忍者，生日快乐！]]></content>
@@ -74,9 +87,9 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>日记</tag>
         <tag>编程</tag>
         <tag>算法</tag>
+        <tag>日记</tag>
         <tag>随笔</tag>
         <tag>情感</tag>
       </tags>
@@ -106,9 +119,9 @@
         <category>学科</category>
       </categories>
       <tags>
-        <tag>数学</tag>
         <tag>作业</tag>
         <tag>大学</tag>
+        <tag>数学</tag>
         <tag>离散数学</tag>
         <tag>复杂度</tag>
       </tags>
@@ -198,9 +211,9 @@
         <category>生活</category>
       </categories>
       <tags>
+        <tag>大学</tag>
         <tag>日记</tag>
         <tag>生活</tag>
-        <tag>大学</tag>
         <tag>随笔</tag>
       </tags>
   </entry>
@@ -212,8 +225,8 @@
         <category>网络</category>
       </categories>
       <tags>
-        <tag>网络</tag>
         <tag>编程</tag>
+        <tag>网络</tag>
         <tag>SSL</tag>
         <tag>HTTPS</tag>
         <tag>Node.js</tag>
@@ -228,9 +241,9 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>网络</tag>
         <tag>Linux</tag>
         <tag>编程</tag>
+        <tag>网络</tag>
         <tag>Node.js</tag>
         <tag>Express</tag>
         <tag>MongoDB</tag>
@@ -282,8 +295,8 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>生活</tag>
         <tag>杂谈</tag>
+        <tag>生活</tag>
         <tag>人生</tag>
         <tag>转载</tag>
       </tags>
@@ -365,8 +378,8 @@
         <category>IT</category>
       </categories>
       <tags>
-        <tag>网络</tag>
         <tag>写作</tag>
+        <tag>网络</tag>
         <tag>Web服务器</tag>
         <tag>局域网</tag>
         <tag>路由器</tag>

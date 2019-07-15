@@ -422,6 +422,180 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="薯片忍者">
+      <meta itemprop="description" content="想起那些时光<br />总觉得自己像个傻瓜">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薯片忍者的小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/" class="post-title-link" itemprop="url">浅谈对公网、路由器、内网关系的理解</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-10-15 17:54:51" itemprop="dateCreated datePublished" datetime="2016-10-15T17:54:51+08:00">2016-10-15</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/IT/" itemprop="url" rel="index"><span itemprop="name">IT</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/" class="leancloud_visitors" data-flag-title="浅谈对公网、路由器、内网关系的理解">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>&emsp;&emsp;怎样才能让别人直接访问我的本地网站，这个问题困扰了我很久，原因在于本机IP为类似于192.168.1.xxx的内网IP，显然在公网（全域网）别人是访问不到这里的。今天我对这三者有了更加深刻、透彻的理解。<br>&emsp;&emsp;最简单的，在同一局域网（如同一WIFI下）的设备可以通过这个本地IP（本文以192.168.1.106为例）访问本机。首先在本机上跑一个WEB服务器软件，这里使用的是Nginx，原因是轻小方便，当然Apache等Web服务器也是可以的。<br><img src="/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_1.png" title="Nginx"><br>&emsp;&emsp;此时，用浏览器访问Localhost（即<a href="http://127.0.0.1）即可看到服务器的index.html。" target="_blank" rel="noopener">http://127.0.0.1）即可看到服务器的index.html。</a><br><img src="/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_2.png" title="本地的Web服务器"><br>&emsp;&emsp;当然，在同一局域网内的其他设备也可以通过你的局域网IP（Windows下可以用ipconfig命令查看IPv4地址）访问此站。顺便一提IPv4指的就是有四个字段的IP地址（xx.xx.xx.xx），而现在逐渐流行的IPv6，顾名思义就是有六个字段的IP地址（xx.xx.xx.xx.xx.xx）。
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </p></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://pcninja.cn/2016/10/draw-the-national-flag-by-four-languages/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1089,175 +1263,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://pcninja.cn/2016/08/my-wiki-launched/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="薯片忍者">
-      <meta itemprop="description" content="想起那些时光<br />总觉得自己像个傻瓜">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薯片忍者的小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/08/my-wiki-launched/" class="post-title-link" itemprop="url">薯片忍者的Wiki上线了！</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-08-02 21:49:23" itemprop="dateCreated datePublished" datetime="2016-08-02T21:49:23+08:00">2016-08-02</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/公告/" itemprop="url" rel="index"><span itemprop="name">公告</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2016/08/my-wiki-launched/" class="leancloud_visitors" data-flag-title="薯片忍者的Wiki上线了！">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>2016年8月2日，我的个人知识网络系统——“薯片忍者的Wiki”正式上线，地址为<a href="http://wiki.potatochipsninja.tk/" target="_blank" rel="noopener">http://wiki.potatochipsninja.tk/</a>，希望大家光临。</p>
-<p>此站采用开源的wiki引擎程序<a href="http://www.dokuwiki.org/" target="_blank" rel="noopener">DokuWiki</a>搭建，站内全部内容除另有声明外，均在<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">署名-非商业性使用-相同方式共享 4.0 国际协议</a>下发布。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1308,7 +1313,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1510,7 +1515,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">77</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">79</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
