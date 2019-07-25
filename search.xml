@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[virtualenv创建Python虚拟环境时抛出UnicodeDecodeError异常的解决]]></title>
+    <url>%2F2019%2F07%2Fsolution-of-UnicodeDecodeError-thrown-by-virtualenv%2F</url>
+    <content type="text"><![CDATA[&emsp;&emsp;在通过pip安装TensorFlow时遇到了一个问题，当执行virtualenv --system-site-packages -p python ./venv创建新的虚拟环境时会抛出如下异常：123456789101112131415161718192021Traceback (most recent call last): File "e:\python\lib\site-packages\virtualenv.py", line 939, in call_subprocess line = line.decode(encoding)UnicodeDecodeError: 'utf-8' codec can't decode byte 0xca in position 38: invalid continuation byteDuring handling of the above exception, another exception occurred:Traceback (most recent call last): File "e:\python\lib\site-packages\virtualenv.py", line 2635, in &lt;module&gt; main() File "e:\python\lib\site-packages\virtualenv.py", line 870, in main symlink=options.symlink, File "e:\python\lib\site-packages\virtualenv.py", line 1173, in create_environment install_wheel(to_install, py_executable, search_dirs, download=download) File "e:\python\lib\site-packages\virtualenv.py", line 1019, in install_wheel _install_wheel_with_search_dir(download, project_names, py_executable, search_dirs) File "e:\python\lib\site-packages\virtualenv.py", line 1110, in _install_wheel_with_search_dir call_subprocess(cmd, show_stdout=False, extra_env=env, stdin=script) File "e:\python\lib\site-packages\virtualenv.py", line 941, in call_subprocess line = line.decode(fs_encoding)UnicodeDecodeError: 'utf-8' codec can't decode byte 0xca in position 38: invalid continuation byte &emsp;&emsp;经过一番研究，原来出现异常的原因是调用decode()方法的errors参数为默认值&quot;strict&quot;，即任何编码错误都会引发UnicodeDecodeError，将其更改为&quot;ignore&quot;即可忽略错误。具体修改如下：&emsp;&emsp;根据异常信息，将Python安装目录下的.\Lib\site-packages\virtualenv.py的第939行修改为line = line.decode(encoding, &quot;ignore&quot;)，即增加一个&quot;ignore&quot;参数。再次尝试创建虚拟环境，此时就不会抛出异常了：123456Running virtualenv with interpreter E:\Python\python.exeAlready using interpreter E:\Python\python.exeUsing base prefix 'E:\\Python'New python executable in D:\TensorFlow\venv\Scripts\python.exeInstalling setuptools, pip, wheel...done. &emsp;&emsp;这时我们就拥有了一套独立的Python运行环境，不用担心污染主环境了]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>virtualenv</tag>
+        <tag>Python</tag>
+        <tag>编码</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[【备忘】 SS代理服务器配置及优化]]></title>
     <url>%2F2019%2F07%2Fconfiguration-and-optimization-of-ss-proxy-server%2F</url>
     <content type="text"><![CDATA[&emsp;&emsp;由于Vultr日本节点大量被墙，所以被迫转投DigitalOcean，最便宜的是5刀一个月，但首充5刀后会送50刀，再加上Github教育礼包里包含的50刀优惠（需要验证教育邮箱、上传学生证照片），所以算下来几乎可以白嫖两年，岂不美滋滋。美中不足是DigitalOcean的系统快照占用的存储空间是要另付费的，所以每次换IP开新机就需要重新配置代理服务器，这里简单记录一下流程和命令，方便以后复制。 以Ubuntu 18.04搭建SS服务为例，如果今后SS情势不好可能会换用V2Ray 安装及配置项目地址：https://github.com/shadowsocks/shadowsocks/tree/master123456# 从源更新软件列表apt-get update# 安装pipapt-get install python-pip# pip安装SSpip install git+https://github.com/shadowsocks/shadowsocks.git@master 安装完成后可以建两个脚本start.sh、stop.sh方便控制服务开关（或编写json配置文件，反而麻烦）start.sh：1sudo ssserver -p 端口 -k 密码 -m aes-256-cfb --user nobody -d start stop.sh：1sudo ssserver -d stop 最后还要给这两个脚本赋予执行权限1chmod +x start.sh stop.sh # 或直接chmod 777 开启服务之前可以做以下优化，提高带宽利用率 优化首先按照官方Wiki上的教程进行优化，地址：https://github.com/shadowsocks/shadowsocks/wiki/Optimizing-Shadowsocks创建/etc/sysctl.d/local.conf并写入以下配置：123456789101112131415161718192021222324252627282930313233343536373839404142434445# max open filesfs.file-max = 51200# max read buffernet.core.rmem_max = 67108864# max write buffernet.core.wmem_max = 67108864# default read buffernet.core.rmem_default = 65536# default write buffernet.core.wmem_default = 65536# max processor input queuenet.core.netdev_max_backlog = 4096# max backlognet.core.somaxconn = 4096# resist SYN flood attacksnet.ipv4.tcp_syncookies = 1# reuse timewait sockets when safenet.ipv4.tcp_tw_reuse = 1# turn off fast timewait sockets recyclingnet.ipv4.tcp_tw_recycle = 0# short FIN timeoutnet.ipv4.tcp_fin_timeout = 30# short keepalive timenet.ipv4.tcp_keepalive_time = 1200# outbound port rangenet.ipv4.ip_local_port_range = 10000 65000# max SYN backlognet.ipv4.tcp_max_syn_backlog = 4096# max timewait sockets held by system simultaneouslynet.ipv4.tcp_max_tw_buckets = 5000# turn on TCP Fast Open on both client and server sidenet.ipv4.tcp_fastopen = 3# TCP receive buffernet.ipv4.tcp_rmem = 4096 87380 67108864# TCP write buffernet.ipv4.tcp_wmem = 4096 65536 67108864# turn on path MTU discoverynet.ipv4.tcp_mtu_probing = 1# for high-latency networknet.ipv4.tcp_congestion_control = hybla# for low-latency network, use cubic instead# net.ipv4.tcp_congestion_control = cubic 最后的net.ipv4.tcp_congestion_control选择hybla还是cubic取决于服务器延迟的高低然后加载我们写好的配置文件：1sysctl --system 接下来是启用TCP BBR拥塞控制算法，可以用来取代ServerSpeeder已经有人做好了傻瓜式脚本，我们只需要根据提示操作：1wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; ./bbr.sh 使用lsmod | grep bbr查看系统模块，若返回tcp_bbr说明BBR已启动 这时我们就可以运行start.sh，开启代理服务，进行科学上网了]]></content>
@@ -88,8 +101,8 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>算法</tag>
         <tag>日记</tag>
+        <tag>算法</tag>
         <tag>随笔</tag>
         <tag>情感</tag>
       </tags>
@@ -119,9 +132,9 @@
         <category>学科</category>
       </categories>
       <tags>
+        <tag>数学</tag>
         <tag>作业</tag>
         <tag>大学</tag>
-        <tag>数学</tag>
         <tag>离散数学</tag>
         <tag>复杂度</tag>
       </tags>
@@ -211,9 +224,9 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>大学</tag>
         <tag>日记</tag>
         <tag>生活</tag>
+        <tag>大学</tag>
         <tag>随笔</tag>
       </tags>
   </entry>
@@ -241,8 +254,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>编程</tag>
+        <tag>Linux</tag>
         <tag>网络</tag>
         <tag>Node.js</tag>
         <tag>Express</tag>
@@ -295,8 +308,8 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>杂谈</tag>
         <tag>生活</tag>
+        <tag>杂谈</tag>
         <tag>人生</tag>
         <tag>转载</tag>
       </tags>
@@ -310,8 +323,8 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>杂谈</tag>
         <tag>高中</tag>
+        <tag>杂谈</tag>
         <tag>演讲</tag>
         <tag>玄学</tag>
         <tag>科学</tag>
@@ -326,8 +339,8 @@
         <category>文学</category>
       </categories>
       <tags>
-        <tag>主播</tag>
         <tag>写作</tag>
+        <tag>主播</tag>
         <tag>杂谈</tag>
         <tag>职业</tag>
       </tags>
@@ -395,9 +408,9 @@
       <tags>
         <tag>C</tag>
         <tag>编程</tag>
+        <tag>Python</tag>
         <tag>HTML</tag>
         <tag>Java</tag>
-        <tag>Python</tag>
         <tag>国旗</tag>
       </tags>
   </entry>
@@ -476,10 +489,10 @@
       </categories>
       <tags>
         <tag>写作</tag>
+        <tag>高中</tag>
         <tag>回忆</tag>
         <tag>江苏</tag>
         <tag>游记</tag>
-        <tag>高中</tag>
       </tags>
   </entry>
   <entry>
@@ -506,11 +519,11 @@
       <tags>
         <tag>C</tag>
         <tag>编程</tag>
-        <tag>高中</tag>
         <tag>探究</tag>
         <tag>数学</tag>
         <tag>汉诺塔</tag>
         <tag>论文</tag>
+        <tag>高中</tag>
       </tags>
   </entry>
   <entry>

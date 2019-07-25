@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pcninja.cn/"/>
-  <updated>2019-07-15T13:36:14.392Z</updated>
+  <updated>2019-07-25T12:36:14.533Z</updated>
   <id>https://pcninja.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>virtualenv创建Python虚拟环境时抛出UnicodeDecodeError异常的解决</title>
+    <link href="https://pcninja.cn/2019/07/solution-of-UnicodeDecodeError-thrown-by-virtualenv/"/>
+    <id>https://pcninja.cn/2019/07/solution-of-UnicodeDecodeError-thrown-by-virtualenv/</id>
+    <published>2019-07-25T12:04:12.000Z</published>
+    <updated>2019-07-25T12:36:14.533Z</updated>
+    
+    <content type="html"><![CDATA[<p>&emsp;&emsp;在通过pip安装TensorFlow时遇到了一个问题，当执行<code>virtualenv --system-site-packages -p python ./venv</code>创建新的虚拟环境时会抛出如下异常：<a id="more"></a><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File "e:\python\lib\site-packages\virtualenv.py", line 939, in call_subprocess</span><br><span class="line">    line = line.decode(encoding)</span><br><span class="line">UnicodeDecodeError: 'utf-8' codec can't decode byte 0xca in position 38: invalid continuation byte</span><br><span class="line"></span><br><span class="line">During handling of the above exception, another exception occurred:</span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File "e:\python\lib\site-packages\virtualenv.py", line 2635, in &lt;module&gt;</span><br><span class="line">    main()</span><br><span class="line">  File "e:\python\lib\site-packages\virtualenv.py", line 870, in main</span><br><span class="line">    symlink=options.symlink,</span><br><span class="line">  File "e:\python\lib\site-packages\virtualenv.py", line 1173, in create_environment</span><br><span class="line">    install_wheel(to_install, py_executable, search_dirs, download=download)</span><br><span class="line">  File "e:\python\lib\site-packages\virtualenv.py", line 1019, in install_wheel</span><br><span class="line">    _install_wheel_with_search_dir(download, project_names, py_executable, search_dirs)</span><br><span class="line">  File "e:\python\lib\site-packages\virtualenv.py", line 1110, in _install_wheel_with_search_dir</span><br><span class="line">    call_subprocess(cmd, show_stdout=False, extra_env=env, stdin=script)</span><br><span class="line">  File "e:\python\lib\site-packages\virtualenv.py", line 941, in call_subprocess</span><br><span class="line">    line = line.decode(fs_encoding)</span><br><span class="line">UnicodeDecodeError: 'utf-8' codec can't decode byte 0xca in position 38: invalid continuation byte</span><br></pre></td></tr></table></figure></p><p>&emsp;&emsp;经过一番研究，原来出现异常的原因是调用<code>decode()</code>方法的<code>errors</code>参数为默认值<code>&quot;strict&quot;</code>，即任何编码错误都会引发UnicodeDecodeError，将其更改为<code>&quot;ignore&quot;</code>即可忽略错误。具体修改如下：<br>&emsp;&emsp;根据异常信息，将Python安装目录下的<code>.\Lib\site-packages\virtualenv.py</code>的第939行修改为<code>line = line.decode(encoding, &quot;ignore&quot;)</code>，即增加一个<code>&quot;ignore&quot;</code>参数。<br>再次尝试创建虚拟环境，此时就不会抛出异常了：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Running virtualenv with interpreter E:\Python\python.exe</span><br><span class="line">Already using interpreter E:\Python\python.exe</span><br><span class="line">Using base prefix 'E:\\Python'</span><br><span class="line">New python executable in D:\TensorFlow\venv\Scripts\python.exe</span><br><span class="line">Installing setuptools, pip, wheel...</span><br><span class="line">done.</span><br></pre></td></tr></table></figure></p><p>&emsp;&emsp;这时我们就拥有了一套独立的Python运行环境，不用担心污染主环境了</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&amp;emsp;&amp;emsp;在通过pip安装TensorFlow时遇到了一个问题，当执行&lt;code&gt;virtualenv --system-site-packages -p python ./venv&lt;/code&gt;创建新的虚拟环境时会抛出如下异常：
+    
+    </summary>
+    
+      <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="virtualenv" scheme="https://pcninja.cn/tags/virtualenv/"/>
+    
+      <category term="Python" scheme="https://pcninja.cn/tags/Python/"/>
+    
+      <category term="编码" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A0%81/"/>
+    
+  </entry>
   
   <entry>
     <title>【备忘】 SS代理服务器配置及优化</title>
@@ -208,9 +234,9 @@
     
       <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
-      <category term="算法" scheme="https://pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+      <category term="算法" scheme="https://pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
     
       <category term="随笔" scheme="https://pcninja.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
@@ -271,11 +297,11 @@
       <category term="学科" scheme="https://pcninja.cn/categories/%E5%AD%A6%E7%A7%91/"/>
     
     
+      <category term="数学" scheme="https://pcninja.cn/tags/%E6%95%B0%E5%AD%A6/"/>
+    
       <category term="作业" scheme="https://pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
     
       <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
-    
-      <category term="数学" scheme="https://pcninja.cn/tags/%E6%95%B0%E5%AD%A6/"/>
     
       <category term="离散数学" scheme="https://pcninja.cn/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/"/>
     
@@ -461,11 +487,11 @@
       <category term="生活" scheme="https://pcninja.cn/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
-    
       <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
     
       <category term="生活" scheme="https://pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
       <category term="随笔" scheme="https://pcninja.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
@@ -529,9 +555,9 @@
       <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="Linux" scheme="https://pcninja.cn/tags/Linux/"/>
-    
       <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="Linux" scheme="https://pcninja.cn/tags/Linux/"/>
     
       <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
     
@@ -623,38 +649,6 @@
       <category term="写作" scheme="https://pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
     
       <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>人生何其苦</title>
-    <link href="https://pcninja.cn/2018/08/the-bitter-life/"/>
-    <id>https://pcninja.cn/2018/08/the-bitter-life/</id>
-    <published>2018-08-01T10:53:02.000Z</published>
-    <updated>2018-08-17T04:08:02.162Z</updated>
-    
-    <content type="html"><![CDATA[<p>微博上看到的一段话，若有所思，也许若干年后再回首看到此文会别有一番感悟，故转载于此。</p><blockquote><p>25岁，你找到了一份“高薪”工作<br>爸妈开心，同学羡慕<br>你对工作充满热情，<br>全部心思扑在工作上</p><p>35岁你因为身体越来越差<br>加班越来越少<br>晋升的速度也越来越缓慢<br>收入原地踏步，生活压力却越来越大</p><p>那天下班，媳妇告诉你<br>孩子要上幼儿园了<br>双语的一个月3000<br>你皱了皱眉头，那边就已经不耐烦了<br><a id="more"></a><br>“四单元的老王家孩子，一个月6000”<br>“你已经这样了，你想让孩子也输？”<br>你没说话，回屋绐媳妇转了6000块钱<br>这笔钱，你原本打算绐自己过个生日，买个新电脑</p><p>38岁，孩子上了一年级<br>老师说一年级最关键，打好基础很重要<br>你笑着说，是是是，老师您多照顾</p><p>新生接待的老师看着你不明事理的脸<br>给你指了一条明路<br>“课外辅导班，一个月2200”</p><p>40岁的时候，孩子上了三年级<br>老师说，三年级，最关键，承上启下很重要<br>你笑着说：是是是，正打算再报个补习班</p><p>44岁，孩子上了初中<br>有一天回到家，她对你说<br>爸爸，我想学钢琴<br>你没什么犹豫的<br>你以为这些年，你已经习惯了</p><p>那句“爸爸现在买不起”你始终说不出口<br>好在孩子比较懂事<br>她说：爸爸没事，要不我先学陶笛也可以<br>你看着这么懂事的孩子，却开心不起来</p><p>46岁，孩子上了一个不好不差的高中<br>有一天你在开会，接到了老师的电话<br>电话里说你的孩子在学校打架了<br>叫你去一趟<br>你唯唯诺诺的<br>和那个比你还小5岁的领导请了个假</p><p>到学校又被老师训了一通<br>无非台词就是那一句<br>你们做家长的就知道工作，能不能陪陪孩子</p><p>你看着这个老师，有点可笑<br>好像当时说：<br>家长在外辛苦点<br>多赚点钱让孩子多补补课的和他不是一个人</p><p>50岁，孩子上了大学<br>很争气，是一个一本<br>他学的专业你有点看不懂<br>你只知道工作不一定好找<br>而且学费还死贵<br>你和他深夜想聊聊<br>准备了半斤白酒，一碟花生米<br>你说着那些曾经你最讨厌的话</p><p>还是要为以后工作着想<br>挑个热门的专业<br>活着比热爱重要</p><p>你们从交流变成了争吵<br>你发现，你老了<br>老到可能都打不过这个18岁的孩子<br>你说不过他，只能说一句：我是你爸爸！<br>孩子看着你，知道再怎么争辩都没用<br>这场确立你最后威严的酒局不欢而散<br>你听的不真切<br>在孩子回自己屋的路上好像叨叨了一句<br>“我不想活的像你一样”</p><p>怎么就哭了呢？50岁的人了<br>一定是酒太辣了，对不对<br>一定是酒太辣</p><p>55岁，孩子工作了，似乎有一点理解你了<br>但你却反了过来，你说不要妥协</p><p>60岁，辛苦了一辈子，想出去走走<br>身边的那个人过了30年<br>你依旧分不清到底喜不喜欢<br>你们开始规划旅游路线<br>这么多年了<br>你们还是存在分歧，还是在争吵<br>某个瞬间，你觉得<br>这样可能也挺好</p><p>一切都准备好了<br>儿子说：爸妈，我工作太忙了<br>可以帮我照顾一下孩子么<br>你们退了机票，又回到了30年前</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;微博上看到的一段话，若有所思，也许若干年后再回首看到此文会别有一番感悟，故转载于此。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;25岁，你找到了一份“高薪”工作&lt;br&gt;爸妈开心，同学羡慕&lt;br&gt;你对工作充满热情，&lt;br&gt;全部心思扑在工作上&lt;/p&gt;
-&lt;p&gt;35岁你因为身体越来越差&lt;br&gt;加班越来越少&lt;br&gt;晋升的速度也越来越缓慢&lt;br&gt;收入原地踏步，生活压力却越来越大&lt;/p&gt;
-&lt;p&gt;那天下班，媳妇告诉你&lt;br&gt;孩子要上幼儿园了&lt;br&gt;双语的一个月3000&lt;br&gt;你皱了皱眉头，那边就已经不耐烦了&lt;br&gt;
-    
-    </summary>
-    
-      <category term="生活" scheme="https://pcninja.cn/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-    
-      <category term="杂谈" scheme="https://pcninja.cn/tags/%E6%9D%82%E8%B0%88/"/>
-    
-      <category term="生活" scheme="https://pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-      <category term="人生" scheme="https://pcninja.cn/tags/%E4%BA%BA%E7%94%9F/"/>
-    
-      <category term="转载" scheme="https://pcninja.cn/tags/%E8%BD%AC%E8%BD%BD/"/>
     
   </entry>
   
