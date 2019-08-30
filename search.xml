@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[暑假小结]]></title>
+    <url>%2F2019%2F08%2Fsummer-vacation-summary%2F</url>
+    <content type="text"><![CDATA[&emsp;&emsp;此时此刻，窗外不断传来大一新生军训中演讲比赛的激昂呐喊。新鲜血液的涌入着实给了我一种紧迫感，回想一年前，我也和他们一样，刚刚踏入大学的校门，心中有憧憬也有迷茫。转眼一年过去了，仿佛憧憬与迷惘都变多了。&emsp;&emsp;从7月13号到今天，一个半月的暑假已接近尾声。其实这个暑假做的事有限，掰着手指头数都能数的过来，所以本来没想写这个总结。但思前想后觉得还是应该简要记录一下，也算是警醒自己今后要做更多有意义的事。&emsp;&emsp;文字能力有限，依旧是流水账。&emsp;&emsp;小学期里，我们的任务是完成“外卖派单模拟系统”，这是我第一次着手这种具有一定规模的项目，项目需求与规则繁杂且模糊，并且几经修改，最要命的是在7月13号验收的前一天傍晚被要求新增不少功能，所有人都很无奈。好在经历了几天几夜的爆肝之后，顺利完成了验收。最终，我们花大量精力研究的算法在所有组的比拼中喜提头名，可喜可贺。然而看了别的组华丽的GUI之后我们才意识到我们在用户体验上所做的工作确实有些简陋，不过这也是在时间紧迫的前提下所做出的必然取舍，因为在我们看来，相比于图形界面，算法是我们更应该投入精力去琢磨的地方。&emsp;&emsp;暑假伊始，由于刚刚结束了小学期的项目，有些身心俱疲，所以没干什么正事。唯一做的就是 Express + EJS + ajax + MongoDB 写了一个 ToDo List，顺带学到了些前端知识。到了七月底回到学校，参加某大型红色活动的训练，为期二十余天，除了太阳晒点，还是比较轻松欢愉的。训练之余，在宿舍学习了 Docker，并尝试把我所有的站点和服务进行容器化，不过目前还只是在虚拟机上，没有上线。等过段时间域名完成备案，可以A记录解析到服务器上之后应该就可以享受 docker-compose up -d 一键部署的快感了😝。&emsp;&emsp;在此之后训练任务断断续续，我的暑假生活也以娱乐为主，通关了老早以前搁下的弹丸论破1和2，没事就和舍友开黑GTAOL，还是挺轻松加写意的。&emsp;&emsp;总的来说这个暑假过得很快活，但有意义的事做得不多，换句话说，有点浪费。不过这一切都是我自己的选择，也不会后悔。期待下学期的学习生活，也期待十月一号能够用最好的表现为祖国母亲七十华诞献礼！]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
+        <tag>大学</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[中文文案排版指北]]></title>
     <url>%2F2019%2F08%2Fchinese-copywriting-guidelines%2F</url>
     <content type="text"><![CDATA[原文地址：https://github.com/sparanoid/chinese-copywriting-guidelines 中文文案排版指北空格「有研究显示，打字的时候不喜欢在中文和英文之间加空格的人，感情路都走得很辛苦，有七成的比例会在 34 岁的时候跟自己不爱的人结婚，而其余三成的人最后只能把遗产留给自己的猫。 毕竟爱情跟书写都需要适时地留白。 与大家共勉之。」——vinta/paranoid-auto-spacing 中英文之间需要增加空格正确： 在 LeanCloud 上，数据存储是围绕 AVObject 进行的。 错误： 在LeanCloud上，数据存储是围绕AVObject进行的。 在 LeanCloud上，数据存储是围绕AVObject 进行的。 完整的正确用法： 在 LeanCloud 上，数据存储是围绕 AVObject 进行的。每个 AVObject 都包含了与 JSON 兼容的 key-value 对应的数据。数据是 schema-free 的，你不需要在每个 AVObject 上提前指定存在哪些键，只要直接设定对应的 key-value 即可。 例外：「豆瓣FM」等产品名词，按照官方所定义的格式书写。 中文与数字之间需要增加空格正确： 今天出去买菜花了 5000 元。 错误： 今天出去买菜花了 5000元。 今天出去买菜花了5000元。 数字与单位之间需要增加空格正确： 我家的光纤入屋宽带有 10 Gbps，SSD 一共有 20 TB 错误： 我家的光纤入屋宽带有 10Gbps，SSD 一共有 20TB 例外：度 / 百分比与数字之间不需要增加空格： 正确： 今天是 233° 的高温。 新 MacBook Pro 有 15% 的 CPU 性能提升。 错误： 今天是 233 ° 的高温。 新 MacBook Pro 有 15 % 的 CPU 性能提升。 全角标点与其他字符之间不加空格正确： 刚刚买了一部 iPhone，好开心！ 错误： 刚刚买了一部 iPhone ，好开心！ 刚刚买了一部 iPhone， 好开心！ 用 text-spacing 来挽救？CSS Text Module Level 4 的 text-spacing 和 Microsoft 的 -ms-text-autospace.aspx) 可以实现自动为中英文之间增加空白。不过目前并未普及，另外在其他应用场景，例如 macOS、iOS、Windows 等用户介面目前并不存在这个特性，所以请继续保持随手加空格的习惯。 标点符号不重复使用标点符号正确： 德国队竟然战胜了巴西队！ 她竟然对你说「喵」？！ 错误： 德国队竟然战胜了巴西队！！ 德国队竟然战胜了巴西队！！！！！！！！ 她竟然对你说「喵」？？！！ 她竟然对你说「喵」？！？！？？！！ 全角和半角不明白什么是全角（全形）与半角（半形）符号？请查看维基百科词条『全形和半形』。 使用全角中文标点正确： 嗨！你知道嘛？今天前台的小妹跟我说「喵」了哎！ 核磁共振成像（NMRI）是什么原理都不知道？JFGI！ 错误： 嗨! 你知道嘛? 今天前台的小妹跟我说 “喵” 了哎！ 嗨!你知道嘛?今天前台的小妹跟我说”喵”了哎！ 核磁共振成像 (NMRI) 是什么原理都不知道? JFGI! 核磁共振成像(NMRI)是什么原理都不知道?JFGI! 数字使用半角字符正确： 这个蛋糕只卖 1000 元。 错误： 这个蛋糕只卖 １０００ 元。 例外：在设计稿、宣传海报中如出现极少量数字的情形时，为方便文字对齐，是可以使用全形数字的。 遇到完整的英文整句、特殊名词，其内容使用半角标点正确： 贾伯斯那句话是怎么说的？「Stay hungry, stay foolish.」 推荐你阅读《Hackers &amp; Painters: Big Ideas from the Computer Age》，非常的有趣。 错误： 贾伯斯那句话是怎么说的？「Stay hungry，stay foolish。」 推荐你阅读《Hackers＆Painters：Big Ideas from the Computer Age》，非常的有趣。 名词专有名词使用正确的大小写大小写相关用法原属于英文书写范畴，不属于本 wiki 讨论内容，在这里只对部分易错用法进行简述。 正确： 使用 GitHub 登录 我们的客户有 GitHub、Foursquare、Microsoft Corporation、Google、Facebook, Inc.。 错误： 使用 github 登录 使用 GITHUB 登录 使用 Github 登录 使用 gitHub 登录 使用 gｲんĤЦ8 登录 我们的客户有 github、foursquare、microsoft corporation、google、facebook, inc.。 我们的客户有 GITHUB、FOURSQUARE、MICROSOFT CORPORATION、GOOGLE、FACEBOOK, INC.。 我们的客户有 Github、FourSquare、MicroSoft Corporation、Google、FaceBook, Inc.。 我们的客户有 gitHub、fourSquare、microSoft Corporation、google、faceBook, Inc.。 我们的客户有 gｲんĤЦ8、ｷouЯƧquﾑгє、๓เςг๏ร๏Ŧt ς๏гק๏гคtเ๏ภn、900913、ƒ4ᄃëв๏๏к, IПᄃ.。 注意：当网页中需要配合整体视觉风格而出现全部大写／小写的情形，HTML 中请使用标淮的大小写规范进行书写；并通过 text-transform: uppercase;／text-transform: lowercase; 对表现形式进行定义。 不要使用不地道的缩写正确： 我们需要一位熟悉 JavaScript、HTML5，至少理解一种框架（如 Backbone.js、AngularJS、React 等）的前端开发者。 错误： 我们需要一位熟悉 Js、h5，至少理解一种框架（如 backbone、angular、RJS 等）的 FED。 争议以下用法略带有个人色彩，即：无论是否遵循下述规则，从语法的角度来讲都是正确的。 链接之间增加空格用法： 请 提交一个 issue 并分配给相关同事。 访问我们网站的最新动态，请 点击这里 进行订阅！ 对比用法： 请提交一个 issue并分配给相关同事。 访问我们网站的最新动态，请点击这里进行订阅！ 简体中文使用直角引号用法： 「老师，『有条不紊』的『紊』是什么意思？」 对比用法： “老师，‘有条不紊’的‘紊’是什么意思？”]]></content>
@@ -49,8 +61,8 @@
       <tags>
         <tag>日记</tag>
         <tag>生活</tag>
-        <tag>情感</tag>
         <tag>人生</tag>
+        <tag>情感</tag>
       </tags>
   </entry>
   <entry>
@@ -267,9 +279,9 @@
         <category>编程</category>
       </categories>
       <tags>
+        <tag>Linux</tag>
         <tag>编程</tag>
         <tag>网络</tag>
-        <tag>Linux</tag>
         <tag>Node.js</tag>
         <tag>Express</tag>
         <tag>MongoDB</tag>
@@ -321,8 +333,8 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>生活</tag>
         <tag>杂谈</tag>
+        <tag>生活</tag>
         <tag>人生</tag>
         <tag>转载</tag>
       </tags>
@@ -352,8 +364,8 @@
         <category>文学</category>
       </categories>
       <tags>
-        <tag>主播</tag>
         <tag>写作</tag>
+        <tag>主播</tag>
         <tag>杂谈</tag>
         <tag>职业</tag>
       </tags>
@@ -404,8 +416,8 @@
         <category>IT</category>
       </categories>
       <tags>
-        <tag>网络</tag>
         <tag>写作</tag>
+        <tag>网络</tag>
         <tag>Web服务器</tag>
         <tag>局域网</tag>
         <tag>路由器</tag>
@@ -502,10 +514,10 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>高中</tag>
         <tag>回忆</tag>
         <tag>江苏</tag>
         <tag>游记</tag>
+        <tag>高中</tag>
       </tags>
   </entry>
   <entry>
@@ -532,11 +544,11 @@
       <tags>
         <tag>C</tag>
         <tag>编程</tag>
+        <tag>高中</tag>
         <tag>探究</tag>
         <tag>数学</tag>
         <tag>汉诺塔</tag>
         <tag>论文</tag>
-        <tag>高中</tag>
       </tags>
   </entry>
   <entry>

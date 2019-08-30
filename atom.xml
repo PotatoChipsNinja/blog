@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pcninja.cn/"/>
-  <updated>2019-08-19T14:37:29.112Z</updated>
+  <updated>2019-08-30T14:30:31.284Z</updated>
   <id>https://pcninja.cn/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>暑假小结</title>
+    <link href="https://pcninja.cn/2019/08/summer-vacation-summary/"/>
+    <id>https://pcninja.cn/2019/08/summer-vacation-summary/</id>
+    <published>2019-08-30T14:15:17.000Z</published>
+    <updated>2019-08-30T14:30:31.284Z</updated>
+    
+    <content type="html"><![CDATA[<p>&emsp;&emsp;此时此刻，窗外不断传来大一新生军训中演讲比赛的激昂呐喊。新鲜血液的涌入着实给了我一种紧迫感，回想一年前，我也和他们一样，刚刚踏入大学的校门，心中有憧憬也有迷茫。转眼一年过去了，仿佛憧憬与迷惘都变多了。<br>&emsp;&emsp;从7月13号到今天，一个半月的暑假已接近尾声。其实这个暑假做的事有限，掰着手指头数都能数的过来，所以本来没想写这个总结。但思前想后觉得还是应该简要记录一下，也算是警醒自己今后要做更多有意义的事。<a id="more"></a><br>&emsp;&emsp;文字能力有限，依旧是流水账。<br>&emsp;&emsp;小学期里，我们的任务是完成“外卖派单模拟系统”，这是我第一次着手这种具有一定规模的项目，项目需求与规则繁杂且模糊，并且几经修改，最要命的是在7月13号验收的前一天傍晚被要求新增不少功能，所有人都很无奈。好在经历了几天几夜的爆肝之后，顺利完成了验收。最终，我们花大量精力研究的算法在所有组的比拼中喜提头名，可喜可贺。然而看了别的组华丽的GUI之后我们才意识到我们在用户体验上所做的工作确实有些简陋，不过这也是在时间紧迫的前提下所做出的必然取舍，因为在我们看来，相比于图形界面，算法是我们更应该投入精力去琢磨的地方。<br>&emsp;&emsp;暑假伊始，由于刚刚结束了小学期的项目，有些身心俱疲，所以没干什么正事。唯一做的就是 Express + EJS + ajax + MongoDB 写了一个 ToDo List，顺带学到了些前端知识。到了七月底回到学校，参加某大型红色活动的训练，为期二十余天，除了太阳晒点，还是比较轻松欢愉的。训练之余，在宿舍学习了 Docker，并尝试把我所有的站点和服务进行容器化，不过目前还只是在虚拟机上，没有上线。等过段时间域名完成备案，可以A记录解析到服务器上之后应该就可以享受 <code>docker-compose up -d</code> 一键部署的快感了😝。<br>&emsp;&emsp;在此之后训练任务断断续续，我的暑假生活也以娱乐为主，通关了老早以前搁下的弹丸论破1和2，没事就和舍友开黑GTAOL，还是挺轻松加写意的。<br>&emsp;&emsp;总的来说这个暑假过得很快活，但有意义的事做得不多，换句话说，有点浪费。不过这一切都是我自己的选择，也不会后悔。期待下学期的学习生活，也期待十月一号能够用最好的表现为祖国母亲七十华诞献礼！</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&amp;emsp;&amp;emsp;此时此刻，窗外不断传来大一新生军训中演讲比赛的激昂呐喊。新鲜血液的涌入着实给了我一种紧迫感，回想一年前，我也和他们一样，刚刚踏入大学的校门，心中有憧憬也有迷茫。转眼一年过去了，仿佛憧憬与迷惘都变多了。&lt;br&gt;&amp;emsp;&amp;emsp;从7月13号到今天，一个半月的暑假已接近尾声。其实这个暑假做的事有限，掰着手指头数都能数的过来，所以本来没想写这个总结。但思前想后觉得还是应该简要记录一下，也算是警醒自己今后要做更多有意义的事。
+    
+    </summary>
+    
+      <category term="生活" scheme="https://pcninja.cn/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
+    
+  </entry>
   
   <entry>
     <title>中文文案排版指北</title>
@@ -134,9 +158,9 @@
     
       <category term="生活" scheme="https://pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
     
-      <category term="情感" scheme="https://pcninja.cn/tags/%E6%83%85%E6%84%9F/"/>
-    
       <category term="人生" scheme="https://pcninja.cn/tags/%E4%BA%BA%E7%94%9F/"/>
+    
+      <category term="情感" scheme="https://pcninja.cn/tags/%E6%83%85%E6%84%9F/"/>
     
   </entry>
   
@@ -599,11 +623,11 @@
       <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
+      <category term="Linux" scheme="https://pcninja.cn/tags/Linux/"/>
+    
       <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
       <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
-    
-      <category term="Linux" scheme="https://pcninja.cn/tags/Linux/"/>
     
       <category term="Node.js" scheme="https://pcninja.cn/tags/Node-js/"/>
     
@@ -639,33 +663,6 @@
       <category term="JavaScript" scheme="https://pcninja.cn/tags/JavaScript/"/>
     
       <category term="脚本" scheme="https://pcninja.cn/tags/%E8%84%9A%E6%9C%AC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于C/C++中主函数的声明及返回值问题</title>
-    <link href="https://pcninja.cn/2018/09/about-main-function-declaration-and-returned-value/"/>
-    <id>https://pcninja.cn/2018/09/about-main-function-declaration-and-returned-value/</id>
-    <published>2018-09-26T03:05:00.000Z</published>
-    <updated>2018-10-04T02:40:44.187Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote><p>&emsp;&emsp;在C/C++程序中有时会见到采用诸如<code>void main()</code>等方式来声明主函数，很多人在主函数返回值的问题上也略显随意。经过查阅多版本的C、C++标准文档与相关书籍，我将我的结论与认识总结于此。不可避免地，其中可能包含我错误的认识，欢迎大家指正。<br><a id="more"></a></p><h2 id="main-函数的函数类型"><a href="#main-函数的函数类型" class="headerlink" title="main()函数的函数类型"></a>main()函数的函数类型</h2><p>关于<code>main()</code>的原型，C89/99/11以及C++98/03/11/14等标准给出的说法略有出入，尤其在早期标准中差异更为显著。然而，共同的，在任何一个版本的标准中，均未承认<code>void main()</code>这种声明方式。首先可以得出结论：<code>void main()</code>为错误写法，所有编译器都没有理由支持该种写法。</p></blockquote><p>在K&amp;R C与C89里，若函数没有显式声明返回类型，则默认是<code>int</code>，因此在早期C程序中经常出现这样的主函数：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">main()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 函数体</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>这种写法在早期标准中是被认可的，<code>main()</code>等价于<code>int main()</code>。但是，C99标准不再支持函数的<code>int</code>类型的默认设置，因此该写法被废止，新的编译器不再允许此类main函数。</p><p>在C99/11标准中，明确定义了对于标准的main函数的两个原型：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br></pre></td></tr></table></figure></p><p>为了增强说服力，我在《C Primer Plus》（第六版）（该书以1999 ISO/ANSI作为标准）中找到了这样一段话：</p><blockquote><p>&emsp;&emsp;如果浏览老版本的C代码，您将发现程序常常以：<code>main()</code>这种形式开始。C90标准勉强允许这种形式，但是C99标准不允许。因此即使您当前的编译器允许，也不要这么做。<br>&emsp;&emsp;您还将看到另一种形式：<code>void main()</code><br>&emsp;&emsp;有些编译器允许这种形式，但是还没有任何标准考虑接受它。因而，编译器不必接受这种形式，并且许多编译器也不这样做。再者说，如果坚持使用标准形式，那么当您把程序从一个编译器移到另一个编译器时也不会有问题。</p></blockquote><h2 id="main-函数的形式参数"><a href="#main-函数的形式参数" class="headerlink" title="main()函数的形式参数"></a>main()函数的形式参数</h2><p>此部分C与C++略有差异</p><ul><li>C</li></ul><p>int main()和int main(void)在C语言中是有区别的：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"><span class="comment">// 不等价于</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br></pre></td></tr></table></figure></p><p>在C语言中参数列表为空(即不提供参数列表也不为void)，表示不提供参数数量和参数类型信息：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">()</span>           <span class="comment">// 参数列表为空不代表不接受参数</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    print(<span class="string">"Hello, world\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    func(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>);    <span class="comment">// 调用func()，并传递了参数</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>因此在C中，main函数的参数部分应该以以下两种方式描述：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br></pre></td></tr></table></figure></p><p>不应该写：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br></pre></td></tr></table></figure></p><ul><li>C++</li></ul><p>由于C和C++中对于函数参数列表的规则并不一致(C++中参数列表为空代表不接收任何参数)。所以C++中main的原型和ISO C也并不太一样。<br>在C++中，下面两种写法是完全等价的。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"><span class="comment">// 等价于</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br></pre></td></tr></table></figure></p><p>以上两种形式均符合标准。</p><h2 id="main-函数的返回值"><a href="#main-函数的返回值" class="headerlink" title="main()函数的返回值"></a>main()函数的返回值</h2><p>上文指出，<code>main()</code>应以int类型定义，故需要返回一个<code>int</code>类型的返回值到操作系统。<br>在早期标准中，主函数中的<code>return 0;</code>是可以省略的，<code>main()</code>最后如果没有返回值，则会自动<code>return 0;</code>，但是记住，只有main函数是这样，其他函数不能省略<code>return</code>。<br>自C99/C++98以来，主函数的返回值为强制，若漏掉了返回语句，大多数编译器会给出警告，但仍将编译程序。</p><ul><li><code>return 0;</code>：一般用在主函数结束时，按照程序开发的一般惯例，表示成功完成本函数</li><li><code>return -1;</code>：一般用在子函数结尾，按照程序开发的一般惯例，表示该函数失败</li></ul><p><code>main()</code>必须要有返回值的原因是：在C和C++中使用return-statement都是将return的值作为参数来调用exit/std::exit来终止程序。<br>此外，返回值对于某些操作系统（包括DOS和UNIX）而言，具有实际的用途。<br>以Windows为例，编译以下程序：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* test.c */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>在命令提示符下运行命令<code>test &amp;&amp; dir</code>，得到以下结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">D:\code&gt;test &amp;&amp; dir</span><br><span class="line"></span><br><span class="line"> D:\code 的目录</span><br><span class="line"></span><br><span class="line">2018/09/26  10:31    &lt;DIR&gt;          .</span><br><span class="line">2018/09/26  10:31    &lt;DIR&gt;          ..</span><br><span class="line">2018/09/26  10:29                35 test.c</span><br><span class="line">2018/09/26  10:30            41,664 test.exe</span><br><span class="line">               2 个文件         41,699 字节</span><br><span class="line">               2 个目录 605,409,882,112 可用字节</span><br><span class="line"></span><br><span class="line">D:\code&gt;</span><br></pre></td></tr></table></figure></p><p>test.exe正常结束后执行<code>dir</code>指令，输出了目录列表。<br>若将第4行返回值由0改为-1:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="number">-1</span>;</span><br></pre></td></tr></table></figure></p><p>再次执行<code>test &amp;&amp; dir</code>命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">D:\code&gt;test &amp;&amp; dir</span><br><span class="line"></span><br><span class="line">D:\code&gt;</span><br></pre></td></tr></table></figure></p><p>test.exe将-1返回给了操作系统，即程序异常结束，因此windows没有继续执行<code>dir</code>打印目录列表。<br>总结一下，正常情况下main函数应以<code>return 0;</code>结束，不能随意更改返回值。</p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>综上所述，一般情况下，C/C++程序的主函数都应该以如下方法编写：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span>    <span class="comment">// void在C++中可省，C不建议省</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 函数体</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>即使其他不标准的声明方法也许不会影响程序的正常编译、运行，但为了程序的可移植性与易维护性，我们应该养成良好的编码习惯，利人利己。</p><blockquote><p>参考文献<br>[1] Stephen Prata 编著，《C Primer Plus》，人民邮电出版社，2005年，§2.2 §9.2 §B.5.<br>[2] Andrew Koenig 编著，《C陷阱与缺陷》，人民邮电出版社，2008年，§2.1 §7.1.<br>[3] Stephen Prata 编著，《C++ Primer Plus》，人民邮电出版社，2012年，§2.1 §2.4.</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;&amp;emsp;&amp;emsp;在C/C++程序中有时会见到采用诸如&lt;code&gt;void main()&lt;/code&gt;等方式来声明主函数，很多人在主函数返回值的问题上也略显随意。经过查阅多版本的C、C++标准文档与相关书籍，我将我的结论与认识总结于此。不可避免地，其中可能包含我错误的认识，欢迎大家指正。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
-    
-    
-      <category term="C" scheme="https://pcninja.cn/tags/C/"/>
-    
-      <category term="C++" scheme="https://pcninja.cn/tags/C/"/>
-    
-      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   
