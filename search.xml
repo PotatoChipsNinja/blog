@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[【音乐】庆祝中华人民共和国成立70周年阅兵式军乐欣赏]]></title>
+    <url>%2F2019%2F10%2Fthe-military-music-of-the-parade%2F</url>
+    <content type="text"><![CDATA[点击进入播放器 《钢铁洪流进行曲》 - 中国人民解放军联合军乐团 《东风浩荡进行曲》 - 中国人民解放军联合军乐团 《雄鹰出击进行曲》 - 中国人民解放军联合军乐团 《冲上云霄》 - 中国人民解放军联合军乐团]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>军乐</tag>
+        <tag>交响乐</tag>
+        <tag>阅兵</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[暑假小结]]></title>
     <url>%2F2019%2F08%2Fsummer-vacation-summary%2F</url>
     <content type="text"><![CDATA[&emsp;&emsp;此时此刻，窗外不断传来大一新生军训中演讲比赛的激昂呐喊。新鲜血液的涌入着实给了我一种紧迫感，回想一年前，我也和他们一样，刚刚踏入大学的校门，心中有憧憬也有迷茫。转眼一年过去了，仿佛憧憬与迷惘都变多了。&emsp;&emsp;从7月13号到今天，一个半月的暑假已接近尾声。其实这个暑假做的事有限，掰着手指头数都能数的过来，所以本来没想写这个总结。但思前想后觉得还是应该简要记录一下，也算是警醒自己今后要做更多有意义的事。&emsp;&emsp;文字能力有限，依旧是流水账。&emsp;&emsp;小学期里，我们的任务是完成“外卖派单模拟系统”，这是我第一次着手这种具有一定规模的项目，项目需求与规则繁杂且模糊，并且几经修改，最要命的是在7月13号验收的前一天傍晚被要求新增不少功能，所有人都很无奈。好在经历了几天几夜的爆肝之后，顺利完成了验收。最终，我们花大量精力研究的算法在所有组的比拼中喜提头名，可喜可贺。然而看了别的组华丽的GUI之后我们才意识到我们在用户体验上所做的工作确实有些简陋，不过这也是在时间紧迫的前提下所做出的必然取舍，因为在我们看来，相比于图形界面，算法是我们更应该投入精力去琢磨的地方。&emsp;&emsp;暑假伊始，由于刚刚结束了小学期的项目，有些身心俱疲，所以没干什么正事。唯一做的就是 Express + EJS + ajax + MongoDB 写了一个 ToDo List，顺带学到了些前端知识。到了七月底回到学校，参加某大型红色活动的训练，为期二十余天，除了太阳晒点，还是比较轻松欢愉的。训练之余，在宿舍学习了 Docker，并尝试把我所有的站点和服务进行容器化，不过目前还只是在虚拟机上，没有上线。等过段时间域名完成备案，可以A记录解析到服务器上之后应该就可以享受 docker-compose up -d 一键部署的快感了😝。&emsp;&emsp;在此之后训练任务断断续续，我的暑假生活也以娱乐为主，通关了老早以前搁下的弹丸论破1和2，没事就和舍友开黑GTAOL，还是挺轻松加写意的。&emsp;&emsp;总的来说这个暑假过得很快活，但有意义的事做得不多，换句话说，有点浪费。不过这一切都是我自己的选择，也不会后悔。期待下学期的学习生活，也期待十月一号能够用最好的表现为祖国母亲七十华诞献礼！]]></content>
@@ -8,8 +21,8 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>日记</tag>
         <tag>大学</tag>
+        <tag>日记</tag>
       </tags>
   </entry>
   <entry>
@@ -61,8 +74,8 @@
       <tags>
         <tag>日记</tag>
         <tag>生活</tag>
-        <tag>人生</tag>
         <tag>情感</tag>
+        <tag>人生</tag>
       </tags>
   </entry>
   <entry>
@@ -126,8 +139,8 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>日记</tag>
         <tag>算法</tag>
+        <tag>日记</tag>
         <tag>随笔</tag>
         <tag>情感</tag>
       </tags>
@@ -249,10 +262,10 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>日记</tag>
-        <tag>生活</tag>
         <tag>大学</tag>
+        <tag>日记</tag>
         <tag>随笔</tag>
+        <tag>生活</tag>
       </tags>
   </entry>
   <entry>
@@ -514,10 +527,10 @@
       </categories>
       <tags>
         <tag>写作</tag>
+        <tag>高中</tag>
         <tag>回忆</tag>
         <tag>江苏</tag>
         <tag>游记</tag>
-        <tag>高中</tag>
       </tags>
   </entry>
   <entry>
@@ -544,11 +557,11 @@
       <tags>
         <tag>C</tag>
         <tag>编程</tag>
-        <tag>高中</tag>
         <tag>探究</tag>
         <tag>数学</tag>
         <tag>汉诺塔</tag>
         <tag>论文</tag>
+        <tag>高中</tag>
       </tags>
   </entry>
   <entry>
