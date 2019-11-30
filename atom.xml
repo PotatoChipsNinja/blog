@@ -68,9 +68,9 @@
       <category term="生活" scheme="https://pcninja.cn/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
-    
       <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
+    
+      <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
     
   </entry>
   
@@ -141,32 +141,6 @@
       <category term="Python" scheme="https://pcninja.cn/tags/Python/"/>
     
       <category term="编码" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【备忘】 SS代理服务器配置及优化</title>
-    <link href="https://pcninja.cn/2019/07/configuration-and-optimization-of-ss-proxy-server/"/>
-    <id>https://pcninja.cn/2019/07/configuration-and-optimization-of-ss-proxy-server/</id>
-    <published>2019-07-15T12:41:21.000Z</published>
-    <updated>2019-07-15T13:36:14.392Z</updated>
-    
-    <content type="html"><![CDATA[<p>&emsp;&emsp;由于Vultr日本节点大量被墙，所以被迫转投DigitalOcean，最便宜的是5刀一个月，但首充5刀后会送50刀，再加上Github教育礼包里包含的50刀优惠（需要验证教育邮箱、上传学生证照片），所以算下来几乎可以白嫖两年，岂不美滋滋。美中不足是DigitalOcean的系统快照占用的存储空间是要另付费的，所以每次换IP开新机就需要重新配置代理服务器，这里简单记录一下流程和命令，方便以后复制。<br><a id="more"></a></p><blockquote><p>以Ubuntu 18.04搭建SS服务为例，如果今后SS情势不好可能会换用V2Ray</p></blockquote><h2 id="安装及配置"><a href="#安装及配置" class="headerlink" title="安装及配置"></a>安装及配置</h2><p>项目地址：<a href="https://github.com/shadowsocks/shadowsocks/tree/master" target="_blank" rel="noopener">https://github.com/shadowsocks/shadowsocks/tree/master</a><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 从源更新软件列表</span><br><span class="line">apt-get update</span><br><span class="line"><span class="meta">#</span> 安装pip</span><br><span class="line">apt-get install python-pip</span><br><span class="line"><span class="meta">#</span> pip安装SS</span><br><span class="line">pip install git+https://github.com/shadowsocks/shadowsocks.git@master</span><br></pre></td></tr></table></figure></p><p>安装完成后可以建两个脚本<code>start.sh</code>、<code>stop.sh</code>方便控制服务开关（或编写json配置文件，反而麻烦）<br>start.sh：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ssserver -p 端口 -k 密码 -m aes-256-cfb --user nobody -d start</span><br></pre></td></tr></table></figure></p><p>stop.sh：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ssserver -d stop</span><br></pre></td></tr></table></figure></p><p>最后还要给这两个脚本赋予执行权限<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x start.sh stop.sh    # 或直接chmod 777</span><br></pre></td></tr></table></figure></p><p>开启服务之前可以做以下优化，提高带宽利用率</p><h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>首先按照官方Wiki上的教程进行优化，地址：<a href="https://github.com/shadowsocks/shadowsocks/wiki/Optimizing-Shadowsocks" target="_blank" rel="noopener">https://github.com/shadowsocks/shadowsocks/wiki/Optimizing-Shadowsocks</a><br>创建<code>/etc/sysctl.d/local.conf</code>并写入以下配置：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> max open files</span><br><span class="line">fs.file-max = 51200</span><br><span class="line"><span class="meta">#</span> max read buffer</span><br><span class="line">net.core.rmem_max = 67108864</span><br><span class="line"><span class="meta">#</span> max write buffer</span><br><span class="line">net.core.wmem_max = 67108864</span><br><span class="line"><span class="meta">#</span> default read buffer</span><br><span class="line">net.core.rmem_default = 65536</span><br><span class="line"><span class="meta">#</span> default write buffer</span><br><span class="line">net.core.wmem_default = 65536</span><br><span class="line"><span class="meta">#</span> max processor input queue</span><br><span class="line">net.core.netdev_max_backlog = 4096</span><br><span class="line"><span class="meta">#</span> max backlog</span><br><span class="line">net.core.somaxconn = 4096</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> resist SYN flood attacks</span><br><span class="line">net.ipv4.tcp_syncookies = 1</span><br><span class="line"><span class="meta">#</span> reuse timewait sockets when safe</span><br><span class="line">net.ipv4.tcp_tw_reuse = 1</span><br><span class="line"><span class="meta">#</span> turn off fast timewait sockets recycling</span><br><span class="line">net.ipv4.tcp_tw_recycle = 0</span><br><span class="line"><span class="meta">#</span> short FIN timeout</span><br><span class="line">net.ipv4.tcp_fin_timeout = 30</span><br><span class="line"><span class="meta">#</span> short keepalive time</span><br><span class="line">net.ipv4.tcp_keepalive_time = 1200</span><br><span class="line"><span class="meta">#</span> outbound port range</span><br><span class="line">net.ipv4.ip_local_port_range = 10000 65000</span><br><span class="line"><span class="meta">#</span> max SYN backlog</span><br><span class="line">net.ipv4.tcp_max_syn_backlog = 4096</span><br><span class="line"><span class="meta">#</span> max timewait sockets held by system simultaneously</span><br><span class="line">net.ipv4.tcp_max_tw_buckets = 5000</span><br><span class="line"><span class="meta">#</span> turn on TCP Fast Open on both client and server side</span><br><span class="line">net.ipv4.tcp_fastopen = 3</span><br><span class="line"><span class="meta">#</span> TCP receive buffer</span><br><span class="line">net.ipv4.tcp_rmem = 4096 87380 67108864</span><br><span class="line"><span class="meta">#</span> TCP write buffer</span><br><span class="line">net.ipv4.tcp_wmem = 4096 65536 67108864</span><br><span class="line"><span class="meta">#</span> turn on path MTU discovery</span><br><span class="line">net.ipv4.tcp_mtu_probing = 1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> for high-latency network</span><br><span class="line">net.ipv4.tcp_congestion_control = hybla</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> for low-latency network, use cubic instead</span><br><span class="line"><span class="meta">#</span> net.ipv4.tcp_congestion_control = cubic</span><br></pre></td></tr></table></figure></p><p>最后的<code>net.ipv4.tcp_congestion_control</code>选择<code>hybla</code>还是<code>cubic</code>取决于服务器延迟的高低<br>然后加载我们写好的配置文件：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl --system</span><br></pre></td></tr></table></figure></p><p>接下来是启用TCP BBR拥塞控制算法，可以用来取代ServerSpeeder<br>已经有人做好了傻瓜式脚本，我们只需要根据提示操作：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; ./bbr.sh</span><br></pre></td></tr></table></figure></p><p>使用<code>lsmod | grep bbr</code>查看系统模块，若返回<code>tcp_bbr</code>说明BBR已启动</p><p>这时我们就可以运行<code>start.sh</code>，开启代理服务，进行科学上网了</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&amp;emsp;&amp;emsp;由于Vultr日本节点大量被墙，所以被迫转投DigitalOcean，最便宜的是5刀一个月，但首充5刀后会送50刀，再加上Github教育礼包里包含的50刀优惠（需要验证教育邮箱、上传学生证照片），所以算下来几乎可以白嫖两年，岂不美滋滋。美中不足是DigitalOcean的系统快照占用的存储空间是要另付费的，所以每次换IP开新机就需要重新配置代理服务器，这里简单记录一下流程和命令，方便以后复制。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="网络" scheme="https://pcninja.cn/categories/%E7%BD%91%E7%BB%9C/"/>
-    
-    
-      <category term="Linux" scheme="https://pcninja.cn/tags/Linux/"/>
-    
-      <category term="服务器" scheme="https://pcninja.cn/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-      <category term="代理" scheme="https://pcninja.cn/tags/%E4%BB%A3%E7%90%86/"/>
     
   </entry>
   
@@ -336,9 +310,9 @@
     
       <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
-      <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
-    
       <category term="算法" scheme="https://pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
     
       <category term="随笔" scheme="https://pcninja.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
@@ -589,13 +563,13 @@
       <category term="生活" scheme="https://pcninja.cn/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
-    
-      <category term="生活" scheme="https://pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
-    
       <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
+      <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
+    
       <category term="随笔" scheme="https://pcninja.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="生活" scheme="https://pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   
@@ -621,11 +595,11 @@
     
       <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
-      <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
-    
       <category term="SSL" scheme="https://pcninja.cn/tags/SSL/"/>
     
       <category term="HTTPS" scheme="https://pcninja.cn/tags/HTTPS/"/>
+    
+      <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
     
       <category term="Node.js" scheme="https://pcninja.cn/tags/Node-js/"/>
     
@@ -657,17 +631,46 @@
       <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
+      <category term="Linux" scheme="https://pcninja.cn/tags/Linux/"/>
+    
       <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
       <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
-    
-      <category term="Linux" scheme="https://pcninja.cn/tags/Linux/"/>
     
       <category term="Node.js" scheme="https://pcninja.cn/tags/Node-js/"/>
     
       <category term="Express" scheme="https://pcninja.cn/tags/Express/"/>
     
       <category term="MongoDB" scheme="https://pcninja.cn/tags/MongoDB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>通过JavaScript实现网页自动刷新</title>
+    <link href="https://pcninja.cn/2018/10/web-page-auto-refresh-by-JavaScript/"/>
+    <id>https://pcninja.cn/2018/10/web-page-auto-refresh-by-JavaScript/</id>
+    <published>2018-10-02T09:24:08.000Z</published>
+    <updated>2018-10-04T12:55:21.689Z</updated>
+    
+    <content type="html"><![CDATA[<p>&emsp;&emsp;很多时候我们需要让网页不断刷新来达到持续监视或刷访问次数等目的，我们可以通过简单的JS脚本来实现网页自动刷新的操作。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> timeout = prompt(<span class="string">"设置刷新时间间隔[S]"</span>);</span><br><span class="line"><span class="keyword">var</span> current = location.href;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reload</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="string">'reload()'</span>, <span class="number">1000</span> * timeout);</span><br><span class="line">    <span class="keyword">var</span> myFrame = <span class="string">"&lt;frameset cols=\'*\'&gt;&lt;frame src=\'"</span> + current + <span class="string">"\' /&gt;&lt;/frameset&gt;"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> (<span class="built_in">document</span>) &#123;</span><br><span class="line">        write(myFrame);</span><br><span class="line">        <span class="keyword">void</span>(close());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (timeout &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    setTimeout(<span class="string">'reload()'</span>, <span class="number">1000</span> * timeout);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    location.replace(current);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>我们可以打开浏览器提供的开发者工具（如Chrome为F12），进入控制台，复制以上代码来实现功能。<br>为了更加简化操作步骤，我们可以将以下压缩后的JS代码保存至书签栏/收藏夹（Ctrl+D），这样即可快速调用：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javascript:&#123;<span class="function"><span class="keyword">function</span> <span class="title">reload</span>(<span class="params"></span>)</span>&#123;setTimeout(<span class="string">'reload()'</span>,<span class="number">1000</span>*timeout);<span class="keyword">var</span> myFrame=<span class="string">"&lt;frameset cols='*'&gt;&lt;frame src='"</span>+current+<span class="string">"' /&gt;&lt;/frameset&gt;"</span>;<span class="keyword">with</span>(<span class="built_in">document</span>)&#123;write(myFrame);<span class="keyword">void</span>(close())&#125;&#125;<span class="keyword">var</span> timeout=prompt(<span class="string">"设置刷新时间间隔(s)"</span>);<span class="keyword">var</span> current=location.href;<span class="keyword">if</span>(timeout&gt;<span class="number">0</span>)&#123;setTimeout(<span class="string">'reload()'</span>,<span class="number">1000</span>*timeout)&#125;<span class="keyword">else</span>&#123;location.replace(current)&#125;&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&amp;emsp;&amp;emsp;很多时候我们需要让网页不断刷新来达到持续监视或刷访问次数等目的，我们可以通过简单的JS脚本来实现网页自动刷新的操作。&lt;br&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutt
+      
+    
+    </summary>
+    
+      <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="JavaScript" scheme="https://pcninja.cn/tags/JavaScript/"/>
+    
+      <category term="脚本" scheme="https://pcninja.cn/tags/%E8%84%9A%E6%9C%AC/"/>
     
   </entry>
   
