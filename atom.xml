@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pcninja.cn/"/>
-  <updated>2019-10-03T12:33:07.725Z</updated>
+  <updated>2020-01-24T15:36:39.081Z</updated>
   <id>https://pcninja.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>除夕夜小记</title>
+    <link href="https://pcninja.cn/2020/01/happy-chinese-new-year-2020/"/>
+    <id>https://pcninja.cn/2020/01/happy-chinese-new-year-2020/</id>
+    <published>2020-01-24T15:00:11.000Z</published>
+    <updated>2020-01-24T15:36:39.081Z</updated>
+    
+    <content type="html"><![CDATA[<p>&emsp;&emsp;除夕夜，万家灯火，十四亿华人共同迎接庚子年的到来。<br><a id="more"></a><br>&emsp;&emsp;这个新年并不太平，刚一进入2020年，中华民族的儿女就历经了巨大挑战：</p><ul><li>1月11日，蔡英文以史无前例的得票数连任台湾地区领导人，两岸关系不知将何去何从</li><li>1月16日，中美第一阶段经贸协议的签署让中国蒙受巨大损失，为即将打响的科技战、金融战埋下巨大隐患</li><li>1月23日，武汉封城，却难以阻止2019-nCoV在全国范围内大规模爆发，无人知晓真实的感染情况，无人知晓最终会付出多大的代价……</li></ul><p>&emsp;&emsp;2020年，无论是国家命运，亦或是每一个国民的命运，都将注定不凡。真诚祝愿中华民族能够“风雨压不垮，苦难中开花”，继续屹立在世界东方。<br>&emsp;&emsp;<strong>天佑中华！</strong></p><p></p><p align="right">己亥年除夕于家中</p><p></p><div class="image-size-50"><img src="/2020/01/happy-chinese-new-year-2020/image.png" title="鼠年快乐"></div>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&amp;emsp;&amp;emsp;除夕夜，万家灯火，十四亿华人共同迎接庚子年的到来。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="生活" scheme="https://pcninja.cn/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+      <category term="生活" scheme="https://pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+      <category term="新年" scheme="https://pcninja.cn/tags/%E6%96%B0%E5%B9%B4/"/>
+    
+  </entry>
   
   <entry>
     <title>【音乐】庆祝中华人民共和国成立70周年阅兵式军乐欣赏</title>
@@ -68,9 +94,9 @@
       <category term="生活" scheme="https://pcninja.cn/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
-    
       <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
   </entry>
   
@@ -136,9 +162,9 @@
       <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="virtualenv" scheme="https://pcninja.cn/tags/virtualenv/"/>
-    
       <category term="Python" scheme="https://pcninja.cn/tags/Python/"/>
+    
+      <category term="virtualenv" scheme="https://pcninja.cn/tags/virtualenv/"/>
     
       <category term="编码" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A0%81/"/>
     
@@ -308,11 +334,11 @@
       <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
+      <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
+    
       <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
       <category term="算法" scheme="https://pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
     
       <category term="随笔" scheme="https://pcninja.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
@@ -563,13 +589,13 @@
       <category term="生活" scheme="https://pcninja.cn/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
-    
       <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
     
-      <category term="随笔" scheme="https://pcninja.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
       <category term="生活" scheme="https://pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
+    
+      <category term="随笔" scheme="https://pcninja.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -593,13 +619,13 @@
       <category term="网络" scheme="https://pcninja.cn/categories/%E7%BD%91%E7%BB%9C/"/>
     
     
+      <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
+    
       <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
       <category term="SSL" scheme="https://pcninja.cn/tags/SSL/"/>
     
       <category term="HTTPS" scheme="https://pcninja.cn/tags/HTTPS/"/>
-    
-      <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
     
       <category term="Node.js" scheme="https://pcninja.cn/tags/Node-js/"/>
     
@@ -633,44 +659,15 @@
     
       <category term="Linux" scheme="https://pcninja.cn/tags/Linux/"/>
     
-      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
-    
       <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
       <category term="Node.js" scheme="https://pcninja.cn/tags/Node-js/"/>
     
       <category term="Express" scheme="https://pcninja.cn/tags/Express/"/>
     
       <category term="MongoDB" scheme="https://pcninja.cn/tags/MongoDB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>通过JavaScript实现网页自动刷新</title>
-    <link href="https://pcninja.cn/2018/10/web-page-auto-refresh-by-JavaScript/"/>
-    <id>https://pcninja.cn/2018/10/web-page-auto-refresh-by-JavaScript/</id>
-    <published>2018-10-02T09:24:08.000Z</published>
-    <updated>2018-10-04T12:55:21.689Z</updated>
-    
-    <content type="html"><![CDATA[<p>&emsp;&emsp;很多时候我们需要让网页不断刷新来达到持续监视或刷访问次数等目的，我们可以通过简单的JS脚本来实现网页自动刷新的操作。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> timeout = prompt(<span class="string">"设置刷新时间间隔[S]"</span>);</span><br><span class="line"><span class="keyword">var</span> current = location.href;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reload</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="string">'reload()'</span>, <span class="number">1000</span> * timeout);</span><br><span class="line">    <span class="keyword">var</span> myFrame = <span class="string">"&lt;frameset cols=\'*\'&gt;&lt;frame src=\'"</span> + current + <span class="string">"\' /&gt;&lt;/frameset&gt;"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> (<span class="built_in">document</span>) &#123;</span><br><span class="line">        write(myFrame);</span><br><span class="line">        <span class="keyword">void</span>(close());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (timeout &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    setTimeout(<span class="string">'reload()'</span>, <span class="number">1000</span> * timeout);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    location.replace(current);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>我们可以打开浏览器提供的开发者工具（如Chrome为F12），进入控制台，复制以上代码来实现功能。<br>为了更加简化操作步骤，我们可以将以下压缩后的JS代码保存至书签栏/收藏夹（Ctrl+D），这样即可快速调用：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javascript:&#123;<span class="function"><span class="keyword">function</span> <span class="title">reload</span>(<span class="params"></span>)</span>&#123;setTimeout(<span class="string">'reload()'</span>,<span class="number">1000</span>*timeout);<span class="keyword">var</span> myFrame=<span class="string">"&lt;frameset cols='*'&gt;&lt;frame src='"</span>+current+<span class="string">"' /&gt;&lt;/frameset&gt;"</span>;<span class="keyword">with</span>(<span class="built_in">document</span>)&#123;write(myFrame);<span class="keyword">void</span>(close())&#125;&#125;<span class="keyword">var</span> timeout=prompt(<span class="string">"设置刷新时间间隔(s)"</span>);<span class="keyword">var</span> current=location.href;<span class="keyword">if</span>(timeout&gt;<span class="number">0</span>)&#123;setTimeout(<span class="string">'reload()'</span>,<span class="number">1000</span>*timeout)&#125;<span class="keyword">else</span>&#123;location.replace(current)&#125;&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&amp;emsp;&amp;emsp;很多时候我们需要让网页不断刷新来达到持续监视或刷访问次数等目的，我们可以通过简单的JS脚本来实现网页自动刷新的操作。&lt;br&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutt
-      
-    
-    </summary>
-    
-      <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
-    
-    
-      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
-    
-      <category term="JavaScript" scheme="https://pcninja.cn/tags/JavaScript/"/>
-    
-      <category term="脚本" scheme="https://pcninja.cn/tags/%E8%84%9A%E6%9C%AC/"/>
     
   </entry>
   

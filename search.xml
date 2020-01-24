@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[除夕夜小记]]></title>
+    <url>%2F2020%2F01%2Fhappy-chinese-new-year-2020%2F</url>
+    <content type="text"><![CDATA[&emsp;&emsp;除夕夜，万家灯火，十四亿华人共同迎接庚子年的到来。&emsp;&emsp;这个新年并不太平，刚一进入2020年，中华民族的儿女就历经了巨大挑战： 1月11日，蔡英文以史无前例的得票数连任台湾地区领导人，两岸关系不知将何去何从 1月16日，中美第一阶段经贸协议的签署让中国蒙受巨大损失，为即将打响的科技战、金融战埋下巨大隐患 1月23日，武汉封城，却难以阻止2019-nCoV在全国范围内大规模爆发，无人知晓真实的感染情况，无人知晓最终会付出多大的代价…… &emsp;&emsp;2020年，无论是国家命运，亦或是每一个国民的命运，都将注定不凡。真诚祝愿中华民族能够“风雨压不垮，苦难中开花”，继续屹立在世界东方。&emsp;&emsp;天佑中华！ 己亥年除夕于家中]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
+        <tag>生活</tag>
+        <tag>新年</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[【音乐】庆祝中华人民共和国成立70周年阅兵式军乐欣赏]]></title>
     <url>%2F2019%2F10%2Fthe-military-music-of-the-parade%2F</url>
     <content type="text"><![CDATA[点击进入播放器 《钢铁洪流进行曲》 - 中国人民解放军联合军乐团 《东风浩荡进行曲》 - 中国人民解放军联合军乐团 《雄鹰出击进行曲》 - 中国人民解放军联合军乐团 《冲上云霄》 - 中国人民解放军联合军乐团]]></content>
@@ -21,8 +34,8 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>大学</tag>
         <tag>日记</tag>
+        <tag>大学</tag>
       </tags>
   </entry>
   <entry>
@@ -46,8 +59,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>virtualenv</tag>
         <tag>Python</tag>
+        <tag>virtualenv</tag>
         <tag>编码</tag>
       </tags>
   </entry>
@@ -125,9 +138,9 @@
         <category>编程</category>
       </categories>
       <tags>
+        <tag>日记</tag>
         <tag>编程</tag>
         <tag>算法</tag>
-        <tag>日记</tag>
         <tag>随笔</tag>
         <tag>情感</tag>
       </tags>
@@ -249,10 +262,10 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>大学</tag>
         <tag>日记</tag>
-        <tag>随笔</tag>
         <tag>生活</tag>
+        <tag>大学</tag>
+        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
@@ -263,10 +276,10 @@
         <category>网络</category>
       </categories>
       <tags>
+        <tag>网络</tag>
         <tag>编程</tag>
         <tag>SSL</tag>
         <tag>HTTPS</tag>
-        <tag>网络</tag>
         <tag>Node.js</tag>
         <tag>Express</tag>
       </tags>
@@ -280,8 +293,8 @@
       </categories>
       <tags>
         <tag>Linux</tag>
-        <tag>编程</tag>
         <tag>网络</tag>
+        <tag>编程</tag>
         <tag>Node.js</tag>
         <tag>Express</tag>
         <tag>MongoDB</tag>
@@ -333,8 +346,8 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>杂谈</tag>
         <tag>生活</tag>
+        <tag>杂谈</tag>
         <tag>人生</tag>
         <tag>转载</tag>
       </tags>
@@ -364,8 +377,8 @@
         <category>文学</category>
       </categories>
       <tags>
-        <tag>主播</tag>
         <tag>写作</tag>
+        <tag>主播</tag>
         <tag>杂谈</tag>
         <tag>职业</tag>
       </tags>
@@ -433,9 +446,9 @@
       <tags>
         <tag>C</tag>
         <tag>编程</tag>
-        <tag>Python</tag>
         <tag>HTML</tag>
         <tag>Java</tag>
+        <tag>Python</tag>
         <tag>国旗</tag>
       </tags>
   </entry>
@@ -448,9 +461,9 @@
       </categories>
       <tags>
         <tag>写作</tag>
+        <tag>红楼梦</tag>
         <tag>评析</tag>
         <tag>读后感</tag>
-        <tag>红楼梦</tag>
       </tags>
   </entry>
   <entry>
@@ -515,9 +528,9 @@
       <tags>
         <tag>写作</tag>
         <tag>高中</tag>
+        <tag>游记</tag>
         <tag>回忆</tag>
         <tag>江苏</tag>
-        <tag>游记</tag>
       </tags>
   </entry>
   <entry>
@@ -529,9 +542,9 @@
       </categories>
       <tags>
         <tag>写作</tag>
+        <tag>红楼梦</tag>
         <tag>评析</tag>
         <tag>读后感</tag>
-        <tag>红楼梦</tag>
       </tags>
   </entry>
   <entry>
@@ -590,9 +603,9 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>毛泽东</tag>
         <tag>评析</tag>
         <tag>读后感</tag>
+        <tag>毛泽东</tag>
       </tags>
   </entry>
   <entry>
