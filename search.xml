@@ -87,10 +87,10 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>大学</tag>
         <tag>数据结构</tag>
         <tag>算法</tag>
         <tag>作业</tag>
+        <tag>大学</tag>
         <tag>链表</tag>
         <tag>Hash</tag>
       </tags>
@@ -104,10 +104,10 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>大学</tag>
         <tag>数据结构</tag>
         <tag>算法</tag>
         <tag>作业</tag>
+        <tag>大学</tag>
         <tag>堆</tag>
         <tag>二叉树</tag>
         <tag>最小堆</tag>
@@ -122,10 +122,10 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>大学</tag>
         <tag>数据结构</tag>
         <tag>算法</tag>
         <tag>作业</tag>
+        <tag>大学</tag>
         <tag>单调栈</tag>
         <tag>二分查找</tag>
       </tags>
@@ -140,8 +140,8 @@
       <tags>
         <tag>编程</tag>
         <tag>日记</tag>
-        <tag>随笔</tag>
         <tag>算法</tag>
+        <tag>随笔</tag>
         <tag>情感</tag>
       </tags>
   </entry>
@@ -154,10 +154,10 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>大学</tag>
         <tag>数据结构</tag>
         <tag>算法</tag>
         <tag>作业</tag>
+        <tag>大学</tag>
         <tag>并查集</tag>
         <tag>路径压缩</tag>
       </tags>
@@ -170,9 +170,9 @@
         <category>学科</category>
       </categories>
       <tags>
-        <tag>大学</tag>
-        <tag>作业</tag>
         <tag>数学</tag>
+        <tag>作业</tag>
+        <tag>大学</tag>
         <tag>离散数学</tag>
         <tag>复杂度</tag>
       </tags>
@@ -186,10 +186,10 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>大学</tag>
         <tag>数据结构</tag>
         <tag>算法</tag>
         <tag>作业</tag>
+        <tag>大学</tag>
         <tag>并查集</tag>
         <tag>路径压缩</tag>
         <tag>启发式合并</tag>
@@ -231,10 +231,10 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>大学</tag>
         <tag>数据结构</tag>
         <tag>算法</tag>
         <tag>作业</tag>
+        <tag>大学</tag>
         <tag>Floyd</tag>
       </tags>
   </entry>
@@ -247,10 +247,10 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>大学</tag>
         <tag>数据结构</tag>
         <tag>算法</tag>
         <tag>作业</tag>
+        <tag>大学</tag>
         <tag>Dijkstra</tag>
       </tags>
   </entry>
@@ -264,8 +264,8 @@
       <tags>
         <tag>日记</tag>
         <tag>生活</tag>
-        <tag>随笔</tag>
         <tag>大学</tag>
+        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
@@ -293,8 +293,8 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>网络</tag>
         <tag>Linux</tag>
+        <tag>网络</tag>
         <tag>Node.js</tag>
         <tag>Express</tag>
         <tag>MongoDB</tag>
@@ -346,8 +346,8 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>生活</tag>
         <tag>杂谈</tag>
+        <tag>生活</tag>
         <tag>人生</tag>
         <tag>转载</tag>
       </tags>
@@ -429,8 +429,8 @@
         <category>IT</category>
       </categories>
       <tags>
-        <tag>网络</tag>
         <tag>写作</tag>
+        <tag>网络</tag>
         <tag>Web服务器</tag>
         <tag>局域网</tag>
         <tag>路由器</tag>
@@ -527,10 +527,10 @@
       </categories>
       <tags>
         <tag>写作</tag>
+        <tag>高中</tag>
         <tag>游记</tag>
         <tag>回忆</tag>
         <tag>江苏</tag>
-        <tag>高中</tag>
       </tags>
   </entry>
   <entry>
@@ -557,11 +557,11 @@
       <tags>
         <tag>C</tag>
         <tag>编程</tag>
-        <tag>高中</tag>
         <tag>探究</tag>
         <tag>数学</tag>
         <tag>汉诺塔</tag>
         <tag>论文</tag>
+        <tag>高中</tag>
       </tags>
   </entry>
   <entry>
