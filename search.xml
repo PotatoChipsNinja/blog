@@ -114,8 +114,8 @@
       <tags>
         <tag>日记</tag>
         <tag>生活</tag>
-        <tag>情感</tag>
         <tag>人生</tag>
+        <tag>情感</tag>
       </tags>
   </entry>
   <entry>
@@ -333,8 +333,8 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>网络</tag>
         <tag>Linux</tag>
+        <tag>网络</tag>
         <tag>Node.js</tag>
         <tag>Express</tag>
         <tag>MongoDB</tag>
@@ -386,8 +386,8 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>生活</tag>
         <tag>杂谈</tag>
+        <tag>生活</tag>
         <tag>人生</tag>
         <tag>转载</tag>
       </tags>
@@ -469,8 +469,8 @@
         <category>IT</category>
       </categories>
       <tags>
-        <tag>网络</tag>
         <tag>写作</tag>
+        <tag>网络</tag>
         <tag>Web服务器</tag>
         <tag>局域网</tag>
         <tag>路由器</tag>
@@ -501,9 +501,9 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>红楼梦</tag>
         <tag>评析</tag>
         <tag>读后感</tag>
+        <tag>红楼梦</tag>
       </tags>
   </entry>
   <entry>
@@ -582,9 +582,9 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>红楼梦</tag>
         <tag>评析</tag>
         <tag>读后感</tag>
+        <tag>红楼梦</tag>
       </tags>
   </entry>
   <entry>
@@ -643,9 +643,9 @@
       </categories>
       <tags>
         <tag>写作</tag>
+        <tag>毛泽东</tag>
         <tag>评析</tag>
         <tag>读后感</tag>
-        <tag>毛泽东</tag>
       </tags>
   </entry>
   <entry>
