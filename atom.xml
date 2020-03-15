@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pcninja.cn/"/>
-  <updated>2020-02-21T07:50:20.541Z</updated>
+  <updated>2020-03-15T14:03:38.556Z</updated>
   <id>https://pcninja.cn/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LeetCode 695. 岛屿的最大面积</title>
+    <link href="https://pcninja.cn/2020/03/max-area-of-island/"/>
+    <id>https://pcninja.cn/2020/03/max-area-of-island/</id>
+    <published>2020-03-15T13:27:29.000Z</published>
+    <updated>2020-03-15T14:03:38.556Z</updated>
+    
+    <content type="html"><![CDATA[<p>给定一个包含了一些 0 和 1 的非空二维数组 <code>grid</code> , 一个 <strong>岛屿</strong> 是由四个方向 (水平或垂直) 的 1 (代表土地) 构成的组合。你可以假设二维矩阵的四个边缘都被水包围着。<br>找到给定的二维数组中最大的岛屿面积。(如果没有岛屿，则返回面积为 <code>0</code>)<br><a id="more"></a><br><strong>示例 1:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[[0,0,1,0,0,0,0,1,0,0,0,0,0],</span><br><span class="line"> [0,0,0,0,0,0,0,1,1,1,0,0,0],</span><br><span class="line"> [0,1,1,0,1,0,0,0,0,0,0,0,0],</span><br><span class="line"> [0,1,0,0,1,1,0,0,1,0,1,0,0],</span><br><span class="line"> [0,1,0,0,1,1,0,0,1,1,1,0,0],</span><br><span class="line"> [0,0,0,0,0,0,0,0,0,0,1,0,0],</span><br><span class="line"> [0,0,0,0,0,0,0,1,1,1,0,0,0],</span><br><span class="line"> [0,0,0,0,0,0,0,1,1,0,0,0,0]]</span><br></pre></td></tr></table></figure></p><p>对于上面这个给定矩阵应返回 <code>6</code>。注意答案不应该是 <code>11</code>，因为岛屿只能包含水平或垂直的四个方向的 1。</p><p><strong>示例 2:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[0,0,0,0,0,0,0,0]]</span><br></pre></td></tr></table></figure></p><p>对于上面这个给定的矩阵, 返回 <code>0</code>。</p><p><strong>注意:</strong> 给定的矩阵 <code>grid</code> 的长度和宽度都不超过 50。</p><p><strong>题解:</strong><br>遍历二维数组，遇到 1 的时候就 DFS 深搜找出这个岛屿的面积，同时把经过的 1 都置为 0，避免重复搜索。</p><p><strong>代码:</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>** grid, <span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">1</span>;</span><br><span class="line">    grid[i][j] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(i<span class="number">-1</span> &gt;= <span class="number">0</span> &amp;&amp; grid[i<span class="number">-1</span>][j])</span><br><span class="line">        ans += dfs(grid, m, n, i<span class="number">-1</span>, j);</span><br><span class="line">    <span class="keyword">if</span>(j<span class="number">-1</span> &gt;= <span class="number">0</span> &amp;&amp; grid[i][j<span class="number">-1</span>])</span><br><span class="line">        ans += dfs(grid, m, n, i, j<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">if</span>(i+<span class="number">1</span> &lt; m &amp;&amp; grid[i+<span class="number">1</span>][j])</span><br><span class="line">        ans += dfs(grid, m, n, i+<span class="number">1</span>, j);</span><br><span class="line">    <span class="keyword">if</span>(j+<span class="number">1</span> &lt; n &amp;&amp; grid[i][j+<span class="number">1</span>])</span><br><span class="line">        ans += dfs(grid, m, n, i, j+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意下面 gridSize 是行数，*gridColSize 是列数（不知道 LeetCode 为什么这么给参数）</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxAreaOfIsland</span><span class="params">(<span class="keyword">int</span>** grid, <span class="keyword">int</span> gridSize, <span class="keyword">int</span>* gridColSize)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> maxArea = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; gridSize; ++i)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; *gridColSize; ++j)</span><br><span class="line">            <span class="keyword">if</span>(grid[i][j])</span><br><span class="line">                maxArea = max(maxArea, dfs(grid, gridSize, *gridColSize, i, j));</span><br><span class="line">    <span class="keyword">return</span> maxArea;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h3 id="P-S"><a href="#P-S" class="headerlink" title="P.S."></a>P.S.</h3><p>今天才发现 LeetCode 的「每日 1 题」打卡刷题活动，其实从三月一号就开始了。今天第一天做就碰上这道水题，神人品😁。<br>提交上去之后得到的结果是这样的：</p><p><div class="image-size-50"><img src="/2020/03/max-area-of-island/image.png"></div><br>真是惊了，是因为用 C 写的人比较少吗😮</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;给定一个包含了一些 0 和 1 的非空二维数组 &lt;code&gt;grid&lt;/code&gt; , 一个 &lt;strong&gt;岛屿&lt;/strong&gt; 是由四个方向 (水平或垂直) 的 1 (代表土地) 构成的组合。你可以假设二维矩阵的四个边缘都被水包围着。&lt;br&gt;找到给定的二维数组中最大的岛屿面积。(如果没有岛屿，则返回面积为 &lt;code&gt;0&lt;/code&gt;)&lt;br&gt;
+    
+    </summary>
+    
+      <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="算法" scheme="https://pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="DFS" scheme="https://pcninja.cn/tags/DFS/"/>
+    
+      <category term="LeetCode" scheme="https://pcninja.cn/tags/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title>NumPy 学习笔记</title>
@@ -632,32 +660,6 @@
       <category term="青春" scheme="https://pcninja.cn/tags/%E9%9D%92%E6%98%A5/"/>
     
       <category term="五四运动一百周年" scheme="https://pcninja.cn/tags/%E4%BA%94%E5%9B%9B%E8%BF%90%E5%8A%A8%E4%B8%80%E7%99%BE%E5%91%A8%E5%B9%B4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博客装修小记</title>
-    <link href="https://pcninja.cn/2019/05/blog-decoration-notes/"/>
-    <id>https://pcninja.cn/2019/05/blog-decoration-notes/</id>
-    <published>2019-05-02T09:33:01.000Z</published>
-    <updated>2019-05-03T03:22:09.855Z</updated>
-    
-    <content type="html"><![CDATA[<p>&emsp;&emsp;五一小长假，身边的小伙伴大都奔赴各地领略大好河山，朋友圈里的各种照片看得我眼花缭乱。我赋闲在家，做自己喜欢做的事，放松之余也捯饬捯饬自己的小站。<br><a id="more"></a></p><h3 id="小站概况"><a href="#小站概况" class="headerlink" title="小站概况"></a>小站概况</h3><p>自2016年建站以来，先后经历了多次更换托管主机<small>（Hostinger → GitHub Pages → Coding Pages）</small>与域名<small>（potatochipsninja.tk → pcninja.tk → pcninja.cn）</small>，也从动态网站转型成了静态网站<small>（WordPress → Hexo）</small>，可谓风雨飘摇、命途多舛。尽管如此，小站的建设确确实实让我学习了许多前端方面的知识，同时也带给我不小的成就感。</p><h3 id="主要改动"><a href="#主要改动" class="headerlink" title="主要改动"></a>主要改动</h3><p>博客继续采用 Hexo 搭配 Next 主题，风格从原来的 <code>Pisces</code> 更换成了更具现代感的 <code>Gemini</code>，阴影的加入使得页面区块化更加显著。<br>加入了 Valine 评论系统，支持 <code>Markdown</code> 语法，与原有的文章阅读量统计整合在一块，一并存储在 LeanCloud。</p><h3 id="改动一览"><a href="#改动一览" class="headerlink" title="改动一览"></a>改动一览</h3><ul><li>字体：全局字体采用 <code>Noto Serif SC</code>，网站标题字体采用 <code>ZCOOL XiaoWei</code>，均来自 Google 字体库。为了优化访问速度，使用了 CDN（fonts.loli.net）。如果字体没有生效，请清除缓存后刷新网页</li><li>增加背景图片及背景不透明度</li><li>网站标题框及“阅读全文”按钮配色更改</li><li>侧边栏头像改为圆形，鼠标移入有旋转动画效果，点击可跳至主页</li><li>侧边栏社交链接改为仅有图标的简约风格</li><li>侧边栏加入知识共享许可协议 <code>BY-NC-SA</code> 声明图标，取消了文章底部的文字声明</li><li>返回页面顶部按钮由页面右下角移动到侧边栏底部，并显示阅读百分比</li><li>文章阅读量统计与 Valine 评论系统进行合并</li><li>页脚背景样式美化</li><li>页脚跳动的红色爱心（<span style="display: inline-block; margin: 0 5px; animation: iconAnimate 1.33s ease-in-out infinite;"><i class="fa fa-heart" style="color: #ff0000;"></i></span>）改为静止的灰色爱心（<span><i class="fa fa-heart" style="color: #808080;"></i></span>）<del>，期待它的重新跳动</del></li><li>页脚总访客量与总访问量显示风格改为数值居中，图标分列两侧<h3 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h3></li><li>有精力的时候从零写一个 Hexo 主题，尝试用 <code>PHP</code> 等编写动态博客程序（<strong>可能</strong>会是暑假）</li><li>扩充自己的技术栈，积极更新技术类博文</li><li>丰富博客内容，多读书，多记录生活，努力提升自身文学素养</li></ul><div class="image-size-50"><img src="/2019/05/blog-decoration-notes/image.png" title="2019继续加油"></div>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&amp;emsp;&amp;emsp;五一小长假，身边的小伙伴大都奔赴各地领略大好河山，朋友圈里的各种照片看得我眼花缭乱。我赋闲在家，做自己喜欢做的事，放松之余也捯饬捯饬自己的小站。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="网络" scheme="https://pcninja.cn/categories/%E7%BD%91%E7%BB%9C/"/>
-    
-    
-      <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
-    
-      <category term="生活" scheme="https://pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-      <category term="网络" scheme="https://pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
