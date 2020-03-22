@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://pcninja.cn/"/>
-  <updated>2020-03-15T14:03:38.556Z</updated>
+  <updated>2020-03-22T08:20:16.746Z</updated>
   <id>https://pcninja.cn/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LeetCode 365. 水壶问题</title>
+    <link href="https://pcninja.cn/2020/03/water-and-jug-problem/"/>
+    <id>https://pcninja.cn/2020/03/water-and-jug-problem/</id>
+    <published>2020-03-22T06:50:25.000Z</published>
+    <updated>2020-03-22T08:20:16.746Z</updated>
+    
+    <content type="html"><![CDATA[<p>有两个容量分别为 <code>x</code> 升 和 <code>y</code> 升 的水壶以及无限多的水。请判断能否通过使用这两个水壶，从而可以得到恰好 <code>z</code> 升的水？<br>如果可以，最后必须用以上水壶中的一或两个来盛放取得的 <code>z</code> 升水。<br>允许做以下操作：</p><ul><li>装满任意一个水壶</li><li>清空任意一个水壶</li><li>从一个水壶向另外一个水壶倒水，直到装满或者倒空</li></ul><a id="more"></a><p><strong>示例 1:</strong>（出自电影《虎胆龙威》）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: x = 3, y = 5, z = 4</span><br><span class="line">输出: True</span><br></pre></td></tr></table></figure></p><p>操作方法：先把A壶加满，倒入B壶，再把A壶加满，倒入B壶，此时A、B各有1升和5升水。倒光B壶，把A壶中的1升水倒入B壶，加满A壶，倒入B壶，此时B壶即有4升水。</p><p><strong>示例 2:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: x = 2, y = 6, z = 5</span><br><span class="line">输出: False</span><br></pre></td></tr></table></figure></p><p><strong>题解:</strong><br>&emsp;&emsp;如果从纯算法角度来考虑该问题，那么 DFS 或者 BFS 都可以。以 <code>(A壶水量, B壶水量)</code> 作为状态去搜索。每个状态需要搜下面这 6 种情况：</p><ul><li>装满A壶</li><li>装满B壶</li><li>清空A壶</li><li>清空B壶</li><li>从A壶向B壶倒水，直到装满或者倒空</li><li>从B壶向A壶倒水，直到装满或者倒空</li></ul><p>&emsp;&emsp;为了防止无限递归，需要建立一个 HashSet 来存储已经搜索过的状态，保证每个状态最多只被搜到一次。由于搜索深度很深，递归实现容易爆栈，所以可以用栈（队列）实现 DFS（BFS）。<br>&emsp;&emsp;无论 DFS 还是 BFS，因为最多有 $(x+1)(y+1)$ 种状态，所以时间复杂度和空间复杂度都是 $O(xy)$。反正我写的 DFS 在 LeetCode 上 TLE 了😩</p><div class="image-size-50"><img src="/2020/03/water-and-jug-problem/img1.png" title="TLE"></div><p>&emsp;&emsp;然而此题有个绝妙的数学解法，可秒杀 DFS/BFS：<br>&emsp;&emsp;我们首先需要明确，在初始状态下，两个水壶中水的总量是 0，之后，不管我们做六种操作的哪一种，都只会使水的总量 <code>增加x</code> 或 <code>增加y</code> 或 <code>减少x</code> 或 <code>减少y</code>。注意，两个水壶不会同时半满，所以如果我们把半满的水壶倒空或接满，虽然水的总量的变化量不是 <code>x</code> 或 <code>y</code>，但是这么操作之后就又回到了 <code>一个空一个满</code> 或 <code>两个空</code> 或 <code>两个满</code> 的状态，所以把半满的水壶倒空或接满这类操作是无意义的。<br>&emsp;&emsp;所以，水的总量的变化量一定是 <code>x</code> 或 <code>y</code>，由此我们可以得知水的总量永远等于 $ax+by$，其中$a,b\in Z$。这样一来，获取 <code>z</code> 升水的充要条件就是 $z\leq x+y$ 并且方程 $ax+by=z$ 有整数解。<br>&emsp;&emsp;由贝祖定理（或称裴蜀定理）可知，$ax+by=z$ 有解当且仅当 $z$ 是 $x, y$ 的最大公约数的倍数。所以此题数学解法的代码如下：</p><p><strong>代码:</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span>   <span class="comment">// 求最大公约数</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> b ? gcd(b, a%b) : a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">canMeasureWater</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> z)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(z &gt; x + y)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(x == <span class="number">0</span> &amp;&amp; y == <span class="number">0</span> &amp;&amp; z == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> z % gcd(x, y) == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>&emsp;&emsp;这种解法的时间复杂度等于辗转相除法求最大公约数的时间复杂度，即 $O(\log(\min \lbrace x, y\rbrace ))$，空间复杂度为 $O(1)$。</p><div class="image-size-50"><img src="/2020/03/water-and-jug-problem/img2.png" title="双百解法"></div>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;有两个容量分别为 &lt;code&gt;x&lt;/code&gt; 升 和 &lt;code&gt;y&lt;/code&gt; 升 的水壶以及无限多的水。请判断能否通过使用这两个水壶，从而可以得到恰好 &lt;code&gt;z&lt;/code&gt; 升的水？&lt;br&gt;如果可以，最后必须用以上水壶中的一或两个来盛放取得的 &lt;code&gt;z&lt;/code&gt; 升水。&lt;br&gt;允许做以下操作：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;装满任意一个水壶&lt;/li&gt;
+&lt;li&gt;清空任意一个水壶&lt;/li&gt;
+&lt;li&gt;从一个水壶向另外一个水壶倒水，直到装满或者倒空&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="数学" scheme="https://pcninja.cn/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+      <category term="算法" scheme="https://pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="LeetCode" scheme="https://pcninja.cn/tags/LeetCode/"/>
+    
+      <category term="贝祖定理" scheme="https://pcninja.cn/tags/%E8%B4%9D%E7%A5%96%E5%AE%9A%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>LeetCode 695. 岛屿的最大面积</title>
@@ -223,9 +258,9 @@
     
       <category term="写作" scheme="https://pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
     
-      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
-    
       <category term="作业" scheme="https://pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
+    
+      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
       <category term="辩证法" scheme="https://pcninja.cn/tags/%E8%BE%A9%E8%AF%81%E6%B3%95/"/>
     
@@ -256,11 +291,11 @@
     
       <category term="写作" scheme="https://pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
     
-      <category term="形式与政策" scheme="https://pcninja.cn/tags/%E5%BD%A2%E5%BC%8F%E4%B8%8E%E6%94%BF%E7%AD%96/"/>
+      <category term="作业" scheme="https://pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
     
       <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
-      <category term="作业" scheme="https://pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
+      <category term="形式与政策" scheme="https://pcninja.cn/tags/%E5%BD%A2%E5%BC%8F%E4%B8%8E%E6%94%BF%E7%AD%96/"/>
     
       <category term="人类命运共同体" scheme="https://pcninja.cn/tags/%E4%BA%BA%E7%B1%BB%E5%91%BD%E8%BF%90%E5%85%B1%E5%90%8C%E4%BD%93/"/>
     
@@ -291,15 +326,15 @@
     
       <category term="写作" scheme="https://pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
     
-      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
-    
-      <category term="作业" scheme="https://pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
-    
-      <category term="爱国" scheme="https://pcninja.cn/tags/%E7%88%B1%E5%9B%BD/"/>
-    
       <category term="国庆" scheme="https://pcninja.cn/tags/%E5%9B%BD%E5%BA%86/"/>
     
       <category term="群众游行" scheme="https://pcninja.cn/tags/%E7%BE%A4%E4%BC%97%E6%B8%B8%E8%A1%8C/"/>
+    
+      <category term="爱国" scheme="https://pcninja.cn/tags/%E7%88%B1%E5%9B%BD/"/>
+    
+      <category term="作业" scheme="https://pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
+    
+      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
   </entry>
   
@@ -479,9 +514,9 @@
     
       <category term="生活" scheme="https://pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
     
-      <category term="情感" scheme="https://pcninja.cn/tags/%E6%83%85%E6%84%9F/"/>
-    
       <category term="人生" scheme="https://pcninja.cn/tags/%E4%BA%BA%E7%94%9F/"/>
+    
+      <category term="情感" scheme="https://pcninja.cn/tags/%E6%83%85%E6%84%9F/"/>
     
   </entry>
   
@@ -504,9 +539,9 @@
       <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
-    
       <category term="作业" scheme="https://pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
+    
+      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
       <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
@@ -545,9 +580,9 @@
       <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
-    
       <category term="作业" scheme="https://pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
+    
+      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
       <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
@@ -586,9 +621,9 @@
     
       <category term="写作" scheme="https://pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
     
-      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
-    
       <category term="作业" scheme="https://pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
+    
+      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
       <category term="读后感" scheme="https://pcninja.cn/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/"/>
     
@@ -616,9 +651,9 @@
       <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
-    
       <category term="作业" scheme="https://pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
+    
+      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
       <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
@@ -629,40 +664,6 @@
       <category term="单调栈" scheme="https://pcninja.cn/tags/%E5%8D%95%E8%B0%83%E6%A0%88/"/>
     
       <category term="二分查找" scheme="https://pcninja.cn/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>记一个精巧的算法与一段感伤的话</title>
-    <link href="https://pcninja.cn/2019/05/record-a-clever-algorithm-and-a-sentimental-remark/"/>
-    <id>https://pcninja.cn/2019/05/record-a-clever-algorithm-and-a-sentimental-remark/</id>
-    <published>2019-05-20T12:46:50.000Z</published>
-    <updated>2019-05-20T13:32:37.503Z</updated>
-    
-    <content type="html"><![CDATA[<p>&emsp;&emsp;5月20号，中午吃饭，看见一道很有意思的题，题面很简单：</p><blockquote><p>&emsp;&emsp;给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。</p></blockquote><p>这道题解法颇多，但如果要求时间复杂度为O(n)，空间复杂度为O(1)，问题就似乎变得有挑战性了。<br><a id="more"></a><br>&emsp;&emsp;此题的正解非常简单也极其巧妙：将所有元素做异或运算，即a[1] ⊕ a[2] ⊕ a[3] ⊕ … ⊕ a[n]，所得的结果就是那个只出现一次的数字。<br>&emsp;&emsp;原理很好理解：出现2次（可推广为偶数次）的元素经过按位异或后全部变为0，而出现1次（可推广为奇数次）的元素与0进行异或后会被保留。因此所有元素依次异或后得到的结果即为所求。<br>代码如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// LeetCode No.136</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="keyword">int</span> *nums, <span class="keyword">int</span> numsSize)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numsSize; ++i)</span><br><span class="line">        ans ^= nums[i];</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>&emsp;&emsp;晚上打完球回到宿舍，看到下面这段话，有所触动，一种难以言状的思绪在心中徘徊。在此把这段话摘录下来：</p><blockquote><p>年轻时<br>你做了一个决定<br>要把生命献给爱情</p><p>后来<br>万箭穿心的时候<br>你没事<br>因为青春替你抵了命</p><p>青春死了<br>但你还活着<br>可你却再也不会心动了</p><p>每个人都要熬过一段<br>付出很多却没有结果的爱情<br>才会一夜之间突然长大</p><p>所以不要笑话一个人面无表情<br>你只是没看到过<br>他汹涌的内心</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&amp;emsp;&amp;emsp;5月20号，中午吃饭，看见一道很有意思的题，题面很简单：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&amp;emsp;&amp;emsp;给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;这道题解法颇多，但如果要求时间复杂度为O(n)，空间复杂度为O(1)，问题就似乎变得有挑战性了。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
-    
-    
-      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
-    
-      <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
-    
-      <category term="算法" scheme="https://pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="随笔" scheme="https://pcninja.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-      <category term="情感" scheme="https://pcninja.cn/tags/%E6%83%85%E6%84%9F/"/>
     
   </entry>
   
