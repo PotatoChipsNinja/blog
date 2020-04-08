@@ -422,6 +422,530 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://pcninja.cn/2018/10/minimum-end-to-end-system/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="薯片忍者">
+      <meta itemprop="description" content="今天的故事 是明天的回忆">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薯片忍者的小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/10/minimum-end-to-end-system/" class="post-title-link" itemprop="url">Express+MongoDB后端与微信小程序前端建构最小端到端系统</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-04 10:25:56" itemprop="dateCreated datePublished" datetime="2018-10-04T10:25:56+08:00">2018-10-04</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程/" itemprop="url" rel="index"><span itemprop="name">编程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2018/10/minimum-end-to-end-system/" class="leancloud_visitors" data-flag-title="Express+MongoDB后端与微信小程序前端建构最小端到端系统">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="服务端搭建"><a href="#服务端搭建" class="headerlink" title="服务端搭建"></a>服务端搭建</h2><hr>
+<h3 id="一、环境准备"><a href="#一、环境准备" class="headerlink" title="一、环境准备"></a>一、环境准备</h3><h4 id="1-操作系统与网络"><a href="#1-操作系统与网络" class="headerlink" title="1.操作系统与网络"></a>1.操作系统与网络</h4><p>本文以<a href="https://www.archlinux.org/" target="_blank" rel="noopener">Arch Linux</a>为例，在<a href="https://www.virtualbox.org/" target="_blank" rel="noopener">VirtualBox</a>虚拟机下运行，通过SSH与宿主机连接。<br>由于虚拟机通过NAT联网，要想访问在虚拟机中部署的Web服务需要进行端口转发：</p>
+<ul>
+<li>打开<strong>VirtualBox管理器</strong>，进入Arch虚拟机的<strong>设置</strong>页，在<strong>网络</strong>选项卡中点击<strong>高级</strong><div class="image-size-50"><img src="/2018/10/minimum-end-to-end-system/VM_setting.png" title="虚拟机网络设置"></div></li>
+<li>点击<strong>端口转发</strong>，我们新建一个端口转发规则。协议为<code>TCP</code>；主机IP填写VirtualBox虚拟网卡的地址，在Windows宿主机通过<code>ipconfig</code>命令可查看，默认为<code>192.168.56.1</code>；子系统IP填写虚拟机IPv4地址，在Arch虚拟机中通过<code>ip addr</code>命令可查看（图中红框所示处）；子系统端口为我们即将部署的Node服务的监听端口；主机端口为转发到主机后的端口，我们应该避开常用或已被占用的端口（如21、22、25、80、443），为了方便我们可以转发到原端口，本文以3000端口为例<div class="image-size-80"><img src="/2018/10/minimum-end-to-end-system/VM_ip.png" title="Arch查看IP"></div>
+<div class="image-size-50"><img src="/2018/10/minimum-end-to-end-system/port_forwarding.png" title="端口转发"></div></li>
+<li>这样设置完毕后虚拟机的3000端口就可以通过<code>192.168.56.1:3000</code>访问了
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/10/minimum-end-to-end-system/" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </li></ul></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://pcninja.cn/2018/10/web-page-auto-refresh-by-JavaScript/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="薯片忍者">
+      <meta itemprop="description" content="今天的故事 是明天的回忆">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薯片忍者的小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/10/web-page-auto-refresh-by-JavaScript/" class="post-title-link" itemprop="url">通过JavaScript实现网页自动刷新</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-02 17:24:08" itemprop="dateCreated datePublished" datetime="2018-10-02T17:24:08+08:00">2018-10-02</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程/" itemprop="url" rel="index"><span itemprop="name">编程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2018/10/web-page-auto-refresh-by-JavaScript/" class="leancloud_visitors" data-flag-title="通过JavaScript实现网页自动刷新">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&emsp;&emsp;很多时候我们需要让网页不断刷新来达到持续监视或刷访问次数等目的，我们可以通过简单的JS脚本来实现网页自动刷新的操作。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> timeout = prompt(<span class="string">"设置刷新时间间隔[S]"</span>);</span><br><span class="line"><span class="keyword">var</span> current = location.href;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reload</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="string">'reload()'</span>, <span class="number">1000</span> * timeout);</span><br><span class="line">    <span class="keyword">var</span> myFrame = <span class="string">"&lt;frameset cols=\'*\'&gt;&lt;frame src=\'"</span> + current + <span class="string">"\' /&gt;&lt;/frameset&gt;"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> (<span class="built_in">document</span>) &#123;</span><br><span class="line">        write(myFrame);</span><br><span class="line">        <span class="keyword">void</span>(close());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (timeout &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    setTimeout(<span class="string">'reload()'</span>, <span class="number">1000</span> * timeout);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    location.replace(current);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们可以打开浏览器提供的开发者工具（如Chrome为F12），进入控制台，复制以上代码来实现功能。<br>为了更加简化操作步骤，我们可以将以下压缩后的JS代码保存至书签栏/收藏夹（Ctrl+D），这样即可快速调用：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javascript:&#123;<span class="function"><span class="keyword">function</span> <span class="title">reload</span>(<span class="params"></span>)</span>&#123;setTimeout(<span class="string">'reload()'</span>,<span class="number">1000</span>*timeout);<span class="keyword">var</span> myFrame=<span class="string">"&lt;frameset cols='*'&gt;&lt;frame src='"</span>+current+<span class="string">"' /&gt;&lt;/frameset&gt;"</span>;<span class="keyword">with</span>(<span class="built_in">document</span>)&#123;write(myFrame);<span class="keyword">void</span>(close())&#125;&#125;<span class="keyword">var</span> timeout=prompt(<span class="string">"设置刷新时间间隔(s)"</span>);<span class="keyword">var</span> current=location.href;<span class="keyword">if</span>(timeout&gt;<span class="number">0</span>)&#123;setTimeout(<span class="string">'reload()'</span>,<span class="number">1000</span>*timeout)&#125;<span class="keyword">else</span>&#123;location.replace(current)&#125;&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://pcninja.cn/2018/09/about-main-function-declaration-and-returned-value/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="薯片忍者">
+      <meta itemprop="description" content="今天的故事 是明天的回忆">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薯片忍者的小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/09/about-main-function-declaration-and-returned-value/" class="post-title-link" itemprop="url">关于C/C++中主函数的声明及返回值问题</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-26 11:05:00" itemprop="dateCreated datePublished" datetime="2018-09-26T11:05:00+08:00">2018-09-26</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程/" itemprop="url" rel="index"><span itemprop="name">编程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2018/09/about-main-function-declaration-and-returned-value/" class="leancloud_visitors" data-flag-title="关于C/C++中主函数的声明及返回值问题">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>&emsp;&emsp;在C/C++程序中有时会见到采用诸如<code>void main()</code>等方式来声明主函数，很多人在主函数返回值的问题上也略显随意。经过查阅多版本的C、C++标准文档与相关书籍，我将我的结论与认识总结于此。不可避免地，其中可能包含我错误的认识，欢迎大家指正。<br>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/09/about-main-function-declaration-and-returned-value/" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </p></blockquote></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://pcninja.cn/2018/09/summary-of-military-training/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -753,529 +1277,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://pcninja.cn/2017/04/superstitious-science-and-scientific-superstitions/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="薯片忍者">
-      <meta itemprop="description" content="今天的故事 是明天的回忆">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薯片忍者的小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/04/superstitious-science-and-scientific-superstitions/" class="post-title-link" itemprop="url">迷信科学与科学迷信</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-04-11 19:23:06" itemprop="dateCreated datePublished" datetime="2017-04-11T19:23:06+08:00">2017-04-11</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/文学/" itemprop="url" rel="index"><span itemprop="name">文学</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2017/04/superstitious-science-and-scientific-superstitions/" class="leancloud_visitors" data-flag-title="迷信科学与科学迷信">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>&emsp;&emsp;这是我于2017年4月11日进行的简短演讲的演讲稿，文中简单阐述了我对科学以及迷信间关系的理解，在此记录，因为<strong>今天的故事是明天的回忆</strong>。</p>
-<blockquote>
-<p>迷信科学与科学迷信</p>
-<p>&emsp;&emsp;大家好，今天我想谈谈我对迷信科学与科学迷信的理解与看法。<br>&emsp;&emsp;众所周知，科学与迷信是两个相互对立的实践方法。古往今来，人类思维的发展可大致分为三个阶段，即神学、玄学与科学，这是“汉语拼音之父”周有光对人类的认识阶段作出的划分。神学依靠天命，那时的人们相信是神指导着他们的生活、行为、思想以及命运，上帝是不容置疑的。魏晋时期老庄“玄远之学”的起源为迷信增添了推理的成分，《周易》便是玄学的典型代表，它脱离神学，但不可否认，它仍是形而上的。十六世纪，哥白尼的“日心说”，率领人类进入科学的认知阶段。<br>&emsp;&emsp;科学是一个可解释的、有序的知识系统，在广义上还被认为是可靠的代名词；而迷信指盲目的相信、不理解的相信，它象征着愚昧与落后。二者完全对立，但又界限模糊。如今，人们的最大迷信叫做“科学”。生活中，人们大多对科学非常崇拜，往往对科学不假思索地认可。试想：一名村干部在向农民们推广化肥时，他会理直气壮地说：“这是科学！”尽管他可能不懂这其中的化学原理，但他也会底气十足。这恰恰说明科学在大众心中的形象是个神！把自己不懂的东西尊奉到一个至高无上的地位，这种态度正是迷信。
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2017/04/superstitious-science-and-scientific-superstitions/" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </p></blockquote></div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://pcninja.cn/2017/02/all-jobs-are-equal/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="薯片忍者">
-      <meta itemprop="description" content="今天的故事 是明天的回忆">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薯片忍者的小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/02/all-jobs-are-equal/" class="post-title-link" itemprop="url">职业无高低</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-02-14 20:40:34" itemprop="dateCreated datePublished" datetime="2017-02-14T20:40:34+08:00">2017-02-14</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/文学/" itemprop="url" rel="index"><span itemprop="name">文学</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2017/02/all-jobs-are-equal/" class="leancloud_visitors" data-flag-title="职业无高低">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>&emsp;&emsp;近日，清华女学霸石悦因选择做游戏主播为职业而走红网络，网友大都报以不支持的态度，原因是在大多数人的认知中，游戏主播是个低贱的行业，不学无术的人才会以此为出路。我想这种扭曲的观念的产生原因有二：一是网络直播作为新兴产业，还未能被大众认可，尤其是在中老年群体中，旧思想根深蒂固，无法接受新鲜事物；二是有许多人不能以端正的态度审视游戏主播这一职业，他们仅仅因为游戏主播大都学历偏低就以偏概全，贬低这种职业的社会地位，从门缝里看游戏主播，导致了这种扭曲的社会怪象。<br>&emsp;&emsp;我认为，术业有专攻，无论在哪个行业之中都会有贵有贱，但职业本身并无高低贵贱之分。即使是大部分人看不起的清洁工人，也不乏有成功人士。因此，我认为石悦选择自己的爱好作为职业是对这一职业的贡献，不应受到贬低，更不应因自己清华出身就遭到谴责。<br>&emsp;&emsp;职业无高低，贵贱在自身，社会需要以包容的态度接纳新观念、新行业。唯有这样，才能构成一个健全的社会。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://pcninja.cn/2016/11/realizes-character-rain-in-the-matrix/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="薯片忍者">
-      <meta itemprop="description" content="今天的故事 是明天的回忆">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薯片忍者的小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/11/realizes-character-rain-in-the-matrix/" class="post-title-link" itemprop="url">Linux实现《黑客帝国》中的“字符雨”</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-11-13 14:35:28" itemprop="dateCreated datePublished" datetime="2016-11-13T14:35:28+08:00">2016-11-13</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/IT/" itemprop="url" rel="index"><span itemprop="name">IT</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2016/11/realizes-character-rain-in-the-matrix/" class="leancloud_visitors" data-flag-title="Linux实现《黑客帝国》中的“字符雨”">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>《黑客帝国》电影里满屏幕代码的“数字雨”，在 Linux 里面你也可以轻松实现这样的效果，你只需要一个命令：<strong>cmatrix</strong>。</p>
-<p>需要先安装，因为 Ubuntu 没有预装：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install cmatrix</span><br></pre></td></tr></table></figure>
-<p>装好之后先不要急着执行，为了看到更好的效果，我们需要先修改终端的主题配色，修改为黑底绿字。</p>
-<p>这时执行：<code>$ cmatrix</code>就可以看到效果了，按F11可全屏控制台，Ctrl+C可以终止程序。
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2016/11/realizes-character-rain-in-the-matrix/" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </p></div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1326,7 +1327,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-count">59</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1608,7 +1609,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">116</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">119</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
