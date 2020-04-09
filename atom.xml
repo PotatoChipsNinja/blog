@@ -5,9 +5,9 @@
   <subtitle>今天的故事 是明天的回忆</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://pcninja.cn/"/>
+  <link href="https://blog.pcninja.cn/"/>
   <updated>2020-04-08T11:25:12.157Z</updated>
-  <id>https://pcninja.cn/</id>
+  <id>https://blog.pcninja.cn/</id>
   
   <author>
     <name>薯片忍者</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>LeetCode 48. 旋转图像</title>
-    <link href="https://pcninja.cn/2020/04/rotate-image/"/>
-    <id>https://pcninja.cn/2020/04/rotate-image/</id>
+    <link href="https://blog.pcninja.cn/2020/04/rotate-image/"/>
+    <id>https://blog.pcninja.cn/2020/04/rotate-image/</id>
     <published>2020-04-07T03:45:28.000Z</published>
     <updated>2020-04-08T11:25:12.157Z</updated>
     
@@ -32,23 +32,23 @@
     
     </summary>
     
-      <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
+      <category term="编程" scheme="https://blog.pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
+      <category term="编程" scheme="https://blog.pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
-      <category term="算法" scheme="https://pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://blog.pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
     
-      <category term="LeetCode" scheme="https://pcninja.cn/tags/LeetCode/"/>
+      <category term="LeetCode" scheme="https://blog.pcninja.cn/tags/LeetCode/"/>
     
-      <category term="原地算法" scheme="https://pcninja.cn/tags/%E5%8E%9F%E5%9C%B0%E7%AE%97%E6%B3%95/"/>
+      <category term="原地算法" scheme="https://blog.pcninja.cn/tags/%E5%8E%9F%E5%9C%B0%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>LeetCode 42. 接雨水</title>
-    <link href="https://pcninja.cn/2020/04/trapping-rain-water/"/>
-    <id>https://pcninja.cn/2020/04/trapping-rain-water/</id>
+    <link href="https://blog.pcninja.cn/2020/04/trapping-rain-water/"/>
+    <id>https://blog.pcninja.cn/2020/04/trapping-rain-water/</id>
     <published>2020-04-04T00:50:24.000Z</published>
     <updated>2020-04-08T11:16:56.864Z</updated>
     
@@ -61,23 +61,23 @@
     
     </summary>
     
-      <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
+      <category term="编程" scheme="https://blog.pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
+      <category term="编程" scheme="https://blog.pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
-      <category term="算法" scheme="https://pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://blog.pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
     
-      <category term="LeetCode" scheme="https://pcninja.cn/tags/LeetCode/"/>
+      <category term="LeetCode" scheme="https://blog.pcninja.cn/tags/LeetCode/"/>
     
-      <category term="双指针" scheme="https://pcninja.cn/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
+      <category term="双指针" scheme="https://blog.pcninja.cn/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
     
   </entry>
   
   <entry>
     <title>LeetCode 1162. 地图分析</title>
-    <link href="https://pcninja.cn/2020/03/as-far-from-land-as-possible/"/>
-    <id>https://pcninja.cn/2020/03/as-far-from-land-as-possible/</id>
+    <link href="https://blog.pcninja.cn/2020/03/as-far-from-land-as-possible/"/>
+    <id>https://blog.pcninja.cn/2020/03/as-far-from-land-as-possible/</id>
     <published>2020-03-29T10:01:01.000Z</published>
     <updated>2020-04-08T10:31:41.626Z</updated>
     
@@ -89,23 +89,23 @@
     
     </summary>
     
-      <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
+      <category term="编程" scheme="https://blog.pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
+      <category term="编程" scheme="https://blog.pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
-      <category term="算法" scheme="https://pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://blog.pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
     
-      <category term="BFS" scheme="https://pcninja.cn/tags/BFS/"/>
+      <category term="BFS" scheme="https://blog.pcninja.cn/tags/BFS/"/>
     
-      <category term="LeetCode" scheme="https://pcninja.cn/tags/LeetCode/"/>
+      <category term="LeetCode" scheme="https://blog.pcninja.cn/tags/LeetCode/"/>
     
   </entry>
   
   <entry>
     <title>LeetCode 365. 水壶问题</title>
-    <link href="https://pcninja.cn/2020/03/water-and-jug-problem/"/>
-    <id>https://pcninja.cn/2020/03/water-and-jug-problem/</id>
+    <link href="https://blog.pcninja.cn/2020/03/water-and-jug-problem/"/>
+    <id>https://blog.pcninja.cn/2020/03/water-and-jug-problem/</id>
     <published>2020-03-22T06:50:25.000Z</published>
     <updated>2020-03-22T08:20:16.746Z</updated>
     
@@ -122,25 +122,25 @@
     
     </summary>
     
-      <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
+      <category term="编程" scheme="https://blog.pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
+      <category term="编程" scheme="https://blog.pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
-      <category term="数学" scheme="https://pcninja.cn/tags/%E6%95%B0%E5%AD%A6/"/>
+      <category term="算法" scheme="https://blog.pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
     
-      <category term="算法" scheme="https://pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
+      <category term="LeetCode" scheme="https://blog.pcninja.cn/tags/LeetCode/"/>
     
-      <category term="LeetCode" scheme="https://pcninja.cn/tags/LeetCode/"/>
+      <category term="数学" scheme="https://blog.pcninja.cn/tags/%E6%95%B0%E5%AD%A6/"/>
     
-      <category term="贝祖定理" scheme="https://pcninja.cn/tags/%E8%B4%9D%E7%A5%96%E5%AE%9A%E7%90%86/"/>
+      <category term="贝祖定理" scheme="https://blog.pcninja.cn/tags/%E8%B4%9D%E7%A5%96%E5%AE%9A%E7%90%86/"/>
     
   </entry>
   
   <entry>
     <title>LeetCode 695. 岛屿的最大面积</title>
-    <link href="https://pcninja.cn/2020/03/max-area-of-island/"/>
-    <id>https://pcninja.cn/2020/03/max-area-of-island/</id>
+    <link href="https://blog.pcninja.cn/2020/03/max-area-of-island/"/>
+    <id>https://blog.pcninja.cn/2020/03/max-area-of-island/</id>
     <published>2020-03-15T13:27:29.000Z</published>
     <updated>2020-03-15T14:03:38.556Z</updated>
     
@@ -152,23 +152,23 @@
     
     </summary>
     
-      <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
+      <category term="编程" scheme="https://blog.pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
+      <category term="编程" scheme="https://blog.pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
-      <category term="算法" scheme="https://pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://blog.pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
     
-      <category term="LeetCode" scheme="https://pcninja.cn/tags/LeetCode/"/>
+      <category term="LeetCode" scheme="https://blog.pcninja.cn/tags/LeetCode/"/>
     
-      <category term="DFS" scheme="https://pcninja.cn/tags/DFS/"/>
+      <category term="DFS" scheme="https://blog.pcninja.cn/tags/DFS/"/>
     
   </entry>
   
   <entry>
     <title>NumPy 学习笔记</title>
-    <link href="https://pcninja.cn/2020/02/NumPy-learning-notes/"/>
-    <id>https://pcninja.cn/2020/02/NumPy-learning-notes/</id>
+    <link href="https://blog.pcninja.cn/2020/02/NumPy-learning-notes/"/>
+    <id>https://blog.pcninja.cn/2020/02/NumPy-learning-notes/</id>
     <published>2020-02-21T07:21:31.000Z</published>
     <updated>2020-02-21T07:50:20.541Z</updated>
     
@@ -188,23 +188,23 @@
     
     </summary>
     
-      <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
+      <category term="编程" scheme="https://blog.pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="Python" scheme="https://pcninja.cn/tags/Python/"/>
+      <category term="Python" scheme="https://blog.pcninja.cn/tags/Python/"/>
     
-      <category term="NumPy" scheme="https://pcninja.cn/tags/NumPy/"/>
+      <category term="NumPy" scheme="https://blog.pcninja.cn/tags/NumPy/"/>
     
-      <category term="Matplotlib" scheme="https://pcninja.cn/tags/Matplotlib/"/>
+      <category term="Matplotlib" scheme="https://blog.pcninja.cn/tags/Matplotlib/"/>
     
-      <category term="科学计算" scheme="https://pcninja.cn/tags/%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97/"/>
+      <category term="科学计算" scheme="https://blog.pcninja.cn/tags/%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97/"/>
     
   </entry>
   
   <entry>
     <title>几种外积的概念辨析</title>
-    <link href="https://pcninja.cn/2020/02/discrimination-of-several-outer-products/"/>
-    <id>https://pcninja.cn/2020/02/discrimination-of-several-outer-products/</id>
+    <link href="https://blog.pcninja.cn/2020/02/discrimination-of-several-outer-products/"/>
+    <id>https://blog.pcninja.cn/2020/02/discrimination-of-several-outer-products/</id>
     <published>2020-02-13T08:09:04.000Z</published>
     <updated>2020-02-20T10:41:19.033Z</updated>
     
@@ -223,27 +223,27 @@
     
     </summary>
     
-      <category term="学科" scheme="https://pcninja.cn/categories/%E5%AD%A6%E7%A7%91/"/>
+      <category term="学科" scheme="https://blog.pcninja.cn/categories/%E5%AD%A6%E7%A7%91/"/>
     
     
-      <category term="数学" scheme="https://pcninja.cn/tags/%E6%95%B0%E5%AD%A6/"/>
+      <category term="数学" scheme="https://blog.pcninja.cn/tags/%E6%95%B0%E5%AD%A6/"/>
     
-      <category term="向量" scheme="https://pcninja.cn/tags/%E5%90%91%E9%87%8F/"/>
+      <category term="向量" scheme="https://blog.pcninja.cn/tags/%E5%90%91%E9%87%8F/"/>
     
-      <category term="外积" scheme="https://pcninja.cn/tags/%E5%A4%96%E7%A7%AF/"/>
+      <category term="外积" scheme="https://blog.pcninja.cn/tags/%E5%A4%96%E7%A7%AF/"/>
     
-      <category term="矩阵" scheme="https://pcninja.cn/tags/%E7%9F%A9%E9%98%B5/"/>
+      <category term="矩阵" scheme="https://blog.pcninja.cn/tags/%E7%9F%A9%E9%98%B5/"/>
     
-      <category term="线性代数" scheme="https://pcninja.cn/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
+      <category term="线性代数" scheme="https://blog.pcninja.cn/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
     
-      <category term="几何" scheme="https://pcninja.cn/tags/%E5%87%A0%E4%BD%95/"/>
+      <category term="几何" scheme="https://blog.pcninja.cn/tags/%E5%87%A0%E4%BD%95/"/>
     
   </entry>
   
   <entry>
     <title>勇气的赞歌</title>
-    <link href="https://pcninja.cn/2020/02/the-paean-of-courage/"/>
-    <id>https://pcninja.cn/2020/02/the-paean-of-courage/</id>
+    <link href="https://blog.pcninja.cn/2020/02/the-paean-of-courage/"/>
+    <id>https://blog.pcninja.cn/2020/02/the-paean-of-courage/</id>
     <published>2020-02-02T09:32:16.000Z</published>
     <updated>2020-02-03T05:15:27.983Z</updated>
     
@@ -256,21 +256,21 @@
     
     </summary>
     
-      <category term="其他" scheme="https://pcninja.cn/categories/%E5%85%B6%E4%BB%96/"/>
+      <category term="其他" scheme="https://blog.pcninja.cn/categories/%E5%85%B6%E4%BB%96/"/>
     
     
-      <category term="疫情" scheme="https://pcninja.cn/tags/%E7%96%AB%E6%83%85/"/>
+      <category term="疫情" scheme="https://blog.pcninja.cn/tags/%E7%96%AB%E6%83%85/"/>
     
-      <category term="死亡" scheme="https://pcninja.cn/tags/%E6%AD%BB%E4%BA%A1/"/>
+      <category term="死亡" scheme="https://blog.pcninja.cn/tags/%E6%AD%BB%E4%BA%A1/"/>
     
-      <category term="勇气" scheme="https://pcninja.cn/tags/%E5%8B%87%E6%B0%94/"/>
+      <category term="勇气" scheme="https://blog.pcninja.cn/tags/%E5%8B%87%E6%B0%94/"/>
     
   </entry>
   
   <entry>
     <title>【备忘】 youtube-dl使用方法</title>
-    <link href="https://pcninja.cn/2020/02/usage-of-youtube-dl/"/>
-    <id>https://pcninja.cn/2020/02/usage-of-youtube-dl/</id>
+    <link href="https://blog.pcninja.cn/2020/02/usage-of-youtube-dl/"/>
+    <id>https://blog.pcninja.cn/2020/02/usage-of-youtube-dl/</id>
     <published>2020-02-01T12:15:23.000Z</published>
     <updated>2020-02-01T13:29:05.869Z</updated>
     
@@ -282,23 +282,23 @@
     
     </summary>
     
-      <category term="网络" scheme="https://pcninja.cn/categories/%E7%BD%91%E7%BB%9C/"/>
+      <category term="网络" scheme="https://blog.pcninja.cn/categories/%E7%BD%91%E7%BB%9C/"/>
     
     
-      <category term="下载" scheme="https://pcninja.cn/tags/%E4%B8%8B%E8%BD%BD/"/>
+      <category term="下载" scheme="https://blog.pcninja.cn/tags/%E4%B8%8B%E8%BD%BD/"/>
     
-      <category term="工具" scheme="https://pcninja.cn/tags/%E5%B7%A5%E5%85%B7/"/>
+      <category term="工具" scheme="https://blog.pcninja.cn/tags/%E5%B7%A5%E5%85%B7/"/>
     
-      <category term="视频" scheme="https://pcninja.cn/tags/%E8%A7%86%E9%A2%91/"/>
+      <category term="视频" scheme="https://blog.pcninja.cn/tags/%E8%A7%86%E9%A2%91/"/>
     
-      <category term="YouTube" scheme="https://pcninja.cn/tags/YouTube/"/>
+      <category term="YouTube" scheme="https://blog.pcninja.cn/tags/YouTube/"/>
     
   </entry>
   
   <entry>
     <title>除夕夜小记</title>
-    <link href="https://pcninja.cn/2020/01/happy-chinese-new-year-2020/"/>
-    <id>https://pcninja.cn/2020/01/happy-chinese-new-year-2020/</id>
+    <link href="https://blog.pcninja.cn/2020/01/happy-chinese-new-year-2020/"/>
+    <id>https://blog.pcninja.cn/2020/01/happy-chinese-new-year-2020/</id>
     <published>2020-01-24T15:00:11.000Z</published>
     <updated>2020-01-24T15:36:39.081Z</updated>
     
@@ -310,21 +310,21 @@
     
     </summary>
     
-      <category term="生活" scheme="https://pcninja.cn/categories/%E7%94%9F%E6%B4%BB/"/>
+      <category term="生活" scheme="https://blog.pcninja.cn/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
+      <category term="日记" scheme="https://blog.pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
     
-      <category term="生活" scheme="https://pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
+      <category term="生活" scheme="https://blog.pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
     
-      <category term="新年" scheme="https://pcninja.cn/tags/%E6%96%B0%E5%B9%B4/"/>
+      <category term="新年" scheme="https://blog.pcninja.cn/tags/%E6%96%B0%E5%B9%B4/"/>
     
   </entry>
   
   <entry>
     <title>辩证法三大规律在生活中的体现</title>
-    <link href="https://pcninja.cn/2019/12/embodiment-of-three-laws-of-dialectics-in-life/"/>
-    <id>https://pcninja.cn/2019/12/embodiment-of-three-laws-of-dialectics-in-life/</id>
+    <link href="https://blog.pcninja.cn/2019/12/embodiment-of-three-laws-of-dialectics-in-life/"/>
+    <id>https://blog.pcninja.cn/2019/12/embodiment-of-three-laws-of-dialectics-in-life/</id>
     <published>2019-12-22T15:33:59.000Z</published>
     <updated>2020-03-17T13:16:52.250Z</updated>
     
@@ -339,25 +339,25 @@
     
     </summary>
     
-      <category term="文学" scheme="https://pcninja.cn/categories/%E6%96%87%E5%AD%A6/"/>
+      <category term="文学" scheme="https://blog.pcninja.cn/categories/%E6%96%87%E5%AD%A6/"/>
     
     
-      <category term="写作" scheme="https://pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
+      <category term="写作" scheme="https://blog.pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
     
-      <category term="作业" scheme="https://pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
+      <category term="大学" scheme="https://blog.pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
-      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
+      <category term="作业" scheme="https://blog.pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
     
-      <category term="辩证法" scheme="https://pcninja.cn/tags/%E8%BE%A9%E8%AF%81%E6%B3%95/"/>
+      <category term="辩证法" scheme="https://blog.pcninja.cn/tags/%E8%BE%A9%E8%AF%81%E6%B3%95/"/>
     
-      <category term="马克思主义" scheme="https://pcninja.cn/tags/%E9%A9%AC%E5%85%8B%E6%80%9D%E4%B8%BB%E4%B9%89/"/>
+      <category term="马克思主义" scheme="https://blog.pcninja.cn/tags/%E9%A9%AC%E5%85%8B%E6%80%9D%E4%B8%BB%E4%B9%89/"/>
     
   </entry>
   
   <entry>
     <title>为什么人类命运共同体理念产生了广泛而深远的国际影响？</title>
-    <link href="https://pcninja.cn/2019/11/the-international-influence-of-the-concept-of-a-community-of-shared-future-for-mankind/"/>
-    <id>https://pcninja.cn/2019/11/the-international-influence-of-the-concept-of-a-community-of-shared-future-for-mankind/</id>
+    <link href="https://blog.pcninja.cn/2019/11/the-international-influence-of-the-concept-of-a-community-of-shared-future-for-mankind/"/>
+    <id>https://blog.pcninja.cn/2019/11/the-international-influence-of-the-concept-of-a-community-of-shared-future-for-mankind/</id>
     <published>2019-11-09T15:23:13.000Z</published>
     <updated>2020-03-17T12:42:37.125Z</updated>
     
@@ -372,25 +372,25 @@
     
     </summary>
     
-      <category term="文学" scheme="https://pcninja.cn/categories/%E6%96%87%E5%AD%A6/"/>
+      <category term="文学" scheme="https://blog.pcninja.cn/categories/%E6%96%87%E5%AD%A6/"/>
     
     
-      <category term="写作" scheme="https://pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
+      <category term="写作" scheme="https://blog.pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
     
-      <category term="作业" scheme="https://pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
+      <category term="形式与政策" scheme="https://blog.pcninja.cn/tags/%E5%BD%A2%E5%BC%8F%E4%B8%8E%E6%94%BF%E7%AD%96/"/>
     
-      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
+      <category term="大学" scheme="https://blog.pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
-      <category term="形式与政策" scheme="https://pcninja.cn/tags/%E5%BD%A2%E5%BC%8F%E4%B8%8E%E6%94%BF%E7%AD%96/"/>
+      <category term="作业" scheme="https://blog.pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
     
-      <category term="人类命运共同体" scheme="https://pcninja.cn/tags/%E4%BA%BA%E7%B1%BB%E5%91%BD%E8%BF%90%E5%85%B1%E5%90%8C%E4%BD%93/"/>
+      <category term="人类命运共同体" scheme="https://blog.pcninja.cn/tags/%E4%BA%BA%E7%B1%BB%E5%91%BD%E8%BF%90%E5%85%B1%E5%90%8C%E4%BD%93/"/>
     
   </entry>
   
   <entry>
     <title>我与共和国共成长</title>
-    <link href="https://pcninja.cn/2019/10/I-grow-with-the-Republic/"/>
-    <id>https://pcninja.cn/2019/10/I-grow-with-the-Republic/</id>
+    <link href="https://blog.pcninja.cn/2019/10/I-grow-with-the-Republic/"/>
+    <id>https://blog.pcninja.cn/2019/10/I-grow-with-the-Republic/</id>
     <published>2019-10-30T07:18:01.000Z</published>
     <updated>2020-03-17T13:09:55.003Z</updated>
     
@@ -407,61 +407,60 @@
     
     </summary>
     
-      <category term="文学" scheme="https://pcninja.cn/categories/%E6%96%87%E5%AD%A6/"/>
+      <category term="文学" scheme="https://blog.pcninja.cn/categories/%E6%96%87%E5%AD%A6/"/>
     
     
-      <category term="写作" scheme="https://pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
+      <category term="写作" scheme="https://blog.pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
     
-      <category term="爱国" scheme="https://pcninja.cn/tags/%E7%88%B1%E5%9B%BD/"/>
+      <category term="大学" scheme="https://blog.pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
-      <category term="国庆" scheme="https://pcninja.cn/tags/%E5%9B%BD%E5%BA%86/"/>
+      <category term="作业" scheme="https://blog.pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
     
-      <category term="群众游行" scheme="https://pcninja.cn/tags/%E7%BE%A4%E4%BC%97%E6%B8%B8%E8%A1%8C/"/>
+      <category term="国庆" scheme="https://blog.pcninja.cn/tags/%E5%9B%BD%E5%BA%86/"/>
     
-      <category term="作业" scheme="https://pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
+      <category term="群众游行" scheme="https://blog.pcninja.cn/tags/%E7%BE%A4%E4%BC%97%E6%B8%B8%E8%A1%8C/"/>
     
-      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
+      <category term="爱国" scheme="https://blog.pcninja.cn/tags/%E7%88%B1%E5%9B%BD/"/>
     
   </entry>
   
   <entry>
     <title>【音乐】庆祝中华人民共和国成立70周年阅兵式军乐欣赏</title>
-    <link href="https://pcninja.cn/2019/10/the-military-music-of-the-parade/"/>
-    <id>https://pcninja.cn/2019/10/the-military-music-of-the-parade/</id>
+    <link href="https://blog.pcninja.cn/2019/10/the-military-music-of-the-parade/"/>
+    <id>https://blog.pcninja.cn/2019/10/the-military-music-of-the-parade/</id>
     <published>2019-10-03T12:12:54.000Z</published>
     <updated>2020-04-06T08:36:16.819Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p><a href="https://pcninja.cn/player">点击进入播放器</a></p></blockquote><ul><li><strong>《钢铁洪流进行曲》</strong> - 中国人民解放军联合军乐团</li><li><strong>《东风浩荡进行曲》</strong> - 中国人民解放军联合军乐团</li><li><strong>《雄鹰出击进行曲》</strong> - 中国人民解放军联合军乐团</li><li><strong>《冲上云霄》</strong> - 中国人民解放军联合军乐团</li></ul>]]></content>
+    <content type="html"><![CDATA[<blockquote><p><a href="https://pcninja.cn/player" target="_blank" rel="noopener">点击进入播放器</a></p></blockquote><ul><li><strong>《钢铁洪流进行曲》</strong> - 中国人民解放军联合军乐团</li><li><strong>《东风浩荡进行曲》</strong> - 中国人民解放军联合军乐团</li><li><strong>《雄鹰出击进行曲》</strong> - 中国人民解放军联合军乐团</li><li><strong>《冲上云霄》</strong> - 中国人民解放军联合军乐团</li></ul>]]></content>
     
     <summary type="html">
     
       
       
         &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://pcninja.cn/player&quot;&gt;点击进入播放器&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://pcninja.cn/player&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;点击进入播放器&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;《钢铁洪流进行曲》&lt;/strong&gt; - 中国人民解放军联合军乐团&lt;/li&gt;
-&lt;l
+&lt;li&gt;&lt;strong&gt;《钢铁洪流进行曲》&lt;
       
     
     </summary>
     
-      <category term="其他" scheme="https://pcninja.cn/categories/%E5%85%B6%E4%BB%96/"/>
+      <category term="其他" scheme="https://blog.pcninja.cn/categories/%E5%85%B6%E4%BB%96/"/>
     
     
-      <category term="军乐" scheme="https://pcninja.cn/tags/%E5%86%9B%E4%B9%90/"/>
+      <category term="军乐" scheme="https://blog.pcninja.cn/tags/%E5%86%9B%E4%B9%90/"/>
     
-      <category term="交响乐" scheme="https://pcninja.cn/tags/%E4%BA%A4%E5%93%8D%E4%B9%90/"/>
+      <category term="交响乐" scheme="https://blog.pcninja.cn/tags/%E4%BA%A4%E5%93%8D%E4%B9%90/"/>
     
-      <category term="阅兵" scheme="https://pcninja.cn/tags/%E9%98%85%E5%85%B5/"/>
+      <category term="阅兵" scheme="https://blog.pcninja.cn/tags/%E9%98%85%E5%85%B5/"/>
     
   </entry>
   
   <entry>
     <title>暑假小结</title>
-    <link href="https://pcninja.cn/2019/08/summer-vacation-summary/"/>
-    <id>https://pcninja.cn/2019/08/summer-vacation-summary/</id>
+    <link href="https://blog.pcninja.cn/2019/08/summer-vacation-summary/"/>
+    <id>https://blog.pcninja.cn/2019/08/summer-vacation-summary/</id>
     <published>2019-08-30T14:15:17.000Z</published>
     <updated>2019-08-30T14:30:31.284Z</updated>
     
@@ -473,19 +472,19 @@
     
     </summary>
     
-      <category term="生活" scheme="https://pcninja.cn/categories/%E7%94%9F%E6%B4%BB/"/>
+      <category term="生活" scheme="https://blog.pcninja.cn/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
+      <category term="大学" scheme="https://blog.pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
-      <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
+      <category term="日记" scheme="https://blog.pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
     <title>中文文案排版指北</title>
-    <link href="https://pcninja.cn/2019/08/chinese-copywriting-guidelines/"/>
-    <id>https://pcninja.cn/2019/08/chinese-copywriting-guidelines/</id>
+    <link href="https://blog.pcninja.cn/2019/08/chinese-copywriting-guidelines/"/>
+    <id>https://blog.pcninja.cn/2019/08/chinese-copywriting-guidelines/</id>
     <published>2019-08-19T14:32:27.000Z</published>
     <updated>2019-08-19T14:37:29.112Z</updated>
     
@@ -515,21 +514,21 @@
     
     </summary>
     
-      <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
+      <category term="编程" scheme="https://blog.pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="文档" scheme="https://pcninja.cn/tags/%E6%96%87%E6%A1%A3/"/>
+      <category term="文档" scheme="https://blog.pcninja.cn/tags/%E6%96%87%E6%A1%A3/"/>
     
-      <category term="标准" scheme="https://pcninja.cn/tags/%E6%A0%87%E5%87%86/"/>
+      <category term="标准" scheme="https://blog.pcninja.cn/tags/%E6%A0%87%E5%87%86/"/>
     
-      <category term="规范" scheme="https://pcninja.cn/tags/%E8%A7%84%E8%8C%83/"/>
+      <category term="规范" scheme="https://blog.pcninja.cn/tags/%E8%A7%84%E8%8C%83/"/>
     
   </entry>
   
   <entry>
     <title>virtualenv创建Python虚拟环境时抛出UnicodeDecodeError异常的解决</title>
-    <link href="https://pcninja.cn/2019/07/solution-of-UnicodeDecodeError-thrown-by-virtualenv/"/>
-    <id>https://pcninja.cn/2019/07/solution-of-UnicodeDecodeError-thrown-by-virtualenv/</id>
+    <link href="https://blog.pcninja.cn/2019/07/solution-of-UnicodeDecodeError-thrown-by-virtualenv/"/>
+    <id>https://blog.pcninja.cn/2019/07/solution-of-UnicodeDecodeError-thrown-by-virtualenv/</id>
     <published>2019-07-25T12:04:12.000Z</published>
     <updated>2019-07-25T12:36:14.533Z</updated>
     
@@ -541,21 +540,21 @@
     
     </summary>
     
-      <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
+      <category term="编程" scheme="https://blog.pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="Python" scheme="https://pcninja.cn/tags/Python/"/>
+      <category term="Python" scheme="https://blog.pcninja.cn/tags/Python/"/>
     
-      <category term="virtualenv" scheme="https://pcninja.cn/tags/virtualenv/"/>
+      <category term="virtualenv" scheme="https://blog.pcninja.cn/tags/virtualenv/"/>
     
-      <category term="编码" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A0%81/"/>
+      <category term="编码" scheme="https://blog.pcninja.cn/tags/%E7%BC%96%E7%A0%81/"/>
     
   </entry>
   
   <entry>
     <title>【备忘】 SS代理服务器配置及优化</title>
-    <link href="https://pcninja.cn/2019/07/configuration-and-optimization-of-ss-proxy-server/"/>
-    <id>https://pcninja.cn/2019/07/configuration-and-optimization-of-ss-proxy-server/</id>
+    <link href="https://blog.pcninja.cn/2019/07/configuration-and-optimization-of-ss-proxy-server/"/>
+    <id>https://blog.pcninja.cn/2019/07/configuration-and-optimization-of-ss-proxy-server/</id>
     <published>2019-07-15T12:41:21.000Z</published>
     <updated>2019-07-15T13:36:14.392Z</updated>
     
@@ -567,21 +566,21 @@
     
     </summary>
     
-      <category term="网络" scheme="https://pcninja.cn/categories/%E7%BD%91%E7%BB%9C/"/>
+      <category term="网络" scheme="https://blog.pcninja.cn/categories/%E7%BD%91%E7%BB%9C/"/>
     
     
-      <category term="Linux" scheme="https://pcninja.cn/tags/Linux/"/>
+      <category term="Linux" scheme="https://blog.pcninja.cn/tags/Linux/"/>
     
-      <category term="服务器" scheme="https://pcninja.cn/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+      <category term="服务器" scheme="https://blog.pcninja.cn/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
-      <category term="代理" scheme="https://pcninja.cn/tags/%E4%BB%A3%E7%90%86/"/>
+      <category term="代理" scheme="https://blog.pcninja.cn/tags/%E4%BB%A3%E7%90%86/"/>
     
   </entry>
   
   <entry>
     <title>写在十八岁的最后一天</title>
-    <link href="https://pcninja.cn/2019/07/on-my-last-day-of-eighteen/"/>
-    <id>https://pcninja.cn/2019/07/on-my-last-day-of-eighteen/</id>
+    <link href="https://blog.pcninja.cn/2019/07/on-my-last-day-of-eighteen/"/>
+    <id>https://blog.pcninja.cn/2019/07/on-my-last-day-of-eighteen/</id>
     <published>2019-07-07T13:09:47.000Z</published>
     <updated>2019-07-07T13:26:12.105Z</updated>
     
@@ -593,23 +592,23 @@
     
     </summary>
     
-      <category term="生活" scheme="https://pcninja.cn/categories/%E7%94%9F%E6%B4%BB/"/>
+      <category term="生活" scheme="https://blog.pcninja.cn/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="日记" scheme="https://pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
+      <category term="日记" scheme="https://blog.pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
     
-      <category term="生活" scheme="https://pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
+      <category term="生活" scheme="https://blog.pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
     
-      <category term="人生" scheme="https://pcninja.cn/tags/%E4%BA%BA%E7%94%9F/"/>
+      <category term="人生" scheme="https://blog.pcninja.cn/tags/%E4%BA%BA%E7%94%9F/"/>
     
-      <category term="情感" scheme="https://pcninja.cn/tags/%E6%83%85%E6%84%9F/"/>
+      <category term="情感" scheme="https://blog.pcninja.cn/tags/%E6%83%85%E6%84%9F/"/>
     
   </entry>
   
   <entry>
     <title>数据结构考试——链表去重</title>
-    <link href="https://pcninja.cn/2019/06/linked-list-duplicate-removal/"/>
-    <id>https://pcninja.cn/2019/06/linked-list-duplicate-removal/</id>
+    <link href="https://blog.pcninja.cn/2019/06/linked-list-duplicate-removal/"/>
+    <id>https://blog.pcninja.cn/2019/06/linked-list-duplicate-removal/</id>
     <published>2019-06-17T13:53:07.000Z</published>
     <updated>2019-06-17T14:02:21.531Z</updated>
     
@@ -622,22 +621,22 @@
     
     </summary>
     
-      <category term="编程" scheme="https://pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
+      <category term="编程" scheme="https://blog.pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="编程" scheme="https://pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
+      <category term="大学" scheme="https://blog.pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
-      <category term="作业" scheme="https://pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
+      <category term="作业" scheme="https://blog.pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
     
-      <category term="大学" scheme="https://pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
+      <category term="编程" scheme="https://blog.pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
-      <category term="算法" scheme="https://pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://blog.pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
     
-      <category term="数据结构" scheme="https://pcninja.cn/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+      <category term="数据结构" scheme="https://blog.pcninja.cn/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
-      <category term="链表" scheme="https://pcninja.cn/tags/%E9%93%BE%E8%A1%A8/"/>
+      <category term="链表" scheme="https://blog.pcninja.cn/tags/%E9%93%BE%E8%A1%A8/"/>
     
-      <category term="Hash" scheme="https://pcninja.cn/tags/Hash/"/>
+      <category term="Hash" scheme="https://blog.pcninja.cn/tags/Hash/"/>
     
   </entry>
   

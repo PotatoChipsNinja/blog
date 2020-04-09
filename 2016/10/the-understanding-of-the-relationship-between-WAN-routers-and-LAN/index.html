@@ -147,24 +147,24 @@
 <meta name="keywords" content="写作,网络,Web服务器,局域网,路由器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅谈对公网、路由器、内网关系的理解">
-<meta property="og:url" content="https://pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/index.html">
+<meta property="og:url" content="https://blog.pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/index.html">
 <meta property="og:site_name" content="薯片忍者的小站">
 <meta property="og:description" content="&amp;emsp;&amp;emsp;怎样才能让别人直接访问我的本地网站，这个问题困扰了我很久，原因在于本机IP为类似于192.168.1.xxx的内网IP，显然在公网（全域网）别人是访问不到这里的。今天我对这三者有了更加深刻、透彻的理解。&amp;emsp;&amp;emsp;最简单的，在同一局域网（如同一WIFI下）的设备可以通过这个本地IP（本文以192.168.1.106为例）访问本机。首先在本机上跑一个WEB服务器软">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_1.png">
-<meta property="og:image" content="https://pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_2.png">
-<meta property="og:image" content="https://pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_3.png">
-<meta property="og:image" content="https://pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_4.png">
-<meta property="og:image" content="https://pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_5.png">
-<meta property="og:image" content="https://pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_6.png">
-<meta property="og:image" content="https://pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_7.png">
-<meta property="og:image" content="https://pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_8.png">
-<meta property="og:image" content="https://pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_9.png">
+<meta property="og:image" content="https://blog.pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_1.png">
+<meta property="og:image" content="https://blog.pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_2.png">
+<meta property="og:image" content="https://blog.pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_3.png">
+<meta property="og:image" content="https://blog.pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_4.png">
+<meta property="og:image" content="https://blog.pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_5.png">
+<meta property="og:image" content="https://blog.pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_6.png">
+<meta property="og:image" content="https://blog.pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_7.png">
+<meta property="og:image" content="https://blog.pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_8.png">
+<meta property="og:image" content="https://blog.pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_9.png">
 <meta property="og:updated_time" content="2018-03-03T11:19:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈对公网、路由器、内网关系的理解">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;怎样才能让别人直接访问我的本地网站，这个问题困扰了我很久，原因在于本机IP为类似于192.168.1.xxx的内网IP，显然在公网（全域网）别人是访问不到这里的。今天我对这三者有了更加深刻、透彻的理解。&amp;emsp;&amp;emsp;最简单的，在同一局域网（如同一WIFI下）的设备可以通过这个本地IP（本文以192.168.1.106为例）访问本机。首先在本机上跑一个WEB服务器软">
-<meta name="twitter:image" content="https://pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_1.png">
+<meta name="twitter:image" content="https://blog.pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/WANLAN_1.png">
 
 
 
@@ -174,7 +174,7 @@
 
   
   
-  <link rel="canonical" href="https://pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/">
+  <link rel="canonical" href="https://blog.pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/">
 
 
 
@@ -433,7 +433,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/">
+    <link itemprop="mainEntityOfPage" href="https://blog.pcninja.cn/2016/10/the-understanding-of-the-relationship-between-WAN-routers-and-LAN/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="薯片忍者">
@@ -1117,12 +1117,12 @@
 
 
 
-  <div class="footer-custom">Hosted by <a href="https://pages.coding.me" class="theme-link" rel="noopener" target="_blank">Coding Pages</a></div>
+  <div class="footer-custom"><a href="http://beian.miit.gov.cn" style="border-bottom:0;color:#808080;" class="theme-link" rel="noopener" target="_blank">京ICP备20011227号-1</a></div>
 
 
         
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script async src="/js/my_busuanzi.js"></script>
 
   
     <span class="post-meta-item-icon">
