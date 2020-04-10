@@ -144,7 +144,7 @@
 
 
   <meta name="description" content="服务端搭建 一、环境准备1.操作系统与网络本文以Arch Linux为例，在VirtualBox虚拟机下运行，通过SSH与宿主机连接。由于虚拟机通过NAT联网，要想访问在虚拟机中部署的Web服务需要进行端口转发：  打开VirtualBox管理器，进入Arch虚拟机的设置页，在网络选项卡中点击高级 点击端口转发，我们新建一个端口转发规则。协议为TCP；主机IP填写VirtualBox虚拟网卡的地址">
-<meta name="keywords" content="Linux,编程,网络,Node.js,Express,MongoDB">
+<meta name="keywords" content="编程,网络,Linux,Node.js,Express,MongoDB">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Express+MongoDB后端与微信小程序前端建构最小端到端系统">
 <meta property="og:url" content="https://blog.pcninja.cn/2018/10/minimum-end-to-end-system/index.html">
@@ -558,21 +558,21 @@
 <li>点击<strong>端口转发</strong>，我们新建一个端口转发规则。协议为<code>TCP</code>；主机IP填写VirtualBox虚拟网卡的地址，在Windows宿主机通过<code>ipconfig</code>命令可查看，默认为<code>192.168.56.1</code>；子系统IP填写虚拟机IPv4地址，在Arch虚拟机中通过<code>ip addr</code>命令可查看（图中红框所示处）；子系统端口为我们即将部署的Node服务的监听端口；主机端口为转发到主机后的端口，我们应该避开常用或已被占用的端口（如21、22、25、80、443），为了方便我们可以转发到原端口，本文以3000端口为例<div class="image-size-80"><img src="/2018/10/minimum-end-to-end-system/VM_ip.png" title="Arch查看IP"></div>
 <div class="image-size-50"><img src="/2018/10/minimum-end-to-end-system/port_forwarding.png" title="端口转发"></div></li>
 <li>这样设置完毕后虚拟机的3000端口就可以通过<code>192.168.56.1:3000</code>访问了<a id="more"></a>
-<h4 id="2-Node-js"><a href="#2-Node-js" class="headerlink" title="2.Node.js"></a>2.Node.js</h4>由于该虚拟机此前已安装Node.js、MongoDB等，首先将其卸载再做演示：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> pacman -Rsc nodejs mongodb  #删除Node.js、MongoDB和所有依赖这两个软件包的程序</span><br></pre></td></tr></table></figure>
+<h4 id="2-Node-js"><a href="#2-Node-js" class="headerlink" title="2.Node.js"></a>2.Node.js</h4>由于该虚拟机此前已安装Node.js、MongoDB等，首先将其卸载再做演示：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pacman -Rsc nodejs mongodb  <span class="comment">#删除Node.js、MongoDB和所有依赖这两个软件包的程序</span></span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>更多关于<code>pacman</code>（Arch官方软件包管理器）的用法请见<a href="https://wiki.archlinux.org/index.php/Pacman_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29" target="_blank" rel="noopener">这里</a><br>通过<code>pacman</code>安装Node.js：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> pacman -S nodejs npm  #安装node及包管理器npm</span><br></pre></td></tr></table></figure></p>
-<p>或者从<a href="https://nodejs.org/zh-cn/download/" target="_blank" rel="noopener">Node.js官网</a>下载二进制文件：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> wget https://nodejs.org/dist/v8.12.0/node-v8.12.0-linux-x64.tar.xz</span><br><span class="line"><span class="meta">$</span> xz -d node-v8.12.0-linux-x64.tar.xz</span><br><span class="line"><span class="meta">$</span> tar -xvf node-v8.12.0-linux-x64.tar</span><br></pre></td></tr></table></figure></p>
+<p>更多关于<code>pacman</code>（Arch官方软件包管理器）的用法请见<a href="https://wiki.archlinux.org/index.php/Pacman_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29" target="_blank" rel="noopener">这里</a><br>通过<code>pacman</code>安装Node.js：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pacman -S nodejs npm  <span class="comment">#安装node及包管理器npm</span></span></span><br></pre></td></tr></table></figure></p>
+<p>或者从<a href="https://nodejs.org/zh-cn/download/" target="_blank" rel="noopener">Node.js官网</a>下载二进制文件：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wget https://nodejs.org/dist/v8.12.0/node-v8.12.0-linux-x64.tar.xz</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> xz -d node-v8.12.0-linux-x64.tar.xz</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> tar -xvf node-v8.12.0-linux-x64.tar</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="3-MongoDB"><a href="#3-MongoDB" class="headerlink" title="3.MongoDB"></a>3.MongoDB</h4><ul>
 <li>方法一：</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> pacman -S mongodb  #从官方软件仓库安装mongodb</span><br><span class="line"><span class="meta">$</span> systemctl start mongodb.service  #启动mongodb服务</span><br><span class="line"><span class="meta">$</span> systemctl enable mongodb.service  #设置开机启动服务</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pacman -S mongodb  <span class="comment">#从官方软件仓库安装mongodb</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> systemctl start mongodb.service  <span class="comment">#启动mongodb服务</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> systemctl <span class="built_in">enable</span> mongodb.service  <span class="comment">#设置开机启动服务</span></span></span><br></pre></td></tr></table></figure>
 <p>Arch Linux的默认dbpath是/var/lib/mongodb/，启动服务后可以通过<code>mongo</code>命令进入Mongo Shell</p>
 <ul>
 <li>方法二：</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd /home</span><br><span class="line"><span class="meta">$</span> wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-4.0.2.tgz  #从官网下载二进制包</span><br><span class="line"><span class="meta">$</span> tar -xzvf mongodb-linux-x86_64-4.0.2.tgz</span><br></pre></td></tr></table></figure>
-<p>为了快速使用<code>mongodb</code>命令，可以配置环境变量。编辑<code>~/.profile</code>或<code>/etc/profile</code>文件，将<code>mongodb/bin</code>路径加入即可：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo vim /etc/profile</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /home</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-4.0.2.tgz  <span class="comment">#从官网下载二进制包</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> tar -xzvf mongodb-linux-x86_64-4.0.2.tgz</span></span><br></pre></td></tr></table></figure>
+<p>为了快速使用<code>mongodb</code>命令，可以配置环境变量。编辑<code>~/.profile</code>或<code>/etc/profile</code>文件，将<code>mongodb/bin</code>路径加入即可：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo vim /etc/profile</span></span><br></pre></td></tr></table></figure></p>
 <p>在文件末尾添加一行：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/home/mongodb-linux-x86_64-4.0.2/bin</span><br></pre></td></tr></table></figure></p>
 <p>保存修改后，在终端运行以下命令使环境变量生效：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">source</span> /etc/profile</span></span><br></pre></td></tr></table></figure></p>
 <p>启动<code>mongod</code>：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mkdir /data/db  <span class="comment">#创建数据存放目录</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mongod --dbpath /data/db</span></span><br></pre></td></tr></table></figure></p>
@@ -741,11 +741,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
-          
             <a href="/tags/编程/" rel="tag"># 编程</a>
           
             <a href="/tags/网络/" rel="tag"># 网络</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
           
             <a href="/tags/Node-js/" rel="tag"># Node.js</a>
           
