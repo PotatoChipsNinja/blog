@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[为什么 memset() 只能将 int 数组初始化为 0 或 -1]]></title>
+    <url>%2F2020%2F04%2Fwhy-memset-can-only-initialize-int-array-to-0-or-1%2F</url>
+    <content type="text"><![CDATA[&emsp;&emsp;C/C++ 标准库提供了很多常用的工具函数，比如在 &lt;string.h&gt; 中的 memset() 函数就常常被用来初始化数组，但它在初始化 int 等类型数组的时候只能初始化为 0 或 -1，如果识图用 memset() 将数组初始化为 1，就会发现每个元素都变成了 16843009。&emsp;&emsp;造成这种情况的原因很简单，因为 memset() 的作用是将内存块填充为指定的字符，这也是为什么它包含在 string.h 里的原因。因此，memset() 对内存进行赋值是以字节为单位的。&emsp;&emsp;比如我们调用 memset() 将 int 数组初始化为 1，那么数组的每个字节（不是元素）都会被设置为 00000001，而 int 占 4 个字节，故每个元素的值就是 00000001 00000001 00000001 00000001，该二进制值就是十进制的 16843009，所以 memset() 函数不能把整型数组初始化为 1。&emsp;&emsp;对于长度大于 1 个字节的变量，只能通过 memset() 设置为各字节相同的值，比如 0（全零）或 -1（全1），不能赋各字节不同的值。]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>C++</tag>
+        <tag>编程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode 48. 旋转图像]]></title>
     <url>%2F2020%2F04%2Frotate-image%2F</url>
     <content type="text"><![CDATA[给定一个 n × n 的二维矩阵表示一个图像。将图像顺时针旋转 90 度。 说明:你必须在原地旋转图像，这意味着你需要直接修改输入的二维矩阵。请不要使用另一个矩阵来旋转图像。示例 1:12345678910111213给定 matrix = [ [1,2,3], [4,5,6], [7,8,9]],原地旋转输入矩阵，使其变为:[ [7,4,1], [8,5,2], [9,6,3]] 示例 2:123456789101112131415给定 matrix =[ [ 5, 1, 9,11], [ 2, 4, 8,10], [13, 3, 6, 7], [15,14,12,16]], 原地旋转输入矩阵，使其变为:[ [15,13, 2, 5], [14, 3, 4, 1], [12, 6, 8, 9], [16, 7,10,11]] 题解:每转一个元素，就要把目的地当前的元素也转到目标位置，以此类推，一共要转4个元素。例如，要想转动 m[i][j]，那么对应的四个元素要按照 m[i][j] -&gt; m[j][N-i-1] -&gt; m[N-i-1][N-j-1] -&gt; m[N-j-1][i] 的方式转动。所以，我们只需要转矩阵的左上角的元素，让其他地方的元素跟着转。 代码:123456789101112131415void rotate(int** matrix, int matrixSize, int* matrixColSize)&#123; int i, j, k; for(i = 0; i &lt; matrixSize/2; ++i) for(j = 0; j &lt; (matrixSize+1)/2; ++j) &#123; // 旋转对应位置上的4个数： // m[i][j] -&gt; m[j][N-i-1] -&gt; m[N-i-1][N-j-1] -&gt; m[N-j-1][i] k = matrix[matrixSize-j-1][i]; matrix[matrixSize-j-1][i] = matrix[matrixSize-i-1][matrixSize-j-1]; matrix[matrixSize-i-1][matrixSize-j-1] = matrix[j][matrixSize-i-1]; matrix[j][matrixSize-i-1] = matrix[i][j]; matrix[i][j] = k; &#125;&#125; 时间复杂度 O(n2)，空间复杂度 O(1)。]]></content>
@@ -341,8 +354,8 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>日记</tag>
         <tag>算法</tag>
+        <tag>日记</tag>
         <tag>随笔</tag>
         <tag>情感</tag>
       </tags>
@@ -677,9 +690,9 @@
         <category>编程</category>
       </categories>
       <tags>
+        <tag>Python</tag>
         <tag>C</tag>
         <tag>编程</tag>
-        <tag>Python</tag>
         <tag>HTML</tag>
         <tag>Java</tag>
         <tag>国旗</tag>
@@ -760,10 +773,10 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>高中</tag>
         <tag>回忆</tag>
         <tag>江苏</tag>
         <tag>游记</tag>
+        <tag>高中</tag>
       </tags>
   </entry>
   <entry>
@@ -791,10 +804,10 @@
         <tag>C</tag>
         <tag>编程</tag>
         <tag>数学</tag>
+        <tag>高中</tag>
         <tag>探究</tag>
         <tag>汉诺塔</tag>
         <tag>论文</tag>
-        <tag>高中</tag>
       </tags>
   </entry>
   <entry>

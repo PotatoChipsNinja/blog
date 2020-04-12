@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.pcninja.cn/2020/04/why-memset-can-only-initialize-int-array-to-0-or-1/</loc>
+    
+    <lastmod>2020-04-12T14:02:31.763Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.pcninja.cn/about/index.html</loc>
     
     <lastmod>2020-04-12T11:59:20.513Z</lastmod>

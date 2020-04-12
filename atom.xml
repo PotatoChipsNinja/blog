@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.pcninja.cn/"/>
-  <updated>2020-04-08T11:25:12.157Z</updated>
+  <updated>2020-04-12T14:02:31.763Z</updated>
   <id>https://blog.pcninja.cn/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>为什么 memset() 只能将 int 数组初始化为 0 或 -1</title>
+    <link href="https://blog.pcninja.cn/2020/04/why-memset-can-only-initialize-int-array-to-0-or-1/"/>
+    <id>https://blog.pcninja.cn/2020/04/why-memset-can-only-initialize-int-array-to-0-or-1/</id>
+    <published>2020-04-12T13:32:54.000Z</published>
+    <updated>2020-04-12T14:02:31.763Z</updated>
+    
+    <content type="html"><![CDATA[<p>&emsp;&emsp;C/C++ 标准库提供了很多常用的工具函数，比如在 <code>&lt;string.h&gt;</code> 中的 <code>memset()</code> 函数就常常被用来初始化数组，但它在初始化 <code>int</code> 等类型数组的时候只能初始化为 0 或 -1，如果识图用 <code>memset()</code> 将数组初始化为 1，就会发现每个元素都变成了 16843009。<br>&emsp;&emsp;造成这种情况的原因很简单，因为 <code>memset()</code> 的作用是将内存块填充为指定的字符，这也是为什么它包含在 <code>string.h</code> 里的原因。因此，<code>memset()</code> 对内存进行赋值是以字节为单位的。<br>&emsp;&emsp;比如我们调用 <code>memset()</code> 将 <code>int</code> 数组初始化为 1，那么数组的每个字节（不是元素）都会被设置为 <code>00000001</code>，而 <code>int</code> 占 4 个字节，故每个元素的值就是 <code>00000001 00000001 00000001 00000001</code>，该二进制值就是十进制的 16843009，所以 <code>memset()</code> 函数不能把整型数组初始化为 1。<br>&emsp;&emsp;对于长度大于 1 个字节的变量，只能通过 <code>memset()</code> 设置为各字节相同的值，比如 0（全零）或 -1（全1），不能赋各字节不同的值。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&amp;emsp;&amp;emsp;C/C++ 标准库提供了很多常用的工具函数，比如在 &lt;code&gt;&amp;lt;string.h&amp;gt;&lt;/code&gt; 中的 &lt;code&gt;memset()&lt;/code&gt; 函数就常常被用来初始化数组，但它在初始化 &lt;code&gt;int&lt;/code&gt; 等类型数组的
+      
+    
+    </summary>
+    
+      <category term="编程" scheme="https://blog.pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="C" scheme="https://blog.pcninja.cn/tags/C/"/>
+    
+      <category term="C++" scheme="https://blog.pcninja.cn/tags/C/"/>
+    
+      <category term="编程" scheme="https://blog.pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>LeetCode 48. 旋转图像</title>
@@ -602,41 +631,6 @@
       <category term="人生" scheme="https://blog.pcninja.cn/tags/%E4%BA%BA%E7%94%9F/"/>
     
       <category term="情感" scheme="https://blog.pcninja.cn/tags/%E6%83%85%E6%84%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据结构考试——链表去重</title>
-    <link href="https://blog.pcninja.cn/2019/06/linked-list-duplicate-removal/"/>
-    <id>https://blog.pcninja.cn/2019/06/linked-list-duplicate-removal/</id>
-    <published>2019-06-17T13:53:07.000Z</published>
-    <updated>2019-06-17T14:02:21.531Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>链表去重</strong><br>时间限制: 400 ms<br>内存限制: 64 MB</p><p>给定一个带整数键值的链表 L，你需要把其中绝对值重复的键值结点删掉。即对每个键值 K，只有第一个绝对值等于 K 的结点被保留。同时，所有被删除的结点须被保存在另一个链表上。例如给定 L 为 21→-15→-15→-7→15，你需要输出去重后的链表 21→-15→-7，还有被删除的链表 -15→15。<br><a id="more"></a><br><strong>输入格式：</strong><br>输入在第一行给出 L 的第一个结点的地址和一个正整数 N（≤10^5，为结点总数）。一个结点的地址是非负的 5 位整数，空地址 NULL 用 -1 来表示。<br>随后 N 行，每行按以下格式描述一个结点：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">地址 键值 下一个结点</span><br></pre></td></tr></table></figure></p><p>其中<code>地址</code>是该结点的地址，<code>键值</code>是绝对值不超过10^4的整数，下一个结点是下个结点的地址。</p><p><strong>输出格式：</strong><br>首先输出去重后的链表，然后输出被删除的链表。每个结点占一行，按输入的格式输出。</p><p><strong>输入样例:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">00100 5</span><br><span class="line">99999 -7 87654</span><br><span class="line">23854 -15 00000</span><br><span class="line">87654 15 -1</span><br><span class="line">00000 -15 99999</span><br><span class="line">00100 21 23854</span><br></pre></td></tr></table></figure></p><p><strong>输出样例:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">00100 21 23854</span><br><span class="line">23854 -15 99999</span><br><span class="line">99999 -7 -1</span><br><span class="line">00000 -15 87654</span><br><span class="line">87654 15 -1</span><br></pre></td></tr></table></figure></p><p><strong>代码</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    <span class="keyword">int</span> next;</span><br><span class="line">&#125; ram[<span class="number">100005</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> exist[<span class="number">100005</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> start, n, addr, val, next;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;start, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;addr, &amp;val, &amp;next);</span><br><span class="line">        ram[addr].val = val;</span><br><span class="line">        ram[addr].next = next;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> a[n], na = <span class="number">1</span>, b[n], nb = <span class="number">0</span>;</span><br><span class="line">    a[<span class="number">0</span>] = start;</span><br><span class="line">    exist[<span class="built_in">abs</span>(ram[start].val)] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = ram[start].next; i != <span class="number">-1</span>; i = ram[i].next)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(!exist[<span class="built_in">abs</span>(ram[i].val)])</span><br><span class="line">        &#123;</span><br><span class="line">            exist[<span class="built_in">abs</span>(ram[i].val)]++;</span><br><span class="line">            a[na++] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            b[nb++] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; na; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%05d %d "</span>, a[i], ram[a[i]].val);</span><br><span class="line">        <span class="keyword">if</span>(i == na<span class="number">-1</span>)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"-1\n"</span>);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%05d\n"</span>, a[i+<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nb; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%05d %d "</span>, b[i], ram[b[i]].val);</span><br><span class="line">        <span class="keyword">if</span>(i == nb<span class="number">-1</span>)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"-1\n"</span>);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%05d\n"</span>, b[i+<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;链表去重&lt;/strong&gt;&lt;br&gt;时间限制: 400 ms&lt;br&gt;内存限制: 64 MB&lt;/p&gt;
-&lt;p&gt;给定一个带整数键值的链表 L，你需要把其中绝对值重复的键值结点删掉。即对每个键值 K，只有第一个绝对值等于 K 的结点被保留。同时，所有被删除的结点须被保存在另一个链表上。例如给定 L 为 21→-15→-15→-7→15，你需要输出去重后的链表 21→-15→-7，还有被删除的链表 -15→15。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="编程" scheme="https://blog.pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
-    
-    
-      <category term="大学" scheme="https://blog.pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
-    
-      <category term="作业" scheme="https://blog.pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
-    
-      <category term="编程" scheme="https://blog.pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
-    
-      <category term="算法" scheme="https://blog.pcninja.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="数据结构" scheme="https://blog.pcninja.cn/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-      <category term="链表" scheme="https://blog.pcninja.cn/tags/%E9%93%BE%E8%A1%A8/"/>
-    
-      <category term="Hash" scheme="https://blog.pcninja.cn/tags/Hash/"/>
     
   </entry>
   
