@@ -51,9 +51,9 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>数学</tag>
         <tag>算法</tag>
         <tag>LeetCode</tag>
+        <tag>数学</tag>
         <tag>贝祖定理</tag>
       </tags>
   </entry>
@@ -182,9 +182,9 @@
         <tag>写作</tag>
         <tag>大学</tag>
         <tag>作业</tag>
-        <tag>爱国</tag>
         <tag>国庆</tag>
         <tag>群众游行</tag>
+        <tag>爱国</tag>
       </tags>
   </entry>
   <entry>
@@ -525,9 +525,9 @@
         <category>编程</category>
       </categories>
       <tags>
+        <tag>Linux</tag>
         <tag>编程</tag>
         <tag>网络</tag>
-        <tag>Linux</tag>
         <tag>Node.js</tag>
         <tag>Express</tag>
         <tag>MongoDB</tag>
@@ -790,9 +790,9 @@
       <tags>
         <tag>C</tag>
         <tag>编程</tag>
-        <tag>数学</tag>
         <tag>高中</tag>
         <tag>探究</tag>
+        <tag>数学</tag>
         <tag>汉诺塔</tag>
         <tag>论文</tag>
       </tags>
@@ -821,8 +821,8 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>抗战</tag>
         <tag>爱国</tag>
+        <tag>抗战</tag>
         <tag>红色</tag>
         <tag>游记</tag>
       </tags>
@@ -850,9 +850,9 @@
       </categories>
       <tags>
         <tag>写作</tag>
+        <tag>爱国</tag>
         <tag>和平</tag>
         <tag>抗战</tag>
-        <tag>爱国</tag>
         <tag>红色</tag>
         <tag>观后感</tag>
       </tags>
