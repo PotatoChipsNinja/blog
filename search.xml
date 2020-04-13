@@ -354,8 +354,8 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>日记</tag>
         <tag>算法</tag>
+        <tag>日记</tag>
         <tag>随笔</tag>
         <tag>情感</tag>
       </tags>
@@ -592,8 +592,8 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>杂谈</tag>
         <tag>生活</tag>
+        <tag>杂谈</tag>
         <tag>人生</tag>
         <tag>转载</tag>
       </tags>
@@ -735,9 +735,9 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>平凡的世界</tag>
         <tag>评析</tag>
         <tag>读后感</tag>
+        <tag>平凡的世界</tag>
       </tags>
   </entry>
   <entry>
@@ -755,7 +755,7 @@
   <entry>
     <title><![CDATA[大家好！这里是我的博客]]></title>
     <url>%2F2016%2F08%2Fhere-is-my-blog%2F</url>
-    <content type="text"><![CDATA[我是薯片忍者，今天是2016年8月1日，我建立了我的个人博客。 我的博客地址：http://blog.potatochipsninja.tk（暂停使用） https://pcninja.cn 我的网站地址：http://www.potatochipsninja.tk（暂停使用）以上地址如有变动，我将第一时间在此公布。 您也可以关注我的新浪微博或Twitter获取其他信息。]]></content>
+    <content type="text"><![CDATA[我是薯片忍者，今天是2016年8月1日，我建立了我的个人博客。 我的博客：http://blog.potatochipsninja.tk（暂停使用） https://blog.pcninja.cn 我的主页：http://www.potatochipsninja.tk（暂停使用） https://pcninja.cn以上地址如有变动，我将第一时间在此发布。 最后更新：2020年4月13日]]></content>
       <categories>
         <category>公告</category>
       </categories>
@@ -849,9 +849,9 @@
       </categories>
       <tags>
         <tag>写作</tag>
+        <tag>毛泽东</tag>
         <tag>评析</tag>
         <tag>读后感</tag>
-        <tag>毛泽东</tag>
       </tags>
   </entry>
   <entry>

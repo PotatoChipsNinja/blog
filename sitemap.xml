@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.pcninja.cn/2016/08/here-is-my-blog/</loc>
+    
+    <lastmod>2020-04-13T04:33:39.448Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.pcninja.cn/about/index.html</loc>
     
     <lastmod>2020-04-13T04:17:12.981Z</lastmod>
@@ -271,13 +278,6 @@
     <loc>https://blog.pcninja.cn/tags/index.html</loc>
     
     <lastmod>2019-05-01T04:18:32.359Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.pcninja.cn/2016/08/here-is-my-blog/</loc>
-    
-    <lastmod>2018-11-03T14:43:39.711Z</lastmod>
     
   </url>
   

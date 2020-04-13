@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.pcninja.cn/2016/08/here-is-my-blog/</loc>
+    <lastmod>2020-04-13</lastmod>
+  </url>  <url>
     <loc>https://blog.pcninja.cn/2020/04/why-memset-can-only-initialize-int-array-to-0-or-1/</loc>
     <lastmod>2020-04-12</lastmod>
   </url>  <url>
@@ -108,9 +111,6 @@
   </url>  <url>
     <loc>https://blog.pcninja.cn/2019/04/i-am-tired/</loc>
     <lastmod>2019-05-02</lastmod>
-  </url>  <url>
-    <loc>https://blog.pcninja.cn/2016/08/here-is-my-blog/</loc>
-    <lastmod>2018-11-03</lastmod>
   </url>  <url>
     <loc>https://blog.pcninja.cn/2018/10/web-page-auto-refresh-by-JavaScript/</loc>
     <lastmod>2018-10-04</lastmod>
