@@ -274,8 +274,8 @@
       <tags>
         <tag>日记</tag>
         <tag>生活</tag>
-        <tag>人生</tag>
         <tag>情感</tag>
+        <tag>人生</tag>
       </tags>
   </entry>
   <entry>
@@ -690,9 +690,9 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>C</tag>
         <tag>编程</tag>
+        <tag>Python</tag>
         <tag>HTML</tag>
         <tag>Java</tag>
         <tag>国旗</tag>
