@@ -144,7 +144,7 @@
 
 
   <meta name="description" content="链表去重时间限制: 400 ms内存限制: 64 MB 给定一个带整数键值的链表 L，你需要把其中绝对值重复的键值结点删掉。即对每个键值 K，只有第一个绝对值等于 K 的结点被保留。同时，所有被删除的结点须被保存在另一个链表上。例如给定 L 为 21→-15→-15→-7→15，你需要输出去重后的链表 21→-15→-7，还有被删除的链表 -15→15。">
-<meta name="keywords" content="大学,作业,编程,算法,数据结构,链表,Hash">
+<meta name="keywords" content="作业,大学,编程,算法,数据结构,链表,Hash">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构考试——链表去重">
 <meta property="og:url" content="https://blog.pcninja.cn/2019/06/linked-list-duplicate-removal/index.html">
@@ -573,9 +573,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/大学/" rel="tag"># 大学</a>
-          
             <a href="/tags/作业/" rel="tag"># 作业</a>
+          
+            <a href="/tags/大学/" rel="tag"># 大学</a>
           
             <a href="/tags/编程/" rel="tag"># 编程</a>
           
@@ -1122,7 +1122,21 @@
 
         
 <div class="busuanzi-count">
-  <script async src="/js/my_busuanzi.js"></script>
+  <!--<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>-->
+  <!-- 将上面的不蒜子脚本换成我们自己写的 -->
+  <script>
+    function StatCallback(obj) {
+      uv = document.getElementById("busuanzi_value_site_uv");
+      pv = document.getElementById("busuanzi_value_site_pv");
+      uv && (uv.innerHTML = obj.uv);
+      pv && (pv.innerHTML = obj.pv);
+    }
+    var scriptTag = document.createElement("script");
+    scriptTag.type = "text/javascript";
+    scriptTag.defer = !0;
+    scriptTag.src = "https://lab.pcninja.cn/stat/query";
+    document.getElementsByTagName("head")[0].appendChild(scriptTag);
+  </script>
 
   
     <span class="post-meta-item-icon">

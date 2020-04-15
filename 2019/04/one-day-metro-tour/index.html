@@ -144,7 +144,7 @@
 
 
   <meta name="description" content="地铁一日游时间限制: 550 ms内存限制: 64 MB 森森喜欢坐地铁。这个假期，他终于来到了传说中的地铁之城——魔都，打算好好过一把坐地铁的瘾！魔都地铁的计价规则是：起步价 2 元，出发站与到达站的最短距离（即计费距离）每 K 公里增加 1 元车费。例如取 K = 10，动安寺站离魔都绿桥站为 40 公里，则车费为 2 + 4 = 6 元。为了获得最大的满足感，森森决定用以下的方式坐地铁：在某">
-<meta name="keywords" content="大学,作业,编程,算法,数据结构,Floyd">
+<meta name="keywords" content="作业,大学,编程,算法,数据结构,Floyd">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构作业——地铁一日游">
 <meta property="og:url" content="https://blog.pcninja.cn/2019/04/one-day-metro-tour/index.html">
@@ -572,9 +572,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/大学/" rel="tag"># 大学</a>
-          
             <a href="/tags/作业/" rel="tag"># 作业</a>
+          
+            <a href="/tags/大学/" rel="tag"># 大学</a>
           
             <a href="/tags/编程/" rel="tag"># 编程</a>
           
@@ -1119,7 +1119,21 @@
 
         
 <div class="busuanzi-count">
-  <script async src="/js/my_busuanzi.js"></script>
+  <!--<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>-->
+  <!-- 将上面的不蒜子脚本换成我们自己写的 -->
+  <script>
+    function StatCallback(obj) {
+      uv = document.getElementById("busuanzi_value_site_uv");
+      pv = document.getElementById("busuanzi_value_site_pv");
+      uv && (uv.innerHTML = obj.uv);
+      pv && (pv.innerHTML = obj.pv);
+    }
+    var scriptTag = document.createElement("script");
+    scriptTag.type = "text/javascript";
+    scriptTag.defer = !0;
+    scriptTag.src = "https://lab.pcninja.cn/stat/query";
+    document.getElementsByTagName("head")[0].appendChild(scriptTag);
+  </script>
 
   
     <span class="post-meta-item-icon">

@@ -1753,7 +1753,21 @@
 
         
 <div class="busuanzi-count">
-  <script async src="/js/my_busuanzi.js"></script>
+  <!--<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>-->
+  <!-- 将上面的不蒜子脚本换成我们自己写的 -->
+  <script>
+    function StatCallback(obj) {
+      uv = document.getElementById("busuanzi_value_site_uv");
+      pv = document.getElementById("busuanzi_value_site_pv");
+      uv && (uv.innerHTML = obj.uv);
+      pv && (pv.innerHTML = obj.pv);
+    }
+    var scriptTag = document.createElement("script");
+    scriptTag.type = "text/javascript";
+    scriptTag.defer = !0;
+    scriptTag.src = "https://lab.pcninja.cn/stat/query";
+    document.getElementsByTagName("head")[0].appendChild(scriptTag);
+  </script>
 
   
     <span class="post-meta-item-icon">
