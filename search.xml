@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[浅谈 HTTPS 强制跳转以及 HSTS]]></title>
+    <url>%2F2020%2F04%2Fon-HTTPS-forced-jump-and-HSTS%2F</url>
+    <content type="text"><![CDATA[&emsp;&emsp;在上一篇博文 『用 acme.sh 申请通配符证书及 HTTPS 相关配置』 中已经介绍了如何申请通配符证书并安装到 Nginx 服务中，在此不再赘述。&emsp;&emsp;为了让所有访客都通过 HTTPS 进行安全访问，我们需要将使用 HTTP 的连接强制跳转到 HTTPS 连接上。主要的方法有三种： 前端跳转（不推荐） 301/302 重定向（推荐） HSTS（推荐） &emsp;&emsp;接下来我们详细说说这三种方法的实现方法以及利弊。 方法一：前端跳转&emsp;&emsp;前端使用 JavaScript 进行跳转，虽然有点蠢，但的确不失为一种办法。只需在所有页面的 HTML 里加入一段 JS 就能实现：1234&lt;script type="text/javascript"&gt; if (window.location.protocol != "https") window.location.href = "https" + window.location.href.substring(window.location.protocol.length);&lt;/script&gt; 优点&emsp;&emsp;我实在想不出来这种方法有什么优点。。。大概只有在我们控制不了服务端只能修改前端的时候才会选择这种下下策吧。 缺点 因为是在浏览器端进行跳转，所以我们没法保证用户一定跳转了，很不安全 跳转后又要请求下载一遍所有资源，浪费带宽 在跳转之前所有的内容已经通过 HTTP 明文传输到客户端了，完全起不到保护的作用 太多了，不一一列举了… &emsp;&emsp;当然，你可以让服务端对所有 HTTP 请求只返回这段 JS，对 HTTPS 请求返回正确页面，来增加一点点安全性。但是，既然你都已经分开处理 HTTP 和 HTTPS 请求了，那为什么不用接下来这两种方法呢？ 方法二：301/302 重定向&emsp;&emsp;由服务端控制，如果请求的协议是 HTTP，则返回状态码 301（永久重定向） 或 302（暂时重定向），让浏览器重定向到 HTTPS 上。对于 Nginx，我们可以通过分别监听 80 和 443 端口来实现：12345678910111213141516171819# 加一个监听 80 端口的 server，直接返回 301server &#123; server_name _; listen 80; listen [::]:80; return 301 https://$host$request_uri;&#125;# 原本的 server 只接受 443 端口的请求server &#123; server_name example.com; listen 443 ssl; listen [::]:443 ssl; ... ...&#125; 优点 所有的内容都只能通过 HTTPS 安全传输，安全性高 状态码清晰明确，对搜索引擎友好，有利于收录 想要关闭强制 HTTPS 访问时可以即刻生效 缺点 浏览器会向服务端请求两次：第一次发起 HTTP 请求，收到 301 重定向，第二次再发起 HTTPS 请求 可能遭受中间人的降级攻击 当浏览器发现当前的 HTTPS 连接不安全，例如证书过期，域名无效等问题时，浏览器会警告用户，但仍会允许用户继续这种不安全的访问，不会强行阻止 方法三：HSTS&emsp;&emsp;为了省去浏览器第一次向服务端发起的 HTTP 请求，HSTS（HTTP Strict Transport Security，HTTP严格传输安全协议）应运而生。HSTS 的功能就是：即使用户输入的 URL 是 HTTP 协议，浏览器也会直接 307 重定向到 HTTPS 协议。&emsp;&emsp;实现方法就是在服务器返回给浏览器的响应头中加入 Strict-Transport-Security 这个头。HSTS Header 的语法如下：1Strict-Transport-Security: &lt;max-age=&gt;[; includeSubDomains][; preload] &emsp;&emsp;其中，max-age 是必选参数，是一个以秒为单位的数值，代表 HSTS Header 的过期时间，通常设置为 31536000，即一年的时间。includeSubDomains 是可选参数，如果包含它，则意味着当前域名及其子域名均开启 HSTS 保护。preload 是可选参数，如果你想申请将自己的域名加入到浏览器的内置列表那么需要包含这个参数，关于这个参数我们接下来细说。&emsp;&emsp;以 Nginx 为例，要想启用 HSTS，只需要在配置文件中加入这样一行：12# 过期时间一年，保护所有子域名add_header Strict-Transport-Security &quot;max-age=31536000; includeSubDomains&quot;; &emsp;&emsp;重启 Nginx 服务后，我们在 MySSL 上重新生成评估报告，发现可以评到最高级 A+，意味着你的网站现在是全世界最安全的网站之一（其实并没有什么卵用）。 优点 你的 HSTS 信息在访客浏览器中生效期间可以有效防止中间人攻击 浏览器端直接 307 重定向，省去了服务端进行重定向 证书无效时浏览器完全阻断访问 缺点 一旦你加上了 Strict-Transport-Security 这个头，就不能轻易取消 HTTPS 服务了，否则你的访客在他浏览器的 HSTS 信息过期之前都无法正常访问 可能会在某些浏览器中造成一些奇奇怪怪的谜之错误导致你的网站不能被正常访问 关于 HSTS Preload List&emsp;&emsp;我们仔细想想就不难发现，HSTS 虽然牛逼，可以很好的解决 HTTPS 降级攻击，但是有一个致命缺陷，就是对于 HSTS 生效前的首次 HTTP 请求，依然无法避免被劫持。换句话说，当用户第一次访问网站的时候，浏览器没有当前网站的 HSTS 信息，所以就会产生一次明文的 HTTP 请求，尽管服务端可以返回 301 重定向，但在这个过程中，仍然避免不了中间人攻击。&emsp;&emsp;为了解决这个问题，Chrome 提出了 HSTS Preload List 方案，就是在浏览器里内置一份定期更新的列表，对于列表中的域名，即使用户之前没有访问过，浏览器也会强行使用 HTTPS 协议。目前，主流的浏览器（Chrome、Firefox、Opera、Safari、IE11、Edge）都支持这份由 Chrome 维护的 HSTS Preload List。你可以在它的官网 hstspreload.org 上查询到一个网站是否在这份列表之中。&emsp;&emsp;如果你想要把你的域名加入到 HSTS Preload List 中，那么你需要满足官网中列出的所有条件，然后在 Strict-Transport-Security 头里加入 preload 参数。由于这份列表是硬编码到浏览器中的，所以需要过一段时间你的网站才会被加入到稳定版本的列表中。要注意，一旦你的网站被列入了 HSTS Preload List，想要再从里面出来可就不那么容易了，提交申请后同样需要等很长一段时间才会被彻底除名，官网对此过程的描述是“slow and painful”。所以，除非你能保证你的网站能够持续稳定地提供 HTTPS 服务，否则不要轻易使用 preload 参数。 &emsp;&emsp;总的来说，我感觉 HSTS 虽然提供了一个很好的方向，能够很大程度上增强通信的安全性，但仍旧有许多不靠谱的地方，亟需升级改善。所以我认为对于普通网站（非金融、支付相关），完全没有必要使用 HSTS 方式加以保护，301/302 重定向就足够了。当然，强迫症患者除外😂。]]></content>
+      <categories>
+        <category>网络</category>
+      </categories>
+      <tags>
+        <tag>HTTPS</tag>
+        <tag>Nginx</tag>
+        <tag>网络</tag>
+        <tag>HSTS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[用 acme.sh 申请通配符证书及 HTTPS 相关配置]]></title>
+    <url>%2F2020%2F04%2Fapply-for-certificate-and-HTTPS-related-configuration%2F</url>
+    <content type="text"><![CDATA[前言&emsp;&emsp;最近小站新增了几个二级域名，如果给每个二级域名都单独申请一个 SSL/TLS 证书未免太过麻烦，因此这次希望申请一个通配符证书，使其支持所有二级域名。&emsp;&emsp;此前我一直用 Certbot 申请 Let’s Encrypt 证书，这也是 Let’s Encrypt 官方推荐的证书管理工具，具体使用方法请见我的另一篇博文 『申请Let’s Encrypt免费SSL证书并在Node.js建立HTTPS服务』。但是后来我发现 Certbot 有些不方便，因为如果用 pip 进行安装很容易遇到 Python2 和 Python3 的兼容性问题，不过后来改用 certbot-auto 脚本解决了大部分问题。&emsp;&emsp;尝试过 acme.sh 后我彻底抛弃了 Certbot，因为它使用纯 Shell 语言编写，对各大发行版都很友好，也自然不存在 Python 的兼容问题。最重要的是 acme.sh 和 Certbot 都支持申请通配符证书，而且 acme.sh 在安装的时候就自动通过 crontab 配置好了自动更新证书的定时任务，不需要我们自己手动配置。因此 acme.sh 总体给我的感觉就是比 Certbot 省事不少。 使用 acme.sh 申请证书 项目官方仓库：https://github.com/acmesh-official/acme.sh 安装 acme.sh&emsp;&emsp;安装过程很简单，一句话就能搞定：1curl https://get.acme.sh | sh &emsp;&emsp;这个脚本会将 acme.sh 安装在你的家目录下的 ~/.acme.sh/，不会污染系统和其他任何地方的文件。安装过程中会自动创建 bash 的一个 alias：alias acme.sh=~/.acme.sh/acme.sh，因为我用的是 zsh 所以需要重新载入一下配置文件：1source ~/.zshrc &emsp;&emsp;这样一来，我们就可以在任意地方直接使用 acme.sh 命令了。此外，我们还可以设置一下电子邮箱，以便在证书过期前可以收到通知（此步骤可省略）：1acme.sh --update-account --accountemail example@example.com 申请证书&emsp;&emsp;和 Certbot 一样，acme.sh 实现了 ACME 协议支持的所有验证协议，最常使用的两种方式验证是 HTTP 和 DNS 验证。因为我们要申请的是通配符证书，所以只能选择 DNS 方式验证。&emsp;&emsp;acme.sh 支持很多常用 DNS 提供商的 API，具体列表及使用方式请见 官方 Wiki。如果你的 DNS 提供商不在这里，那么你就只能通过手动设置 DNS 的方式进行验证，而且没法自动更新证书，因为每次更新证书都需要进行 DNS 验证。&emsp;&emsp;我使用的是腾讯云的 DNS 解析服务（其实就是 DNSPod），因此我们需要先取得 DNSPod 的密钥：登录 DNSPod（不是腾讯云），通过控制台进入密钥管理界面，新建一组密钥，保存好 ID 和 Token。 接下来将刚刚取得的 ID 和 Token 写入环境变量：12export DP_Id="your ID"export DP_Key="your Token" 然后我们就可以通过 acme.sh 申请 Let’s Encrypt 证书了，注意将 example.com 换成你的域名：1acme.sh --issue --dns dns_dp -d example.com -d *.example.com &emsp;&emsp;如果顺利的话，就会成功生成一张同时支持主域（example.com）和所有二级域名（*.example.com）的通配符证书。同时，acme.sh 会在本地保存你的 ID 和 Token 以便之后自动更新证书时重新验证 DNS 用。&emsp;&emsp;通过 acme.sh --list 命令可以看到我们生成的证书列表，证书相关文件保存在 ~/.acme.sh/你的域名 下，其中 fullchain.cer 和 你的域名.key 分别是完整证书文件和私钥文件，是接下来配置服务端需要用到的两个文件。 安装证书到 Nginx&emsp;&emsp;我们已经通过 acme.sh 申请好了证书，接下来需要将证书配置到服务端，使其支持 HTTPS。我在 『申请Let’s Encrypt免费SSL证书并在Node.js建立HTTPS服务』 一文中曾经介绍了如何在 Node.js 中配置证书，因此这里我主要介绍如何给 Nginx 配置 HTTPS 服务。&emsp;&emsp;在 Nginx 配置文件 nginx.conf 中的 http 模块中新增如下配置：12345678http &#123; ... ... ssl_protocols TLSv1.1 TLSv1.2; # 支持协议类型，为了安全性建议这么配置 ssl_prefer_server_ciphers on; ssl_certificate ~/.acme.sh/example.com/fullchain.cer; # 证书文件 ssl_certificate_key ~/.acme.sh/example.com/example.com.key; # 私钥文件 ... ...&#125; &emsp;&emsp;关于 ssl_protocols 的配置，其默认值为 TLSv1 TLSv1.1 TLSv1.2，但是根据最新的 PCI DSS 合规判定标准，如果开启 TLS1.0 或更早的加密协议将会判定为不合规，因此为了满足更高的要求，推荐大家禁用 TLS1.0 ，但这样做会导致诸如 IE8 等一些老旧浏览器无法兼容，所以如果你想要支持那些古董浏览器，那么就不得不牺牲安全性了。但目前 99.999% 的浏览器都是支持 TLS1.1 及更新标准的，喜欢折腾的还可以让 Nginx 支持最新的 TLS1.3标准。&emsp;&emsp;接下来，在配置文件的 server 模块中加入 443 端口的监听。例如，如果我们希望用户可以同时通过 HTTP 和 HTTPS 访问的话，可以同时监听 80 和 443 端口：12345678server &#123; ... ... listen 80; listen [::]:80; listen 443 ssl; listen [::]:443 ssl; ... ...&#125; &emsp;&emsp;然后，我们检查 Nginx 配置文件并重启 Nginx 即可开启 HTTPS 访问：12sudo nginx -t # 检查配置文件sudo service nginx restart # 重启 Nginx 服务 &emsp;&emsp;我们配置完成后，可以在 MySSL 上检测一下我们部署了 SSL/TLS 的网站是否符合各项行业标准和规范。如果你禁用了 TLS1.0 的话，大概会得到这样的评级： &emsp;&emsp;评到了 A 级代表我们网站的 HTTPS 服务已经十分安全，但如果你有强迫症想要评到 A+ 级则需要开启 HSTS（HTTP Strict Transport Security，HTTP严格传输安全协议）。&emsp;&emsp;关于 HTTP 强制跳转到 HTTPS 的实现方法以及 HSTS 更多信息，可以看看我的另一篇博文 『浅谈 HTTPS 强制跳转以及 HSTS』。]]></content>
+      <categories>
+        <category>网络</category>
+      </categories>
+      <tags>
+        <tag>SSL</tag>
+        <tag>TLS</tag>
+        <tag>HTTPS</tag>
+        <tag>Nginx</tag>
+        <tag>网络</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[为什么 memset() 只能将 int 数组初始化为 0 或 -1]]></title>
     <url>%2F2020%2F04%2Fwhy-memset-can-only-initialize-int-array-to-0-or-1%2F</url>
     <content type="text"><![CDATA[&emsp;&emsp;C/C++ 标准库提供了很多常用的工具函数，比如在 &lt;string.h&gt; 中的 memset() 函数就常常被用来初始化数组，但它在初始化 int 等类型数组的时候只能初始化为 0 或 -1，如果识图用 memset() 将数组初始化为 1，就会发现每个元素都变成了 16843009。&emsp;&emsp;造成这种情况的原因很简单，因为 memset() 的作用是将内存块填充为指定的字符，这也是为什么它包含在 string.h 里的原因。因此，memset() 对内存进行赋值是以字节为单位的。&emsp;&emsp;比如我们调用 memset() 将 int 数组初始化为 1，那么数组的每个字节（不是元素）都会被设置为 00000001，而 int 占 4 个字节，故每个元素的值就是 00000001 00000001 00000001 00000001，该二进制值就是十进制的 16843009，所以 memset() 函数不能把整型数组初始化为 1。&emsp;&emsp;对于长度大于 1 个字节的变量，只能通过 memset() 设置为各字节相同的值，比如 0（全零）或 -1（全1），不能赋各字节不同的值。]]></content>
@@ -8,9 +37,9 @@
         <category>编程</category>
       </categories>
       <tags>
+        <tag>编程</tag>
         <tag>C</tag>
         <tag>C++</tag>
-        <tag>编程</tag>
       </tags>
   </entry>
   <entry>
@@ -163,8 +192,8 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>作业</tag>
         <tag>大学</tag>
+        <tag>作业</tag>
         <tag>辩证法</tag>
         <tag>马克思主义</tag>
       </tags>
@@ -178,9 +207,9 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>作业</tag>
-        <tag>大学</tag>
         <tag>形式与政策</tag>
+        <tag>大学</tag>
+        <tag>作业</tag>
         <tag>人类命运共同体</tag>
       </tags>
   </entry>
@@ -193,11 +222,11 @@
       </categories>
       <tags>
         <tag>写作</tag>
+        <tag>大学</tag>
+        <tag>作业</tag>
         <tag>国庆</tag>
         <tag>群众游行</tag>
         <tag>爱国</tag>
-        <tag>作业</tag>
-        <tag>大学</tag>
       </tags>
   </entry>
   <entry>
@@ -286,8 +315,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>作业</tag>
         <tag>大学</tag>
+        <tag>作业</tag>
         <tag>编程</tag>
         <tag>算法</tag>
         <tag>数据结构</tag>
@@ -303,8 +332,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>作业</tag>
         <tag>大学</tag>
+        <tag>作业</tag>
         <tag>编程</tag>
         <tag>算法</tag>
         <tag>数据结构</tag>
@@ -322,8 +351,8 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>作业</tag>
         <tag>大学</tag>
+        <tag>作业</tag>
         <tag>读后感</tag>
         <tag>习近平</tag>
       </tags>
@@ -336,8 +365,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>作业</tag>
         <tag>大学</tag>
+        <tag>作业</tag>
         <tag>编程</tag>
         <tag>算法</tag>
         <tag>数据结构</tag>
@@ -354,8 +383,8 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>日记</tag>
         <tag>算法</tag>
+        <tag>日记</tag>
         <tag>随笔</tag>
         <tag>情感</tag>
       </tags>
@@ -368,8 +397,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>作业</tag>
         <tag>大学</tag>
+        <tag>作业</tag>
         <tag>编程</tag>
         <tag>算法</tag>
         <tag>数据结构</tag>
@@ -385,8 +414,8 @@
         <category>学科</category>
       </categories>
       <tags>
-        <tag>作业</tag>
         <tag>大学</tag>
+        <tag>作业</tag>
         <tag>数学</tag>
         <tag>离散数学</tag>
         <tag>复杂度</tag>
@@ -400,8 +429,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>作业</tag>
         <tag>大学</tag>
+        <tag>作业</tag>
         <tag>编程</tag>
         <tag>算法</tag>
         <tag>数据结构</tag>
@@ -419,9 +448,9 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>作业</tag>
-        <tag>大学</tag>
         <tag>形式与政策</tag>
+        <tag>大学</tag>
+        <tag>作业</tag>
         <tag>区域协调发展</tag>
         <tag>京津冀一体化</tag>
       </tags>
@@ -448,9 +477,9 @@
         <category>网络</category>
       </categories>
       <tags>
+        <tag>网络</tag>
         <tag>日记</tag>
         <tag>生活</tag>
-        <tag>网络</tag>
       </tags>
   </entry>
   <entry>
@@ -461,8 +490,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>作业</tag>
         <tag>大学</tag>
+        <tag>作业</tag>
         <tag>编程</tag>
         <tag>算法</tag>
         <tag>数据结构</tag>
@@ -477,8 +506,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>作业</tag>
         <tag>大学</tag>
+        <tag>作业</tag>
         <tag>编程</tag>
         <tag>算法</tag>
         <tag>数据结构</tag>
@@ -508,10 +537,10 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>作业</tag>
-        <tag>大学</tag>
         <tag>改革开放</tag>
         <tag>形式与政策</tag>
+        <tag>大学</tag>
+        <tag>作业</tag>
       </tags>
   </entry>
   <entry>
@@ -522,10 +551,10 @@
         <category>网络</category>
       </categories>
       <tags>
-        <tag>编程</tag>
-        <tag>网络</tag>
         <tag>SSL</tag>
         <tag>HTTPS</tag>
+        <tag>网络</tag>
+        <tag>编程</tag>
         <tag>Node.js</tag>
         <tag>Express</tag>
       </tags>
@@ -539,8 +568,8 @@
       </categories>
       <tags>
         <tag>Linux</tag>
-        <tag>编程</tag>
         <tag>网络</tag>
+        <tag>编程</tag>
         <tag>Node.js</tag>
         <tag>Express</tag>
         <tag>MongoDB</tag>
@@ -567,9 +596,9 @@
         <category>编程</category>
       </categories>
       <tags>
+        <tag>编程</tag>
         <tag>C</tag>
         <tag>C++</tag>
-        <tag>编程</tag>
       </tags>
   </entry>
   <entry>
@@ -592,8 +621,8 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>杂谈</tag>
         <tag>生活</tag>
+        <tag>杂谈</tag>
         <tag>人生</tag>
         <tag>转载</tag>
       </tags>
@@ -690,9 +719,9 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>C</tag>
-        <tag>编程</tag>
         <tag>Python</tag>
+        <tag>编程</tag>
+        <tag>C</tag>
         <tag>HTML</tag>
         <tag>Java</tag>
         <tag>国旗</tag>
@@ -773,9 +802,9 @@
       </categories>
       <tags>
         <tag>写作</tag>
+        <tag>游记</tag>
         <tag>回忆</tag>
         <tag>江苏</tag>
-        <tag>游记</tag>
         <tag>高中</tag>
       </tags>
   </entry>
@@ -801,8 +830,8 @@
         <category>学科</category>
       </categories>
       <tags>
-        <tag>C</tag>
         <tag>编程</tag>
+        <tag>C</tag>
         <tag>数学</tag>
         <tag>高中</tag>
         <tag>探究</tag>

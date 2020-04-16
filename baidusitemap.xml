@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.pcninja.cn/2020/04/on-HTTPS-forced-jump-and-HSTS/</loc>
+    <lastmod>2020-04-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.pcninja.cn/2020/04/apply-for-certificate-and-HTTPS-related-configuration/</loc>
+    <lastmod>2020-04-16</lastmod>
+  </url>  <url>
     <loc>https://blog.pcninja.cn/2016/08/here-is-my-blog/</loc>
     <lastmod>2020-04-13</lastmod>
   </url>  <url>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.pcninja.cn/"/>
-  <updated>2020-04-12T14:02:31.763Z</updated>
+  <updated>2020-04-16T08:39:51.029Z</updated>
   <id>https://blog.pcninja.cn/</id>
   
   <author>
@@ -15,6 +15,70 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>浅谈 HTTPS 强制跳转以及 HSTS</title>
+    <link href="https://blog.pcninja.cn/2020/04/on-HTTPS-forced-jump-and-HSTS/"/>
+    <id>https://blog.pcninja.cn/2020/04/on-HTTPS-forced-jump-and-HSTS/</id>
+    <published>2020-04-16T07:31:43.000Z</published>
+    <updated>2020-04-16T08:39:51.029Z</updated>
+    
+    <content type="html"><![CDATA[<p>&emsp;&emsp;在上一篇博文 <a href="https://blog.pcninja.cn/2020/04/apply-for-certificate-and-HTTPS-related-configuration/">『用 acme.sh 申请通配符证书及 HTTPS 相关配置』</a> 中已经介绍了如何申请通配符证书并安装到 Nginx 服务中，在此不再赘述。<br>&emsp;&emsp;为了让所有访客都通过 HTTPS 进行安全访问，我们需要将使用 HTTP 的连接强制跳转到 HTTPS 连接上。主要的方法有三种：</p><ul><li>前端跳转（不推荐）</li><li>301/302 重定向（推荐）</li><li>HSTS（推荐）</li></ul><p>&emsp;&emsp;接下来我们详细说说这三种方法的实现方法以及利弊。<br><a id="more"></a></p><h3 id="方法一：前端跳转"><a href="#方法一：前端跳转" class="headerlink" title="方法一：前端跳转"></a>方法一：前端跳转</h3><p>&emsp;&emsp;前端使用 JavaScript 进行跳转，虽然有点蠢，但的确不失为一种办法。只需在所有页面的 HTML 里加入一段 JS 就能实现：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (<span class="built_in">window</span>.location.protocol != <span class="string">"https"</span>)</span></span><br><span class="line"><span class="javascript">        <span class="built_in">window</span>.location.href = <span class="string">"https"</span> + <span class="built_in">window</span>.location.href.substring(<span class="built_in">window</span>.location.protocol.length);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><p>&emsp;&emsp;我实在想不出来这种方法有什么优点。。。大概只有在我们控制不了服务端只能修改前端的时候才会选择这种下下策吧。</p><h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul><li>因为是在浏览器端进行跳转，所以我们没法保证用户一定跳转了，很不安全</li><li>跳转后又要请求下载一遍所有资源，浪费带宽</li><li>在跳转之前所有的内容已经通过 HTTP 明文传输到客户端了，完全起不到保护的作用</li><li>太多了，不一一列举了…</li></ul><p>&emsp;&emsp;当然，你可以让服务端对所有 HTTP 请求只返回这段 JS，对 HTTPS 请求返回正确页面，来增加一点点安全性。但是，既然你都已经分开处理 HTTP 和 HTTPS 请求了，那为什么不用接下来这两种方法呢？</p><h3 id="方法二：301-302-重定向"><a href="#方法二：301-302-重定向" class="headerlink" title="方法二：301/302 重定向"></a>方法二：301/302 重定向</h3><p>&emsp;&emsp;由服务端控制，如果请求的协议是 HTTP，则返回状态码 301（永久重定向） 或 302（暂时重定向），让浏览器重定向到 HTTPS 上。对于 Nginx，我们可以通过分别监听 80 和 443 端口来实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># 加一个监听 80 端口的 server，直接返回 301</span><br><span class="line">server &#123;</span><br><span class="line">    server_name _;</span><br><span class="line"></span><br><span class="line">    listen 80;</span><br><span class="line">    listen [::]:80;</span><br><span class="line"></span><br><span class="line">    return 301 https://$host$request_uri;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 原本的 server 只接受 443 端口的请求</span><br><span class="line">server &#123;</span><br><span class="line">    server_name example.com;</span><br><span class="line"></span><br><span class="line">    listen 443 ssl;</span><br><span class="line">    listen [::]:443 ssl;</span><br><span class="line"></span><br><span class="line">    ... ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h4 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h4><ul><li>所有的内容都只能通过 HTTPS 安全传输，安全性高</li><li>状态码清晰明确，对搜索引擎友好，有利于收录</li><li>想要关闭强制 HTTPS 访问时可以即刻生效</li></ul><h4 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h4><ul><li>浏览器会向服务端请求两次：第一次发起 HTTP 请求，收到 301 重定向，第二次再发起 HTTPS 请求</li><li>可能遭受中间人的降级攻击</li><li>当浏览器发现当前的 HTTPS 连接不安全，例如证书过期，域名无效等问题时，浏览器会警告用户，但仍会允许用户继续这种不安全的访问，不会强行阻止</li></ul><div class="image-size-80"><img src="/2020/04/on-HTTPS-forced-jump-and-HSTS/img1.png" title="浏览器允许用户强行访问"></div><h3 id="方法三：HSTS"><a href="#方法三：HSTS" class="headerlink" title="方法三：HSTS"></a>方法三：HSTS</h3><p>&emsp;&emsp;为了省去浏览器第一次向服务端发起的 HTTP 请求，HSTS（HTTP Strict Transport Security，HTTP严格传输安全协议）应运而生。HSTS 的功能就是：即使用户输入的 URL 是 HTTP 协议，浏览器也会直接 307 重定向到 HTTPS 协议。<br>&emsp;&emsp;实现方法就是在服务器返回给浏览器的响应头中加入 <code>Strict-Transport-Security</code> 这个头。HSTS Header 的语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Strict-Transport-Security: &lt;max-age=&gt;[; includeSubDomains][; preload]</span><br></pre></td></tr></table></figure></p><p>&emsp;&emsp;其中，<code>max-age</code> 是必选参数，是一个以秒为单位的数值，代表 HSTS Header 的过期时间，通常设置为 31536000，即一年的时间。<code>includeSubDomains</code> 是可选参数，如果包含它，则意味着当前域名及其子域名均开启 HSTS 保护。<code>preload</code> 是可选参数，如果你想申请将自己的域名加入到浏览器的内置列表那么需要包含这个参数，关于这个参数我们接下来细说。<br>&emsp;&emsp;以 Nginx 为例，要想启用 HSTS，只需要在配置文件中加入这样一行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 过期时间一年，保护所有子域名</span><br><span class="line">add_header Strict-Transport-Security &quot;max-age=31536000; includeSubDomains&quot;;</span><br></pre></td></tr></table></figure></p><p>&emsp;&emsp;重启 Nginx 服务后，我们在 <a href="https://myssl.com" target="_blank" rel="noopener">MySSL</a> 上重新生成评估报告，发现可以评到最高级 <code>A+</code>，意味着你的网站现在是全世界最安全的网站之一（其实并没有什么卵用）。</p><h4 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h4><ul><li>你的 HSTS 信息在访客浏览器中生效期间可以有效防止中间人攻击</li><li>浏览器端直接 307 重定向，省去了服务端进行重定向</li><li>证书无效时浏览器完全阻断访问</li></ul><div class="image-size-80"><img src="/2020/04/on-HTTPS-forced-jump-and-HSTS/img2.png" title="浏览器阻止用户继续访问"></div><h4 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h4><ul><li>一旦你加上了 <code>Strict-Transport-Security</code> 这个头，就不能轻易取消 HTTPS 服务了，否则你的访客在他浏览器的 HSTS 信息过期之前都无法正常访问</li><li><strong>可能</strong>会在某些浏览器中造成一些奇奇怪怪的谜之错误导致你的网站不能被正常访问</li></ul><h3 id="关于-HSTS-Preload-List"><a href="#关于-HSTS-Preload-List" class="headerlink" title="关于 HSTS Preload List"></a>关于 HSTS Preload List</h3><p>&emsp;&emsp;我们仔细想想就不难发现，HSTS 虽然牛逼，可以很好的解决 HTTPS 降级攻击，但是有一个致命缺陷，就是对于 HSTS 生效前的首次 HTTP 请求，依然无法避免被劫持。换句话说，当用户第一次访问网站的时候，浏览器没有当前网站的 HSTS 信息，所以就会产生一次明文的 HTTP 请求，尽管服务端可以返回 301 重定向，但在这个过程中，仍然避免不了中间人攻击。<br>&emsp;&emsp;为了解决这个问题，Chrome 提出了 HSTS Preload List 方案，就是在浏览器里内置一份定期更新的列表，对于列表中的域名，即使用户之前没有访问过，浏览器也会强行使用 HTTPS 协议。目前，主流的浏览器（Chrome、Firefox、Opera、Safari、IE11、Edge）都支持这份由 Chrome 维护的 HSTS Preload List。你可以在它的官网 <a href="https://hstspreload.org" target="_blank" rel="noopener">hstspreload.org</a> 上查询到一个网站是否在这份列表之中。<br>&emsp;&emsp;如果你想要把你的域名加入到 HSTS Preload List 中，那么你需要满足官网中列出的所有条件，然后在 <code>Strict-Transport-Security</code> 头里加入 <code>preload</code> 参数。由于这份列表是硬编码到浏览器中的，所以需要过一段时间你的网站才会被加入到稳定版本的列表中。要注意，<strong>一旦你的网站被列入了 HSTS Preload List，想要再从里面出来可就不那么容易了</strong>，提交申请后同样需要等很长一段时间才会被彻底除名，官网对此过程的描述是“slow and painful”。所以，<strong>除非你能保证你的网站能够持续稳定地提供 HTTPS 服务，否则不要轻易使用 <code>preload</code> 参数</strong>。</p><div class="image-size-80"><img src="/2020/04/on-HTTPS-forced-jump-and-HSTS/img3.png" title="HSTS Preload List 官网中列出的加入条件"></div><p>&emsp;&emsp;总的来说，我感觉 HSTS 虽然提供了一个很好的方向，能够很大程度上增强通信的安全性，但仍旧有许多不靠谱的地方，亟需升级改善。所以我认为对于普通网站（非金融、支付相关），完全没有必要使用 HSTS 方式加以保护，301/302 重定向就足够了。当然，强迫症患者除外😂。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&amp;emsp;&amp;emsp;在上一篇博文 &lt;a href=&quot;https://blog.pcninja.cn/2020/04/apply-for-certificate-and-HTTPS-related-configuration/&quot;&gt;『用 acme.sh 申请通配符证书及 HTTPS 相关配置』&lt;/a&gt; 中已经介绍了如何申请通配符证书并安装到 Nginx 服务中，在此不再赘述。&lt;br&gt;&amp;emsp;&amp;emsp;为了让所有访客都通过 HTTPS 进行安全访问，我们需要将使用 HTTP 的连接强制跳转到 HTTPS 连接上。主要的方法有三种：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;前端跳转（不推荐）&lt;/li&gt;
+&lt;li&gt;301/302 重定向（推荐）&lt;/li&gt;
+&lt;li&gt;HSTS（推荐）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;emsp;&amp;emsp;接下来我们详细说说这三种方法的实现方法以及利弊。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="网络" scheme="https://blog.pcninja.cn/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="HTTPS" scheme="https://blog.pcninja.cn/tags/HTTPS/"/>
+    
+      <category term="Nginx" scheme="https://blog.pcninja.cn/tags/Nginx/"/>
+    
+      <category term="网络" scheme="https://blog.pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="HSTS" scheme="https://blog.pcninja.cn/tags/HSTS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>用 acme.sh 申请通配符证书及 HTTPS 相关配置</title>
+    <link href="https://blog.pcninja.cn/2020/04/apply-for-certificate-and-HTTPS-related-configuration/"/>
+    <id>https://blog.pcninja.cn/2020/04/apply-for-certificate-and-HTTPS-related-configuration/</id>
+    <published>2020-04-16T02:54:22.000Z</published>
+    <updated>2020-04-16T08:33:11.512Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&emsp;&emsp;最近小站新增了几个二级域名，如果给每个二级域名都单独申请一个 SSL/TLS 证书未免太过麻烦，因此这次希望申请一个通配符证书，使其支持所有二级域名。<br>&emsp;&emsp;此前我一直用 Certbot 申请 Let’s Encrypt 证书，这也是 Let’s Encrypt 官方推荐的证书管理工具，具体使用方法请见我的另一篇博文 <a href="https://blog.pcninja.cn/2018/11/letsencrypt-certificates-and-https-in-nodejs/">『申请Let’s Encrypt免费SSL证书并在Node.js建立HTTPS服务』</a>。但是后来我发现 Certbot 有些不方便，因为如果用 <code>pip</code> 进行安装很容易遇到 Python2 和 Python3 的兼容性问题，不过后来改用 <code>certbot-auto</code> 脚本解决了大部分问题。<br>&emsp;&emsp;尝试过 acme.sh 后我彻底抛弃了 Certbot，因为它使用纯 Shell 语言编写，对各大发行版都很友好，也自然不存在 Python 的兼容问题。最重要的是 acme.sh 和 Certbot 都支持申请通配符证书，而且 acme.sh 在安装的时候就自动通过 <code>crontab</code> 配置好了自动更新证书的定时任务，不需要我们自己手动配置。因此 acme.sh 总体给我的感觉就是比 Certbot 省事不少。<br><a id="more"></a></p><h2 id="使用-acme-sh-申请证书"><a href="#使用-acme-sh-申请证书" class="headerlink" title="使用 acme.sh 申请证书"></a>使用 acme.sh 申请证书</h2><blockquote><p>项目官方仓库：<a href="https://github.com/acmesh-official/acme.sh" target="_blank" rel="noopener">https://github.com/acmesh-official/acme.sh</a></p></blockquote><h3 id="安装-acme-sh"><a href="#安装-acme-sh" class="headerlink" title="安装 acme.sh"></a>安装 acme.sh</h3><p>&emsp;&emsp;安装过程很简单，一句话就能搞定：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl  https://get.acme.sh | sh</span><br></pre></td></tr></table></figure></p><p>&emsp;&emsp;这个脚本会将 acme.sh 安装在你的家目录下的 <code>~/.acme.sh/</code>，不会污染系统和其他任何地方的文件。安装过程中会自动创建 bash 的一个 alias：<code>alias acme.sh=~/.acme.sh/acme.sh</code>，因为我用的是 <code>zsh</code> 所以需要重新载入一下配置文件：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.zshrc</span><br></pre></td></tr></table></figure></p><p>&emsp;&emsp;这样一来，我们就可以在任意地方直接使用 <code>acme.sh</code> 命令了。此外，我们还可以设置一下电子邮箱，以便在证书过期前可以收到通知（此步骤可省略）：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acme.sh --update-account --accountemail example@example.com</span><br></pre></td></tr></table></figure></p><h3 id="申请证书"><a href="#申请证书" class="headerlink" title="申请证书"></a>申请证书</h3><p>&emsp;&emsp;和 Certbot 一样，acme.sh 实现了 ACME 协议支持的所有验证协议，最常使用的两种方式验证是 HTTP 和 DNS 验证。因为我们要申请的是通配符证书，所以只能选择 DNS 方式验证。<br>&emsp;&emsp;acme.sh 支持很多常用 DNS 提供商的 API，具体列表及使用方式请见 <a href="https://github.com/acmesh-official/acme.sh/wiki/dnsapi" target="_blank" rel="noopener">官方 Wiki</a>。如果你的 DNS 提供商不在这里，那么你就只能通过手动设置 DNS 的方式进行验证，而且没法自动更新证书，因为每次更新证书都需要进行 DNS 验证。<br>&emsp;&emsp;我使用的是腾讯云的 DNS 解析服务（其实就是 DNSPod），因此我们需要先取得 DNSPod 的密钥：登录 DNSPod（不是腾讯云），通过控制台进入密钥管理界面，新建一组密钥，保存好 <code>ID</code> 和 <code>Token</code>。</p><div class="image-size-80"><img src="/2020/04/apply-for-certificate-and-HTTPS-related-configuration/img1.png" title="创建密钥"></div><p>接下来将刚刚取得的 <code>ID</code> 和 <code>Token</code> 写入环境变量：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export DP_Id="your ID"</span><br><span class="line">export DP_Key="your Token"</span><br></pre></td></tr></table></figure></p><p>然后我们就可以通过 acme.sh 申请 Let’s Encrypt 证书了，注意将 <code>example.com</code> 换成你的域名：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acme.sh --issue --dns dns_dp -d example.com -d *.example.com</span><br></pre></td></tr></table></figure></p><p>&emsp;&emsp;如果顺利的话，就会成功生成一张同时支持主域（<code>example.com</code>）和所有二级域名（<code>*.example.com</code>）的通配符证书。同时，acme.sh 会在本地保存你的 <code>ID</code> 和 <code>Token</code> 以便之后自动更新证书时重新验证 DNS 用。<br>&emsp;&emsp;通过 <code>acme.sh --list</code> 命令可以看到我们生成的证书列表，证书相关文件保存在 <code>~/.acme.sh/你的域名</code> 下，其中 <code>fullchain.cer</code> 和 <code>你的域名.key</code> 分别是完整证书文件和私钥文件，是接下来配置服务端需要用到的两个文件。</p><div class="image-size-80"><img src="/2020/04/apply-for-certificate-and-HTTPS-related-configuration/img2.png" title="证书列表"></div><h2 id="安装证书到-Nginx"><a href="#安装证书到-Nginx" class="headerlink" title="安装证书到 Nginx"></a>安装证书到 Nginx</h2><p>&emsp;&emsp;我们已经通过 acme.sh 申请好了证书，接下来需要将证书配置到服务端，使其支持 HTTPS。我在 <a href="https://blog.pcninja.cn/2018/11/letsencrypt-certificates-and-https-in-nodejs/">『申请Let’s Encrypt免费SSL证书并在Node.js建立HTTPS服务』</a> 一文中曾经介绍了如何在 Node.js 中配置证书，因此这里我主要介绍如何给 Nginx 配置 HTTPS 服务。<br>&emsp;&emsp;在 Nginx 配置文件 <code>nginx.conf</code> 中的 http 模块中新增如下配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    ... ...</span><br><span class="line">    ssl_protocols TLSv1.1 TLSv1.2;  # 支持协议类型，为了安全性建议这么配置</span><br><span class="line">    ssl_prefer_server_ciphers on;</span><br><span class="line">    ssl_certificate     ~/.acme.sh/example.com/fullchain.cer;   # 证书文件</span><br><span class="line">    ssl_certificate_key ~/.acme.sh/example.com/example.com.key; # 私钥文件</span><br><span class="line">    ... ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>&emsp;&emsp;关于 <code>ssl_protocols</code> 的配置，其默认值为 <code>TLSv1 TLSv1.1 TLSv1.2</code>，但是根据最新的 PCI DSS 合规判定标准，如果开启 TLS1.0 或更早的加密协议将会判定为不合规，因此为了满足更高的要求，推荐大家禁用 TLS1.0 ，但这样做会导致诸如 IE8 等一些老旧浏览器无法兼容，所以如果你想要支持那些古董浏览器，那么就不得不牺牲安全性了。但目前 99.999% 的浏览器都是支持 TLS1.1 及更新标准的，喜欢折腾的还可以让 Nginx 支持最新的 TLS1.3标准。<br>&emsp;&emsp;接下来，在配置文件的 server 模块中加入 443 端口的监听。例如，如果我们希望用户可以同时通过 HTTP 和 HTTPS 访问的话，可以同时监听 80 和 443 端口：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    ... ...</span><br><span class="line">    listen 80;</span><br><span class="line">    listen [::]:80;</span><br><span class="line">    listen 443 ssl;</span><br><span class="line">    listen [::]:443 ssl;</span><br><span class="line">    ... ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>&emsp;&emsp;然后，我们检查 Nginx 配置文件并重启 Nginx 即可开启 HTTPS 访问：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo nginx -t               # 检查配置文件</span><br><span class="line">sudo service nginx restart  # 重启 Nginx 服务</span><br></pre></td></tr></table></figure></p><p>&emsp;&emsp;我们配置完成后，可以在 <a href="https://myssl.com" target="_blank" rel="noopener">MySSL</a> 上检测一下我们部署了 SSL/TLS 的网站是否符合各项行业标准和规范。如果你禁用了 TLS1.0 的话，大概会得到这样的评级：</p><div class="image-size-50"><img src="/2020/04/apply-for-certificate-and-HTTPS-related-configuration/img3.png" title="评估报告"></div><p>&emsp;&emsp;评到了 <code>A</code> 级代表我们网站的 HTTPS 服务已经十分安全，但如果你有强迫症想要评到 <code>A+</code> 级则需要开启 HSTS（HTTP Strict Transport Security，HTTP严格传输安全协议）。<br>&emsp;&emsp;关于 HTTP 强制跳转到 HTTPS 的实现方法以及 HSTS 更多信息，可以看看我的另一篇博文 <a href="https://blog.pcninja.cn/2020/04/on-HTTPS-forced-jump-and-HSTS/">『浅谈 HTTPS 强制跳转以及 HSTS』</a>。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;emsp;&amp;emsp;最近小站新增了几个二级域名，如果给每个二级域名都单独申请一个 SSL/TLS 证书未免太过麻烦，因此这次希望申请一个通配符证书，使其支持所有二级域名。&lt;br&gt;&amp;emsp;&amp;emsp;此前我一直用 Certbot 申请 Let’s Encrypt 证书，这也是 Let’s Encrypt 官方推荐的证书管理工具，具体使用方法请见我的另一篇博文 &lt;a href=&quot;https://blog.pcninja.cn/2018/11/letsencrypt-certificates-and-https-in-nodejs/&quot;&gt;『申请Let’s Encrypt免费SSL证书并在Node.js建立HTTPS服务』&lt;/a&gt;。但是后来我发现 Certbot 有些不方便，因为如果用 &lt;code&gt;pip&lt;/code&gt; 进行安装很容易遇到 Python2 和 Python3 的兼容性问题，不过后来改用 &lt;code&gt;certbot-auto&lt;/code&gt; 脚本解决了大部分问题。&lt;br&gt;&amp;emsp;&amp;emsp;尝试过 acme.sh 后我彻底抛弃了 Certbot，因为它使用纯 Shell 语言编写，对各大发行版都很友好，也自然不存在 Python 的兼容问题。最重要的是 acme.sh 和 Certbot 都支持申请通配符证书，而且 acme.sh 在安装的时候就自动通过 &lt;code&gt;crontab&lt;/code&gt; 配置好了自动更新证书的定时任务，不需要我们自己手动配置。因此 acme.sh 总体给我的感觉就是比 Certbot 省事不少。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="网络" scheme="https://blog.pcninja.cn/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="SSL" scheme="https://blog.pcninja.cn/tags/SSL/"/>
+    
+      <category term="TLS" scheme="https://blog.pcninja.cn/tags/TLS/"/>
+    
+      <category term="HTTPS" scheme="https://blog.pcninja.cn/tags/HTTPS/"/>
+    
+      <category term="Nginx" scheme="https://blog.pcninja.cn/tags/Nginx/"/>
+    
+      <category term="网络" scheme="https://blog.pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>为什么 memset() 只能将 int 数组初始化为 0 或 -1</title>
@@ -37,11 +101,11 @@
       <category term="编程" scheme="https://blog.pcninja.cn/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
+      <category term="编程" scheme="https://blog.pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
+    
       <category term="C" scheme="https://blog.pcninja.cn/tags/C/"/>
     
       <category term="C++" scheme="https://blog.pcninja.cn/tags/C/"/>
-    
-      <category term="编程" scheme="https://blog.pcninja.cn/tags/%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   
@@ -373,9 +437,9 @@
     
       <category term="写作" scheme="https://blog.pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
     
-      <category term="作业" scheme="https://blog.pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
-    
       <category term="大学" scheme="https://blog.pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
+    
+      <category term="作业" scheme="https://blog.pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
     
       <category term="辩证法" scheme="https://blog.pcninja.cn/tags/%E8%BE%A9%E8%AF%81%E6%B3%95/"/>
     
@@ -406,11 +470,11 @@
     
       <category term="写作" scheme="https://blog.pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
     
-      <category term="作业" scheme="https://blog.pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
+      <category term="形式与政策" scheme="https://blog.pcninja.cn/tags/%E5%BD%A2%E5%BC%8F%E4%B8%8E%E6%94%BF%E7%AD%96/"/>
     
       <category term="大学" scheme="https://blog.pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
-      <category term="形式与政策" scheme="https://blog.pcninja.cn/tags/%E5%BD%A2%E5%BC%8F%E4%B8%8E%E6%94%BF%E7%AD%96/"/>
+      <category term="作业" scheme="https://blog.pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
     
       <category term="人类命运共同体" scheme="https://blog.pcninja.cn/tags/%E4%BA%BA%E7%B1%BB%E5%91%BD%E8%BF%90%E5%85%B1%E5%90%8C%E4%BD%93/"/>
     
@@ -441,15 +505,15 @@
     
       <category term="写作" scheme="https://blog.pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
     
+      <category term="大学" scheme="https://blog.pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
+    
+      <category term="作业" scheme="https://blog.pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
+    
       <category term="国庆" scheme="https://blog.pcninja.cn/tags/%E5%9B%BD%E5%BA%86/"/>
     
       <category term="群众游行" scheme="https://blog.pcninja.cn/tags/%E7%BE%A4%E4%BC%97%E6%B8%B8%E8%A1%8C/"/>
     
       <category term="爱国" scheme="https://blog.pcninja.cn/tags/%E7%88%B1%E5%9B%BD/"/>
-    
-      <category term="作业" scheme="https://blog.pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
-    
-      <category term="大学" scheme="https://blog.pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
   </entry>
   
@@ -577,60 +641,6 @@
       <category term="virtualenv" scheme="https://blog.pcninja.cn/tags/virtualenv/"/>
     
       <category term="编码" scheme="https://blog.pcninja.cn/tags/%E7%BC%96%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【备忘】 SS代理服务器配置及优化</title>
-    <link href="https://blog.pcninja.cn/2019/07/configuration-and-optimization-of-ss-proxy-server/"/>
-    <id>https://blog.pcninja.cn/2019/07/configuration-and-optimization-of-ss-proxy-server/</id>
-    <published>2019-07-15T12:41:21.000Z</published>
-    <updated>2019-07-15T13:36:14.392Z</updated>
-    
-    <content type="html"><![CDATA[<p>&emsp;&emsp;由于Vultr日本节点大量被墙，所以被迫转投DigitalOcean，最便宜的是5刀一个月，但首充5刀后会送50刀，再加上Github教育礼包里包含的50刀优惠（需要验证教育邮箱、上传学生证照片），所以算下来几乎可以白嫖两年，岂不美滋滋。美中不足是DigitalOcean的系统快照占用的存储空间是要另付费的，所以每次换IP开新机就需要重新配置代理服务器，这里简单记录一下流程和命令，方便以后复制。<br><a id="more"></a></p><blockquote><p>以Ubuntu 18.04搭建SS服务为例，如果今后SS情势不好可能会换用V2Ray</p></blockquote><h2 id="安装及配置"><a href="#安装及配置" class="headerlink" title="安装及配置"></a>安装及配置</h2><p>项目地址：<a href="https://github.com/shadowsocks/shadowsocks/tree/master" target="_blank" rel="noopener">https://github.com/shadowsocks/shadowsocks/tree/master</a><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 从源更新软件列表</span></span><br><span class="line">apt-get update</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装pip</span></span><br><span class="line">apt-get install python-pip</span><br><span class="line"><span class="meta">#</span><span class="bash"> pip安装SS</span></span><br><span class="line">pip install git+https://github.com/shadowsocks/shadowsocks.git@master</span><br></pre></td></tr></table></figure></p><p>安装完成后可以建两个脚本<code>start.sh</code>、<code>stop.sh</code>方便控制服务开关（或编写json配置文件，反而麻烦）<br>start.sh：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ssserver -p 端口 -k 密码 -m aes-256-cfb --user nobody -d start</span><br></pre></td></tr></table></figure></p><p>stop.sh：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ssserver -d stop</span><br></pre></td></tr></table></figure></p><p>最后还要给这两个脚本赋予执行权限<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x start.sh stop.sh    # 或直接chmod 777</span><br></pre></td></tr></table></figure></p><p>开启服务之前可以做以下优化，提高带宽利用率</p><h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>首先按照官方Wiki上的教程进行优化，地址：<a href="https://github.com/shadowsocks/shadowsocks/wiki/Optimizing-Shadowsocks" target="_blank" rel="noopener">https://github.com/shadowsocks/shadowsocks/wiki/Optimizing-Shadowsocks</a><br>创建<code>/etc/sysctl.d/local.conf</code>并写入以下配置：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> max open files</span></span><br><span class="line">fs.file-max = 51200</span><br><span class="line"><span class="meta">#</span><span class="bash"> max <span class="built_in">read</span> buffer</span></span><br><span class="line">net.core.rmem_max = 67108864</span><br><span class="line"><span class="meta">#</span><span class="bash"> max write buffer</span></span><br><span class="line">net.core.wmem_max = 67108864</span><br><span class="line"><span class="meta">#</span><span class="bash"> default <span class="built_in">read</span> buffer</span></span><br><span class="line">net.core.rmem_default = 65536</span><br><span class="line"><span class="meta">#</span><span class="bash"> default write buffer</span></span><br><span class="line">net.core.wmem_default = 65536</span><br><span class="line"><span class="meta">#</span><span class="bash"> max processor input queue</span></span><br><span class="line">net.core.netdev_max_backlog = 4096</span><br><span class="line"><span class="meta">#</span><span class="bash"> max backlog</span></span><br><span class="line">net.core.somaxconn = 4096</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> resist SYN flood attacks</span></span><br><span class="line">net.ipv4.tcp_syncookies = 1</span><br><span class="line"><span class="meta">#</span><span class="bash"> reuse timewait sockets when safe</span></span><br><span class="line">net.ipv4.tcp_tw_reuse = 1</span><br><span class="line"><span class="meta">#</span><span class="bash"> turn off fast timewait sockets recycling</span></span><br><span class="line">net.ipv4.tcp_tw_recycle = 0</span><br><span class="line"><span class="meta">#</span><span class="bash"> short FIN timeout</span></span><br><span class="line">net.ipv4.tcp_fin_timeout = 30</span><br><span class="line"><span class="meta">#</span><span class="bash"> short keepalive time</span></span><br><span class="line">net.ipv4.tcp_keepalive_time = 1200</span><br><span class="line"><span class="meta">#</span><span class="bash"> outbound port range</span></span><br><span class="line">net.ipv4.ip_local_port_range = 10000 65000</span><br><span class="line"><span class="meta">#</span><span class="bash"> max SYN backlog</span></span><br><span class="line">net.ipv4.tcp_max_syn_backlog = 4096</span><br><span class="line"><span class="meta">#</span><span class="bash"> max timewait sockets held by system simultaneously</span></span><br><span class="line">net.ipv4.tcp_max_tw_buckets = 5000</span><br><span class="line"><span class="meta">#</span><span class="bash"> turn on TCP Fast Open on both client and server side</span></span><br><span class="line">net.ipv4.tcp_fastopen = 3</span><br><span class="line"><span class="meta">#</span><span class="bash"> TCP receive buffer</span></span><br><span class="line">net.ipv4.tcp_rmem = 4096 87380 67108864</span><br><span class="line"><span class="meta">#</span><span class="bash"> TCP write buffer</span></span><br><span class="line">net.ipv4.tcp_wmem = 4096 65536 67108864</span><br><span class="line"><span class="meta">#</span><span class="bash"> turn on path MTU discovery</span></span><br><span class="line">net.ipv4.tcp_mtu_probing = 1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="keyword">for</span> high-latency network</span></span><br><span class="line">net.ipv4.tcp_congestion_control = hybla</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="keyword">for</span> low-latency network, use cubic instead</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> net.ipv4.tcp_congestion_control = cubic</span></span><br></pre></td></tr></table></figure></p><p>最后的<code>net.ipv4.tcp_congestion_control</code>选择<code>hybla</code>还是<code>cubic</code>取决于服务器延迟的高低<br>然后加载我们写好的配置文件：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl --system</span><br></pre></td></tr></table></figure></p><p>接下来是启用TCP BBR拥塞控制算法，可以用来取代ServerSpeeder<br>已经有人做好了傻瓜式脚本，我们只需要根据提示操作：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; ./bbr.sh</span><br></pre></td></tr></table></figure></p><p>使用<code>lsmod | grep bbr</code>查看系统模块，若返回<code>tcp_bbr</code>说明BBR已启动</p><p>这时我们就可以运行<code>start.sh</code>，开启代理服务，进行科学上网了</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&amp;emsp;&amp;emsp;由于Vultr日本节点大量被墙，所以被迫转投DigitalOcean，最便宜的是5刀一个月，但首充5刀后会送50刀，再加上Github教育礼包里包含的50刀优惠（需要验证教育邮箱、上传学生证照片），所以算下来几乎可以白嫖两年，岂不美滋滋。美中不足是DigitalOcean的系统快照占用的存储空间是要另付费的，所以每次换IP开新机就需要重新配置代理服务器，这里简单记录一下流程和命令，方便以后复制。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="网络" scheme="https://blog.pcninja.cn/categories/%E7%BD%91%E7%BB%9C/"/>
-    
-    
-      <category term="Linux" scheme="https://blog.pcninja.cn/tags/Linux/"/>
-    
-      <category term="服务器" scheme="https://blog.pcninja.cn/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-      <category term="代理" scheme="https://blog.pcninja.cn/tags/%E4%BB%A3%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>写在十八岁的最后一天</title>
-    <link href="https://blog.pcninja.cn/2019/07/on-my-last-day-of-eighteen/"/>
-    <id>https://blog.pcninja.cn/2019/07/on-my-last-day-of-eighteen/</id>
-    <published>2019-07-07T13:09:47.000Z</published>
-    <updated>2019-07-07T13:26:12.105Z</updated>
-    
-    <content type="html"><![CDATA[<p>&emsp;&emsp;十八岁，过的可真快，转眼就到了最后一天，以至于我还没反应过来。这就好比，在看一场精彩绝伦的足球赛时，往往会觉得上半场怎么这么快就结束了。而我的十八岁，虽称不上精彩，但也足够充实，或者说，只是单纯的忙碌，忙碌到这一年里发生的许多事我都快忘却了，所以我才要在这儿记下那些快要忘却的事，也算是对自己的十八岁做个简要的小结吧。<br><a id="more"></a><br>&emsp;&emsp;如果用一个词来总结这一年的话，我想应该是五味杂陈吧，因为这一年里，我哭过，痛过，累过，当然，也笑过。在度过了一个安逸的暑假之后，我开启了大学之旅，第一学期可以说是平淡无奇的四个月——很快我就适应了大学里的生活节奏，接着就是在上课、作业、游戏中轮回，周而复始。除了基本的课业知识，没有任何长进，虽然成绩还不错，但我对那个学期是不满意的，因为我虚度了四个月的时光。<br>&emsp;&emsp;浪费就会受到惩罚，这是颠扑不破的真理。很快，惩罚就降临了。我别无选择，只得默默接受。接下来的寒假对我来说无疑是煎熬的，当然，也有痛定思痛、扪心自问。<br>&emsp;&emsp;在假期临近结束之际，我做出了让我自己为之骄傲的决定，我遵从了自己的内心，提交了转专业申请，向自己的热爱与理想迈出了一大步。这一次，我终于没再辜负你，也没再辜负自己，这就是我为之骄傲的原因。<br>&emsp;&emsp;第二学期，我体验到了从未有过的忙碌与充实，大大小小的事务等待着我去一一处理，一个个抉择与挑战摆在我面前。这个学期，我参加了ACM校赛，见识了那些高水平选手的风采，让我深刻体会到天外有天，人外有人。我正视到自己的差距，意识到此刻开始追赶并不是一个明智的选择，ACM竞赛也并非我所认为的计算机科学的最好体现。正所谓条条大路通罗马，我需要尽早找到自己真正感兴趣的方向，追寻我所憧憬的计算机科学。<br>&emsp;&emsp;这一年，也是我自信心大幅提升的一年。我向自己证明了我的能力：第一学期综合成绩排名18/808，转入计科实验班后排名3/55，进入火花空间创客社团技术组，担任过一次技术沙龙的主讲人，带领宿舍全员设计开发寻物微信小程序……这些成绩告诉我，我不必自卑，无论在哪，我都能够站稳脚跟、发挥自己的作用、实现自己的价值。<br>&emsp;&emsp;人际交往方面，我倒是没有什么变化：不大不小的朋友圈，几个挚友，一个念念不忘的人，没有树敌。偶尔会感到孤独，但孤独是人生的必修课，我想这样就挺好。<br>&emsp;&emsp;这学期有位老师的一段话引发了我的思考：“科学是和人们的生活不相干的东西，而造福人类的是技术”。一开始，我对这种说法嗤之以鼻，心想科学怎么会和人们无关呢，但仔细想想，这种说法其实不无道理，科学与技术相辅相成——科学是技术的前提，而技术是科学的实现，因此科学对生活的影响是间接的，技术是直接的。我认为科学之于技术好比世界观之于方法论：方法论真正左右我们的行为，而决定方法论的却是世界观。<br>&emsp;&emsp;对科学与技术的思考让我对未来感到有些迷茫。如果你在十年前问我未来的职业理想是什么，我也许会给出和大部分孩子一样的答案：科学家，当然，这是一个极其笼统的回答；如果你在三年前问我同样的问题，我会毫不犹豫的回答你：计算机科学家；但如果你现在再来问我，我会犹豫，因为也许技术从业者会为这个社会创造更大的价值。这样的迷茫可能会持续一段时间，在我找到答案之前，我需要不断培养自己的计算思维、扩充自己的技术栈，尽可能做到理论与实践并行。<br>&emsp;&emsp;还有三个小时，我的十八岁就要过去了，竟有些伤感。十八岁，有太多的始料未及，此后，再不会有八月瓢泼大雨里的那种感动，再不会有一月寒风凛冽中的那种悲痛。时间会冲淡一切，现在需要我做的，就是以更好的态度，迎接十九岁的时空旅行。<br>&emsp;&emsp;薯片忍者，生日快乐！</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&amp;emsp;&amp;emsp;十八岁，过的可真快，转眼就到了最后一天，以至于我还没反应过来。这就好比，在看一场精彩绝伦的足球赛时，往往会觉得上半场怎么这么快就结束了。而我的十八岁，虽称不上精彩，但也足够充实，或者说，只是单纯的忙碌，忙碌到这一年里发生的许多事我都快忘却了，所以我才要在这儿记下那些快要忘却的事，也算是对自己的十八岁做个简要的小结吧。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="生活" scheme="https://blog.pcninja.cn/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-    
-      <category term="日记" scheme="https://blog.pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
-    
-      <category term="生活" scheme="https://blog.pcninja.cn/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-      <category term="人生" scheme="https://blog.pcninja.cn/tags/%E4%BA%BA%E7%94%9F/"/>
-    
-      <category term="情感" scheme="https://blog.pcninja.cn/tags/%E6%83%85%E6%84%9F/"/>
     
   </entry>
   
