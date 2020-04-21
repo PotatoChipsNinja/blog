@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.pcninja.cn/2020/02/the-paean-of-courage/</loc>
+    <lastmod>2020-04-21</lastmod>
+  </url>  <url>
     <loc>https://blog.pcninja.cn/2020/04/on-HTTPS-forced-jump-and-HSTS/</loc>
     <lastmod>2020-04-16</lastmod>
   </url>  <url>
@@ -54,9 +57,6 @@
   </url>  <url>
     <loc>https://blog.pcninja.cn/2020/02/discrimination-of-several-outer-products/</loc>
     <lastmod>2020-02-20</lastmod>
-  </url>  <url>
-    <loc>https://blog.pcninja.cn/2020/02/the-paean-of-courage/</loc>
-    <lastmod>2020-02-03</lastmod>
   </url>  <url>
     <loc>https://blog.pcninja.cn/2020/02/usage-of-youtube-dl/</loc>
     <lastmod>2020-02-01</lastmod>
