@@ -152,7 +152,7 @@
 <meta property="og:description" content="给定一个包含了一些 0 和 1 的非空二维数组 grid , 一个 岛屿 是由四个方向 (水平或垂直) 的 1 (代表土地) 构成的组合。你可以假设二维矩阵的四个边缘都被水包围着。找到给定的二维数组中最大的岛屿面积。(如果没有岛屿，则返回面积为 0)">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://blog.pcninja.cn/2020/03/max-area-of-island/image.png">
-<meta property="og:updated_time" content="2020-03-15T14:03:38.556Z">
+<meta property="og:updated_time" content="2020-04-23T09:42:56.008Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode 695. 岛屿的最大面积">
 <meta name="twitter:description" content="给定一个包含了一些 0 和 1 的非空二维数组 grid , 一个 岛屿 是由四个方向 (水平或垂直) 的 1 (代表土地) 构成的组合。你可以假设二维矩阵的四个边缘都被水包围着。找到给定的二维数组中最大的岛屿面积。(如果没有岛屿，则返回面积为 0)">
@@ -552,8 +552,8 @@
 <p><strong>注意:</strong> 给定的矩阵 <code>grid</code> 的长度和宽度都不超过 50。</p>
 <p><strong>题解:</strong><br>遍历二维数组，遇到 1 的时候就 DFS 深搜找出这个岛屿的面积，同时把经过的 1 都置为 0，避免重复搜索。</p>
 <p><strong>代码:</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>** grid, <span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">1</span>;</span><br><span class="line">    grid[i][j] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(i<span class="number">-1</span> &gt;= <span class="number">0</span> &amp;&amp; grid[i<span class="number">-1</span>][j])</span><br><span class="line">        ans += dfs(grid, m, n, i<span class="number">-1</span>, j);</span><br><span class="line">    <span class="keyword">if</span>(j<span class="number">-1</span> &gt;= <span class="number">0</span> &amp;&amp; grid[i][j<span class="number">-1</span>])</span><br><span class="line">        ans += dfs(grid, m, n, i, j<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">if</span>(i+<span class="number">1</span> &lt; m &amp;&amp; grid[i+<span class="number">1</span>][j])</span><br><span class="line">        ans += dfs(grid, m, n, i+<span class="number">1</span>, j);</span><br><span class="line">    <span class="keyword">if</span>(j+<span class="number">1</span> &lt; n &amp;&amp; grid[i][j+<span class="number">1</span>])</span><br><span class="line">        ans += dfs(grid, m, n, i, j+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意下面 gridSize 是行数，*gridColSize 是列数（不知道 LeetCode 为什么这么给参数）</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxAreaOfIsland</span><span class="params">(<span class="keyword">int</span>** grid, <span class="keyword">int</span> gridSize, <span class="keyword">int</span>* gridColSize)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> maxArea = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; gridSize; ++i)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; *gridColSize; ++j)</span><br><span class="line">            <span class="keyword">if</span>(grid[i][j])</span><br><span class="line">                maxArea = max(maxArea, dfs(grid, gridSize, *gridColSize, i, j));</span><br><span class="line">    <span class="keyword">return</span> maxArea;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="P-S"><a href="#P-S" class="headerlink" title="P.S."></a>P.S.</h3><p>今天才发现 LeetCode 的「每日 1 题」打卡刷题活动，其实从三月一号就开始了。今天第一天做就碰上这道水题，神人品😁。<br>提交上去之后得到的结果是这样的：</p>
-<p><div class="image-size-50"><img src="/2020/03/max-area-of-island/image.png"></div><br>真是惊了，是因为用 C 写的人比较少吗😮</p>
+<h3 id="P-S"><a href="#P-S" class="headerlink" title="P.S."></a>P.S.</h3><p>今天才发现 LeetCode 的「每日 1 题」打卡刷题活动，其实从三月一号就开始了。今天第一天做就碰上这道水题😁。</p>
+<div class="image-size-50"><img src="/2020/03/max-area-of-island/image.png"></div>
 
       
     </div>
@@ -685,7 +685,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-count">62</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -979,7 +979,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">122</span>
+                      
+                    
+                    <span class="site-state-item-count">123</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1307,7 +1309,7 @@
 
 
 
-<script src="//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/valine@1.4.4/dist/Valine.min.js"></script>
 
 <script>
   var GUEST = ['nick', 'mail', 'link'];
