@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.pcninja.cn/2020/05/the-waves-behind/</loc>
+    <lastmod>2020-05-04</lastmod>
+  </url>  <url>
+    <loc>https://blog.pcninja.cn/2019/05/tribute-to-youth/</loc>
+    <lastmod>2020-05-04</lastmod>
+  </url>  <url>
     <loc>https://blog.pcninja.cn/2020/04/super-egg-drop/</loc>
     <lastmod>2020-04-23</lastmod>
   </url>  <url>
@@ -111,9 +117,6 @@
   </url>  <url>
     <loc>https://blog.pcninja.cn/2019/05/prove-the-equivalence-of-two-representations-of-complexity-of-quasilinear-time/</loc>
     <lastmod>2019-05-16</lastmod>
-  </url>  <url>
-    <loc>https://blog.pcninja.cn/2019/05/tribute-to-youth/</loc>
-    <lastmod>2019-05-06</lastmod>
   </url>  <url>
     <loc>https://blog.pcninja.cn/2019/05/blog-decoration-notes/</loc>
     <lastmod>2019-05-03</lastmod>

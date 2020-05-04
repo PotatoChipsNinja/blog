@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[后浪]]></title>
+    <url>%2F2020%2F05%2Fthe-waves-behind%2F</url>
+    <content type="text"><![CDATA[&emsp;&emsp;5月4日，B站献给新一代的青年宣言片。国家一级演员何冰走上舞台，以青年宣言《后浪》为词，认可、赞美与寄语年轻一代。（原视频） 那些口口声声 “一代不如一代”的人应该看看你们就像我一样 我看着你们 满怀羡慕人类积攒了几千年的财富所有的知识、见识、智慧和艺术像是专门为你们准备的礼物 科技繁荣 文化繁茂 城市繁华现代文明的成果 被层层打开可以尽情享用 自由学习一门语言 一门手艺欣赏一部电影 去遥远的地方旅行从小你们就在自由探索自己的兴趣很多人在童年 就进入了不惑之年不惑于自己喜欢什么 不喜欢什么 人与人之间的壁垒被打破你们只凭相同的爱好 就能结交千万个值得干杯的朋友 你们拥有了 我们曾经梦寐以求的权利选择的权利你所热爱的 就是你的生活 你们有幸 遇见这样的时代但时代更有幸 遇见这样的你们 我看着你们 满怀敬意向你们的专业态度致敬你们正在把传统的 变成现代的把经典的 变成流行的把学术的 变成大众的把民族的 变成世界的你们把自己的热爱变成了一个和成千上万的人 分享快乐的事业 向你们的自信致敬弱小的人才习惯嘲讽和否定而内心强大的人 从不吝啬赞美和鼓励 向你们的大气致敬小人同而不和君子美美与共 和而不同年轻的身体 容得下更多元的文化 审美 和价值观 有一天我终于发现不只是我们在教你们如何生活你们也在启发我们 怎样去更好的生活 那些抱怨“一代不如一代的人”应该看看你们就像我一样 我看着你们 满怀感激因为你们 这个世界会更喜欢中国因为一个国家最好看的风景就是这个国家的年轻人因为你们 这世上的小说 电影 音乐中表现的青春不再是忧伤 迷茫而是善良 勇敢 无私 无所畏惧是心里有火 眼里有光 不用活成我们想象中的样子我们这一代的想象力不足以想象你们的未来 如果你们依然需要我们的祝福那么奔涌吧 后浪我们在同一条奔涌的河流]]></content>
+      <categories>
+        <category>转载</category>
+      </categories>
+      <tags>
+        <tag>转载</tag>
+        <tag>青春</tag>
+        <tag>五四</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode 887. 鸡蛋掉落]]></title>
     <url>%2F2020%2F04%2Fsuper-egg-drop%2F</url>
     <content type="text"><![CDATA[&emsp;&emsp;你将获得 K 个鸡蛋，并可以使用一栋从 1 到 N 共有 N 层楼的建筑。每个蛋的功能都是一样的，如果一个蛋碎了，你就不能再把它掉下去。&emsp;&emsp;你知道存在楼层 F，满足 0 &lt;= F &lt;= N 任何从高于 F 的楼层落下的鸡蛋都会碎，从 F 楼层或比它低的楼层落下的鸡蛋都不会破。每次移动，你可以取一个鸡蛋（如果你有完整的鸡蛋）并把它从任一楼层 X 扔下（满足 1 &lt;= X &lt;= N）。&emsp;&emsp;你的目标是确切地知道 F 的值是多少。无论 F 的初始值如何，你确定 F 的值的最小移动次数是多少？ 数据范围：1 &lt;= K &lt;= 100 1 &lt;= N &lt;= 10000示例 1:1234567输入：K = 1, N = 2输出：2解释：鸡蛋从 1 楼掉落。如果它碎了，我们肯定知道 F = 0 。否则，鸡蛋从 2 楼掉落。如果它碎了，我们肯定知道 F = 1 。如果它没碎，那么我们肯定知道 F = 2 。因此，在最坏的情况下我们需要移动 2 次以确定 F 是多少。 示例 2:12输入：K = 2, N = 6输出：3 示例 3:12输入：K = 3, N = 14输出：4 题解：&emsp;&emsp;考虑动态规划，我们用 dp[K][N] 表示有 K 个鸡蛋、N 层楼的状态下所需要的最少步数。当我们把一个鸡蛋从第 X 层楼扔下后，会有两种可能的结果： 鸡蛋没碎，那么我们还是有 K 个鸡蛋，但答案只可能在第 X 层以上了，也就是说楼层数变为了 N-X，接下来需要的最少步数为 dp[K][N-X] 鸡蛋碎了，那么我们只剩下 K-1 个鸡蛋了，答案被锁定在下面的 X-1 层楼种，故接下来需要的最少步数为 dp[K-1][X-1] &emsp;&emsp;因为我们需要考虑的是在最坏情况下所需的步数，所以取二者的最大值作为从第 X 层楼扔下后需要的最少步数。然后，为了让最坏情况下需要的步数最少，我们需要确定究竟哪一个 X 的取值能够使得这个最大值最小。综上，我们可以列出状态转移方程如下： dp[K][N]=1+\min_{1\leq X\leq N}{\max\{dp[K][N-X],dp[K-1][X-1]\}}&emsp;&emsp;有了转移方程，我们就可以求解每个状态的 dp 值了，代码如下：1234567891011121314151617181920212223242526272829int superEggDrop(int K, int N)&#123; int dp[K+1][N+1]; //存放 superEggDrop(i, j) int i, j, p, times; for(i = 1; i &lt;= K; ++i) &#123; dp[i][0] = 0; dp[i][1] = 1; &#125; for(j = 1; j &lt;= N; ++j) &#123; dp[0][j] = 0; dp[1][j] = j; &#125; for(i = 2; i &lt;= K; ++i) for(j = 2; j &lt;= N; ++j) &#123; // 计算 superEggDrop(i, j)，存入 dp[i][j] dp[i][j] = -1; for(p = 1; p &lt;= j; ++p) &#123; // 从第 p 层扔 times = 1 + max(dp[i-1][p-1], dp[i][j-p]); if(dp[i][j] == -1 || times &lt; dp[i][j]) dp[i][j] = times; &#125; &#125; return dp[K][N];&#125; &emsp;&emsp;考虑一下时间复杂度，一共 $O(KN)$ 种状态，每种状态需要枚举 X，耗时为 $O(N)$，因此时间复杂度为 $O(KN^2)$，显然会超时，因此我们需要优化时间复杂度。&emsp;&emsp;状态数不好优化，那么我们就优化求解每种状态即确定 X 取值的时间复杂度。我们发现，dp[K][N] 是关于 N 的增函数，于是有： dp[K][N-X] 随 X 增加单调递减 dp[K-1][X-1] 随 X 增加单调递增 &emsp;&emsp;而我们要找的是使得 dp[K][N-X] 和 dp[K-1][X-1] 的最大值最小的 X 的取值，显然，上述两个函数相交即 dp[K][N-X] = dp[K-1][X-1] 时，它们的最大值最小，交点对应的 X 的取值就是我们要找的 X。&emsp;&emsp;通过以上对单调性的分析，我们就可以通过二分查找找到那个使得 dp[K][N-X] &lt;= dp[K-1][X-1] 的 X 的最小取值。这样，我们就把时间复杂度优化到了 $O(KN\log N)$，可成功通过此题。代码如下：12345678910111213141516171819202122232425262728293031323334353637int superEggDrop(int K, int N)&#123; int dp[K+1][N+1]; //存放 superEggDrop(i, j) int i, j; for(i = 1; i &lt;= K; ++i) &#123; dp[i][0] = 0; dp[i][1] = 1; &#125; for(j = 1; j &lt;= N; ++j) &#123; dp[0][j] = 0; dp[1][j] = j; &#125; for(i = 2; i &lt;= K; ++i) for(j = 2; j &lt;= N; ++j) &#123; /* 二分查找使得 dp[i-1][p-1] &gt;= dp[i][j-p] 的 p 的最小取值， 则 dp[i][j] = min( max(dp[i-1][p-1], dp[i][j-p]), max(dp[i-1][p-2], dp[i][j-p+1]) ) + 1 */ int l = 1, r = j, mid; while(l &lt; r) &#123; mid = (l+r) / 2; if(dp[i-1][mid-1] &gt;= dp[i][j-mid]) r = mid; else l = mid + 1; &#125; dp[i][j] = 1 + min(max(dp[i-1][l-1], dp[i][j-l]), max(dp[i-1][l-2], dp[i][j-l+1])); &#125; return dp[K][N];&#125;]]></content>
@@ -108,9 +121,9 @@
       </categories>
       <tags>
         <tag>编程</tag>
+        <tag>数学</tag>
         <tag>算法</tag>
         <tag>LeetCode</tag>
-        <tag>数学</tag>
         <tag>贝祖定理</tag>
       </tags>
   </entry>
@@ -398,8 +411,8 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>算法</tag>
         <tag>日记</tag>
+        <tag>算法</tag>
         <tag>情感</tag>
         <tag>随笔</tag>
       </tags>
@@ -475,12 +488,13 @@
     <url>%2F2019%2F05%2Ftribute-to-youth%2F</url>
     <content type="text"><![CDATA[转自 新浪微博 @人民日报 &emsp;&emsp;青春，是一场场考试，是宽大的校服，是同桌的你和上铺的兄弟；更是青春追梦，成长担当，哪怕万人阻挡，也不曾投降的勇气和力量。青春不是年华，而是心境。它属于年轻人，更属于奋斗者。每一个为梦想拼尽全力的人，都有着青春的光芒。今天，五四青年节，追梦吧，青春！ .noBr { font-size: 0px; } .myGroup { width: 70%; } .myGroup img { margin-top: 0px !important; margin-bottom: 0px !important; }]]></content>
       <categories>
-        <category>生活</category>
+        <category>转载</category>
       </categories>
       <tags>
         <tag>大学</tag>
         <tag>转载</tag>
         <tag>青春</tag>
+        <tag>五四</tag>
         <tag>五四运动一百周年</tag>
       </tags>
   </entry>
@@ -568,8 +582,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>编程</tag>
+        <tag>Linux</tag>
         <tag>网络</tag>
         <tag>Node.js</tag>
         <tag>Express</tag>
@@ -803,9 +817,9 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>游记</tag>
         <tag>回忆</tag>
         <tag>江苏</tag>
+        <tag>游记</tag>
         <tag>高中</tag>
       </tags>
   </entry>
