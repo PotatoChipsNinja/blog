@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.pcninja.cn/"/>
-  <updated>2020-05-04T14:13:56.864Z</updated>
+  <updated>2020-07-10T13:51:59.261Z</updated>
   <id>https://blog.pcninja.cn/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>《图解密码技术》读书笔记</title>
+    <link href="https://blog.pcninja.cn/2020/07/notes-on-graphic-cryptography/"/>
+    <id>https://blog.pcninja.cn/2020/07/notes-on-graphic-cryptography/</id>
+    <published>2020-07-10T11:54:33.000Z</published>
+    <updated>2020-07-10T13:51:59.261Z</updated>
+    
+    <content type="html"><![CDATA[<p>&emsp;&emsp;之前对现代密码学的相关技术一直处于一知半解的状态，直到这两天读了结城浩的《图解密码技术》才对密码技术有了较为全面和深入的了解。首先要指出的是，“密码”一词在中文里的意义十分含糊，因为它在一般人眼里具有多个意思：</p><ol><li>登录网站时所输入的“密码”，严格意义上应该叫做<strong>口令</strong>(password)；</li><li>我们暂时看不懂的内容，比如“DNA 密码”，实际上这只是一种神秘的<strong>编码</strong>(encode)；</li><li>保证信息安全的技术，这才是真正意义上的密码(cryptography)。</li></ol><p>&emsp;&emsp;密码学和密码技术中的“密码”指的都是上面的第 3 个意思，口令和编码不属于密码学的范畴。</p><p>&emsp;&emsp;被称作“密码学家的工具箱”的 6 种基本密码技术是：<strong>对称密码</strong>、<strong>公钥密码</strong>、<strong>单向散列函数</strong>、<strong>消息认证码</strong>、<strong>数字签名</strong>和<strong>伪随机数生成器</strong>。<br><a id="more"></a></p><h2 id="对称密码"><a href="#对称密码" class="headerlink" title="对称密码"></a>对称密码</h2><p>&emsp;&emsp;使用相同的密钥进行加密和解密。用于确保消息的机密性，但需要解决密钥配送问题。对称密码算法：</p><ul><li>DES：不应再用于任何新的用途</li><li>三重 DES：不应再用于任何新的用途，仅在一些重视兼容性的环境中仍使用，会逐渐被 AES 取代</li><li>AES（Rijndael）：安全、快速，应该使用</li><li>AES 最终候选算法：可以作为 AES 的备份</li><li>自制算法：不应该使用</li></ul><h2 id="公钥密码"><a href="#公钥密码" class="headerlink" title="公钥密码"></a>公钥密码</h2><p>&emsp;&emsp;使用公钥进行加密，使用私钥进行解密。用于确保消息的机密性，能够解决密钥配送问题。但速度慢，且存在被中间人攻击的风险。公钥密码算法：</p><ul><li>RSA</li><li>ElGamal</li><li>Rabin</li><li>椭圆曲线密码（ECC）</li></ul><h2 id="单向散列函数"><a href="#单向散列函数" class="headerlink" title="单向散列函数"></a>单向散列函数</h2><p>&emsp;&emsp;将长消息转换为短散列值。用于确保消息的完整性。单向散列函数算法：</p><ul><li>MD5：不安全，不应该使用</li><li>SHA-1：不应该被用于新的用途</li><li>SHA-2（SHA-224、SHA-256、SHA-384、SHA-512）：安全，可以使用</li><li>SHA-3：安全，可以使用</li></ul><h2 id="消息认证码"><a href="#消息认证码" class="headerlink" title="消息认证码"></a>消息认证码</h2><p>&emsp;&emsp;识别通信对象发送的消息是否被篡改。用于验证消息的完整性，以及对消息进行认证，但无法对第三方进行认证，也无法防止否认。消息认证码算法：</p><ul><li>HMAC</li></ul><h2 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h2><p>&emsp;&emsp;对第三方进行消息认证，防止通信对象做出否认。相当于公钥密码的逆过程：通过私钥进行签名，通过公钥对签名进行验证。<strong>证书=公钥+认证机构的数字签名</strong>。数字签名算法：</p><ul><li>RSA</li><li>ElGamal</li><li>DSA</li><li>椭圆曲线 DSA（ECDSA）</li><li>爱德华曲线 DSA（EDDSA）</li></ul><h2 id="伪随机数生成器"><a href="#伪随机数生成器" class="headerlink" title="伪随机数生成器"></a>伪随机数生成器</h2><p>&emsp;&emsp;生成具备不可预测性的比特序列，由密码和单向散列函数等技术构成。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&amp;emsp;&amp;emsp;之前对现代密码学的相关技术一直处于一知半解的状态，直到这两天读了结城浩的《图解密码技术》才对密码技术有了较为全面和深入的了解。首先要指出的是，“密码”一词在中文里的意义十分含糊，因为它在一般人眼里具有多个意思：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;登录网站时所输入的“密码”，严格意义上应该叫做&lt;strong&gt;口令&lt;/strong&gt;(password)；&lt;/li&gt;
+&lt;li&gt;我们暂时看不懂的内容，比如“DNA 密码”，实际上这只是一种神秘的&lt;strong&gt;编码&lt;/strong&gt;(encode)；&lt;/li&gt;
+&lt;li&gt;保证信息安全的技术，这才是真正意义上的密码(cryptography)。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&amp;emsp;&amp;emsp;密码学和密码技术中的“密码”指的都是上面的第 3 个意思，口令和编码不属于密码学的范畴。&lt;/p&gt;
+&lt;p&gt;&amp;emsp;&amp;emsp;被称作“密码学家的工具箱”的 6 种基本密码技术是：&lt;strong&gt;对称密码&lt;/strong&gt;、&lt;strong&gt;公钥密码&lt;/strong&gt;、&lt;strong&gt;单向散列函数&lt;/strong&gt;、&lt;strong&gt;消息认证码&lt;/strong&gt;、&lt;strong&gt;数字签名&lt;/strong&gt;和&lt;strong&gt;伪随机数生成器&lt;/strong&gt;。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="其他" scheme="https://blog.pcninja.cn/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    
+      <category term="密码" scheme="https://blog.pcninja.cn/tags/%E5%AF%86%E7%A0%81/"/>
+    
+      <category term="数字签名" scheme="https://blog.pcninja.cn/tags/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D/"/>
+    
+      <category term="证书" scheme="https://blog.pcninja.cn/tags/%E8%AF%81%E4%B9%A6/"/>
+    
+  </entry>
   
   <entry>
     <title>后浪</title>
@@ -98,11 +131,11 @@
       <category term="网络" scheme="https://blog.pcninja.cn/categories/%E7%BD%91%E7%BB%9C/"/>
     
     
-      <category term="网络" scheme="https://blog.pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
-    
       <category term="HTTPS" scheme="https://blog.pcninja.cn/tags/HTTPS/"/>
     
       <category term="Nginx" scheme="https://blog.pcninja.cn/tags/Nginx/"/>
+    
+      <category term="网络" scheme="https://blog.pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
     
       <category term="HSTS" scheme="https://blog.pcninja.cn/tags/HSTS/"/>
     
@@ -126,8 +159,6 @@
       <category term="网络" scheme="https://blog.pcninja.cn/categories/%E7%BD%91%E7%BB%9C/"/>
     
     
-      <category term="网络" scheme="https://blog.pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
-    
       <category term="SSL" scheme="https://blog.pcninja.cn/tags/SSL/"/>
     
       <category term="TLS" scheme="https://blog.pcninja.cn/tags/TLS/"/>
@@ -135,6 +166,8 @@
       <category term="HTTPS" scheme="https://blog.pcninja.cn/tags/HTTPS/"/>
     
       <category term="Nginx" scheme="https://blog.pcninja.cn/tags/Nginx/"/>
+    
+      <category term="网络" scheme="https://blog.pcninja.cn/tags/%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
@@ -495,9 +528,9 @@
     
       <category term="写作" scheme="https://blog.pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
     
-      <category term="作业" scheme="https://blog.pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
-    
       <category term="大学" scheme="https://blog.pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
+    
+      <category term="作业" scheme="https://blog.pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
     
       <category term="辩证法" scheme="https://blog.pcninja.cn/tags/%E8%BE%A9%E8%AF%81%E6%B3%95/"/>
     
@@ -528,11 +561,11 @@
     
       <category term="写作" scheme="https://blog.pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
     
-      <category term="作业" scheme="https://blog.pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
+      <category term="形式与政策" scheme="https://blog.pcninja.cn/tags/%E5%BD%A2%E5%BC%8F%E4%B8%8E%E6%94%BF%E7%AD%96/"/>
     
       <category term="大学" scheme="https://blog.pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
-      <category term="形式与政策" scheme="https://blog.pcninja.cn/tags/%E5%BD%A2%E5%BC%8F%E4%B8%8E%E6%94%BF%E7%AD%96/"/>
+      <category term="作业" scheme="https://blog.pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
     
       <category term="人类命运共同体" scheme="https://blog.pcninja.cn/tags/%E4%BA%BA%E7%B1%BB%E5%91%BD%E8%BF%90%E5%85%B1%E5%90%8C%E4%BD%93/"/>
     
@@ -563,15 +596,15 @@
     
       <category term="写作" scheme="https://blog.pcninja.cn/tags/%E5%86%99%E4%BD%9C/"/>
     
+      <category term="大学" scheme="https://blog.pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
+    
+      <category term="作业" scheme="https://blog.pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
+    
       <category term="国庆" scheme="https://blog.pcninja.cn/tags/%E5%9B%BD%E5%BA%86/"/>
     
       <category term="群众游行" scheme="https://blog.pcninja.cn/tags/%E7%BE%A4%E4%BC%97%E6%B8%B8%E8%A1%8C/"/>
     
       <category term="爱国" scheme="https://blog.pcninja.cn/tags/%E7%88%B1%E5%9B%BD/"/>
-    
-      <category term="作业" scheme="https://blog.pcninja.cn/tags/%E4%BD%9C%E4%B8%9A/"/>
-    
-      <category term="大学" scheme="https://blog.pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
     
   </entry>
   
@@ -605,30 +638,6 @@
       <category term="交响乐" scheme="https://blog.pcninja.cn/tags/%E4%BA%A4%E5%93%8D%E4%B9%90/"/>
     
       <category term="阅兵" scheme="https://blog.pcninja.cn/tags/%E9%98%85%E5%85%B5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>暑假小结</title>
-    <link href="https://blog.pcninja.cn/2019/08/summer-vacation-summary/"/>
-    <id>https://blog.pcninja.cn/2019/08/summer-vacation-summary/</id>
-    <published>2019-08-30T14:15:17.000Z</published>
-    <updated>2019-08-30T14:30:31.284Z</updated>
-    
-    <content type="html"><![CDATA[<p>&emsp;&emsp;此时此刻，窗外不断传来大一新生军训中演讲比赛的激昂呐喊。新鲜血液的涌入着实给了我一种紧迫感，回想一年前，我也和他们一样，刚刚踏入大学的校门，心中有憧憬也有迷茫。转眼一年过去了，仿佛憧憬与迷惘都变多了。<br>&emsp;&emsp;从7月13号到今天，一个半月的暑假已接近尾声。其实这个暑假做的事有限，掰着手指头数都能数的过来，所以本来没想写这个总结。但思前想后觉得还是应该简要记录一下，也算是警醒自己今后要做更多有意义的事。<a id="more"></a><br>&emsp;&emsp;文字能力有限，依旧是流水账。<br>&emsp;&emsp;小学期里，我们的任务是完成“外卖派单模拟系统”，这是我第一次着手这种具有一定规模的项目，项目需求与规则繁杂且模糊，并且几经修改，最要命的是在7月13号验收的前一天傍晚被要求新增不少功能，所有人都很无奈。好在经历了几天几夜的爆肝之后，顺利完成了验收。最终，我们花大量精力研究的算法在所有组的比拼中喜提头名，可喜可贺。然而看了别的组华丽的GUI之后我们才意识到我们在用户体验上所做的工作确实有些简陋，不过这也是在时间紧迫的前提下所做出的必然取舍，因为在我们看来，相比于图形界面，算法是我们更应该投入精力去琢磨的地方。<br>&emsp;&emsp;暑假伊始，由于刚刚结束了小学期的项目，有些身心俱疲，所以没干什么正事。唯一做的就是 Express + EJS + ajax + MongoDB 写了一个 ToDo List，顺带学到了些前端知识。到了七月底回到学校，参加某大型红色活动的训练，为期二十余天，除了太阳晒点，还是比较轻松欢愉的。训练之余，在宿舍学习了 Docker，并尝试把我所有的站点和服务进行容器化，不过目前还只是在虚拟机上，没有上线。等过段时间域名完成备案，可以A记录解析到服务器上之后应该就可以享受 <code>docker-compose up -d</code> 一键部署的快感了😝。<br>&emsp;&emsp;在此之后训练任务断断续续，我的暑假生活也以娱乐为主，通关了老早以前搁下的弹丸论破1和2，没事就和舍友开黑GTAOL，还是挺轻松加写意的。<br>&emsp;&emsp;总的来说这个暑假过得很快活，但有意义的事做得不多，换句话说，有点浪费。不过这一切都是我自己的选择，也不会后悔。期待下学期的学习生活，也期待十月一号能够用最好的表现为祖国母亲七十华诞献礼！</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&amp;emsp;&amp;emsp;此时此刻，窗外不断传来大一新生军训中演讲比赛的激昂呐喊。新鲜血液的涌入着实给了我一种紧迫感，回想一年前，我也和他们一样，刚刚踏入大学的校门，心中有憧憬也有迷茫。转眼一年过去了，仿佛憧憬与迷惘都变多了。&lt;br&gt;&amp;emsp;&amp;emsp;从7月13号到今天，一个半月的暑假已接近尾声。其实这个暑假做的事有限，掰着手指头数都能数的过来，所以本来没想写这个总结。但思前想后觉得还是应该简要记录一下，也算是警醒自己今后要做更多有意义的事。
-    
-    </summary>
-    
-      <category term="生活" scheme="https://blog.pcninja.cn/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-    
-      <category term="大学" scheme="https://blog.pcninja.cn/tags/%E5%A4%A7%E5%AD%A6/"/>
-    
-      <category term="日记" scheme="https://blog.pcninja.cn/tags/%E6%97%A5%E8%AE%B0/"/>
     
   </entry>
   

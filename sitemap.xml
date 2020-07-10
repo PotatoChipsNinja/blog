@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.pcninja.cn/2020/07/notes-on-graphic-cryptography/</loc>
+    
+    <lastmod>2020-07-10T13:51:59.261Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.pcninja.cn/about/index.html</loc>
+    
+    <lastmod>2020-07-10T08:44:54.735Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.pcninja.cn/2020/05/the-waves-behind/</loc>
     
     <lastmod>2020-05-04T14:13:56.864Z</lastmod>
@@ -54,13 +68,6 @@
     <loc>https://blog.pcninja.cn/2016/08/here-is-my-blog/</loc>
     
     <lastmod>2020-04-13T04:33:39.448Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.pcninja.cn/about/index.html</loc>
-    
-    <lastmod>2020-04-13T04:17:12.981Z</lastmod>
     
   </url>
   

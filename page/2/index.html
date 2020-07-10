@@ -422,6 +422,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.pcninja.cn/2020/04/why-memset-can-only-initialize-int-array-to-0-or-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="薯片忍者">
+      <meta itemprop="description" content="今天的故事 是明天的回忆">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薯片忍者的小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/04/why-memset-can-only-initialize-int-array-to-0-or-1/" class="post-title-link" itemprop="url">为什么 memset() 只能将 int 数组初始化为 0 或 -1</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-04-12 21:32:54" itemprop="dateCreated datePublished" datetime="2020-04-12T21:32:54+08:00">2020-04-12</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程/" itemprop="url" rel="index"><span itemprop="name">编程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2020/04/why-memset-can-only-initialize-int-array-to-0-or-1/" class="leancloud_visitors" data-flag-title="为什么 memset() 只能将 int 数组初始化为 0 或 -1">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&emsp;&emsp;C/C++ 标准库提供了很多常用的工具函数，比如在 <code>&lt;string.h&gt;</code> 中的 <code>memset()</code> 函数就常常被用来初始化数组，但它在初始化 <code>int</code> 等类型数组的时候只能初始化为 0 或 -1，如果识图用 <code>memset()</code> 将数组初始化为 1，就会发现每个元素都变成了 16843009。<br>&emsp;&emsp;造成这种情况的原因很简单，因为 <code>memset()</code> 的作用是将内存块填充为指定的字符，这也是为什么它包含在 <code>string.h</code> 里的原因。因此，<code>memset()</code> 对内存进行赋值是以字节为单位的。<br>&emsp;&emsp;比如我们调用 <code>memset()</code> 将 <code>int</code> 数组初始化为 1，那么数组的每个字节（不是元素）都会被设置为 <code>00000001</code>，而 <code>int</code> 占 4 个字节，故每个元素的值就是 <code>00000001 00000001 00000001 00000001</code>，该二进制值就是十进制的 16843009，所以 <code>memset()</code> 函数不能把整型数组初始化为 1。<br>&emsp;&emsp;对于长度大于 1 个字节的变量，只能通过 <code>memset()</code> 设置为各字节相同的值，比如 0（全零）或 -1（全1），不能赋各字节不同的值。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.pcninja.cn/2020/04/rotate-image/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1110,180 +1278,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.pcninja.cn/2020/03/max-area-of-island/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="薯片忍者">
-      <meta itemprop="description" content="今天的故事 是明天的回忆">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薯片忍者的小站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/03/max-area-of-island/" class="post-title-link" itemprop="url">LeetCode 695. 岛屿的最大面积</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-03-15 21:27:29" itemprop="dateCreated datePublished" datetime="2020-03-15T21:27:29+08:00">2020-03-15</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程/" itemprop="url" rel="index"><span itemprop="name">编程</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2020/03/max-area-of-island/" class="leancloud_visitors" data-flag-title="LeetCode 695. 岛屿的最大面积">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>给定一个包含了一些 0 和 1 的非空二维数组 <code>grid</code> , 一个 <strong>岛屿</strong> 是由四个方向 (水平或垂直) 的 1 (代表土地) 构成的组合。你可以假设二维矩阵的四个边缘都被水包围着。<br>找到给定的二维数组中最大的岛屿面积。(如果没有岛屿，则返回面积为 <code>0</code>)<br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/03/max-area-of-island/" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </p></div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1334,7 +1328,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">62</span>
+                    <span class="site-state-item-count">63</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1628,7 +1622,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">121</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">124</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1656,7 +1656,7 @@
                   
                     
                   
-                  <a href="https://github.com/PotatoChipsNinja" title="GitHub &rarr; https://github.com/PotatoChipsNinja" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                  <a href="https://github.com/PotatoChipsNinja" title="GitHub" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -1665,7 +1665,7 @@
                   
                     
                   
-                  <a href="mailto:i@pcninja.cn" title="E-Mail &rarr; mailto:i@pcninja.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                  <a href="mailto:%69%40%70%63%6E%69%6E%6A%61%2E%63%6E" title="E-Mail" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -1674,7 +1674,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/potatochipsninja" title="Weibo &rarr; https://weibo.com/potatochipsninja" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+                  <a href="https://weibo.com/potatochipsninja" title="Weibo" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -1683,7 +1683,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/pcninja2000" title="Twitter &rarr; https://twitter.com/pcninja2000" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                  <a href="https://twitter.com/pcninja2000" title="Twitter" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -1692,7 +1692,7 @@
                   
                     
                   
-                  <a href="https://steamcommunity.com/id/potatochipsninja" title="Steam &rarr; https://steamcommunity.com/id/potatochipsninja" rel="noopener" target="_blank"><i class="fa fa-fw fa-steam"></i></a>
+                  <a href="https://steamcommunity.com/id/potatochipsninja" title="Steam" rel="noopener" target="_blank"><i class="fa fa-fw fa-steam"></i></a>
                 </span>
               
             </div>
@@ -2304,9 +2304,9 @@
       
     
       
-        
-      
     
+      
+        
       
     
   

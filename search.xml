@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[《图解密码技术》读书笔记]]></title>
+    <url>%2F2020%2F07%2Fnotes-on-graphic-cryptography%2F</url>
+    <content type="text"><![CDATA[&emsp;&emsp;之前对现代密码学的相关技术一直处于一知半解的状态，直到这两天读了结城浩的《图解密码技术》才对密码技术有了较为全面和深入的了解。首先要指出的是，“密码”一词在中文里的意义十分含糊，因为它在一般人眼里具有多个意思： 登录网站时所输入的“密码”，严格意义上应该叫做口令(password)； 我们暂时看不懂的内容，比如“DNA 密码”，实际上这只是一种神秘的编码(encode)； 保证信息安全的技术，这才是真正意义上的密码(cryptography)。 &emsp;&emsp;密码学和密码技术中的“密码”指的都是上面的第 3 个意思，口令和编码不属于密码学的范畴。 &emsp;&emsp;被称作“密码学家的工具箱”的 6 种基本密码技术是：对称密码、公钥密码、单向散列函数、消息认证码、数字签名和伪随机数生成器。 对称密码&emsp;&emsp;使用相同的密钥进行加密和解密。用于确保消息的机密性，但需要解决密钥配送问题。对称密码算法： DES：不应再用于任何新的用途 三重 DES：不应再用于任何新的用途，仅在一些重视兼容性的环境中仍使用，会逐渐被 AES 取代 AES（Rijndael）：安全、快速，应该使用 AES 最终候选算法：可以作为 AES 的备份 自制算法：不应该使用 公钥密码&emsp;&emsp;使用公钥进行加密，使用私钥进行解密。用于确保消息的机密性，能够解决密钥配送问题。但速度慢，且存在被中间人攻击的风险。公钥密码算法： RSA ElGamal Rabin 椭圆曲线密码（ECC） 单向散列函数&emsp;&emsp;将长消息转换为短散列值。用于确保消息的完整性。单向散列函数算法： MD5：不安全，不应该使用 SHA-1：不应该被用于新的用途 SHA-2（SHA-224、SHA-256、SHA-384、SHA-512）：安全，可以使用 SHA-3：安全，可以使用 消息认证码&emsp;&emsp;识别通信对象发送的消息是否被篡改。用于验证消息的完整性，以及对消息进行认证，但无法对第三方进行认证，也无法防止否认。消息认证码算法： HMAC 数字签名&emsp;&emsp;对第三方进行消息认证，防止通信对象做出否认。相当于公钥密码的逆过程：通过私钥进行签名，通过公钥对签名进行验证。证书=公钥+认证机构的数字签名。数字签名算法： RSA ElGamal DSA 椭圆曲线 DSA（ECDSA） 爱德华曲线 DSA（EDDSA） 伪随机数生成器&emsp;&emsp;生成具备不可预测性的比特序列，由密码和单向散列函数等技术构成。]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>密码</tag>
+        <tag>数字签名</tag>
+        <tag>证书</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[后浪]]></title>
     <url>%2F2020%2F05%2Fthe-waves-behind%2F</url>
     <content type="text"><![CDATA[&emsp;&emsp;5月4日，B站献给新一代的青年宣言片。国家一级演员何冰走上舞台，以青年宣言《后浪》为词，认可、赞美与寄语年轻一代。（原视频） 那些口口声声 “一代不如一代”的人应该看看你们就像我一样 我看着你们 满怀羡慕人类积攒了几千年的财富所有的知识、见识、智慧和艺术像是专门为你们准备的礼物 科技繁荣 文化繁茂 城市繁华现代文明的成果 被层层打开可以尽情享用 自由学习一门语言 一门手艺欣赏一部电影 去遥远的地方旅行从小你们就在自由探索自己的兴趣很多人在童年 就进入了不惑之年不惑于自己喜欢什么 不喜欢什么 人与人之间的壁垒被打破你们只凭相同的爱好 就能结交千万个值得干杯的朋友 你们拥有了 我们曾经梦寐以求的权利选择的权利你所热爱的 就是你的生活 你们有幸 遇见这样的时代但时代更有幸 遇见这样的你们 我看着你们 满怀敬意向你们的专业态度致敬你们正在把传统的 变成现代的把经典的 变成流行的把学术的 变成大众的把民族的 变成世界的你们把自己的热爱变成了一个和成千上万的人 分享快乐的事业 向你们的自信致敬弱小的人才习惯嘲讽和否定而内心强大的人 从不吝啬赞美和鼓励 向你们的大气致敬小人同而不和君子美美与共 和而不同年轻的身体 容得下更多元的文化 审美 和价值观 有一天我终于发现不只是我们在教你们如何生活你们也在启发我们 怎样去更好的生活 那些抱怨“一代不如一代的人”应该看看你们就像我一样 我看着你们 满怀感激因为你们 这个世界会更喜欢中国因为一个国家最好看的风景就是这个国家的年轻人因为你们 这世上的小说 电影 音乐中表现的青春不再是忧伤 迷茫而是善良 勇敢 无私 无所畏惧是心里有火 眼里有光 不用活成我们想象中的样子我们这一代的想象力不足以想象你们的未来 如果你们依然需要我们的祝福那么奔涌吧 后浪我们在同一条奔涌的河流]]></content>
@@ -36,9 +49,9 @@
         <category>网络</category>
       </categories>
       <tags>
-        <tag>网络</tag>
         <tag>HTTPS</tag>
         <tag>Nginx</tag>
+        <tag>网络</tag>
         <tag>HSTS</tag>
       </tags>
   </entry>
@@ -50,11 +63,11 @@
         <category>网络</category>
       </categories>
       <tags>
-        <tag>网络</tag>
         <tag>SSL</tag>
         <tag>TLS</tag>
         <tag>HTTPS</tag>
         <tag>Nginx</tag>
+        <tag>网络</tag>
       </tags>
   </entry>
   <entry>
@@ -220,8 +233,8 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>作业</tag>
         <tag>大学</tag>
+        <tag>作业</tag>
         <tag>辩证法</tag>
         <tag>马克思主义</tag>
       </tags>
@@ -235,9 +248,9 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>作业</tag>
-        <tag>大学</tag>
         <tag>形式与政策</tag>
+        <tag>大学</tag>
+        <tag>作业</tag>
         <tag>人类命运共同体</tag>
       </tags>
   </entry>
@@ -250,11 +263,11 @@
       </categories>
       <tags>
         <tag>写作</tag>
+        <tag>大学</tag>
+        <tag>作业</tag>
         <tag>国庆</tag>
         <tag>群众游行</tag>
         <tag>爱国</tag>
-        <tag>作业</tag>
-        <tag>大学</tag>
       </tags>
   </entry>
   <entry>
@@ -331,8 +344,8 @@
       <tags>
         <tag>日记</tag>
         <tag>生活</tag>
-        <tag>情感</tag>
         <tag>人生</tag>
+        <tag>情感</tag>
       </tags>
   </entry>
   <entry>
@@ -343,8 +356,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>作业</tag>
         <tag>大学</tag>
+        <tag>作业</tag>
         <tag>编程</tag>
         <tag>算法</tag>
         <tag>数据结构</tag>
@@ -360,8 +373,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>作业</tag>
         <tag>大学</tag>
+        <tag>作业</tag>
         <tag>编程</tag>
         <tag>算法</tag>
         <tag>数据结构</tag>
@@ -379,8 +392,8 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>作业</tag>
         <tag>大学</tag>
+        <tag>作业</tag>
         <tag>读后感</tag>
         <tag>习近平</tag>
       </tags>
@@ -393,8 +406,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>作业</tag>
         <tag>大学</tag>
+        <tag>作业</tag>
         <tag>编程</tag>
         <tag>算法</tag>
         <tag>数据结构</tag>
@@ -425,8 +438,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>作业</tag>
         <tag>大学</tag>
+        <tag>作业</tag>
         <tag>编程</tag>
         <tag>算法</tag>
         <tag>数据结构</tag>
@@ -442,8 +455,8 @@
         <category>学科</category>
       </categories>
       <tags>
-        <tag>作业</tag>
         <tag>大学</tag>
+        <tag>作业</tag>
         <tag>数学</tag>
         <tag>离散数学</tag>
         <tag>复杂度</tag>
@@ -457,8 +470,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>作业</tag>
         <tag>大学</tag>
+        <tag>作业</tag>
         <tag>编程</tag>
         <tag>算法</tag>
         <tag>数据结构</tag>
@@ -476,9 +489,9 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>作业</tag>
-        <tag>大学</tag>
         <tag>形式与政策</tag>
+        <tag>大学</tag>
+        <tag>作业</tag>
         <tag>区域协调发展</tag>
         <tag>京津冀一体化</tag>
       </tags>
@@ -506,9 +519,9 @@
         <category>网络</category>
       </categories>
       <tags>
+        <tag>网络</tag>
         <tag>日记</tag>
         <tag>生活</tag>
-        <tag>网络</tag>
       </tags>
   </entry>
   <entry>
@@ -519,8 +532,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>作业</tag>
         <tag>大学</tag>
+        <tag>作业</tag>
         <tag>编程</tag>
         <tag>算法</tag>
         <tag>数据结构</tag>
@@ -535,8 +548,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>作业</tag>
         <tag>大学</tag>
+        <tag>作业</tag>
         <tag>编程</tag>
         <tag>算法</tag>
         <tag>数据结构</tag>
@@ -552,10 +565,10 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>作业</tag>
-        <tag>大学</tag>
         <tag>改革开放</tag>
         <tag>形式与政策</tag>
+        <tag>大学</tag>
+        <tag>作业</tag>
       </tags>
   </entry>
   <entry>
@@ -567,9 +580,9 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>网络</tag>
         <tag>SSL</tag>
         <tag>HTTPS</tag>
+        <tag>网络</tag>
         <tag>Node.js</tag>
         <tag>Express</tag>
       </tags>
@@ -719,9 +732,9 @@
         <category>编程</category>
       </categories>
       <tags>
+        <tag>Python</tag>
         <tag>C</tag>
         <tag>编程</tag>
-        <tag>Python</tag>
         <tag>HTML</tag>
         <tag>Java</tag>
         <tag>国旗</tag>
@@ -802,9 +815,9 @@
       </categories>
       <tags>
         <tag>写作</tag>
-        <tag>游记</tag>
         <tag>回忆</tag>
         <tag>江苏</tag>
+        <tag>游记</tag>
         <tag>高中</tag>
       </tags>
   </entry>
