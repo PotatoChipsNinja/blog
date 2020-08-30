@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[关于知识表示学习中链接预测的评测指标的说明]]></title>
+    <url>%2F2020%2F08%2Fevaluation-indices-of-link-prediction%2F</url>
+    <content type="text"><![CDATA[&emsp;&emsp;在知识表示学习领域，普遍采用链接预测实验对模型的效果进行评估。在链接预测预测任务中，我们需要将测试集中的每个三元组 (h, r, t) 中的头实体（h）或尾实体（t）依次替换为字典里的所有实体。这些替换后的三元组被称为 corrupted triplets，即损坏的三元组。然后我们通过模型的评分函数对这些 corrupted triplets 进行评分并降序排列。显然，由正确的实体构成的那个三元组的排名越靠前，说明模型对实体的预测能力就越强。 Mean Rank 和 Hits@10&emsp;&emsp;对于链接预测任务，主要有 Mean Rank 和 Hits@10 这两项评测指标。在完成评分排名后，找到正确的那个三元组，取其排名，整个测试集的所有正确三元组的平均排名就作为 Mean Rank 这项指标。而 Hits@10 则指的是正确三元组排在前十名的概率，即排在前十的个数/总个数。 Raw 和 Filter&emsp;&emsp;在我们根据测试集构造 corrupted triplets 时，有些构造出来的三元组恰好属于这个知识图谱中，所以这种三元组的评分排在靠前的位置就在情理之中了，但这会影响对模型效果评价的准确性。因此，我们可以考虑把训练集、验证集和测试集中的这种 corrupted triplets 剔除出去，从而保证评价的公平性。我们将不做上述过滤操作的评估称为 Raw ，经过过滤操作的评估称为 Filter 或 Filt.。因此我们可以看到，相比于 Raw，Filt. 的 Mean Rank 会更低，Hits@10 会更高。]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>知识表示学习</tag>
+        <tag>链接预测</tag>
+        <tag>深度学习</tag>
+        <tag>神经网络</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[《图解密码技术》读书笔记]]></title>
     <url>%2F2020%2F07%2Fnotes-on-graphic-cryptography%2F</url>
     <content type="text"><![CDATA[&emsp;&emsp;之前对现代密码学的相关技术一直处于一知半解的状态，直到这两天读了结城浩的《图解密码技术》才对密码技术有了较为全面和深入的了解。首先要指出的是，“密码”一词在中文里的意义十分含糊，因为它在一般人眼里具有多个意思： 登录网站时所输入的“密码”，严格意义上应该叫做口令(password)； 我们暂时看不懂的内容，比如“DNA 密码”，实际上这只是一种神秘的编码(encode)； 保证信息安全的技术，这才是真正意义上的密码(cryptography)。 &emsp;&emsp;密码学和密码技术中的“密码”指的都是上面的第 3 个意思，口令和编码不属于密码学的范畴。 &emsp;&emsp;被称作“密码学家的工具箱”的 6 种基本密码技术是：对称密码、公钥密码、单向散列函数、消息认证码、数字签名和伪随机数生成器。 对称密码&emsp;&emsp;使用相同的密钥进行加密和解密。用于确保消息的机密性，但需要解决密钥配送问题。对称密码算法： DES：不应再用于任何新的用途 三重 DES：不应再用于任何新的用途，仅在一些重视兼容性的环境中仍使用，会逐渐被 AES 取代 AES（Rijndael）：安全、快速，应该使用 AES 最终候选算法：可以作为 AES 的备份 自制算法：不应该使用 公钥密码&emsp;&emsp;使用公钥进行加密，使用私钥进行解密。用于确保消息的机密性，能够解决密钥配送问题。但速度慢，且存在被中间人攻击的风险。公钥密码算法： RSA ElGamal Rabin 椭圆曲线密码（ECC） 单向散列函数&emsp;&emsp;将长消息转换为短散列值。用于确保消息的完整性。单向散列函数算法： MD5：不安全，不应该使用 SHA-1：不应该被用于新的用途 SHA-2（SHA-224、SHA-256、SHA-384、SHA-512）：安全，可以使用 SHA-3：安全，可以使用 消息认证码&emsp;&emsp;识别通信对象发送的消息是否被篡改。用于验证消息的完整性，以及对消息进行认证，但无法对第三方进行认证，也无法防止否认。消息认证码算法： HMAC 数字签名&emsp;&emsp;对第三方进行消息认证，防止通信对象做出否认。相当于公钥密码的逆过程：通过私钥进行签名，通过公钥对签名进行验证。证书=公钥+认证机构的数字签名。数字签名算法： RSA ElGamal DSA 椭圆曲线 DSA（ECDSA） 爱德华曲线 DSA（EDDSA） 伪随机数生成器&emsp;&emsp;生成具备不可预测性的比特序列，由密码和单向散列函数等技术构成。]]></content>
@@ -732,9 +746,9 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>C</tag>
         <tag>编程</tag>
+        <tag>Python</tag>
         <tag>HTML</tag>
         <tag>Java</tag>
         <tag>国旗</tag>
@@ -815,10 +829,10 @@
       </categories>
       <tags>
         <tag>写作</tag>
+        <tag>高中</tag>
         <tag>回忆</tag>
         <tag>江苏</tag>
         <tag>游记</tag>
-        <tag>高中</tag>
       </tags>
   </entry>
   <entry>
@@ -846,10 +860,10 @@
         <tag>C</tag>
         <tag>编程</tag>
         <tag>数学</tag>
-        <tag>高中</tag>
         <tag>探究</tag>
         <tag>汉诺塔</tag>
         <tag>论文</tag>
+        <tag>高中</tag>
       </tags>
   </entry>
   <entry>

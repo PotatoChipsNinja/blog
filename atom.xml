@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.pcninja.cn/"/>
-  <updated>2020-07-10T13:51:59.261Z</updated>
+  <updated>2020-08-30T09:41:05.284Z</updated>
   <id>https://blog.pcninja.cn/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于知识表示学习中链接预测的评测指标的说明</title>
+    <link href="https://blog.pcninja.cn/2020/08/evaluation-indices-of-link-prediction/"/>
+    <id>https://blog.pcninja.cn/2020/08/evaluation-indices-of-link-prediction/</id>
+    <published>2020-08-30T09:10:40.000Z</published>
+    <updated>2020-08-30T09:41:05.284Z</updated>
+    
+    <content type="html"><![CDATA[<p>&emsp;&emsp;在知识表示学习领域，普遍采用链接预测实验对模型的效果进行评估。在链接预测预测任务中，我们需要将测试集中的每个三元组 <code>(h, r, t)</code> 中的头实体（<code>h</code>）或尾实体（<code>t</code>）依次替换为字典里的所有实体。这些替换后的三元组被称为 <code>corrupted triplets</code>，即损坏的三元组。然后我们通过模型的评分函数对这些 <code>corrupted triplets</code> 进行评分并降序排列。显然，由正确的实体构成的那个三元组的排名越靠前，说明模型对实体的预测能力就越强。</p><div class="image-size-50"><img src="/2020/08/evaluation-indices-of-link-prediction/image.png" title="TransD 模型论文中的链接预测实验结果"></div><h3 id="Mean-Rank-和-Hits-10"><a href="#Mean-Rank-和-Hits-10" class="headerlink" title="Mean Rank 和 Hits@10"></a>Mean Rank 和 Hits@10</h3><p>&emsp;&emsp;对于链接预测任务，主要有 <code>Mean Rank</code> 和 <code>Hits@10</code> 这两项评测指标。在完成评分排名后，找到正确的那个三元组，取其排名，整个测试集的所有正确三元组的平均排名就作为 <code>Mean Rank</code> 这项指标。而 <code>Hits@10</code> 则指的是正确三元组排在前十名的概率，即<code>排在前十的个数/总个数</code>。</p><h3 id="Raw-和-Filter"><a href="#Raw-和-Filter" class="headerlink" title="Raw 和 Filter"></a>Raw 和 Filter</h3><p>&emsp;&emsp;在我们根据测试集构造 <code>corrupted triplets</code> 时，有些构造出来的三元组恰好属于这个知识图谱中，所以这种三元组的评分排在靠前的位置就在情理之中了，但这会影响对模型效果评价的准确性。因此，我们可以考虑把训练集、验证集和测试集中的这种 <code>corrupted triplets</code> 剔除出去，从而保证评价的公平性。我们将不做上述过滤操作的评估称为 <code>Raw</code> ，经过过滤操作的评估称为 <code>Filter</code> 或 <code>Filt.</code>。因此我们可以看到，相比于 <code>Raw</code>，<code>Filt.</code> 的 <code>Mean Rank</code> 会更低，<code>Hits@10</code> 会更高。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&amp;emsp;&amp;emsp;在知识表示学习领域，普遍采用链接预测实验对模型的效果进行评估。在链接预测预测任务中，我们需要将测试集中的每个三元组 &lt;code&gt;(h, r, t)&lt;/code&gt; 中的头实体（&lt;code&gt;h&lt;/code&gt;）或尾实体（&lt;code&gt;t&lt;/code&gt;）依次替
+      
+    
+    </summary>
+    
+      <category term="AI" scheme="https://blog.pcninja.cn/categories/AI/"/>
+    
+    
+      <category term="知识表示学习" scheme="https://blog.pcninja.cn/tags/%E7%9F%A5%E8%AF%86%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="链接预测" scheme="https://blog.pcninja.cn/tags/%E9%93%BE%E6%8E%A5%E9%A2%84%E6%B5%8B/"/>
+    
+      <category term="深度学习" scheme="https://blog.pcninja.cn/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="神经网络" scheme="https://blog.pcninja.cn/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>《图解密码技术》读书笔记</title>
@@ -605,39 +636,6 @@
       <category term="群众游行" scheme="https://blog.pcninja.cn/tags/%E7%BE%A4%E4%BC%97%E6%B8%B8%E8%A1%8C/"/>
     
       <category term="爱国" scheme="https://blog.pcninja.cn/tags/%E7%88%B1%E5%9B%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【音乐】庆祝中华人民共和国成立70周年阅兵式军乐欣赏</title>
-    <link href="https://blog.pcninja.cn/2019/10/the-military-music-of-the-parade/"/>
-    <id>https://blog.pcninja.cn/2019/10/the-military-music-of-the-parade/</id>
-    <published>2019-10-03T12:12:54.000Z</published>
-    <updated>2020-04-06T08:36:16.819Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://pcninja.cn/player" target="_blank" rel="noopener">点击进入播放器</a></p></blockquote><ul><li><strong>《钢铁洪流进行曲》</strong> - 中国人民解放军联合军乐团</li><li><strong>《东风浩荡进行曲》</strong> - 中国人民解放军联合军乐团</li><li><strong>《雄鹰出击进行曲》</strong> - 中国人民解放军联合军乐团</li><li><strong>《冲上云霄》</strong> - 中国人民解放军联合军乐团</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://pcninja.cn/player&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;点击进入播放器&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;《钢铁洪流进行曲》&lt;
-      
-    
-    </summary>
-    
-      <category term="其他" scheme="https://blog.pcninja.cn/categories/%E5%85%B6%E4%BB%96/"/>
-    
-    
-      <category term="军乐" scheme="https://blog.pcninja.cn/tags/%E5%86%9B%E4%B9%90/"/>
-    
-      <category term="交响乐" scheme="https://blog.pcninja.cn/tags/%E4%BA%A4%E5%93%8D%E4%B9%90/"/>
-    
-      <category term="阅兵" scheme="https://blog.pcninja.cn/tags/%E9%98%85%E5%85%B5/"/>
     
   </entry>
   
