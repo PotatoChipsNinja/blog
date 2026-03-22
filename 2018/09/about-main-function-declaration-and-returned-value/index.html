@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#200040" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#200040">
+  <link rel="manifest" href="/images/manifest.json">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=ZCOOL+XiaoWei:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.pcninja.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"stackoverflow-light","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"flat"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"waline","storage":true,"lazyload":false,"nav":null,"activeClass":"waline"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="前言    在C&#x2F;C程序中有时会见到采用诸如void main()等方式来声明主函数，很多人在主函数返回值的问题上也略显随意。经过查阅多版本的C、C标准文档与相关书籍，我将我的结论与认识总结于此。不可避免地，其中可能包含我错误的认识，欢迎大家指正。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于C&#x2F;C++中主函数的声明及返回值问题">
+<meta property="og:url" content="https://blog.pcninja.cn/2018/09/about-main-function-declaration-and-returned-value/index.html">
+<meta property="og:site_name" content="薯片忍者的小站">
+<meta property="og:description" content="前言    在C&#x2F;C程序中有时会见到采用诸如void main()等方式来声明主函数，很多人在主函数返回值的问题上也略显随意。经过查阅多版本的C、C标准文档与相关书籍，我将我的结论与认识总结于此。不可避免地，其中可能包含我错误的认识，欢迎大家指正。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-09-26T03:05:00.000Z">
+<meta property="article:modified_time" content="2018-10-04T02:40:44.187Z">
+<meta property="article:author" content="薯片忍者">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="编程">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://blog.pcninja.cn/2018/09/about-main-function-declaration-and-returned-value/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.pcninja.cn/2018/09/about-main-function-declaration-and-returned-value/","path":"2018/09/about-main-function-declaration-and-returned-value/","title":"关于C/C++中主函数的声明及返回值问题"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>关于C/C++中主函数的声明及返回值问题 | 薯片忍者的小站</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/js/third-party/math/katex.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="薯片忍者的小站" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">薯片忍者的小站</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">今天的故事 是明天的回忆</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text"> 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main%E5%87%BD%E6%95%B0%E7%9A%84%E5%87%BD%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="nav-text"> main()函数的函数类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main%E5%87%BD%E6%95%B0%E7%9A%84%E5%BD%A2%E5%BC%8F%E5%8F%82%E6%95%B0"><span class="nav-text"> main()函数的形式参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-text"> main()函数的返回值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-text"> 结语</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="薯片忍者"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">薯片忍者</p>
+  <div class="site-description" itemprop="description">今天的故事 是明天的回忆</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">128</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PotatoChipsNinja" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PotatoChipsNinja" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:%69%40%70%63%6E%69%6E%6A%61%2E%63%6E" title="E-Mail → mailto:%69%40%70%63%6E%69%6E%6A%61%2E%63%6E" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/potatochipsninja" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;potatochipsninja" rel="noopener me" target="_blank"><i class="fab fa-weibo fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/pcninja2000" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;pcninja2000" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/potatochipsninja" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;potatochipsninja" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+<script>
+  // 在不改变站点描述的情况下替换侧边栏文字
+  document.addEventListener("DOMContentLoaded", function () {
+    var siteDescription = document.querySelector(".site-description[itemprop='description']");
+    if (siteDescription) {
+      siteDescription.innerHTML = "想起那些时光<br />总觉得自己像个傻瓜";
+    }
+  });
+
+  // 在站点状态和社交链接之间添加RSS订阅链接
+  document.addEventListener("DOMContentLoaded", function () {
+    var siteOverviewWrap = document.querySelector(".site-overview-wrap.sidebar-panel");
+    var linksOfAuthor = document.querySelector(".links-of-author.animated");
+
+    if (siteOverviewWrap && linksOfAuthor) {
+      var feedLink = document.createElement("div");
+      feedLink.className = "feed-link animated";
+      feedLink.innerHTML = '<a href="/atom.xml" rel="alternate"><i class="fa fa-rss"></i>RSS</a>';
+      siteOverviewWrap.insertBefore(feedLink, linksOfAuthor);
+    }
+  });
+</script>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.pcninja.cn/2018/09/about-main-function-declaration-and-returned-value/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="薯片忍者">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薯片忍者的小站">
+      <meta itemprop="description" content="今天的故事 是明天的回忆">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="关于C&#x2F;C++中主函数的声明及返回值问题 | 薯片忍者的小站">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          关于C/C++中主函数的声明及返回值问题
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-09-26 11:05:00" itemprop="dateCreated datePublished" datetime="2018-09-26T11:05:00+08:00">2018-09-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+        </span>
+    </span>
+
+  
+  <span class="post-meta-item" title="阅读次数">
+    <span class="post-meta-item-icon">
+      <i class="far fa-eye"></i>
+    </span>
+    <span class="post-meta-item-text">阅读次数：</span>
+    <span class="waline-pageview-count" data-path="/2018/09/about-main-function-declaration-and-returned-value/"></span>
+  </span>
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
+<blockquote>
+<p>  在C/C<ins>程序中有时会见到采用诸如<code>void main()</code>等方式来声明主函数，很多人在主函数返回值的问题上也略显随意。经过查阅多版本的C、C</ins>标准文档与相关书籍，我将我的结论与认识总结于此。不可避免地，其中可能包含我错误的认识，欢迎大家指正。</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="main函数的函数类型"><a class="markdownIt-Anchor" href="#main函数的函数类型"></a> main()函数的函数类型</h2>
+<p>关于<code>main()</code>的原型，C89/99/11以及C++98/03/11/14等标准给出的说法略有出入，尤其在早期标准中差异更为显著。然而，共同的，在任何一个版本的标准中，均未承认<code>void main()</code>这种声明方式。首先可以得出结论：<code>void main()</code>为错误写法，所有编译器都没有理由支持该种写法。</p>
+<p>在K&amp;R C与C89里，若函数没有显式声明返回类型，则默认是<code>int</code>，因此在早期C程序中经常出现这样的主函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">main()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 函数体</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种写法在早期标准中是被认可的，<code>main()</code>等价于<code>int main()</code>。但是，C99标准不再支持函数的<code>int</code>类型的默认设置，因此该写法被废止，新的编译器不再允许此类main函数。</p>
+<p>在C99/11标准中，明确定义了对于标准的main函数的两个原型：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123; <span class="comment">/* ... */</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>为了增强说服力，我在《C Primer Plus》（第六版）（该书以1999 ISO/ANSI作为标准）中找到了这样一段话：</p>
+<blockquote>
+<p>  如果浏览老版本的C代码，您将发现程序常常以：<code>main()</code>这种形式开始。C90标准勉强允许这种形式，但是C99标准不允许。因此即使您当前的编译器允许，也不要这么做。<br />
+  您还将看到另一种形式：<code>void main()</code><br />
+  有些编译器允许这种形式，但是还没有任何标准考虑接受它。因而，编译器不必接受这种形式，并且许多编译器也不这样做。再者说，如果坚持使用标准形式，那么当您把程序从一个编译器移到另一个编译器时也不会有问题。</p>
+</blockquote>
+<h2 id="main函数的形式参数"><a class="markdownIt-Anchor" href="#main函数的形式参数"></a> main()函数的形式参数</h2>
+<p>此部分C与C++略有差异</p>
+<ul>
+<li>C</li>
+</ul>
+<p>int main()和int main(void)在C语言中是有区别的：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"><span class="comment">// 不等价于</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123; <span class="comment">/* ... */</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>在C语言中参数列表为空(即不提供参数列表也不为void)，表示不提供参数数量和参数类型信息：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">func</span><span class="params">()</span>           <span class="comment">// 参数列表为空不代表不接受参数</span></span><br><span class="line">&#123;</span><br><span class="line">    print(<span class="string">&quot;Hello, world\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    func(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>);    <span class="comment">// 调用func()，并传递了参数</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因此在C中，main函数的参数部分应该以以下两种方式描述：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123; <span class="comment">/* ... */</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>不应该写：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123; <span class="comment">/* ... */</span> &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>C++</li>
+</ul>
+<p>由于C和C<ins>中对于函数参数列表的规则并不一致(C</ins>中参数列表为空代表不接收任何参数)。所以C<ins>中main的原型和ISO C也并不太一样。<br />
+在C</ins>中，下面两种写法是完全等价的。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"><span class="comment">// 等价于</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>以上两种形式均符合标准。</p>
+<h2 id="main函数的返回值"><a class="markdownIt-Anchor" href="#main函数的返回值"></a> main()函数的返回值</h2>
+<p>上文指出，<code>main()</code>应以int类型定义，故需要返回一个<code>int</code>类型的返回值到操作系统。<br />
+在早期标准中，主函数中的<code>return 0;</code>是可以省略的，<code>main()</code>最后如果没有返回值，则会自动<code>return 0;</code>，但是记住，只有main函数是这样，其他函数不能省略<code>return</code>。<br />
+自C99/C++98以来，主函数的返回值为强制，若漏掉了返回语句，大多数编译器会给出警告，但仍将编译程序。</p>
+<ul>
+<li><code>return 0;</code>：一般用在主函数结束时，按照程序开发的一般惯例，表示成功完成本函数</li>
+<li><code>return -1;</code>：一般用在子函数结尾，按照程序开发的一般惯例，表示该函数失败</li>
+</ul>
+<p><code>main()</code>必须要有返回值的原因是：在C和C++中使用return-statement都是将return的值作为参数来调用exit/std::exit来终止程序。<br />
+此外，返回值对于某些操作系统（包括DOS和UNIX）而言，具有实际的用途。<br />
+以Windows为例，编译以下程序：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* test.c */</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在命令提示符下运行命令<code>test &amp;&amp; dir</code>，得到以下结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">D:\code&gt;test &amp;&amp; dir</span><br><span class="line"></span><br><span class="line"> D:\code 的目录</span><br><span class="line"></span><br><span class="line">2018/09/26  10:31    &lt;DIR&gt;          .</span><br><span class="line">2018/09/26  10:31    &lt;DIR&gt;          ..</span><br><span class="line">2018/09/26  10:29                35 test.c</span><br><span class="line">2018/09/26  10:30            41,664 test.exe</span><br><span class="line">               2 个文件         41,699 字节</span><br><span class="line">               2 个目录 605,409,882,112 可用字节</span><br><span class="line"></span><br><span class="line">D:\code&gt;</span><br></pre></td></tr></table></figure>
+<p>test.exe正常结束后执行<code>dir</code>指令，输出了目录列表。<br />
+若将第4行返回值由0改为-1:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="number">-1</span>;</span><br></pre></td></tr></table></figure>
+<p>再次执行<code>test &amp;&amp; dir</code>命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">D:\code&gt;test &amp;&amp; dir</span><br><span class="line"></span><br><span class="line">D:\code&gt;</span><br></pre></td></tr></table></figure>
+<p>test.exe将-1返回给了操作系统，即程序异常结束，因此windows没有继续执行<code>dir</code>打印目录列表。<br />
+总结一下，正常情况下main函数应以<code>return 0;</code>结束，不能随意更改返回值。</p>
+<h2 id="结语"><a class="markdownIt-Anchor" href="#结语"></a> 结语</h2>
+<p>综上所述，一般情况下，C/C++程序的主函数都应该以如下方法编写：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span>    <span class="comment">// void在C++中可省，C不建议省</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 函数体</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>即使其他不标准的声明方法也许不会影响程序的正常编译、运行，但为了程序的可移植性与易维护性，我们应该养成良好的编码习惯，利人利己。</p>
+<blockquote>
+<p>参考文献<br />
+[1] Stephen Prata 编著，《C Primer Plus》，人民邮电出版社，2005年，§2.2 §9.2 §B.5.<br />
+[2] Andrew Koenig 编著，《C陷阱与缺陷》，人民邮电出版社，2008年，§2.1 §7.1.<br />
+[3] Stephen Prata 编著，《C++ Primer Plus》，人民邮电出版社，2012年，§2.1 §2.4.</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C</a>
+              <a href="/tags/C/" rel="tag"># C++</a>
+              <a href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag"># 编程</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/09/summary-of-military-training/" rel="prev" title="军训小结">
+                  <i class="fa fa-angle-left"></i> 军训小结
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/10/web-page-auto-refresh-by-JavaScript/" rel="next" title="通过JavaScript实现网页自动刷新">
+                  通过JavaScript实现网页自动刷新 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2016 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">薯片忍者</span>
+  </div><a href="http://beian.miit.gov.cn" style="border-bottom:0;color:#808080;" rel="noopener" target="_blank">京ICP备20011227号-1</a>
+
+<div>
+  <span>
+    <i class="fa fa-user"></i>
+  </span>
+  <span title="总访客量">
+    <span id="site_uv"></span>
+  </span>
+
+  <span style="margin: 0 0.5em">|</span>
+
+  <span title="总访问量">
+    <span id="site_pv"></span>
+  </span>
+  <span>
+    <i class="fa fa-eye"></i>
+  </span>
+</div>
+
+<script>
+  function StatCallback(obj) {
+    uv = document.getElementById("site_uv");
+    pv = document.getElementById("site_pv");
+    uv && (uv.innerHTML = obj.uv);
+    pv && (pv.innerHTML = obj.pv);
+  }
+  var scriptTag = document.createElement("script");
+  scriptTag.type = "text/javascript";
+  scriptTag.defer = !0;
+  scriptTag.src = "https://lab.pcninja.cn/stat/query";
+  document.getElementsByTagName("head")[0].appendChild(scriptTag);
+</script>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+  <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
+  <script type="module">
+    import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+    console.log('waline.js loaded');
+
+    document.addEventListener('page:loaded', async () => {
+      init({
+        el: '#waline',
+        serverURL: 'https://comments.pcninja.cn',
+        search: false,
+        login: 'disable',
+        noCopyright: true,
+        noRss: true,
+        pageview: true,
+      });
+    });
+  </script>
+<script src="/js/jquery-3.7.1.slim.min.js"></script>
+<script src="/js/jquery.backstretch.min.js"></script>
+<script>
+  $("body").backstretch("/images/background.jpg");
+  // 在背景图片上层覆盖一个不透明度为0.15的黑色遮罩
+  $("<div>")
+    .css({
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      backgroundColor: "rgba(0, 0, 0, 0.15)",
+      zIndex: -1,
+    })
+    .appendTo("body");
+</script>
+
+</body>
+</html>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#200040" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#200040">
+  <link rel="manifest" href="/images/manifest.json">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=ZCOOL+XiaoWei:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.pcninja.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"stackoverflow-light","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"flat"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"waline","storage":true,"lazyload":false,"nav":null,"activeClass":"waline"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="天梯地图 时间限制: 300 ms 内存限制: 64 MB 本题要求你实现一个天梯赛专属在线地图，队员输入自己学校所在地和赛场地点后，该地图应该推荐两条路线：一条是最快到达路线；一条是最短距离的路线。题目保证对任意的查询请求，地图上都至少存在一条可达路线。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构作业——天梯地图">
+<meta property="og:url" content="https://blog.pcninja.cn/2019/04/high-ladder-map/index.html">
+<meta property="og:site_name" content="薯片忍者的小站">
+<meta property="og:description" content="天梯地图 时间限制: 300 ms 内存限制: 64 MB 本题要求你实现一个天梯赛专属在线地图，队员输入自己学校所在地和赛场地点后，该地图应该推荐两条路线：一条是最快到达路线；一条是最短距离的路线。题目保证对任意的查询请求，地图上都至少存在一条可达路线。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-04-22T07:53:35.000Z">
+<meta property="article:modified_time" content="2019-05-25T02:10:06.398Z">
+<meta property="article:author" content="薯片忍者">
+<meta property="article:tag" content="Dijkstra">
+<meta property="article:tag" content="作业">
+<meta property="article:tag" content="大学">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="编程">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://blog.pcninja.cn/2019/04/high-ladder-map/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.pcninja.cn/2019/04/high-ladder-map/","path":"2019/04/high-ladder-map/","title":"数据结构作业——天梯地图"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据结构作业——天梯地图 | 薯片忍者的小站</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/js/third-party/math/katex.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="薯片忍者的小站" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">薯片忍者的小站</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">今天的故事 是明天的回忆</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="薯片忍者"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">薯片忍者</p>
+  <div class="site-description" itemprop="description">今天的故事 是明天的回忆</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">128</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PotatoChipsNinja" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PotatoChipsNinja" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:%69%40%70%63%6E%69%6E%6A%61%2E%63%6E" title="E-Mail → mailto:%69%40%70%63%6E%69%6E%6A%61%2E%63%6E" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/potatochipsninja" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;potatochipsninja" rel="noopener me" target="_blank"><i class="fab fa-weibo fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/pcninja2000" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;pcninja2000" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/potatochipsninja" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;potatochipsninja" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+<script>
+  // 在不改变站点描述的情况下替换侧边栏文字
+  document.addEventListener("DOMContentLoaded", function () {
+    var siteDescription = document.querySelector(".site-description[itemprop='description']");
+    if (siteDescription) {
+      siteDescription.innerHTML = "想起那些时光<br />总觉得自己像个傻瓜";
+    }
+  });
+
+  // 在站点状态和社交链接之间添加RSS订阅链接
+  document.addEventListener("DOMContentLoaded", function () {
+    var siteOverviewWrap = document.querySelector(".site-overview-wrap.sidebar-panel");
+    var linksOfAuthor = document.querySelector(".links-of-author.animated");
+
+    if (siteOverviewWrap && linksOfAuthor) {
+      var feedLink = document.createElement("div");
+      feedLink.className = "feed-link animated";
+      feedLink.innerHTML = '<a href="/atom.xml" rel="alternate"><i class="fa fa-rss"></i>RSS</a>';
+      siteOverviewWrap.insertBefore(feedLink, linksOfAuthor);
+    }
+  });
+</script>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.pcninja.cn/2019/04/high-ladder-map/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="薯片忍者">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薯片忍者的小站">
+      <meta itemprop="description" content="今天的故事 是明天的回忆">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数据结构作业——天梯地图 | 薯片忍者的小站">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据结构作业——天梯地图
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-04-22 15:53:35" itemprop="dateCreated datePublished" datetime="2019-04-22T15:53:35+08:00">2019-04-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+        </span>
+    </span>
+
+  
+  <span class="post-meta-item" title="阅读次数">
+    <span class="post-meta-item-icon">
+      <i class="far fa-eye"></i>
+    </span>
+    <span class="post-meta-item-text">阅读次数：</span>
+    <span class="waline-pageview-count" data-path="/2019/04/high-ladder-map/"></span>
+  </span>
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><strong>天梯地图</strong><br />
+时间限制: 300 ms<br />
+内存限制: 64 MB</p>
+<p>本题要求你实现一个天梯赛专属在线地图，队员输入自己学校所在地和赛场地点后，该地图应该推荐两条路线：一条是最快到达路线；一条是最短距离的路线。题目保证对任意的查询请求，地图上都至少存在一条可达路线。</p>
+<span id="more"></span>
+<p><strong>输入格式：</strong><br />
+输入在第一行给出两个正整数<code>N</code>（2 ≤ <code>N</code> ≤ 500）和<code>M</code>，分别为地图中所有标记地点的个数和连接地点的道路条数。随后<code>M</code>行，每行按如下格式给出一条道路的信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">V1 V2 one-way length time</span><br></pre></td></tr></table></figure>
+<p>其中<code>V1</code>和<code>V2</code>是道路的两个端点的编号（从0到<code>N</code>-1）；如果该道路是从<code>V1</code>到<code>V2</code>的单行线，则<code>one-way</code>为1，否则为0；<code>length</code>是道路的长度；<code>time</code>是通过该路所需要的时间。最后给出一对起点和终点的编号。</p>
+<p><strong>输出格式：</strong><br />
+首先按下列格式输出最快到达的时间<code>T</code>和用节点编号表示的路线：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Time = T: 起点 =&gt; 节点1 =&gt; ... =&gt; 终点</span><br></pre></td></tr></table></figure>
+<p>然后在下一行按下列格式输出最短距离<code>D</code>和用节点编号表示的路线：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Distance = D: 起点 =&gt; 节点1 =&gt; ... =&gt; 终点</span><br></pre></td></tr></table></figure>
+<p>如果最快到达路线不唯一，则输出几条最快路线中最短的那条，题目保证这条路线是唯一的。而如果最短距离的路线不唯一，则输出途径节点数最少的那条，题目保证这条路线是唯一的。</p>
+<p>如果这两条路线是完全一样的，则按下列格式输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Time = T; Distance = D: 起点 =&gt; 节点1 =&gt; ... =&gt; 终点</span><br></pre></td></tr></table></figure>
+<p><strong>输入样例1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">10 15</span><br><span class="line">0 1 0 1 1</span><br><span class="line">8 0 0 1 1</span><br><span class="line">4 8 1 1 1</span><br><span class="line">5 4 0 2 3</span><br><span class="line">5 9 1 1 4</span><br><span class="line">0 6 0 1 1</span><br><span class="line">7 3 1 1 2</span><br><span class="line">8 3 1 1 2</span><br><span class="line">2 5 0 2 2</span><br><span class="line">2 1 1 1 1</span><br><span class="line">1 5 0 1 3</span><br><span class="line">1 4 0 1 1</span><br><span class="line">9 7 1 1 3</span><br><span class="line">3 1 0 2 5</span><br><span class="line">6 3 1 2 1</span><br><span class="line">5 3</span><br></pre></td></tr></table></figure>
+<p><strong>输出样例1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Time = 6: 5 =&gt; 4 =&gt; 8 =&gt; 3</span><br><span class="line">Distance = 3: 5 =&gt; 1 =&gt; 3</span><br></pre></td></tr></table></figure>
+<p><strong>输入样例2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">7 9</span><br><span class="line">0 4 1 1 1</span><br><span class="line">1 6 1 3 1</span><br><span class="line">2 6 1 1 1</span><br><span class="line">2 5 1 2 2</span><br><span class="line">3 0 0 1 1</span><br><span class="line">3 1 1 3 1</span><br><span class="line">3 2 1 2 1</span><br><span class="line">4 5 0 2 2</span><br><span class="line">6 5 1 2 1</span><br><span class="line">3 5</span><br></pre></td></tr></table></figure>
+<p><strong>输出样例2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Time = 3; Distance = 4: 3 =&gt; 2 =&gt; 5</span><br></pre></td></tr></table></figure>
+<p><strong>代码</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> Target;</span><br><span class="line">    <span class="type">int</span> Length;</span><br><span class="line">    <span class="type">int</span> Time;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> *<span class="title">NextEdge</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Vertex</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> *<span class="title">Head</span>;</span></span><br><span class="line">    <span class="type">int</span> Known;</span><br><span class="line">    <span class="type">int</span> Dist;</span><br><span class="line">    <span class="type">int</span> PathDist;</span><br><span class="line">    <span class="type">int</span> Time;</span><br><span class="line">    <span class="type">int</span> PathTime;</span><br><span class="line">    <span class="type">int</span> VertexNums;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">ReadGraph</span><span class="params">(<span class="keyword">struct</span> Vertex *G, <span class="type">int</span> n, <span class="type">int</span> m)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> begin, target, oneWay, length, time;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> *<span class="title">p</span>;</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">        G[i].Head = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d %d %d %d&quot;</span>, &amp;begin, &amp;target, &amp;oneWay, &amp;length, &amp;time);</span><br><span class="line">        p = G[begin].Head;</span><br><span class="line">        G[begin].Head = (<span class="keyword">struct</span> Edge *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> Edge));</span><br><span class="line">        G[begin].Head-&gt;Target = target;</span><br><span class="line">        G[begin].Head-&gt;Length = length;</span><br><span class="line">        G[begin].Head-&gt;Time = time;</span><br><span class="line">        G[begin].Head-&gt;NextEdge = p;</span><br><span class="line">        <span class="keyword">if</span>(!oneWay)</span><br><span class="line">        &#123;</span><br><span class="line">            p = G[target].Head;</span><br><span class="line">            G[target].Head = (<span class="keyword">struct</span> Edge *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> Edge));</span><br><span class="line">            G[target].Head-&gt;Target = begin;</span><br><span class="line">            G[target].Head-&gt;Length = length;</span><br><span class="line">            G[target].Head-&gt;Time = time;</span><br><span class="line">            G[target].Head-&gt;NextEdge = p;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Dijkstra</span><span class="params">(<span class="keyword">struct</span> Vertex *G, <span class="type">int</span> n, <span class="type">int</span> begin)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> v, vDist, vTime, vNums;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        G[i].Known = <span class="number">0</span>;</span><br><span class="line">        G[i].Dist = G[i].Time = G[i].PathDist = G[i].PathTime = G[i].VertexNums = <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    G[begin].Dist = G[begin].Time = G[begin].VertexNums = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        v = vTime = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">            <span class="keyword">if</span>(!G[i].Known &amp;&amp; G[i].Time != <span class="number">-1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(v == <span class="number">-1</span> || G[i].Time &lt; vTime)</span><br><span class="line">                &#123;</span><br><span class="line">                    vTime = G[i].Time;</span><br><span class="line">                    vDist = G[i].Dist;</span><br><span class="line">                    v = i;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(G[i].Time == vTime &amp;&amp; G[i].Dist &lt; vDist)</span><br><span class="line">                &#123;</span><br><span class="line">                    vDist = G[i].Dist;</span><br><span class="line">                    v = i;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">if</span>(v == <span class="number">-1</span>)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        G[v].Known = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">struct</span> Edge *p = G[v].Head; p; p = p-&gt;NextEdge)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(!G[p-&gt;Target].Known)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(G[p-&gt;Target].Time == <span class="number">-1</span> || G[v].Time + p-&gt;Time &lt; G[p-&gt;Target].Time)</span><br><span class="line">                &#123;</span><br><span class="line">                    G[p-&gt;Target].Time = G[v].Time + p-&gt;Time;</span><br><span class="line">                    G[p-&gt;Target].Dist = G[v].Dist + p-&gt;Length;</span><br><span class="line">                    G[p-&gt;Target].PathTime = v;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>((G[v].Time + p-&gt;Time == G[p-&gt;Target].Time) &amp;&amp; (G[v].Dist + p-&gt;Length &lt; G[p-&gt;Target].Dist))</span><br><span class="line">                &#123;</span><br><span class="line">                    G[p-&gt;Target].Dist = G[v].Dist + p-&gt;Length;</span><br><span class="line">                    G[p-&gt;Target].PathTime = v;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        G[i].Known = <span class="number">0</span>;</span><br><span class="line">        G[i].Dist = <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    G[begin].Dist = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        v = vDist = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">            <span class="keyword">if</span>(!G[i].Known &amp;&amp; G[i].Dist != <span class="number">-1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(v == <span class="number">-1</span> || G[i].Dist &lt; vDist)</span><br><span class="line">                &#123;</span><br><span class="line">                    vDist = G[i].Dist;</span><br><span class="line">                    vNums = G[i].VertexNums;</span><br><span class="line">                    v = i;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(G[i].Dist == vDist &amp;&amp; G[i].VertexNums &lt; vNums)</span><br><span class="line">                &#123;</span><br><span class="line">                    vNums = G[i].VertexNums;</span><br><span class="line">                    v = i;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">if</span>(v == <span class="number">-1</span>)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        G[v].Known = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">struct</span> Edge *p = G[v].Head; p; p = p-&gt;NextEdge)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(!G[p-&gt;Target].Known)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(G[p-&gt;Target].Dist == <span class="number">-1</span> || G[v].Dist + p-&gt;Length &lt; G[p-&gt;Target].Dist)</span><br><span class="line">                &#123;</span><br><span class="line">                    G[p-&gt;Target].Dist = G[v].Dist + p-&gt;Length;</span><br><span class="line">                    G[p-&gt;Target].VertexNums = G[v].VertexNums + <span class="number">1</span>;</span><br><span class="line">                    G[p-&gt;Target].PathDist = v;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>((G[v].Dist + p-&gt;Length == G[p-&gt;Target].Dist) &amp;&amp; (G[v].VertexNums + <span class="number">1</span> &lt; G[p-&gt;Target].VertexNums))</span><br><span class="line">                &#123;</span><br><span class="line">                    G[p-&gt;Target].VertexNums = G[v].VertexNums + <span class="number">1</span>;</span><br><span class="line">                    G[p-&gt;Target].PathDist = v;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">PrintPath</span><span class="params">(<span class="keyword">struct</span> Vertex *G, <span class="type">int</span> end, <span class="type">int</span> type)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(type)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(G[end].PathDist != <span class="number">-1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            PrintPath(G, G[end].PathDist, <span class="number">1</span>);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot; =&gt; %d&quot;</span>, end);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(G[end].PathTime != <span class="number">-1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            PrintPath(G, G[end].PathTime, <span class="number">0</span>);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot; =&gt; %d&quot;</span>, end);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Output</span><span class="params">(<span class="keyword">struct</span> Vertex *G, <span class="type">int</span> begin, <span class="type">int</span> end)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i = end;</span><br><span class="line">    <span class="keyword">while</span>(i != begin)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(G[i].PathDist != G[i].PathTime)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        i = G[i].PathDist;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(i == begin)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Time = %d; Distance = %d: %d&quot;</span>, G[end].Time, G[end].Dist, begin);</span><br><span class="line">        PrintPath(G, end, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Time = %d: %d&quot;</span>, G[end].Time, begin);</span><br><span class="line">        PrintPath(G, end, <span class="number">0</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\nDistance = %d: %d&quot;</span>, G[end].Dist, begin);</span><br><span class="line">        PrintPath(G, end, <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> n, m, begin, end;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Vertex</span> <span class="title">G</span>[<span class="title">n</span>];</span></span><br><span class="line">    ReadGraph(G, n, m);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;begin, &amp;end);</span><br><span class="line">    Dijkstra(G, n, begin);</span><br><span class="line">    Output(G, begin, end);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%A4%A7%E5%AD%A6/" rel="tag"># 大学</a>
+              <a href="/tags/%E4%BD%9C%E4%B8%9A/" rel="tag"># 作业</a>
+              <a href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag"># 编程</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+              <a href="/tags/Dijkstra/" rel="tag"># Dijkstra</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/11/40-years-of-reform-and-opening-up/" rel="prev" title="穷则变，变则通，通则久">
+                  <i class="fa fa-angle-left"></i> 穷则变，变则通，通则久
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/04/one-day-metro-tour/" rel="next" title="数据结构作业——地铁一日游">
+                  数据结构作业——地铁一日游 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2016 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">薯片忍者</span>
+  </div><a href="http://beian.miit.gov.cn" style="border-bottom:0;color:#808080;" rel="noopener" target="_blank">京ICP备20011227号-1</a>
+
+<div>
+  <span>
+    <i class="fa fa-user"></i>
+  </span>
+  <span title="总访客量">
+    <span id="site_uv"></span>
+  </span>
+
+  <span style="margin: 0 0.5em">|</span>
+
+  <span title="总访问量">
+    <span id="site_pv"></span>
+  </span>
+  <span>
+    <i class="fa fa-eye"></i>
+  </span>
+</div>
+
+<script>
+  function StatCallback(obj) {
+    uv = document.getElementById("site_uv");
+    pv = document.getElementById("site_pv");
+    uv && (uv.innerHTML = obj.uv);
+    pv && (pv.innerHTML = obj.pv);
+  }
+  var scriptTag = document.createElement("script");
+  scriptTag.type = "text/javascript";
+  scriptTag.defer = !0;
+  scriptTag.src = "https://lab.pcninja.cn/stat/query";
+  document.getElementsByTagName("head")[0].appendChild(scriptTag);
+</script>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+  <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
+  <script type="module">
+    import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+    console.log('waline.js loaded');
+
+    document.addEventListener('page:loaded', async () => {
+      init({
+        el: '#waline',
+        serverURL: 'https://comments.pcninja.cn',
+        search: false,
+        login: 'disable',
+        noCopyright: true,
+        noRss: true,
+        pageview: true,
+      });
+    });
+  </script>
+<script src="/js/jquery-3.7.1.slim.min.js"></script>
+<script src="/js/jquery.backstretch.min.js"></script>
+<script>
+  $("body").backstretch("/images/background.jpg");
+  // 在背景图片上层覆盖一个不透明度为0.15的黑色遮罩
+  $("<div>")
+    .css({
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      backgroundColor: "rgba(0, 0, 0, 0.15)",
+      zIndex: -1,
+    })
+    .appendTo("body");
+</script>
+
+</body>
+</html>

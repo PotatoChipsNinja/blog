@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#200040" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#200040">
+  <link rel="manifest" href="/images/manifest.json">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=ZCOOL+XiaoWei:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.pcninja.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"stackoverflow-light","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"flat"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"waline","storage":true,"lazyload":false,"nav":null,"activeClass":"waline"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="摘要：汉诺塔问题如何解决？有何规律与方法？通过发现、研究、总结规律，探索出解决n个盘子汉诺塔问题的方法。  关键词：汉诺塔、递归  第一部分、问题的提出   汉诺（Hanoi）塔问题是源于法国数学家爱德华·卢卡斯编写的一个印度古老传说的益智玩具。其规则是：现有三根柱，即A柱、B柱与C柱，在A柱上从上往下按照从小到大的顺序摞着64片圆盘，要求在大盘不能在小盘之上、一次只能移动一个圆盘的前提下，把圆">
+<meta property="og:type" content="article">
+<meta property="og:title" content="汉诺塔问题解法探究">
+<meta property="og:url" content="https://blog.pcninja.cn/2016/03/explore-the-solution-of-Hanoi/index.html">
+<meta property="og:site_name" content="薯片忍者的小站">
+<meta property="og:description" content="摘要：汉诺塔问题如何解决？有何规律与方法？通过发现、研究、总结规律，探索出解决n个盘子汉诺塔问题的方法。  关键词：汉诺塔、递归  第一部分、问题的提出   汉诺（Hanoi）塔问题是源于法国数学家爱德华·卢卡斯编写的一个印度古老传说的益智玩具。其规则是：现有三根柱，即A柱、B柱与C柱，在A柱上从上往下按照从小到大的顺序摞着64片圆盘，要求在大盘不能在小盘之上、一次只能移动一个圆盘的前提下，把圆">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.pcninja.cn/2016/03/explore-the-solution-of-Hanoi/start.png">
+<meta property="og:image" content="https://blog.pcninja.cn/2016/03/explore-the-solution-of-Hanoi/s1.png">
+<meta property="og:image" content="https://blog.pcninja.cn/2016/03/explore-the-solution-of-Hanoi/s2.png">
+<meta property="og:image" content="https://blog.pcninja.cn/2016/03/explore-the-solution-of-Hanoi/s3.png">
+<meta property="og:image" content="https://blog.pcninja.cn/2016/03/explore-the-solution-of-Hanoi/s4.png">
+<meta property="og:image" content="https://blog.pcninja.cn/2016/03/explore-the-solution-of-Hanoi/PrtSc.png">
+<meta property="article:published_time" content="2016-03-26T10:13:54.000Z">
+<meta property="article:modified_time" content="2018-03-03T11:17:44.000Z">
+<meta property="article:author" content="薯片忍者">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="探究">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="汉诺塔">
+<meta property="article:tag" content="编程">
+<meta property="article:tag" content="论文">
+<meta property="article:tag" content="高中">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.pcninja.cn/2016/03/explore-the-solution-of-Hanoi/start.png">
+
+
+<link rel="canonical" href="https://blog.pcninja.cn/2016/03/explore-the-solution-of-Hanoi/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.pcninja.cn/2016/03/explore-the-solution-of-Hanoi/","path":"2016/03/explore-the-solution-of-Hanoi/","title":"汉诺塔问题解法探究"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>汉诺塔问题解法探究 | 薯片忍者的小站</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/js/third-party/math/katex.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="薯片忍者的小站" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">薯片忍者的小站</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">今天的故事 是明天的回忆</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%91%98%E8%A6%81%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E6%9C%89%E4%BD%95%E8%A7%84%E5%BE%8B%E4%B8%8E%E6%96%B9%E6%B3%95%E9%80%9A%E8%BF%87%E5%8F%91%E7%8E%B0-%E7%A0%94%E7%A9%B6-%E6%80%BB%E7%BB%93%E8%A7%84%E5%BE%8B%E6%8E%A2%E7%B4%A2%E5%87%BA%E8%A7%A3%E5%86%B3n%E4%B8%AA%E7%9B%98%E5%AD%90%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-text"> 摘要：汉诺塔问题如何解决？有何规律与方法？通过发现、研究、总结规律，探索出解决n个盘子汉诺塔问题的方法。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E8%AF%8D%E6%B1%89%E8%AF%BA%E5%A1%94-%E9%80%92%E5%BD%92"><span class="nav-text"> 关键词：汉诺塔、递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-%E9%97%AE%E9%A2%98%E7%9A%84%E6%8F%90%E5%87%BA"><span class="nav-text"> 第一部分、问题的提出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86-%E9%97%AE%E9%A2%98%E7%9A%84%E6%8E%A2%E7%A9%B6"><span class="nav-text"> 第二部分、问题的探究</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86-%E7%BB%93%E8%AE%BA%E4%B8%8E%E5%90%AF%E7%A4%BA"><span class="nav-text"> 第三部分、结论与启示</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE1%E8%B0%AD%E6%B5%A9%E5%BC%BA%E7%BC%96%E8%91%97c%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6%E5%87%BA%E7%89%88%E7%A4%BE1991%E5%B9%B476-%E5%87%BD%E6%95%B0%E7%9A%84%E9%80%92%E5%BD%92%E8%B0%83%E7%94%A8"><span class="nav-text"> 参考文献：[1]谭浩强编著，《C程序设计》，清华大学出版社，1991年，§7.6 函数的递归调用.</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="薯片忍者"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">薯片忍者</p>
+  <div class="site-description" itemprop="description">今天的故事 是明天的回忆</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">128</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PotatoChipsNinja" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PotatoChipsNinja" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:%69%40%70%63%6E%69%6E%6A%61%2E%63%6E" title="E-Mail → mailto:%69%40%70%63%6E%69%6E%6A%61%2E%63%6E" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/potatochipsninja" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;potatochipsninja" rel="noopener me" target="_blank"><i class="fab fa-weibo fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/pcninja2000" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;pcninja2000" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/potatochipsninja" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;potatochipsninja" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+<script>
+  // 在不改变站点描述的情况下替换侧边栏文字
+  document.addEventListener("DOMContentLoaded", function () {
+    var siteDescription = document.querySelector(".site-description[itemprop='description']");
+    if (siteDescription) {
+      siteDescription.innerHTML = "想起那些时光<br />总觉得自己像个傻瓜";
+    }
+  });
+
+  // 在站点状态和社交链接之间添加RSS订阅链接
+  document.addEventListener("DOMContentLoaded", function () {
+    var siteOverviewWrap = document.querySelector(".site-overview-wrap.sidebar-panel");
+    var linksOfAuthor = document.querySelector(".links-of-author.animated");
+
+    if (siteOverviewWrap && linksOfAuthor) {
+      var feedLink = document.createElement("div");
+      feedLink.className = "feed-link animated";
+      feedLink.innerHTML = '<a href="/atom.xml" rel="alternate"><i class="fa fa-rss"></i>RSS</a>';
+      siteOverviewWrap.insertBefore(feedLink, linksOfAuthor);
+    }
+  });
+</script>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.pcninja.cn/2016/03/explore-the-solution-of-Hanoi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="薯片忍者">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薯片忍者的小站">
+      <meta itemprop="description" content="今天的故事 是明天的回忆">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="汉诺塔问题解法探究 | 薯片忍者的小站">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          汉诺塔问题解法探究
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-03-26 18:13:54" itemprop="dateCreated datePublished" datetime="2016-03-26T18:13:54+08:00">2016-03-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E7%A7%91/" itemprop="url" rel="index"><span itemprop="name">学科</span></a>
+        </span>
+    </span>
+
+  
+  <span class="post-meta-item" title="阅读次数">
+    <span class="post-meta-item-icon">
+      <i class="far fa-eye"></i>
+    </span>
+    <span class="post-meta-item-text">阅读次数：</span>
+    <span class="waline-pageview-count" data-path="/2016/03/explore-the-solution-of-Hanoi/"></span>
+  </span>
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h5 id="摘要汉诺塔问题如何解决有何规律与方法通过发现-研究-总结规律探索出解决n个盘子汉诺塔问题的方法"><a class="markdownIt-Anchor" href="#摘要汉诺塔问题如何解决有何规律与方法通过发现-研究-总结规律探索出解决n个盘子汉诺塔问题的方法"></a> 摘要：汉诺塔问题如何解决？有何规律与方法？通过发现、研究、总结规律，探索出解决n个盘子汉诺塔问题的方法。</h5>
+<h5 id="关键词汉诺塔-递归"><a class="markdownIt-Anchor" href="#关键词汉诺塔-递归"></a> 关键词：汉诺塔、递归</h5>
+<h3 id="第一部分-问题的提出"><a class="markdownIt-Anchor" href="#第一部分-问题的提出"></a> <strong>第一部分、问题的提出</strong></h3>
+<p>  汉诺（Hanoi）塔问题是源于法国数学家爱德华·卢卡斯编写的一个印度古老传说的益智玩具。其规则是：现有三根柱，即A柱、B柱与C柱，在A柱上从上往下按照从小到大的顺序摞着64片圆盘，要求在大盘不能在小盘之上、一次只能移动一个圆盘的前提下，把圆盘按大小顺序完全移动至C柱（如图1所示）。</p>
+<img src="/2016/03/explore-the-solution-of-Hanoi/start.png" class="" title="初始情况">
+<p>  要想完成这个游戏，需要按怎样的步骤移动？至少需要多少步才能完成？怎样移动步数最少？一个个问题困扰着我，于是我对汉诺塔问题展开了探究。<span id="more"></span></p>
+<h3 id="第二部分-问题的探究"><a class="markdownIt-Anchor" href="#第二部分-问题的探究"></a> <strong>第二部分、问题的探究</strong></h3>
+<p>  要想解决原题目中64个圆盘的汉诺塔问题，不妨先从简单的汉诺塔问题入手，再从特殊到一般，总结出n个盘子的规律。<br />
+  经过一段时间的尝试，我发现1个盘子的汉诺塔问题只需一步即可解决，即A–&gt;C；2个盘子的汉诺塔问题最少需要三步来解决，即A–&gt;B，A–&gt;C，B–&gt;C；3个盘子的汉诺塔问题最少需要七步来解决，即A–&gt;C，A–&gt;B，C–&gt;B，A–&gt;C，B–&gt;A，B–&gt;C，A–&gt;C。这三种简单情况之需经过简单的尝试即可解决，但从4个盘子开始，问题变得越来越复杂，经过屡次尝试我才找到了最少步数的解决方法：A–&gt;C，A–&gt;B，C–&gt;B，A–&gt;C，B–&gt;A，B–&gt;C，A–&gt;C，共15步。<br />
+  通过上面的四次尝试，我对于盘子数（n）与最少步数（S）列出下表：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">n/个</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">S/步</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">…</td>
+</tr>
+<tr>
+<td style="text-align:center">  根据表中数据，我做出大胆猜测：最少步数（S）与盘子数（n）成正相关，且S=2^n-1。</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">  为了验证以上猜想的正确性，我开始寻找n=2、3、4时移动步骤的共性。若从原始条件出发没有头绪，不妨试试从结果出发。因为目的是把所有盘子移动到C柱，而又必须遵循大在下小在上的原则，那么就必须先把最大的盘子移动到C柱，再把次大的盘子移动到C柱，再把第三大的盘子移动到C柱，循环往复，直到最小的盘子也“抵达”C柱。</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">  这个方法就好比大货车与小轿车发生车祸，轿车被压在货车下，一名行人被压在轿车之下。要想先救出被压在车底的人，就必须先把车一并抬起，移动到他处，再把人救出。</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">  经过思考，我发现，不论2个、3个还是4个盘子，都是先想办法把A柱上除最后一个盘子以外的所有盘子移动到B柱上（如图2所示），这样就得以把A柱上剩下的最大的盘子移动至C柱（如图3所示）；这时B柱上套着除最大盘外所有的盘子，B柱就好比一开始的A柱，A柱就变为空柱；把B柱上除最后一个盘子以外的所有盘子移动到A柱上（如图4所示），这样就得以把B柱上剩下的次大的盘子移动至C柱（如图5所示）……</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<img src="/2016/03/explore-the-solution-of-Hanoi/s1.png" class="" title="解决方案">
+<img src="/2016/03/explore-the-solution-of-Hanoi/s2.png" class="" title="解决方案">
+<img src="/2016/03/explore-the-solution-of-Hanoi/s3.png" class="" title="解决方案">
+<img src="/2016/03/explore-the-solution-of-Hanoi/s4.png" class="" title="解决方案">
+<p>  实践是检验真理的唯一标准，借助这个思路，我成功地解决了5个盘子的汉诺塔问题，步骤为：A–&gt;C，A–&gt;B，C–&gt;B，A–&gt;C，B–&gt;A，B–&gt;C，A–&gt;C，A–&gt;B，C–&gt;B，C–&gt;A，B–&gt;A，C–&gt;B，A–&gt;C，A–&gt;B，C–&gt;B，A–&gt;C，B–&gt;A，B–&gt;C，A–&gt;C，B–&gt;A，C–&gt;B，C–&gt;A，B–&gt;A，B–&gt;C，A–&gt;C，A–&gt;B，C–&gt;B，A–&gt;C，B–&gt;A，B–&gt;C，A–&gt;C，共计31步，这也成功地验证了我对于步数与盘子数之间关系：S=2^n-1的猜想。<br />
+  综上所述，我总结出了解决n个盘子的汉诺塔问题的移动步骤：<br />
+(a1)把A柱上上面的n-1个盘子移动至B柱；<br />
+(a2)把A柱上剩下的一个盘子移动至C柱；<br />
+(a3)把B柱上的n-1个盘子移动至C柱。<br />
+  在这之中a2步是很好实现的，而a1步与a3步却不能直接实现。若想实现第a1步，就需要进行以下三个步骤：<br />
+(b1)把A柱上上面的n-2个盘子移动至C柱；<br />
+(b2)把A柱上上面的一个盘子移动至B柱；<br />
+(b3)把C柱上的n-2个盘子移动至B柱。<br />
+  这三步本质上和a1、a2、a3三步是相同的，只不过要移动的盘子少了一个，而目的地也从C柱变成了B柱。若想实现第b1步，就还需要进行三个步骤……<br />
+  这种逆推的思想使得问题变为了一个个循环的过程，每一次过程都比原过程的盘子数少一个，循环往复，直到新过程中的盘子数变为1为止。这便是一个典型的递归方法。<br />
+  借助C语言允许在函数中直接调用此函数本身的特性，我用C语言实现了汉诺塔问题的递归调用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Hanoi.c</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> step = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">hanoi</span> <span class="params">(<span class="type">int</span> d, <span class="type">char</span> first, <span class="type">char</span> second, <span class="type">char</span> third)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">out</span> <span class="params">(<span class="type">char</span> from, <span class="type">char</span> to)</span>;		<span class="comment">//输出</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> disk;		<span class="comment">//盘子数</span></span><br><span class="line">	<span class="type">char</span> ch;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Please input the number of diskes:&quot;</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;disk);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n\nThis is the step to move %d diskes:\n&quot;</span>, disk);</span><br><span class="line">	hanoi (disk, <span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\nThis is all of %d steps.\n&quot;</span>, step);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> ((ch = getchar()) != <span class="string">&#x27;\n&#x27;</span>)		<span class="comment">//按任意键继续</span></span><br><span class="line">		<span class="keyword">continue</span>;</span><br><span class="line">	getchar();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">hanoi</span> <span class="params">(<span class="type">int</span> n, <span class="type">char</span> first, <span class="type">char</span> second, <span class="type">char</span> third)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (n == <span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		out (first, third);</span><br><span class="line">		step++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		hanoi (n - <span class="number">1</span>, first, third, second);</span><br><span class="line">		out (first, third);</span><br><span class="line">		step++;</span><br><span class="line">		hanoi (n - <span class="number">1</span>, second, first, third);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">out</span> <span class="params">(<span class="type">char</span> from, <span class="type">char</span> to)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%c ---&gt; %c\n&quot;</span>, from, to);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  程序实现了对用户指定盘子数n的移动步骤与总步数的输出，在MinGW编译环境下编译，运行效果如图6（输入3）。</p>
+<img src="/2016/03/explore-the-solution-of-Hanoi/PrtSc.png" class="" title="程序实现">
+<p>  至此，关于汉诺塔问题的探究便告一段落。</p>
+<h3 id="第三部分-结论与启示"><a class="markdownIt-Anchor" href="#第三部分-结论与启示"></a> <strong>第三部分、结论与启示</strong></h3>
+<p>  从最初的尝试，到大胆猜想，再到获得思路，最后成功把理论应用至实践，用计算机实现了对于n个盘子汉诺塔问题步骤的输出。整个探究过程帮助我透彻地理解了汉诺塔等递归问题的本质。其实递归问题不仅仅只有汉诺塔问题，例如“有5个人，问第5个人多少岁，他说比第4个人大两岁；问第4个人多少岁，他说比第3个人大两岁；问第3个人多少岁，他说比第2个人大两岁；问第2个人多少岁，他说比第1个人大两岁；最后问第1个人多少岁，他说是十岁。求第5个人多少岁。”这个问题就可以用递归方法来解决：第n个人的年龄用式子表达就是age(n)=age(n-1)+2(n&gt;1), 10(n=1) 。<br />
+  综合整篇文章，得出了S=2^n-1的结论以及n个盘子的解法，更重要的是成功应用了递归的思想，我从中体验到了一种数学的和谐之美，我们要发现生活中的数学之美，感受数学的魅力。</p>
+<h6 id="参考文献1谭浩强编著c程序设计清华大学出版社1991年76-函数的递归调用"><a class="markdownIt-Anchor" href="#参考文献1谭浩强编著c程序设计清华大学出版社1991年76-函数的递归调用"></a> 参考文献：[1]谭浩强编著，《C程序设计》，清华大学出版社，1991年，§7.6 函数的递归调用.</h6>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C</a>
+              <a href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag"># 编程</a>
+              <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"># 数学</a>
+              <a href="/tags/%E6%8E%A2%E7%A9%B6/" rel="tag"># 探究</a>
+              <a href="/tags/%E6%B1%89%E8%AF%BA%E5%A1%94/" rel="tag"># 汉诺塔</a>
+              <a href="/tags/%E8%AE%BA%E6%96%87/" rel="tag"># 论文</a>
+              <a href="/tags/%E9%AB%98%E4%B8%AD/" rel="tag"># 高中</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2015/10/talking-about-the-patriotism-of-WenYiduo-from-poetry/" rel="prev" title="从诗歌看民主斗士闻一多的爱国情怀">
+                  <i class="fa fa-angle-left"></i> 从诗歌看民主斗士闻一多的爱国情怀
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2016/04/sense-of-reading-A-Dream-in-Red-Mansions-chapter-four/" rel="next" title="读《红楼梦》第四回有感">
+                  读《红楼梦》第四回有感 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2016 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">薯片忍者</span>
+  </div><a href="http://beian.miit.gov.cn" style="border-bottom:0;color:#808080;" rel="noopener" target="_blank">京ICP备20011227号-1</a>
+
+<div>
+  <span>
+    <i class="fa fa-user"></i>
+  </span>
+  <span title="总访客量">
+    <span id="site_uv"></span>
+  </span>
+
+  <span style="margin: 0 0.5em">|</span>
+
+  <span title="总访问量">
+    <span id="site_pv"></span>
+  </span>
+  <span>
+    <i class="fa fa-eye"></i>
+  </span>
+</div>
+
+<script>
+  function StatCallback(obj) {
+    uv = document.getElementById("site_uv");
+    pv = document.getElementById("site_pv");
+    uv && (uv.innerHTML = obj.uv);
+    pv && (pv.innerHTML = obj.pv);
+  }
+  var scriptTag = document.createElement("script");
+  scriptTag.type = "text/javascript";
+  scriptTag.defer = !0;
+  scriptTag.src = "https://lab.pcninja.cn/stat/query";
+  document.getElementsByTagName("head")[0].appendChild(scriptTag);
+</script>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+  <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
+  <script type="module">
+    import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+    console.log('waline.js loaded');
+
+    document.addEventListener('page:loaded', async () => {
+      init({
+        el: '#waline',
+        serverURL: 'https://comments.pcninja.cn',
+        search: false,
+        login: 'disable',
+        noCopyright: true,
+        noRss: true,
+        pageview: true,
+      });
+    });
+  </script>
+<script src="/js/jquery-3.7.1.slim.min.js"></script>
+<script src="/js/jquery.backstretch.min.js"></script>
+<script>
+  $("body").backstretch("/images/background.jpg");
+  // 在背景图片上层覆盖一个不透明度为0.15的黑色遮罩
+  $("<div>")
+    .css({
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      backgroundColor: "rgba(0, 0, 0, 0.15)",
+      zIndex: -1,
+    })
+    .appendTo("body");
+</script>
+
+</body>
+</html>
